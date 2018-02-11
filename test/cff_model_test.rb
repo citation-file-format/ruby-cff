@@ -12,11 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "yaml"
+require "test_helper"
 
-require "cff/model"
-require "cff/version"
+class CFFModelTest < Minitest::Test
+  def test_default_model_cff_version
+    assert_equal ::CFF::Model.new("").cff_version, ::CFF::DEFAULT_SPEC_VERSION
+  end
 
-module CFF
-
+  def test_cff_version_is_output_correctly
+    m = ::CFF::Model.new("").to_yaml
+    assert m.include? "cff-version"
+    refute m.include? "cff_include"
+  end
 end

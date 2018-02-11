@@ -12,11 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "yaml"
-
-require "cff/model"
-require "cff/version"
-
 module CFF
+  class Model
 
+    attr_reader :cff_version
+    attr_reader :message
+
+    def initialize(message)
+      @cff_version = DEFAULT_SPEC_VERSION
+      @message = message
+    end
+
+    def encode_with(coder)
+      coder["cff-version"] = @cff_version
+      coder["message"] = @message
+    end
+
+    def init_with(coder)
+      @cff_version = coder["cff-version"] || DEFAULT_SPEC_VERSION
+      @message = coder["message"] || ""
+    end
+
+  end
 end
