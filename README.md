@@ -1,2 +1,4 @@
 # cff-gem
-A Ruby reader for CITATION.cff files.
+## Robert Haines
+
+A Ruby library for manipulating CITATION.cff files.
