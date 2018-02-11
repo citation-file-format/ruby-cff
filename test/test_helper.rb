@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'coveralls'
+Coveralls.wear!
+
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "cff"
 
