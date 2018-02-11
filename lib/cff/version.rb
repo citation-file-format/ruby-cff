@@ -14,4 +14,5 @@
 
 module CFF
   VERSION = "0.1.0"
+  DEFAULT_SPEC_VERSION = "1.0.3"
 end
