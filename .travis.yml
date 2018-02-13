@@ -5,12 +5,15 @@ sudo: false
 cache: bundler
 
 rvm:
+  - 2.3.6
   - 2.4.3
   - 2.5.0
+  - rbx-3
   - ruby-head
 
 matrix:
   allow_failures:
+    - rvm: rbx-3
     - rvm: ruby-head
 
 before_install: gem install bundler -v 1.16.1
