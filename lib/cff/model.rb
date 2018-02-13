@@ -19,20 +19,24 @@ module CFF
 
     attr_reader :cff_version
     attr_reader :message
+    attr_reader :title
 
-    def initialize
+    def initialize(title)
       @cff_version = DEFAULT_SPEC_VERSION
       @message = ""
+      @title = title
     end
 
     def encode_with(coder)
       coder["cff-version"] = @cff_version
-      coder["message"] = @message.empty? ? DEFAULT_MESSAGE : @message
+      coder["message"] = @message.empty? ? DEFAULT_MESSAGE.gsub('#TITLE#', @title) : @message
+      coder["title"] = @title
     end
 
     def init_with(coder)
       @cff_version = coder["cff-version"] || DEFAULT_SPEC_VERSION
       @message = coder["message"] || ""
+      @title = coder["title"] || ""
     end
 
   end

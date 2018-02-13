@@ -16,12 +16,28 @@ require "test_helper"
 
 class CFFModelTest < Minitest::Test
   def test_default_model_cff_version
-    assert_equal ::CFF::Model.new.cff_version, ::CFF::DEFAULT_SPEC_VERSION
+    assert_equal ::CFF::Model.new("").cff_version, ::CFF::DEFAULT_SPEC_VERSION
   end
 
   def test_cff_version_is_output_correctly
-    m = ::CFF::Model.new.to_yaml
+    m = ::CFF::Model.new("").to_yaml
     assert m.include? "cff-version"
     refute m.include? "cff_include"
+  end
+
+  def test_message_is_output_correctly
+    ['', 'aaabbbccc'].each do |title|
+      m = ::CFF::Model.new(title).to_yaml
+      assert m.include? "message"
+      assert m.include? ::CFF::Model::DEFAULT_MESSAGE.gsub('#TITLE#', title)
+    end
+  end
+
+  def test_title_is_output_correctly
+    ['', 'aaabbbccc'].each do |title|
+      m = ::CFF::Model.new(title).to_yaml
+      assert m.include? "title"
+      assert m.include? title
+    end
   end
 end
