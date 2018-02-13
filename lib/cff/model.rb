@@ -15,17 +15,19 @@
 module CFF
   class Model
 
+    DEFAULT_MESSAGE = "If you use #TITLE# in your work, please cite it using the following metadata"
+
     attr_reader :cff_version
     attr_reader :message
 
-    def initialize(message)
+    def initialize
       @cff_version = DEFAULT_SPEC_VERSION
-      @message = message
+      @message = ""
     end
 
     def encode_with(coder)
       coder["cff-version"] = @cff_version
-      coder["message"] = @message
+      coder["message"] = @message.empty? ? DEFAULT_MESSAGE : @message
     end
 
     def init_with(coder)
