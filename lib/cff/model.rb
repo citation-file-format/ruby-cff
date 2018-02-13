@@ -27,6 +27,10 @@ module CFF
       @title = title
     end
 
+    def message=(message)
+      @message = message.nil? ? "" : message
+    end
+
     def encode_with(coder)
       coder["cff-version"] = @cff_version
       coder["message"] = @message.empty? ? DEFAULT_MESSAGE.gsub('#TITLE#', @title) : @message
