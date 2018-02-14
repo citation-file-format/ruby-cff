@@ -38,9 +38,9 @@ module CFF
     end
 
     def init_with(coder)
-      @cff_version = coder["cff-version"] || DEFAULT_SPEC_VERSION
-      @message = coder["message"] || ""
-      @title = coder["title"] || ""
+      @cff_version = coder["cff-version"]
+      @message = coder["message"]
+      @title = coder["title"]
     end
 
   end
