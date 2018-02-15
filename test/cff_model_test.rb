@@ -39,7 +39,7 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
     assert_equal m.message, ''
     assert y.include? 'message'
-    assert y.include? ::CFF::Model::DEFAULT_MESSAGE.gsub('#TITLE#', 'title')
+    assert y.include? ''
 
     m.message = 'this is a message'
     y = m.to_yaml

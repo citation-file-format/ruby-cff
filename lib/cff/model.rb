@@ -23,8 +23,8 @@ module CFF
 
     def initialize(title)
       @cff_version = DEFAULT_SPEC_VERSION
-      @message = ""
       @title = title
+      @message = DEFAULT_MESSAGE.gsub('#TITLE#', title)
     end
 
     def message=(message)
@@ -33,7 +33,7 @@ module CFF
 
     def encode_with(coder)
       coder["cff-version"] = @cff_version
-      coder["message"] = @message.empty? ? DEFAULT_MESSAGE.gsub('#TITLE#', @title) : @message
+      coder["message"] = @message
       coder["title"] = @title
     end
 
