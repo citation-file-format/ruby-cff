@@ -32,6 +32,10 @@ module CFF
     end
 
     def self.write(file, cff)
+      unless cff.kind_of? String
+        cff = cff.to_yaml
+      end
+
       ::File.write(file, cff[YAML_HEADER.length...-1])
     end
 
