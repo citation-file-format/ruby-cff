@@ -35,9 +35,11 @@ class CFFFileTest < Minitest::Test
   end
 
   def test_read_complete_cff_file
-    file = ::CFF::File.read(COMPLETE_CFF)
-    assert_equal file.cff_version, '1.0.3'
-    assert_equal file.title, 'Citation File Format 1.0.0'
+    cff = ::CFF::File.read(COMPLETE_CFF)
+    yaml = YAML.load_file(COMPLETE_CFF)
+
+    assert_equal cff.cff_version, yaml["cff-version"]
+    assert_equal cff.title, yaml["title"]
   end
 
   def test_write_cff_file_from_string
