@@ -28,8 +28,7 @@ class CFFModelTest < Minitest::Test
   def test_message_is_output_correctly
     ['', 'aaabbbccc'].each do |title|
       m = ::CFF::Model.new(title).to_yaml
-      assert m.include? "message"
-      assert m.include? ::CFF::Model::DEFAULT_MESSAGE.gsub('#TITLE#', title)
+      assert m.include? "message: #{::CFF::Model::DEFAULT_MESSAGE}"
     end
   end
 

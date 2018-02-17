@@ -15,7 +15,7 @@
 module CFF
   class Model
 
-    DEFAULT_MESSAGE = "If you use #TITLE# in your work, please cite it using the following metadata"
+    DEFAULT_MESSAGE = "If you use this software in your work, please cite it using the following metadata"
 
     attr_reader :cff_version
     attr_accessor :message
@@ -24,7 +24,7 @@ module CFF
     def initialize(title)
       @cff_version = DEFAULT_SPEC_VERSION
       @title = title
-      @message = DEFAULT_MESSAGE.gsub('#TITLE#', title)
+      @message = DEFAULT_MESSAGE
     end
 
     def encode_with(coder)
