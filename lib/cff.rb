@@ -16,6 +16,7 @@ require "yaml"
 
 require "cff/version"
 require "cff/model"
+require "cff/file"
 
 module CFF
 

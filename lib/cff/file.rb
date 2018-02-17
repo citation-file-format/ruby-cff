@@ -12,20 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'coveralls'
-Coveralls.wear!
+require 'forwardable'
 
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "cff"
+module CFF
+  class File
+    extend Forwardable
 
-require "test_construct"
-require "minitest/autorun"
+    def_delegators :@model, :cff_version, :message, :message=, :title
 
-FILES_DIR =  ::File.expand_path('../files', __FILE__)
-OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
-COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
-OUTPUT_CFF = 'CITATION.cff'
+    YAML_HEADER = "--- !ruby/object:CFF::Model\n"
 
-CONSTRUCT_OPTS = {
-  :keep_on_error => true
-}
+    def initialize(cff)
+      @model = cff
+    end
+
+    def self.read(file)
+      cff = ::File.read(file)
+      new(YAML::load(YAML_HEADER + cff))
+    end
+
+    def self.write(file, cff)
+      ::File.write(file, cff[YAML_HEADER.length...-1])
+    end
+
+  end
+end
