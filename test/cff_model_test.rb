@@ -48,8 +48,7 @@ class CFFModelTest < Minitest::Test
   def test_title_is_output_correctly
     ['', 'aaabbbccc'].each do |title|
       m = ::CFF::Model.new(title).to_yaml
-      assert m.include? "title"
-      assert m.include? title
+      assert m.include? "title: #{title}"
     end
   end
 end
