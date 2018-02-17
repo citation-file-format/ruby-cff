@@ -22,7 +22,7 @@ class CFFModelTest < Minitest::Test
   def test_cff_version_is_output_correctly
     m = ::CFF::Model.new("").to_yaml
     assert m.include? "cff-version"
-    refute m.include? "cff_include"
+    refute m.include? "cff_version"
   end
 
   def test_message_is_output_correctly
