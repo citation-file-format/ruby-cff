@@ -62,4 +62,15 @@ class CFFModelTest < Minitest::Test
     assert_equal m.title, title
     assert y.include? "title: #{title}"
   end
+
+  def test_version_is_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    [1.0, '1.0.0'].each do |version|
+      m.version = version
+      assert_equal m.version, "#{version}"
+
+      y = m.to_yaml
+      assert y.include? "version: #{version}"
+    end
+  end
 end

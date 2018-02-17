@@ -20,6 +20,7 @@ module CFF
     attr_reader :cff_version
     attr_accessor :message
     attr_accessor :title
+    attr_reader :version
 
     def initialize(title)
       @cff_version = DEFAULT_SPEC_VERSION
@@ -27,16 +28,22 @@ module CFF
       @message = DEFAULT_MESSAGE
     end
 
+    def version=(version)
+      @version = version.to_s
+    end
+
     def encode_with(coder)
       coder["cff-version"] = @cff_version
       coder["message"] = @message || ""
       coder["title"] = @title || ""
+      coder["version"] = @version || ""
     end
 
     def init_with(coder)
       @cff_version = coder["cff-version"]
       @message = coder["message"]
       @title = coder["title"]
+      self.version = coder["version"]
     end
 
     def to_yaml

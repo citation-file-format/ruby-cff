@@ -41,23 +41,28 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.cff_version, yaml["cff-version"]
     assert_equal cff.message, yaml["message"]
     assert_equal cff.title, yaml["title"]
+    assert_equal cff.version, yaml["version"]
   end
 
   def test_write_cff_file_from_string
     model = ::CFF::Model.new("software")
+    model.version = "1.0.0"
     within_construct(CONSTRUCT_OPTS) do |construct|
       ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
       check_file_contents(OUTPUT_CFF, "cff-version")
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, "version: 1.0.0")
     end
   end
 
   def test_write_cff_file_from_model
     model = ::CFF::Model.new("software")
+    model.version = "1.0.0"
     within_construct(CONSTRUCT_OPTS) do |construct|
       ::CFF::File.write(OUTPUT_CFF, model)
       check_file_contents(OUTPUT_CFF, "cff-version")
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, "version: 1.0.0")
     end
   end
 
