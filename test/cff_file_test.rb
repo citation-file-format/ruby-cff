@@ -17,6 +17,23 @@ require 'test_helper'
 class CFFFileTest < Minitest::Test
   include TestConstruct::Helpers
 
+  def test_new_file_from_model
+    title = "software"
+    model = ::CFF::Model.new(title)
+    file = ::CFF::File.new(model)
+
+    assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
+    assert_equal file.title, title
+  end
+
+  def test_new_file_from_title
+    title = "software"
+    file = ::CFF::File.new(title)
+
+    assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
+    assert_equal file.title, title
+  end
+
   def test_read_complete_cff_file
     file = ::CFF::File.read(COMPLETE_CFF)
     assert_equal file.cff_version, '1.0.3'

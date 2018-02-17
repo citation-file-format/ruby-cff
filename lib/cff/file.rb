@@ -22,8 +22,12 @@ module CFF
 
     YAML_HEADER = "--- !ruby/object:CFF::Model\n"
 
-    def initialize(cff)
-      @model = cff
+    def initialize(param)
+      unless param.kind_of? Model
+        param = Model.new(param)
+      end
+
+      @model = param
     end
 
     def self.read(file)
