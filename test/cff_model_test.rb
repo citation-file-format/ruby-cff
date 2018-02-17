@@ -73,4 +73,29 @@ class CFFModelTest < Minitest::Test
       assert y.include? "version: #{version}"
     end
   end
+
+  def test_bad_date_released_raises_error
+    m = ::CFF::Model.new('title')
+
+    exp = assert_raises(ArgumentError) do
+      m.date_released = 'nonsense'
+    end
+    assert exp.message.include?('invalid date')
+  end
+
+  def test_date_released_is_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+
+    date = Date.today
+    m.date_released = date
+    assert_equal m.date_released, date
+    y = m.to_yaml
+    assert y.include? "date-released: #{date.iso8601}"
+
+    date = "1999-12-31"
+    m.date_released = date
+    assert_equal m.date_released, Date.parse(date)
+    y = m.to_yaml
+    assert y.include? "date-released: #{date}"
+  end
 end

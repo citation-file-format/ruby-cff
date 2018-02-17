@@ -39,6 +39,7 @@ class CFFFileTest < Minitest::Test
     yaml = YAML.load_file(COMPLETE_CFF)
 
     assert_equal cff.cff_version, yaml["cff-version"]
+    assert_equal cff.date_released, yaml["date-released"]
     assert_equal cff.message, yaml["message"]
     assert_equal cff.title, yaml["title"]
     assert_equal cff.version, yaml["version"]
@@ -47,9 +48,11 @@ class CFFFileTest < Minitest::Test
   def test_write_cff_file_from_string
     model = ::CFF::Model.new("software")
     model.version = "1.0.0"
+    model.date_released = "1999-12-31"
     within_construct(CONSTRUCT_OPTS) do |construct|
       ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
       check_file_contents(OUTPUT_CFF, "cff-version")
+      check_file_contents(OUTPUT_CFF, "date-released: 1999-12-31")
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
       check_file_contents(OUTPUT_CFF, "version: 1.0.0")
     end
@@ -58,9 +61,11 @@ class CFFFileTest < Minitest::Test
   def test_write_cff_file_from_model
     model = ::CFF::Model.new("software")
     model.version = "1.0.0"
+    model.date_released = "1999-12-31"
     within_construct(CONSTRUCT_OPTS) do |construct|
       ::CFF::File.write(OUTPUT_CFF, model)
       check_file_contents(OUTPUT_CFF, "cff-version")
+      check_file_contents(OUTPUT_CFF, "date-released: 1999-12-31")
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
       check_file_contents(OUTPUT_CFF, "version: 1.0.0")
     end
