@@ -19,7 +19,7 @@ module CFF
 
     attr_reader :cff_version
     attr_accessor :message
-    attr_reader :title
+    attr_accessor :title
 
     def initialize(title)
       @cff_version = DEFAULT_SPEC_VERSION
@@ -30,7 +30,7 @@ module CFF
     def encode_with(coder)
       coder["cff-version"] = @cff_version
       coder["message"] = @message || ""
-      coder["title"] = @title
+      coder["title"] = @title || ""
     end
 
     def init_with(coder)

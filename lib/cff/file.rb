@@ -18,7 +18,7 @@ module CFF
   class File
     extend Forwardable
 
-    def_delegators :@model, :cff_version, :message, :message=, :title
+    def_delegators :@model, :cff_version, :message, :message=, :title, :title=
 
     YAML_HEADER = "--- !ruby/object:CFF::Model\n"
 

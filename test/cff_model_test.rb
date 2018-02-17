@@ -51,4 +51,16 @@ class CFFModelTest < Minitest::Test
       assert m.include? "title: #{title}"
     end
   end
+
+  def test_set_title
+    title = 'software title'
+    m = ::CFF::Model.new(title)
+    assert_equal m.title, title
+
+    title = 'new title'
+    m.title = title
+    y = m.to_yaml
+    assert_equal m.title, title
+    assert y.include? "title: #{title}"
+  end
 end
