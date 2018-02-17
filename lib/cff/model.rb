@@ -39,5 +39,9 @@ module CFF
       @title = coder["title"]
     end
 
+    def to_yaml
+      YAML.dump self, :line_width => -1
+    end
+
   end
 end
