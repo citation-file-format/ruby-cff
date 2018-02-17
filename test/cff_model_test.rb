@@ -37,15 +37,12 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     m.message = nil
     y = m.to_yaml
-    assert_equal m.message, ''
-    assert y.include? 'message'
-    assert y.include? ''
+    assert y.include? "message: ''"
 
     m.message = 'this is a message'
     y = m.to_yaml
     assert_equal m.message, 'this is a message'
-    assert y.include? 'message'
-    assert y.include? 'this is a message'
+    assert y.include? 'message: this is a message'
   end
 
   def test_title_is_output_correctly
