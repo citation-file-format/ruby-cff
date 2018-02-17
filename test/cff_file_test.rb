@@ -39,6 +39,7 @@ class CFFFileTest < Minitest::Test
     yaml = YAML.load_file(COMPLETE_CFF)
 
     assert_equal cff.cff_version, yaml["cff-version"]
+    assert_equal cff.message, yaml["message"]
     assert_equal cff.title, yaml["title"]
   end
 
