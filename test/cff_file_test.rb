@@ -28,6 +28,7 @@ class CFFFileTest < Minitest::Test
     within_construct(CONSTRUCT_OPTS) do |construct|
       ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
       check_file_contents(OUTPUT_CFF, "cff-version")
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
     end
   end
 
