@@ -12,18 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'forwardable'
-
 module CFF
   class File
-    extend Forwardable
 
-    def_delegators :@model, :cff_version, :date_released, :date_released=, :message, :message=, :title, :title=, :version, :version=
-
-    YAML_HEADER = "--- !ruby/object:CFF::Model\n"
+    YAML_HEADER = "---\n"
 
     def initialize(param)
-      unless param.kind_of? Model
+      unless Model === param
         param = Model.new(param)
       end
 
@@ -31,16 +26,19 @@ module CFF
     end
 
     def self.read(file)
-      cff = ::File.read(file)
-      new(YAML::load(YAML_HEADER + cff))
+      new(YAML::load_file(file))
     end
 
     def self.write(file, cff)
-      unless cff.kind_of? String
+      unless String === cff
         cff = cff.to_yaml
       end
 
       ::File.write(file, cff[YAML_HEADER.length...-1])
+    end
+
+    def method_missing(name, *args)
+      @model.send name, args
     end
 
   end
