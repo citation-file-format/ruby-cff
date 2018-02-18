@@ -16,6 +16,8 @@ require "bundler/gem_tasks"
 require "rake/testtask"
 require "rdoc/task"
 
+task :default => :test
+
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
   t.libs << "lib"
@@ -29,5 +31,3 @@ RDoc::Task.new do |r|
   r.options << "--tab-width=2"
   r.options << "-t Ruby CFF Library version #{::CFF::VERSION}"
 end
-
-task :default => :test
