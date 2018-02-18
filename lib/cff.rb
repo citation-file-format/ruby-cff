@@ -21,6 +21,11 @@ require "cff/entity"
 require "cff/model"
 require "cff/file"
 
+# This library provides a Ruby interface to manipulate CITATION.cff files. The
+# primary entry points are Model and File.
+#
+# See the [CITATION.cff documentation](https://citation-file-format.github.io/)
+# for more details.
 module CFF
 
 end

@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#
 module CFF
+
+  # Model is the core data structure for a CITATION.cff file. It can be
+  # accessed direcly, or via File.
   class Model
 
     ALLOWED_METHODS = [
@@ -23,10 +27,15 @@ module CFF
       :title,
       :title=,
       :version
-    ]
+    ] # :nodoc:
 
+    # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = "If you use this software in your work, please cite it using the following metadata"
 
+    # :call-seq:
+    #   new(title) -> Model
+    #
+    # Initialize a new Model with the supplied title.
     def initialize(param)
       if Hash === param
         @fields = param
@@ -40,10 +49,26 @@ module CFF
       @authors = []
     end
 
+    # :call-seq:
+    #   authors -> Array
+    #
+    # Return the list of authors for this citation. To add an author to the
+    # list, use:
+    #
+    # ```
+    # model.authors << author
+    # ```
+    #
+    # Authors can be a Person or Entity.
     def authors
       @authors
     end
 
+    # :call-seq:
+    #   date_released = date
+    #
+    # Set the `date-released` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
     def date_released=(date)
       unless Date === date
         date = Date.parse(date)
@@ -52,11 +77,15 @@ module CFF
       @fields['date-released'] = date
     end
 
+    # :call-seq:
+    #   version = version
+    #
+    # Set the `version` field.
     def version=(version)
       @fields['version'] = version.to_s
     end
 
-    def to_yaml
+    def to_yaml # :nodoc:
       fields = @fields.dup
       fields['authors'] = @authors.reject do |a|
         !a.respond_to?(:fields)
@@ -65,7 +94,7 @@ module CFF
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
 
-    def method_missing(name, *args)
+    def method_missing(name, *args) # :nodoc:
       super unless ALLOWED_METHODS.include?(name)
 
       n = method_to_field(name.id2name)

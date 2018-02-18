@@ -12,11 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#
 module CFF
+
+  # An Entity can represent different types of entities, e.g., a publishing
+  # company, or conference. Like a Person, an Entity might have a number of
+  # roles, such as author, contact, editor, etc.
   class Entity
 
-    attr_reader :fields
+    attr_reader :fields # :nodoc:
 
+    # :call-seq:
+    #   new(name) -> Entity
+    #
+    # Create a new Entity with the supplied name.
     def initialize(name)
       @fields = Hash.new('')
       @fields['name'] = name

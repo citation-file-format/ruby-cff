@@ -12,11 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#
 module CFF
+
+  # A Person represents a person in a CITATION.cff file. A Person might have a
+  # number of roles, such as author, contact, editor, etc.
   class Person
 
-    attr_reader :fields
+    attr_reader :fields # :nodoc:
 
+    # :call-seq:
+    #   new(given_name, family_name) -> Person
+    #
+    # Create a new Person with the supplied given and family names.
     def initialize(given, family)
       @fields = Hash.new('')
       @fields['family-names'] = family
