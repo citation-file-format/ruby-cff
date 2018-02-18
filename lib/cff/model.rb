@@ -17,48 +17,42 @@ module CFF
 
     DEFAULT_MESSAGE = "If you use this software in your work, please cite it using the following metadata"
 
-    attr_reader :cff_version
-    attr_reader :date_released
-    attr_accessor :message
-    attr_accessor :title
-    attr_reader :version
-
     def initialize(title)
-      @cff_version = DEFAULT_SPEC_VERSION
-      @title = title
-      @message = DEFAULT_MESSAGE
+      @fields = Hash.new('')
+      @fields['cff-version'] = DEFAULT_SPEC_VERSION
+      @fields['message'] = DEFAULT_MESSAGE
+      @fields['title'] = title
     end
 
     def date_released=(date)
-      unless date.kind_of? Date
+      unless Date === date
         date = Date.parse(date)
       end
 
-      @date_released = date
+      @fields['date-released'] = date
     end
 
     def version=(version)
-      @version = version.to_s
-    end
-
-    def encode_with(coder)
-      coder["cff-version"] = @cff_version
-      coder["date-released"] = @date_released || ""
-      coder["message"] = @message || ""
-      coder["title"] = @title || ""
-      coder["version"] = @version || ""
-    end
-
-    def init_with(coder)
-      @cff_version = coder["cff-version"]
-      self.date_released = coder["date-released"]
-      @message = coder["message"]
-      @title = coder["title"]
-      self.version = coder["version"]
+      @fields['version'] = version.to_s
     end
 
     def to_yaml
-      YAML.dump self, :line_width => -1
+      YAML.dump @fields, :line_width => -1, :indentation => 2
+    end
+
+    def method_missing(name, *args)
+      n = method_to_field(name.id2name)
+      if n.end_with?('=')
+        @fields[n.chomp('=')] = args[0] || ''
+      else
+        @fields[n]
+      end
+    end
+
+    private
+
+    def method_to_field(name)
+      name.gsub('_', '-')
     end
 
   end
