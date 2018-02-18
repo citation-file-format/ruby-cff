@@ -17,11 +17,15 @@ module CFF
 
     DEFAULT_MESSAGE = "If you use this software in your work, please cite it using the following metadata"
 
-    def initialize(title)
-      @fields = Hash.new('')
-      @fields['cff-version'] = DEFAULT_SPEC_VERSION
-      @fields['message'] = DEFAULT_MESSAGE
-      @fields['title'] = title
+    def initialize(param)
+      if Hash === param
+        @fields = param
+      else
+        @fields = Hash.new('')
+        @fields['cff-version'] = DEFAULT_SPEC_VERSION
+        @fields['message'] = DEFAULT_MESSAGE
+        @fields['title'] = param
+      end
     end
 
     def date_released=(date)
