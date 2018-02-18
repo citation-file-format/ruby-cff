@@ -24,7 +24,7 @@ end
 
 RDoc::Task.new do |r|
   r.main = "README.md"
-  r.rdoc_files.include("README.md", "lib/**/*.rb")
+  r.rdoc_files.include("README.md", "LICENCE", "lib/**/*.rb")
   r.options << "--markup=markdown"
   r.options << "--tab-width=2"
   r.options << "-t Ruby CFF Library version #{::CFF::VERSION}"
