@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "date"
-require "yaml"
-
-require "cff/version"
-require "cff/person"
-require "cff/entity"
-require "cff/model"
-require "cff/file"
-
 module CFF
+  class Entity
 
+    attr_reader :fields
+
+    def initialize(name)
+      @fields = Hash.new('')
+      @fields['name'] = name
+    end
+
+  end
 end

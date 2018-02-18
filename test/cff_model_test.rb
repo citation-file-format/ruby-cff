@@ -110,13 +110,16 @@ class CFFModelTest < Minitest::Test
   def test_authors_set_and_output_correctly
     m = ::CFF::Model.new('title')
     a = ::CFF::Person.new('First', 'Second')
+    e = ::CFF::Entity.new('Company')
     m.authors << a
     m.authors << "_ _ _"
-    assert_equal m.authors.length, 2
+    m.authors << e
+    assert_equal m.authors.length, 3
 
     y = m.to_yaml
-    assert_equal m.authors.length, 2
+    assert_equal m.authors.length, 3
     assert y.include? "authors:\n- family-names: Second\n  given-names: First"
+    assert y.include? "- name: Company"
     refute y.include? "_ _ _"
   end
 end
