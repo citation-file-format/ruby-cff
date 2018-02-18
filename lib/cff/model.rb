@@ -36,6 +36,12 @@ module CFF
         @fields['message'] = DEFAULT_MESSAGE
         @fields['title'] = param
       end
+
+      @authors = []
+    end
+
+    def authors
+      @authors
     end
 
     def date_released=(date)
@@ -51,7 +57,12 @@ module CFF
     end
 
     def to_yaml
-      YAML.dump @fields, :line_width => -1, :indentation => 2
+      fields = @fields.dup
+      fields['authors'] = @authors.reject do |a|
+        !a.respond_to?(:fields)
+      end.map { |a| a.fields }
+
+      YAML.dump fields, :line_width => -1, :indentation => 2
     end
 
     def method_missing(name, *args)

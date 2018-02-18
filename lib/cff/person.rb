@@ -12,14 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "date"
-require "yaml"
-
-require "cff/version"
-require "cff/person"
-require "cff/model"
-require "cff/file"
-
 module CFF
+  class Person
 
+    attr_reader :fields
+
+    def initialize(given, family)
+      @fields = Hash.new('')
+      @fields['family-names'] = family
+      @fields['given-names'] = given
+    end
+
+  end
 end

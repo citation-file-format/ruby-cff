@@ -106,4 +106,17 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
     assert y.include? "date-released: #{date}"
   end
+
+  def test_authors_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    a = ::CFF::Person.new('First', 'Second')
+    m.authors << a
+    m.authors << "_ _ _"
+    assert_equal m.authors.length, 2
+
+    y = m.to_yaml
+    assert_equal m.authors.length, 2
+    assert y.include? "authors:\n- family-names: Second\n  given-names: First"
+    refute y.include? "_ _ _"
+  end
 end
