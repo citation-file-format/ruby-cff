@@ -15,6 +15,14 @@
 require "test_helper"
 
 class CFFModelTest < Minitest::Test
+  def test_bad_methods_not_allowed
+    m = ::CFF::Model.new("")
+
+    assert_raises(NoMethodError) do
+      m.aaaaaaa
+    end
+  end
+
   def test_default_model_cff_version
     assert_equal ::CFF::Model.new("").cff_version, ::CFF::DEFAULT_SPEC_VERSION
   end

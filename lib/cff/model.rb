@@ -15,6 +15,16 @@
 module CFF
   class Model
 
+    ALLOWED_METHODS = [
+      :cff_version,
+      :date_released,
+      :message,
+      :message=,
+      :title,
+      :title=,
+      :version
+    ]
+
     DEFAULT_MESSAGE = "If you use this software in your work, please cite it using the following metadata"
 
     def initialize(param)
@@ -45,6 +55,8 @@ module CFF
     end
 
     def method_missing(name, *args)
+      super unless ALLOWED_METHODS.include?(name)
+
       n = method_to_field(name.id2name)
       if n.end_with?('=')
         @fields[n.chomp('=')] = args[0] || ''

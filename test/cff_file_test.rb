@@ -17,6 +17,14 @@ require 'test_helper'
 class CFFFileTest < Minitest::Test
   include TestConstruct::Helpers
 
+  def test_bad_methods_not_passed_to_model
+    f = ::CFF::File.new("")
+
+    assert_raises(NoMethodError) do
+      f.aaaaaaa
+    end
+  end
+
   def test_new_file_from_model
     title = "software"
     model = ::CFF::Model.new(title)

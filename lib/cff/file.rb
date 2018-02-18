@@ -38,6 +38,8 @@ module CFF
     end
 
     def method_missing(name, *args)
+      super unless Model::ALLOWED_METHODS.include?(name)
+
       @model.send name, args
     end
 
