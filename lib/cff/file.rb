@@ -60,8 +60,6 @@ module CFF
     end
 
     def method_missing(name, *args) # :nodoc:
-      super unless Model::ALLOWED_FIELDS.include?(name)
-
       @model.send name, args
     end
 
