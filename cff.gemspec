@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "A Ruby library for manipulating CITATION.cff files."
   spec.description   = "See https://citation-file-format.github.io/ for more info."
   spec.homepage      = "https://github.com/hainesr/ruby-cff"
+  spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
