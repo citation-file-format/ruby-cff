@@ -19,7 +19,7 @@ module CFF
   # accessed direcly, or via File.
   class Model
 
-    ALLOWED_METHODS = [
+    ALLOWED_FIELDS = [
       :cff_version,
       :date_released,
       :message,
@@ -95,7 +95,7 @@ module CFF
     end
 
     def method_missing(name, *args) # :nodoc:
-      super unless ALLOWED_METHODS.include?(name)
+      super unless ALLOWED_FIELDS.include?(name)
 
       n = method_to_field(name.id2name)
       if n.end_with?('=')
