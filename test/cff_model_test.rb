@@ -118,8 +118,7 @@ class CFFModelTest < Minitest::Test
 
     y = m.to_yaml
     assert_equal m.authors.length, 3
-    assert y.include? "authors:\n- family-names: Second\n  given-names: First"
-    assert y.include? "- name: Company"
+    assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
     refute y.include? "_ _ _"
   end
 
