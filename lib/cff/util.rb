@@ -12,21 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "date"
-require "yaml"
-
-require "cff/version"
-require "cff/util"
-require "cff/person"
-require "cff/entity"
-require "cff/model"
-require "cff/file"
-
-# This library provides a Ruby interface to manipulate CITATION.cff files. The
-# primary entry points are Model and File.
 #
-# See the [CITATION.cff documentation](https://citation-file-format.github.io/)
-# for more details.
 module CFF
+
+  # Utility methods useful throughout the rest of the CFF library.
+  module Util
+
+    # :call-seq:
+    #   delete_from_hash(hash, keys...) -> Hash
+    #
+    # Returns a hash that includes everything but the given keys.
+    def delete_from_hash(hash, *keys)
+      h = hash.dup
+      keys.each { |key| h.delete(key) }
+      h
+    end
+
+  end
 
 end
