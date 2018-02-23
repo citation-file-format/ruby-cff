@@ -22,13 +22,11 @@ module CFF
     include Util
 
     ALLOWED_FIELDS = [
-      :cff_version,
-      :date_released,
-      :message,
-      :message=,
-      :title,
-      :title=,
-      :version
+      'cff-version',
+      'date-released',
+      'message',
+      'title',
+      'version'
   ].freeze # :nodoc:
 
     # The default message to use if none is explicitly set.
@@ -97,9 +95,9 @@ module CFF
     end
 
     def method_missing(name, *args) # :nodoc:
-      super unless ALLOWED_FIELDS.include?(name)
-
       n = method_to_field(name.id2name)
+      super unless ALLOWED_FIELDS.include?(n.chomp('='))
+
       if n.end_with?('=')
         @fields[n.chomp('=')] = args[0] || ''
       else
