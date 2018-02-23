@@ -88,9 +88,7 @@ module CFF
 
     def to_yaml # :nodoc:
       fields = @fields.dup
-      fields['authors'] = @authors.reject do |a|
-        !a.respond_to?(:fields)
-      end.map { |a| a.fields }
+      fields['authors'] = array_field_to_yaml(@authors)
 
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
@@ -114,6 +112,12 @@ module CFF
       end
 
       @fields = delete_from_hash(fields, 'authors')
+    end
+
+    def array_field_to_yaml(field)
+      field.reject do |f|
+        !f.respond_to?(:fields)
+      end.map { |f| f.fields }
     end
 
   end
