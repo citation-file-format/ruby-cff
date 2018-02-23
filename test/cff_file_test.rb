@@ -51,6 +51,8 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.message, yaml["message"]
     assert_equal cff.title, yaml["title"]
     assert_equal cff.version, yaml["version"]
+    assert_equal cff.abstract, yaml["abstract"]
+
     assert_equal cff.authors.length, 2
     assert_instance_of ::CFF::Person, cff.authors[0]
     assert_instance_of ::CFF::Entity, cff.authors[1]

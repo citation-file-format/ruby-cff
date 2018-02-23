@@ -22,6 +22,7 @@ module CFF
     include Util
 
     ALLOWED_FIELDS = [
+      'abstract',
       'cff-version',
       'date-released',
       'message',

@@ -122,4 +122,17 @@ class CFFModelTest < Minitest::Test
     assert y.include? "- name: Company"
     refute y.include? "_ _ _"
   end
+
+  def test_abstract_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    a = "An abstract"
+    assert_equal m.abstract, ''
+
+    m.abstract = a
+    assert_equal m.abstract, a
+
+    y = m.to_yaml
+    assert y.include? "abstract: #{a}\n"
+  end
+
 end
