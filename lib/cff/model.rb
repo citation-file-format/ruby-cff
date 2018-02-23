@@ -29,7 +29,7 @@ module CFF
       :title,
       :title=,
       :version
-    ] # :nodoc:
+  ].freeze # :nodoc:
 
     # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = "If you use this software in your work, please cite it using the following metadata"
