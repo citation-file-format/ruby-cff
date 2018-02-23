@@ -28,6 +28,14 @@ module CFF
       h
     end
 
+    # :call-seq:
+    #   method_to_field(name) -> converted name
+    #
+    # Return the supplied name with underscores converted to dashes.
+    def method_to_field(name)
+      name.gsub('_', '-')
+    end
+
   end
 
 end

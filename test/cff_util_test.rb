@@ -30,4 +30,10 @@ class CFFUtilTest < Minitest::Test
     assert_equal r.size, 2
     assert_equal h.size, 3
   end
+
+  def test_method_to_field
+    assert_equal method_to_field("field"), "field"
+    assert_equal method_to_field("field_field"), "field-field"
+    assert_equal method_to_field("field-field"), "field-field"
+  end
 end

@@ -19,6 +19,8 @@ module CFF
   # accessed direcly, or via File.
   class Model
 
+    include Util
+
     ALLOWED_FIELDS = [
       :cff_version,
       :date_released,
@@ -106,10 +108,6 @@ module CFF
     end
 
     private
-
-    def method_to_field(name)
-      name.gsub('_', '-')
-    end
 
   end
 end
