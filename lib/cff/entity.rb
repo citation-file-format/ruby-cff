@@ -26,9 +26,13 @@ module CFF
     #   new(name) -> Entity
     #
     # Create a new Entity with the supplied name.
-    def initialize(name)
-      @fields = Hash.new('')
-      @fields['name'] = name
+    def initialize(param)
+      if Hash === param
+        @fields = param
+      else
+        @fields = Hash.new('')
+        @fields['name'] = param
+      end
     end
 
   end

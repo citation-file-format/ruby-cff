@@ -39,16 +39,16 @@ module CFF
     #
     # Initialize a new Model with the supplied title.
     def initialize(param)
+      @authors = []
+
       if Hash === param
-        @fields = param
+        build_model(param)
       else
         @fields = Hash.new('')
         @fields['cff-version'] = DEFAULT_SPEC_VERSION
         @fields['message'] = DEFAULT_MESSAGE
         @fields['title'] = param
       end
-
-      @authors = []
     end
 
     # :call-seq:
@@ -108,6 +108,14 @@ module CFF
     end
 
     private
+
+    def build_model(fields)
+      fields['authors'].each do |a|
+        @authors << (a.has_key?('given-names') ? Person.new(a) : Entity.new(a))
+      end
+
+      @fields = delete_from_hash(fields, 'authors')
+    end
 
   end
 end

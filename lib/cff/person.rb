@@ -25,10 +25,14 @@ module CFF
     #   new(given_name, family_name) -> Person
     #
     # Create a new Person with the supplied given and family names.
-    def initialize(given, family)
-      @fields = Hash.new('')
-      @fields['family-names'] = family
-      @fields['given-names'] = given
+    def initialize(param, *more)
+      if Hash === param
+        @fields = param
+      else
+        @fields = Hash.new('')
+        @fields['family-names'] = more[0]
+        @fields['given-names'] = param
+      end
     end
 
   end
