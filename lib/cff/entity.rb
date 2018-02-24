@@ -20,6 +20,10 @@ module CFF
   # roles, such as author, contact, editor, etc.
   class Entity < ModelPart
 
+    ALLOWED_FIELDS = [
+      'address'
+    ].freeze # :nodoc:
+
     # :call-seq:
     #   new(name) -> Entity
     #
