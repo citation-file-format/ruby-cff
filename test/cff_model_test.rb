@@ -15,6 +15,8 @@
 require "test_helper"
 
 class CFFModelTest < Minitest::Test
+  include ::CFF::Util
+
   def test_bad_methods_not_allowed
     m = ::CFF::Model.new("")
 
@@ -128,29 +130,25 @@ class CFFModelTest < Minitest::Test
 
   def test_simple_fields_set_and_output_correctly
     m = ::CFF::Model.new('title')
-    a = "An abstract"
-    c = "dce482de56c589b55c13349c49a81924ead238ba"
-    d = "10.5281/zenodo.1003150"
-    l = "Apache-2.0"
-    assert_equal m.abstract, ''
-    assert_equal m.commit, ''
-    assert_equal m.doi, ''
-    assert_equal m.license, ''
 
-    m.abstract = a
-    m.commit = c
-    m.doi = d
-    m.license = l
-    assert_equal m.abstract, a
-    assert_equal m.commit, c
-    assert_equal m.doi, d
-    assert_equal m.license, l
+    data = [
+      ["abstract", "An abstract"],
+      ["commit", "dce4a2de56c589b55c13249c49a81924ead238b9"],
+      ["doi", "10.5281/zenodo.1003150"],
+      ["license", "Apache-2.0"]
+    ]
+
+    data.each do |method, value|
+      assert_equal m.send(method), ""
+      m.send("#{method}=", value)
+      assert_equal m.send(method), value
+    end
 
     y = m.to_yaml
-    assert y.include? "abstract: #{a}\n"
-    assert y.include? "commit: #{c}\n"
-    assert y.include? "doi: #{d}\n"
-    assert y.include? "license: #{l}\n"
+
+    data.each do |method, value|
+      assert y.include? "#{method_to_field(method)}: #{value}\n"
+    end
   end
 
   def test_contact_set_and_output_correctly
