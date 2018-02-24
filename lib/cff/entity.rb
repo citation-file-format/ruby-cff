@@ -21,7 +21,8 @@ module CFF
   class Entity < ModelPart
 
     ALLOWED_FIELDS = [
-      'address'
+      'address',
+      'name'
     ].freeze # :nodoc:
 
     # :call-seq:

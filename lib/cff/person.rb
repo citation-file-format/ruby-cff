@@ -20,7 +20,9 @@ module CFF
   class Person < ModelPart
 
     ALLOWED_FIELDS = [
-      'affiliation'
+      'affiliation',
+      'family-names',
+      'given-names'
     ].freeze # :nodoc:
 
     # :call-seq:
