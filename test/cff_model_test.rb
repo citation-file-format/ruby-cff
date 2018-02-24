@@ -139,7 +139,8 @@ class CFFModelTest < Minitest::Test
       ["license_url", "http://example.org/licence.txt"],
       ["repository", "http://example.org/repo/cff"],
       ["repository_artifact", "http://example.org/repo/cff/package"],
-      ["repository_code", "http://example.org/repo/cff/code"]
+      ["repository_code", "http://example.org/repo/cff/code"],
+      ["url", "http://userid:password@example.com:8080/"]
     ]
 
     data.each do |method, value|

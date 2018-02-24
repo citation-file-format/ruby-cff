@@ -34,6 +34,7 @@ module CFF
       'repository-artifact',
       'repository-code',
       'title',
+      'url',
       'version'
   ].freeze # :nodoc:
 

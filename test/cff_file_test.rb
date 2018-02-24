@@ -65,6 +65,7 @@ class CFFFileTest < Minitest::Test
       "repository_artifact",
       "repository_code",
       "title",
+      "url",
       "version"
     ]
 
