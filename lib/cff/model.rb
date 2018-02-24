@@ -26,6 +26,7 @@ module CFF
       'cff-version',
       'commit',
       'date-released',
+      'doi',
       'message',
       'title',
       'version'

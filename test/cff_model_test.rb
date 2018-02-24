@@ -130,17 +130,22 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     a = "An abstract"
     c = "dce482de56c589b55c13349c49a81924ead238ba"
+    d = "10.5281/zenodo.1003150"
     assert_equal m.abstract, ''
     assert_equal m.commit, ''
+    assert_equal m.doi, ''
 
     m.abstract = a
     m.commit = c
+    m.doi = d
     assert_equal m.abstract, a
     assert_equal m.commit, c
+    assert_equal m.doi, d
 
     y = m.to_yaml
     assert y.include? "abstract: #{a}\n"
     assert y.include? "commit: #{c}\n"
+    assert y.include? "doi: #{d}\n"
   end
 
   def test_contact_set_and_output_correctly
