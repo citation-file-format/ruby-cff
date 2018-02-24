@@ -136,7 +136,10 @@ class CFFModelTest < Minitest::Test
       ["commit", "dce4a2de56c589b55c13249c49a81924ead238b9"],
       ["doi", "10.5281/zenodo.1003150"],
       ["license", "Apache-2.0"],
-      ["license_url", "http://example.org/licence.txt"]
+      ["license_url", "http://example.org/licence.txt"],
+      ["repository", "http://example.org/repo/cff"],
+      ["repository_artifact", "http://example.org/repo/cff/package"],
+      ["repository_code", "http://example.org/repo/cff/code"]
     ]
 
     data.each do |method, value|

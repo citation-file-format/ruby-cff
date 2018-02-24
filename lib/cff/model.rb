@@ -30,6 +30,9 @@ module CFF
       'license',
       'license-url',
       'message',
+      'repository',
+      'repository-artifact',
+      'repository-code',
       'title',
       'version'
   ].freeze # :nodoc:

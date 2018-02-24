@@ -61,6 +61,9 @@ class CFFFileTest < Minitest::Test
       "license",
       "license_url",
       "message",
+      "repository",
+      "repository_artifact",
+      "repository_code",
       "title",
       "version"
     ]
