@@ -17,6 +17,7 @@ require "yaml"
 
 require "cff/version"
 require "cff/util"
+require "cff/model-part"
 require "cff/person"
 require "cff/entity"
 require "cff/model"

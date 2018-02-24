@@ -15,23 +15,15 @@
 #
 module CFF
 
-  # A Person represents a person in a CITATION.cff file. A Person might have a
-  # number of roles, such as author, contact, editor, etc.
-  class Person < ModelPart
+  # :stopdoc:
+  class ModelPart
 
-    # :call-seq:
-    #   new(given_name, family_name) -> Person
-    #
-    # Create a new Person with the supplied given and family names.
-    def initialize(param, *more)
-      if Hash === param
-        super(param)
-      else
-        @fields = Hash.new('')
-        @fields['family-names'] = more[0]
-        @fields['given-names'] = param
-      end
+    attr_reader :fields
+
+    def initialize(fields)
+      @fields = fields
     end
 
   end
+  # :startdoc:
 end

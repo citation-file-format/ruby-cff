@@ -18,9 +18,7 @@ module CFF
   # An Entity can represent different types of entities, e.g., a publishing
   # company, or conference. Like a Person, an Entity might have a number of
   # roles, such as author, contact, editor, etc.
-  class Entity
-
-    attr_reader :fields # :nodoc:
+  class Entity < ModelPart
 
     # :call-seq:
     #   new(name) -> Entity
@@ -28,7 +26,7 @@ module CFF
     # Create a new Entity with the supplied name.
     def initialize(param)
       if Hash === param
-        @fields = param
+        super(param)
       else
         @fields = Hash.new('')
         @fields['name'] = param
