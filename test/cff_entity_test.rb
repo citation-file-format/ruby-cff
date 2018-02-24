@@ -57,6 +57,20 @@ class CFFEntityTest < Minitest::Test
     end
   end
 
+  def test_date_fields_set_and_output_correctly
+    date = Date.today
+    @entity.date_end = date
+    @entity.date_start = date
+
+    assert_equal @entity.date_end, date
+    assert_equal @entity.date_start, date
+
+    y = @entity.fields.to_yaml
+
+    assert y.include? "date-end: #{date.to_s}\n"
+    assert y.include? "date-start: #{date.to_s}\n"
+  end
+
   def test_tel_fax_fields_set_and_output_correctly
     number = "+44 (0) 161-234-5678"
     @entity.fax = number

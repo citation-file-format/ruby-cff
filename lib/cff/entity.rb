@@ -25,6 +25,8 @@ module CFF
       'city',
       'country',
       'email',
+      'date-end',
+      'date-start',
       'fax',
       'location',
       'name',
@@ -46,6 +48,32 @@ module CFF
         @fields = Hash.new('')
         @fields['name'] = param
       end
+    end
+
+    # :call-seq:
+    #   date_end = date
+    #
+    # Set the `date-end` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
+    def date_end=(date)
+      unless Date === date
+        date = Date.parse(date)
+      end
+
+      @fields['date-end'] = date
+    end
+
+    # :call-seq:
+    #   date_start = date
+    #
+    # Set the `date-start` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
+    def date_start=(date)
+      unless Date === date
+        date = Date.parse(date)
+      end
+
+      @fields['date-start'] = date
     end
 
   end
