@@ -162,4 +162,20 @@ class CFFModelTest < Minitest::Test
     assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
     refute y.include? "_ _ _"
   end
+
+  def test_keywords_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    ks = ["one", :two, 3]
+    l = 0
+
+    ks.each do |k|
+      m.keywords << k
+      l += 1
+      assert_equal m.keywords.length, l
+    end
+
+    y = m.to_yaml
+    assert_equal m.keywords.length, l
+    assert y.include? "keywords:\n- one\n- two\n- '3'\n"
+  end
 end

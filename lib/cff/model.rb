@@ -42,6 +42,7 @@ module CFF
     def initialize(param)
       @authors = []
       @contact = []
+      @keywords = []
 
       if Hash === param
         build_model(param)
@@ -97,6 +98,21 @@ module CFF
     end
 
     # :call-seq:
+    #   keywords -> Array
+    #
+    # Return the list of keywords for this citation. To add a keyword to the
+    # list, use:
+    #
+    # ```
+    # model.keywords << keyword
+    # ```
+    #
+    # Keywords will be converted to Strings on output to a CFF file.
+    def keywords
+      @keywords
+    end
+
+    # :call-seq:
     #   version = version
     #
     # Set the `version` field.
@@ -108,6 +124,7 @@ module CFF
       fields = @fields.dup
       fields['authors'] = array_field_to_yaml(@authors)
       fields['contact'] = array_field_to_yaml(@contact)
+      fields['keywords'] = @keywords.map { |k| k.to_s }
 
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
@@ -128,13 +145,20 @@ module CFF
     def build_model(fields)
       build_entity_collection(@authors, fields['authors'])
       build_entity_collection(@contact, fields['contact'])
+      build_string_collection(@keywords, fields['keywords'])
 
-      @fields = delete_from_hash(fields, 'authors', 'contact')
+      @fields = delete_from_hash(fields, 'authors', 'contact', 'keywords')
     end
 
     def build_entity_collection(field, source)
       source.each do |s|
         field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
+      end
+    end
+
+    def build_string_collection(field, source)
+      source.each do |s|
+        field << s
       end
     end
 
