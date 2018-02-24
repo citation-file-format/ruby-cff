@@ -22,7 +22,17 @@ module CFF
 
     ALLOWED_FIELDS = [
       'address',
-      'name'
+      'city',
+      'country',
+      'email',
+      'fax',
+      'location',
+      'name',
+      'orcid',
+      'post-code',
+      'region',
+      'tel',
+      'website'
     ].freeze # :nodoc:
 
     # :call-seq:

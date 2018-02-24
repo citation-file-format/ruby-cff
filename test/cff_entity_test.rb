@@ -33,7 +33,15 @@ class CFFEntityTest < Minitest::Test
 
   def test_simple_fields_set_and_output_correctly
     data = [
-      ["address", "A Street"]
+      ["address", "A Street"],
+      ["city", "Manchester"],
+      ["country", "GB"],
+      ["email", "email@example.org"],
+      ["location", "Classified"],
+      ["orcid", "https://orcid.org/0000-0001-2345-6789"],
+      ["post-code", "M13 9PL"],
+      ["region", "Greater Manchester"],
+      ["website", "https://home.example.org"]
     ]
 
     data.each do |method, value|
@@ -47,5 +55,19 @@ class CFFEntityTest < Minitest::Test
     data.each do |method, value|
       assert y.include? "#{method_to_field(method)}: #{value}\n"
     end
+  end
+
+  def test_tel_fax_fields_set_and_output_correctly
+    number = "+44 (0) 161-234-5678"
+    @entity.fax = number
+    @entity.tel = number
+
+    assert_equal @entity.fax, number
+    assert_equal @entity.tel, number
+
+    y = @entity.fields.to_yaml
+
+    assert y.include? "fax: \"#{number}\"\n"
+    assert y.include? "tel: \"#{number}\"\n"
   end
 end
