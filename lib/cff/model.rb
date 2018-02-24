@@ -124,15 +124,16 @@ module CFF
     private
 
     def build_model(fields)
-      fields['authors'].each do |a|
-        @authors << (a.has_key?('given-names') ? Person.new(a) : Entity.new(a))
-      end
-
-      fields['contact'].each do |a|
-        @contact << (a.has_key?('given-names') ? Person.new(a) : Entity.new(a))
-      end
+      build_entity_collection(@authors, fields['authors'])
+      build_entity_collection(@contact, fields['contact'])
 
       @fields = delete_from_hash(fields, 'authors', 'contact')
+    end
+
+    def build_entity_collection(field, source)
+      source.each do |s|
+        field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
+      end
     end
 
     def array_field_to_yaml(field)
