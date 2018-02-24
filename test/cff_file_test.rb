@@ -16,6 +16,7 @@ require 'test_helper'
 
 class CFFFileTest < Minitest::Test
   include TestConstruct::Helpers
+  include ::CFF::Util
 
   def test_bad_methods_not_passed_to_model
     f = ::CFF::File.new("")
@@ -50,16 +51,23 @@ class CFFFileTest < Minitest::Test
     cff = ::CFF::File.read(COMPLETE_CFF)
     yaml = YAML.load_file(COMPLETE_CFF)
 
-    assert_equal cff.cff_version, yaml["cff-version"]
-    assert_equal cff.date_released, yaml["date-released"]
-    assert_equal cff.message, yaml["message"]
-    assert_equal cff.title, yaml["title"]
-    assert_equal cff.version, yaml["version"]
-    assert_equal cff.abstract, yaml["abstract"]
-    assert_equal cff.commit, yaml["commit"]
-    assert_equal cff.doi, yaml["doi"]
-    assert_equal cff.license, yaml["license"]
-    assert_equal cff.license_url, yaml["license-url"]
+    methods = [
+      "abstract",
+      "cff_version",
+      "commit",
+      "date_released",
+      "doi",
+      "keywords",
+      "license",
+      "license_url",
+      "message",
+      "title",
+      "version"
+    ]
+
+    methods.each do |method|
+      assert_equal cff.send(method), yaml[method_to_field(method)]
+    end
 
     assert_equal cff.authors.length, 2
     assert_instance_of ::CFF::Person, cff.authors[0]
@@ -70,7 +78,6 @@ class CFFFileTest < Minitest::Test
     assert_instance_of ::CFF::Entity, cff.contact[1]
 
     assert_equal cff.keywords.length, 4
-    assert_equal cff.keywords, yaml["keywords"]
   end
 
   def test_write_cff_file_from_string
