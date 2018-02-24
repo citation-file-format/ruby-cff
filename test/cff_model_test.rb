@@ -178,4 +178,13 @@ class CFFModelTest < Minitest::Test
     assert_equal m.keywords.length, l
     assert y.include? "keywords:\n- one\n- two\n- '3'\n"
   end
+
+  def test_empty_collections_are_not_output
+    m = ::CFF::Model.new('title')
+    y = m.to_yaml
+
+    refute y.include? "authors: []\n"
+    refute y.include? "contact: []\n"
+    refute y.include? "keywords: []\n"
+  end
 end

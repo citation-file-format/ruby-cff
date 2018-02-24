@@ -122,9 +122,9 @@ module CFF
 
     def to_yaml # :nodoc:
       fields = @fields.dup
-      fields['authors'] = array_field_to_yaml(@authors)
-      fields['contact'] = array_field_to_yaml(@contact)
-      fields['keywords'] = @keywords.map { |k| k.to_s }
+      fields['authors'] = array_field_to_yaml(@authors) unless @authors.empty?
+      fields['contact'] = array_field_to_yaml(@contact) unless @contact.empty?
+      fields['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
 
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
