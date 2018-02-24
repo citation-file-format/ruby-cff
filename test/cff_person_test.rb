@@ -33,7 +33,17 @@ class CFFPersonTest < Minitest::Test
 
   def test_simple_fields_set_and_output_correctly
     data = [
-      ["affiliation", "A University"]
+      ["address", "A street"],
+      ["affiliation", "A University"],
+      ["city", "Manchester"],
+      ["country", "GB"],
+      ["email", "email@example.org"],
+      ["name-particle", "van der"],
+      ["name-suffix", "III"],
+      ["orcid", "https://orcid.org/0000-0001-2345-6789"],
+      ["post-code", "M13 9PL"],
+      ["region", "Greater Manchester"],
+      ["website", "https://home.example.org"]
     ]
 
     data.each do |method, value|
@@ -47,5 +57,19 @@ class CFFPersonTest < Minitest::Test
     data.each do |method, value|
       assert y.include? "#{method_to_field(method)}: #{value}\n"
     end
+  end
+
+  def test_tel_fax_fields_set_and_output_correctly
+    number = "+44 (0) 161-234-5678"
+    @person.fax = number
+    @person.tel = number
+
+    assert_equal @person.fax, number
+    assert_equal @person.tel, number
+
+    y = @person.fields.to_yaml
+
+    assert y.include? "fax: \"#{number}\"\n"
+    assert y.include? "tel: \"#{number}\"\n"
   end
 end
