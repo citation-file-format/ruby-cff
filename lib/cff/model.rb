@@ -39,6 +39,7 @@ module CFF
     # Initialize a new Model with the supplied title.
     def initialize(param)
       @authors = []
+      @contact = []
 
       if Hash === param
         build_model(param)
@@ -66,6 +67,21 @@ module CFF
     end
 
     # :call-seq:
+    #   contact -> Array
+    #
+    # Return the list of contacts for this citation. To add a contact to the
+    # list, use:
+    #
+    # ```
+    # model.contact << contact
+    # ```
+    #
+    # Contacts can be a Person or Entity.
+    def contact
+      @contact
+    end
+
+    # :call-seq:
     #   date_released = date
     #
     # Set the `date-released` field. If a non-Date object is passed in it will
@@ -89,6 +105,7 @@ module CFF
     def to_yaml # :nodoc:
       fields = @fields.dup
       fields['authors'] = array_field_to_yaml(@authors)
+      fields['contact'] = array_field_to_yaml(@contact)
 
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
@@ -111,7 +128,11 @@ module CFF
         @authors << (a.has_key?('given-names') ? Person.new(a) : Entity.new(a))
       end
 
-      @fields = delete_from_hash(fields, 'authors')
+      fields['contact'].each do |a|
+        @contact << (a.has_key?('given-names') ? Person.new(a) : Entity.new(a))
+      end
+
+      @fields = delete_from_hash(fields, 'authors', 'contact')
     end
 
     def array_field_to_yaml(field)

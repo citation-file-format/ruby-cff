@@ -56,6 +56,10 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.authors.length, 2
     assert_instance_of ::CFF::Person, cff.authors[0]
     assert_instance_of ::CFF::Entity, cff.authors[1]
+
+    assert_equal cff.contact.length, 2
+    assert_instance_of ::CFF::Person, cff.contact[0]
+    assert_instance_of ::CFF::Entity, cff.contact[1]
   end
 
   def test_write_cff_file_from_string

@@ -134,4 +134,18 @@ class CFFModelTest < Minitest::Test
     assert y.include? "abstract: #{a}\n"
   end
 
+  def test_contact_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    a = ::CFF::Person.new('First', 'Second')
+    e = ::CFF::Entity.new('Company')
+    m.contact << a
+    m.contact << "_ _ _"
+    m.contact << e
+    assert_equal m.contact.length, 3
+
+    y = m.to_yaml
+    assert_equal m.contact.length, 3
+    assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
+    refute y.include? "_ _ _"
+  end
 end
