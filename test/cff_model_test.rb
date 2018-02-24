@@ -21,6 +21,10 @@ class CFFModelTest < Minitest::Test
     assert_raises(NoMethodError) do
       m.aaaaaaa
     end
+
+    assert_raises(NoMethodError) do
+      m.Message
+    end
   end
 
   def test_default_model_cff_version

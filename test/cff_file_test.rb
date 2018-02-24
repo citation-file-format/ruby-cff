@@ -23,6 +23,10 @@ class CFFFileTest < Minitest::Test
     assert_raises(NoMethodError) do
       f.aaaaaaa
     end
+
+    assert_raises(NoMethodError) do
+      f.Message = "hello"
+    end
   end
 
   def test_new_file_from_model
