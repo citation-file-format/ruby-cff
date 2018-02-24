@@ -126,16 +126,21 @@ class CFFModelTest < Minitest::Test
     refute y.include? "_ _ _"
   end
 
-  def test_abstract_set_and_output_correctly
+  def test_simple_fields_set_and_output_correctly
     m = ::CFF::Model.new('title')
     a = "An abstract"
+    c = "dce482de56c589b55c13349c49a81924ead238ba"
     assert_equal m.abstract, ''
+    assert_equal m.commit, ''
 
     m.abstract = a
+    m.commit = c
     assert_equal m.abstract, a
+    assert_equal m.commit, c
 
     y = m.to_yaml
     assert y.include? "abstract: #{a}\n"
+    assert y.include? "commit: #{c}\n"
   end
 
   def test_contact_set_and_output_correctly

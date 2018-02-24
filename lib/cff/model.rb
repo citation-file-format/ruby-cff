@@ -24,6 +24,7 @@ module CFF
     ALLOWED_FIELDS = [
       'abstract',
       'cff-version',
+      'commit',
       'date-released',
       'message',
       'title',
