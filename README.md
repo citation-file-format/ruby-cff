@@ -21,6 +21,9 @@ cff = CFF::Model.new("Ruby CFF Library")
 cff.version = "0.1.0"
 cff.date_released = Date.today
 cff.authors << CFF::Person.new("Robert", "Haines")
+cff.license = "Apache-2.0"
+cff.keywords << "ruby" << "credit" << "citation"
+cff.repository_artifact = "https://rubygems.org/gems/cff"
 
 CFF::File.write("CITATION.cff", cff)
 ```
@@ -32,10 +35,16 @@ cff-version: 1.0.3
 message: If you use this software in your work, please cite it using the following metadata
 title: Ruby CFF Library
 version: 0.1.0
-date-released: 2018-02-18
+date-released: 2018-02-24
+license: Apache-2.0
+repository-artifact: https://rubygems.org/gems/cff
 authors:
 - family-names: Haines
   given-names: Robert
+keywords:
+- ruby
+- credit
+- citation
 ```
 
 ### Licence
