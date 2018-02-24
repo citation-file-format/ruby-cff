@@ -17,11 +17,23 @@ module CFF
 
   # :stopdoc:
   class ModelPart
+    include Util
 
     attr_reader :fields
 
     def initialize(fields)
       @fields = fields
+    end
+
+    def method_missing(name, *args) # :nodoc:
+      n = method_to_field(name.id2name)
+      super unless self.class::ALLOWED_FIELDS.include?(n.chomp('='))
+
+      if n.end_with?('=')
+        @fields[n.chomp('=')] = args[0] || ''
+      else
+        @fields[n]
+      end
     end
 
   end
