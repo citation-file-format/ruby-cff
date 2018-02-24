@@ -135,7 +135,8 @@ class CFFModelTest < Minitest::Test
       ["abstract", "An abstract"],
       ["commit", "dce4a2de56c589b55c13249c49a81924ead238b9"],
       ["doi", "10.5281/zenodo.1003150"],
-      ["license", "Apache-2.0"]
+      ["license", "Apache-2.0"],
+      ["license_url", "http://example.org/licence.txt"]
     ]
 
     data.each do |method, value|

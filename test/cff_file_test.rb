@@ -59,6 +59,7 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.commit, yaml["commit"]
     assert_equal cff.doi, yaml["doi"]
     assert_equal cff.license, yaml["license"]
+    assert_equal cff.license_url, yaml["license-url"]
 
     assert_equal cff.authors.length, 2
     assert_instance_of ::CFF::Person, cff.authors[0]

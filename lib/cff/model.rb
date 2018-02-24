@@ -28,6 +28,7 @@ module CFF
       'date-released',
       'doi',
       'license',
+      'license-url',
       'message',
       'title',
       'version'
