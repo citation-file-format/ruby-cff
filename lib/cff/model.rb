@@ -27,6 +27,7 @@ module CFF
       'commit',
       'date-released',
       'doi',
+      'license',
       'message',
       'title',
       'version'
