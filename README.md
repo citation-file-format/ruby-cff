@@ -18,7 +18,7 @@ See the [CITATION.cff documentation](https://citation-file-format.github.io/) fo
 
 ```ruby
 cff = CFF::Model.new("Ruby CFF Library")
-cff.version = 0.1.0
+cff.version = "0.1.0"
 cff.date_released = Date.today
 cff.authors << CFF::Person.new("Robert", "Haines")
 
