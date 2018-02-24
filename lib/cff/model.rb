@@ -147,7 +147,7 @@ module CFF
     def build_model(fields)
       build_entity_collection(@authors, fields['authors'])
       build_entity_collection(@contact, fields['contact'])
-      build_string_collection(@keywords, fields['keywords'])
+      @keywords = fields['keywords']
 
       @fields = delete_from_hash(fields, 'authors', 'contact', 'keywords')
     end
@@ -155,12 +155,6 @@ module CFF
     def build_entity_collection(field, source)
       source.each do |s|
         field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
-      end
-    end
-
-    def build_string_collection(field, source)
-      source.each do |s|
-        field << s
       end
     end
 
