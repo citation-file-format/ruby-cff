@@ -19,6 +19,10 @@ module CFF
   # number of roles, such as author, contact, editor, etc.
   class Person < ModelPart
 
+    ALLOWED_FIELDS = [
+      'affiliation'
+    ].freeze # :nodoc:
+
     # :call-seq:
     #   new(given_name, family_name) -> Person
     #
