@@ -31,6 +31,8 @@ module CFF
     #
     # Create a new Reference with the supplied title and type.
     def initialize(param, *more)
+      @authors = []
+
       if Hash === param
         super(param)
       else
@@ -38,6 +40,37 @@ module CFF
         @fields['type'] = more[0]
         @fields['title'] = param
       end
+    end
+
+    # :call-seq:
+    #   authors -> Array
+    #
+    # Return the list of authors for this citation. To add an author to the
+    # list, use:
+    #
+    # ```
+    # model.authors << author
+    # ```
+    #
+    # Authors can be a Person or Entity.
+    def authors
+      @authors
+    end
+
+    # Override superclass fields as references contain model parts too.
+    def fields # :nodoc:
+      ref = @fields.dup
+      ref['authors'] = array_field_to_yaml(@authors) unless @authors.empty?
+
+      ref
+    end
+
+    private
+
+    def array_field_to_yaml(field)
+      field.reject do |f|
+        !f.respond_to?(:fields)
+      end.map { |f| f.fields }
     end
 
   end

@@ -189,14 +189,23 @@ class CFFModelTest < Minitest::Test
 
   def test_references_set_and_output_correctly
     m = ::CFF::Model.new('title')
+    a = ::CFF::Person.new('First', 'Second')
+    e = ::CFF::Entity.new('Company')
     r = ::CFF::Reference.new('book title', 'book')
+    r.authors << a
+    r.authors << "_ _ _"
+    r.authors << e
+
     m.references << r
     m.references << "_ _ _"
     assert_equal m.references.length, 2
+    assert_equal m.references[0].authors.length, 3
 
     y = m.to_yaml
     assert_equal m.references.length, 2
+    assert_equal m.references[0].authors.length, 3
     assert y.include? "references:\n- type: book\n  title: book title\n"
+    assert y.include? "  authors:\n  - family-names: Second\n    given-names: First\n  - name: Company\n"
     refute y.include? "_ _ _"
   end
 

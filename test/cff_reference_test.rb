@@ -30,4 +30,18 @@ class CFFReferenceTest < Minitest::Test
       @reference.Type = "book"
     end
   end
+
+  def test_authors_set_and_output_correctly
+    a = ::CFF::Person.new('First', 'Second')
+    e = ::CFF::Entity.new('Company')
+    @reference.authors << a
+    @reference.authors << "_ _ _"
+    @reference.authors << e
+    assert_equal @reference.authors.length, 3
+
+    y = @reference.fields.to_yaml
+    assert_equal @reference.authors.length, 3
+    assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company\n"
+    refute y.include? "_ _ _"
+  end
 end
