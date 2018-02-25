@@ -18,7 +18,7 @@ class CFFReferenceTest < Minitest::Test
   include ::CFF::Util
 
   def setup
-    @reference = ::CFF::Reference.new("A Paper", "paper")
+    @reference = ::CFF::Reference.new("A Paper", "article")
   end
 
   def test_bad_methods_not_allowed
@@ -43,6 +43,16 @@ class CFFReferenceTest < Minitest::Test
     assert_equal @reference.authors.length, 3
     assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company\n"
     refute y.include? "_ _ _"
+  end
+
+  def test_type_restricted_to_allowed_types
+    ref = ::CFF::Reference.new("Title", "cake")
+    refute_equal ref.type, "cake"
+    assert_equal ref.type, "generic"
+
+    @reference.type = "cake"
+    refute_equal @reference.type, "cake"
+    assert_equal @reference.type, "article"
   end
 
   def test_simple_fields_set_and_output_correctly

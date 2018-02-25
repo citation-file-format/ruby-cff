@@ -61,10 +61,61 @@ module CFF
       'volume-title'
     ].freeze # :nodoc:
 
+    # The [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
+    REFERENCE_TYPES = [
+      'art',
+      'article',
+      'audiovisual',
+      'bill',
+      'blog',
+      'book',
+      'catalogue',
+      'conference',
+      'conference-paper',
+      'data',
+      'database',
+      'dictionary',
+      'edited-work',
+      'encyclopedia',
+      'film-broadcast',
+      'generic',
+      'government-document',
+      'grant',
+      'hearing',
+      'historical-work',
+      'legal-case',
+      'legal-rule',
+      'magazine-article',
+      'manual',
+      'map',
+      'multimedia',
+      'music',
+      'newspaper-article',
+      'pamphlet',
+      'patent',
+      'personal-communication',
+      'proceedings',
+      'report',
+      'serial',
+      'slides',
+      'software',
+      'software-code',
+      'software-container',
+      'software-executable',
+      'software-virtual-machine',
+      'sound-recording',
+      'standard',
+      'statute',
+      'thesis',
+      'unpublished',
+      'video',
+      'website'
+    ].freeze
+
     # :call-seq:
     #   new(title, type) -> Reference
     #
-    # Create a new Reference with the supplied title and type.
+    # Create a new Reference with the supplied title and type. If type is not one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types), 'generic' will be used by default.
     def initialize(param, *more)
       @authors = []
 
@@ -72,7 +123,7 @@ module CFF
         build_model(param)
       else
         @fields = Hash.new('')
-        @fields['type'] = more[0]
+        @fields['type'] = REFERENCE_TYPES.include?(more[0]) ? more[0] : 'generic'
         @fields['title'] = param
       end
     end
@@ -106,6 +157,15 @@ module CFF
     # Sets the format of this Reference.
     def format=(fmt)
       @fields['format'] = fmt
+    end
+
+    # :call-seq:
+    #   type = type
+    #
+    # Sets the type of this reference. The type is restricted to a
+    # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
+    def type=(type)
+      @fields['type'] = type if REFERENCE_TYPES.include?(type)
     end
 
     # Override superclass fields as references contain model parts too.
