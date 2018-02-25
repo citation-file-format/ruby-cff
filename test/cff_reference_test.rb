@@ -62,6 +62,7 @@ class CFFReferenceTest < Minitest::Test
       'edition',
       'entry',
       'filename',
+      'format',
       'isbn',
       'issn',
       'issue_title',

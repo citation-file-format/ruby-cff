@@ -92,6 +92,22 @@ module CFF
       @authors
     end
 
+    # :call-seq:
+    #   format -> String
+    #
+    # Returns the format of this Reference.
+    def format
+      @fields['format']
+    end
+
+    # :call-seq:
+    #   format = format
+    #
+    # Sets the format of this Reference.
+    def format=(fmt)
+      @fields['format'] = fmt
+    end
+
     # Override superclass fields as references contain model parts too.
     def fields # :nodoc:
       ref = @fields.dup
