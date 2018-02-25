@@ -21,10 +21,6 @@ module CFF
 
     attr_reader :fields
 
-    def initialize(fields)
-      @fields = fields
-    end
-
     def method_missing(name, *args) # :nodoc:
       n = method_to_field(name.id2name)
       super unless self.class::ALLOWED_FIELDS.include?(n.chomp('='))
