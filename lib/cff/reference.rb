@@ -34,7 +34,7 @@ module CFF
       @authors = []
 
       if Hash === param
-        super(param)
+        build_model(param)
       else
         @fields = Hash.new('')
         @fields['type'] = more[0]
@@ -66,6 +66,18 @@ module CFF
     end
 
     private
+
+    def build_model(fields)
+      build_entity_collection(@authors, fields['authors'])
+
+      @fields = delete_from_hash(fields, 'authors')
+    end
+
+    def build_entity_collection(field, source)
+      source.each do |s|
+        field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
+      end
+    end
 
     def array_field_to_yaml(field)
       field.reject do |f|

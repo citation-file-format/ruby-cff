@@ -94,6 +94,14 @@ class CFFFileTest < Minitest::Test
     assert_instance_of ::CFF::Reference, reference
     assert_equal reference.type, "book"
     assert_equal reference.title, "Book Title"
+    person = reference.authors[0]
+    entity = reference.authors[1]
+    assert_instance_of ::CFF::Person, person
+    assert_equal person.family_names, "Real Person"
+    assert_equal person.affiliation, "Excellent University, Niceplace, Arcadia"
+    assert_instance_of ::CFF::Entity, entity
+    assert_equal entity.name, "Entity Project Team Conference entity"
+    assert_equal entity.address, "22 Acacia Avenue"
   end
 
   def test_write_cff_file_from_string
