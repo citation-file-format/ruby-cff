@@ -111,7 +111,7 @@ module CFF
     # Override superclass fields as references contain model parts too.
     def fields # :nodoc:
       ref = @fields.dup
-      ref['authors'] = array_field_to_yaml(@authors) unless @authors.empty?
+      ref['authors'] = array_to_fields(@authors) unless @authors.empty?
 
       ref
     end
@@ -119,21 +119,9 @@ module CFF
     private
 
     def build_model(fields)
-      build_entity_collection(@authors, fields['authors'])
+      build_actor_collection(@authors, fields['authors'])
 
       @fields = delete_from_hash(fields, 'authors')
-    end
-
-    def build_entity_collection(field, source)
-      source.each do |s|
-        field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
-      end
-    end
-
-    def array_field_to_yaml(field)
-      field.reject do |f|
-        !f.respond_to?(:fields)
-      end.map { |f| f.fields }
     end
 
   end

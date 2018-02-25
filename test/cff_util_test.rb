@@ -36,4 +36,36 @@ class CFFUtilTest < Minitest::Test
     assert_equal method_to_field("field_field"), "field-field"
     assert_equal method_to_field("field-field"), "field-field"
   end
+
+  def test_build_actor_collection
+    input = [
+      {"family-names"=>"Second", "given-names"=>"First"},
+      {"name"=>"Company"}
+    ]
+    output = []
+
+    build_actor_collection(output, input)
+    assert_equal output.length, 2
+    assert_instance_of ::CFF::Person, output[0]
+    assert_equal output[0].given_names, "First"
+    assert_instance_of ::CFF::Entity, output[1]
+    assert_equal output[1].name, "Company"
+  end
+
+  def test_array_to_fields
+    string = "some text"
+    data = [
+      ::CFF::Person.new('First', 'Second'),
+      string,
+      ::CFF::Entity.new('Company')
+    ]
+
+    result = array_to_fields(data)
+
+    assert_equal data.length, 3
+    assert_equal result.length, 2
+    assert_equal result[0], {"family-names"=>"Second", "given-names"=>"First"}
+    assert_equal result[1], {"name"=>"Company"}
+    assert !result.include?(string)
+  end
 end

@@ -36,6 +36,17 @@ module CFF
       name.gsub('_', '-')
     end
 
-  end
+    def build_actor_collection(field, source)
+      source.each do |s|
+        field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
+      end
+    end
 
+    def array_to_fields(field)
+      field.reject do |f|
+        !f.respond_to?(:fields)
+      end.map { |f| f.fields }
+    end
+
+  end
 end

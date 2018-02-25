@@ -142,10 +142,10 @@ module CFF
 
     def to_yaml # :nodoc:
       fields = @fields.dup
-      fields['authors'] = array_field_to_yaml(@authors) unless @authors.empty?
-      fields['contact'] = array_field_to_yaml(@contact) unless @contact.empty?
+      fields['authors'] = array_to_fields(@authors) unless @authors.empty?
+      fields['contact'] = array_to_fields(@contact) unless @contact.empty?
       fields['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
-      fields['references'] = array_field_to_yaml(@references) unless @references.empty?
+      fields['references'] = array_to_fields(@references) unless @references.empty?
 
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
@@ -164,26 +164,14 @@ module CFF
     private
 
     def build_model(fields)
-      build_entity_collection(@authors, fields['authors'])
-      build_entity_collection(@contact, fields['contact'])
+      build_actor_collection(@authors, fields['authors'])
+      build_actor_collection(@contact, fields['contact'])
       @keywords = fields['keywords']
       fields['references'].each do |r|
         @references << Reference.new(r)
       end
 
       @fields = delete_from_hash(fields, 'authors', 'contact', 'keywords', 'references')
-    end
-
-    def build_entity_collection(field, source)
-      source.each do |s|
-        field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
-      end
-    end
-
-    def array_field_to_yaml(field)
-      field.reject do |f|
-        !f.respond_to?(:fields)
-      end.map { |f| f.fields }
     end
 
   end
