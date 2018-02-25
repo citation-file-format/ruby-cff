@@ -88,6 +88,12 @@ class CFFFileTest < Minitest::Test
     assert_instance_of ::CFF::Entity, cff.contact[1]
 
     assert_equal cff.keywords.length, 4
+
+    assert_equal cff.references.length, 1
+    reference = cff.references[0]
+    assert_instance_of ::CFF::Reference, reference
+    assert_equal reference.type, "book"
+    assert_equal reference.title, "Book Title"
   end
 
   def test_write_cff_file_from_string

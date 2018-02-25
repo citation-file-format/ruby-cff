@@ -187,6 +187,19 @@ class CFFModelTest < Minitest::Test
     assert y.include? "keywords:\n- one\n- two\n- '3'\n"
   end
 
+  def test_references_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    r = ::CFF::Reference.new('book title', 'book')
+    m.references << r
+    m.references << "_ _ _"
+    assert_equal m.references.length, 2
+
+    y = m.to_yaml
+    assert_equal m.references.length, 2
+    assert y.include? "references:\n- type: book\n  title: book title\n"
+    refute y.include? "_ _ _"
+  end
+
   def test_empty_collections_are_not_output
     m = ::CFF::Model.new('title')
     y = m.to_yaml
@@ -194,5 +207,6 @@ class CFFModelTest < Minitest::Test
     refute y.include? "authors: []\n"
     refute y.include? "contact: []\n"
     refute y.include? "keywords: []\n"
+    refute y.include? "references: []\n"
   end
 end

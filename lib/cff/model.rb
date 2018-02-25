@@ -49,6 +49,7 @@ module CFF
       @authors = []
       @contact = []
       @keywords = []
+      @references = []
 
       if Hash === param
         build_model(param)
@@ -119,6 +120,19 @@ module CFF
     end
 
     # :call-seq:
+    #   references -> Array
+    #
+    # Return the list of references for this citation. To add a reference to the
+    # list, use:
+    #
+    # ```
+    # model.references << reference
+    # ```
+    def references
+      @references
+    end
+
+    # :call-seq:
     #   version = version
     #
     # Set the `version` field.
@@ -131,6 +145,7 @@ module CFF
       fields['authors'] = array_field_to_yaml(@authors) unless @authors.empty?
       fields['contact'] = array_field_to_yaml(@contact) unless @contact.empty?
       fields['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
+      fields['references'] = array_field_to_yaml(@references) unless @references.empty?
 
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
@@ -152,8 +167,11 @@ module CFF
       build_entity_collection(@authors, fields['authors'])
       build_entity_collection(@contact, fields['contact'])
       @keywords = fields['keywords']
+      fields['references'].each do |r|
+        @references << Reference.new(r)
+      end
 
-      @fields = delete_from_hash(fields, 'authors', 'contact', 'keywords')
+      @fields = delete_from_hash(fields, 'authors', 'contact', 'keywords', 'references')
     end
 
     def build_entity_collection(field, source)
