@@ -6,6 +6,7 @@ A Ruby library for manipulating CITATION.cff files.
 [![Gem Version](https://badge.fury.io/rb/cff.svg)](https://badge.fury.io/rb/cff)
 [![Build Status](https://travis-ci.org/citation-file-format/ruby-cff.svg?branch=master)](https://travis-ci.org/citation-file-format/ruby-cff)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6bb4c661bfb4971260ba/maintainability)](https://codeclimate.com/github/citation-file-format/ruby-cff/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/citation-file-format/ruby-cff/badge.svg)](https://coveralls.io/github/citation-file-format/ruby-cff)
 
 ### Synopsis
 
