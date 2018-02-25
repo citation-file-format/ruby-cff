@@ -12,23 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "date"
-require "yaml"
+require "test_helper"
 
-require "cff/version"
-require "cff/util"
-require "cff/model-part"
-require "cff/person"
-require "cff/entity"
-require "cff/reference"
-require "cff/model"
-require "cff/file"
+class CFFReferenceTest < Minitest::Test
+  include ::CFF::Util
 
-# This library provides a Ruby interface to manipulate CITATION.cff files. The
-# primary entry points are Model and File.
-#
-# See the [CITATION.cff documentation](https://citation-file-format.github.io/)
-# for more details.
-module CFF
+  def setup
+    @reference = ::CFF::Reference.new("A Paper", "paper")
+  end
 
+  def test_bad_methods_not_allowed
+    assert_raises(NoMethodError) do
+      @reference.aaaaaaa
+    end
+
+    assert_raises(NoMethodError) do
+      @reference.Type = "book"
+    end
+  end
 end
