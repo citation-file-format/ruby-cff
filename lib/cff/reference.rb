@@ -22,8 +22,43 @@ module CFF
   class Reference < ModelPart
 
     ALLOWED_FIELDS = [
+      'abbreviation',
+      'abstract',
+      'collection-doi',
+      'collection-title',
+      'collection-type',
+      'commit',
+      'copyright',
+      'data-type',
+      'database',
+      'department',
+      'doi',
+      'edition',
+      'entry',
+      'filename',
+      'isbn',
+      'issn',
+      'issue-title',
+      'journal',
+      'license',
+      'license-url',
+      'medium',
+      'nihmsid',
+      'notes',
+      'number',
+      'pmcid',
+      'repository',
+      'repository-code',
+      'repository-artifact',
+      'scope',
+      'section',
+      'status',
+      'thesis-type',
       'title',
-      'type'
+      'type',
+      'url',
+      'version',
+      'volume-title'
     ].freeze # :nodoc:
 
     # :call-seq:

@@ -44,4 +44,57 @@ class CFFReferenceTest < Minitest::Test
     assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company\n"
     refute y.include? "_ _ _"
   end
+
+  def test_simple_fields_set_and_output_correctly
+    value = "a simple string field"
+    methods = [
+      'abbreviation',
+      'abstract',
+      'collection_doi',
+      'collection_title',
+      'collection_type',
+      'commit',
+      'copyright',
+      'data_type',
+      'database',
+      'department',
+      'doi',
+      'edition',
+      'entry',
+      'filename',
+      'isbn',
+      'issn',
+      'issue_title',
+      'journal',
+      'license',
+      'license_url',
+      'medium',
+      'nihmsid',
+      'notes',
+      'number',
+      'pmcid',
+      'repository',
+      'repository_code',
+      'repository_artifact',
+      'scope',
+      'section',
+      'status',
+      'thesis_type',
+      'url',
+      'version',
+      'volume_title'
+    ]
+
+    methods.each do |method|
+      assert_equal @reference.send(method), ""
+      @reference.send("#{method}=", value)
+      assert_equal @reference.send(method), value
+    end
+
+    y = @reference.fields.to_yaml
+
+    methods.each do |method|
+      assert y.include? "#{method_to_field(method)}: #{value}\n"
+    end
+  end
 end
