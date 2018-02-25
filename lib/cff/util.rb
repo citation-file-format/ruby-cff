@@ -15,23 +15,17 @@
 #
 module CFF
 
+  # :stopdoc:
   # Utility methods useful throughout the rest of the CFF library.
+  # This module is not in the public API.
   module Util
 
-    # :call-seq:
-    #   delete_from_hash(hash, keys...) -> Hash
-    #
-    # Returns a hash that includes everything but the given keys.
     def delete_from_hash(hash, *keys)
       h = hash.dup
       keys.each { |key| h.delete(key) }
       h
     end
 
-    # :call-seq:
-    #   method_to_field(name) -> converted name
-    #
-    # Return the supplied name with underscores converted to dashes.
     def method_to_field(name)
       name.gsub('_', '-')
     end
@@ -49,4 +43,5 @@ module CFF
     end
 
   end
+  # :startdoc:
 end
