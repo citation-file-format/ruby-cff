@@ -55,6 +55,41 @@ class CFFReferenceTest < Minitest::Test
     assert_equal @reference.type, "article"
   end
 
+  def test_bad_dates_raises_error
+    [
+      'date_accessed',
+      'date_downloaded',
+      'date_published',
+      'date_released'
+    ].each do |method|
+      exp = assert_raises(ArgumentError) do
+        @reference.send("#{method}=", 'nonsense')
+      end
+      assert exp.message.include?('invalid date')
+    end
+  end
+
+  def test_dates_are_set_and_output_correctly
+    [
+      'date_accessed',
+      'date_downloaded',
+      'date_published',
+      'date_released'
+    ].each do |method|
+      date = Date.today
+      @reference.send("#{method}=", date)
+      assert_equal @reference.send(method), date
+      y = @reference.fields.to_yaml
+      assert y.include? "#{method_to_field(method)}: #{date.iso8601}"
+
+      date = "1999-12-31"
+      @reference.send("#{method}=", date)
+      assert_equal @reference.send(method), Date.parse(date)
+      y = @reference.fields.to_yaml
+      assert y.include? "#{method_to_field(method)}: #{date}"
+    end
+  end
+
   def test_simple_fields_set_and_output_correctly
     value = "a simple string field"
     methods = [

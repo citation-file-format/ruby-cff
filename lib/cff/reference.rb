@@ -31,6 +31,10 @@ module CFF
       'copyright',
       'data-type',
       'database',
+      'date-accessed',
+      'date-downloaded',
+      'date-published',
+      'date-released',
       'department',
       'doi',
       'edition',
@@ -141,6 +145,58 @@ module CFF
     # Authors can be a Person or Entity.
     def authors
       @authors
+    end
+
+    # :call-seq:
+    #   date_accessed = date
+    #
+    # Set the `date-accessed` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
+    def date_accessed=(date)
+      unless Date === date
+        date = Date.parse(date)
+      end
+
+      @fields['date-accessed'] = date
+    end
+
+    # :call-seq:
+    #   date_downloaded = date
+    #
+    # Set the `date-downloaded` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
+    def date_downloaded=(date)
+      unless Date === date
+        date = Date.parse(date)
+      end
+
+      @fields['date-downloaded'] = date
+    end
+
+    # :call-seq:
+    #   date_published = date
+    #
+    # Set the `date-published` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
+    def date_published=(date)
+      unless Date === date
+        date = Date.parse(date)
+      end
+
+      @fields['date-published'] = date
+    end
+
+    # :call-seq:
+    #   date_released = date
+    #
+    # Set the `date-released` field. If a non-Date object is passed in it will
+    # be parsed into a Date.
+    def date_released=(date)
+      unless Date === date
+        date = Date.parse(date)
+      end
+
+      @fields['date-released'] = date
     end
 
     # :call-seq:
