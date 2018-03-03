@@ -141,7 +141,7 @@ module CFF
     # :call-seq:
     #   authors -> Array
     #
-    # Return the list of authors for this reference. To add an author to the
+    # Return the list of authors for this Reference. To add an author to the
     # list, use:
     #
     # ```
@@ -156,7 +156,7 @@ module CFF
     # :call-seq:
     #   contact -> Array
     #
-    # Return the list of contacts for this reference. To add a contact to the
+    # Return the list of contacts for this Reference. To add a contact to the
     # list, use:
     #
     # ```
@@ -171,7 +171,7 @@ module CFF
     # :call-seq:
     #   editors -> Array
     #
-    # Return the list of editors for this reference. To add an editor to the
+    # Return the list of editors for this Reference. To add an editor to the
     # list, use:
     #
     # ```
@@ -186,7 +186,7 @@ module CFF
     # :call-seq:
     #   editors_series -> Array
     #
-    # Return the list of series editors for this reference. To add a series
+    # Return the list of series editors for this Reference. To add a series
     # editor to the list, use:
     #
     # ```
@@ -201,7 +201,7 @@ module CFF
     # :call-seq:
     #   recipients -> Array
     #
-    # Return the list of recipients for this reference. To add a recipient
+    # Return the list of recipients for this Reference. To add a recipient
     # to the list, use:
     #
     # ```
@@ -216,7 +216,7 @@ module CFF
     # :call-seq:
     #   senders -> Array
     #
-    # Return the list of senders for this reference. To add a sender to the
+    # Return the list of senders for this Reference. To add a sender to the
     # list, use:
     #
     # ```
@@ -231,7 +231,7 @@ module CFF
     # :call-seq:
     #   translators -> Array
     #
-    # Return the list of translators for this reference. To add a translator
+    # Return the list of translators for this Reference. To add a translator
     # to the list, use:
     #
     # ```
@@ -314,7 +314,7 @@ module CFF
     # :call-seq:
     #   type = type
     #
-    # Sets the type of this reference. The type is restricted to a
+    # Sets the type of this Reference. The type is restricted to a
     # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
     def type=(type)
       @fields['type'] = type if REFERENCE_TYPES.include?(type)
