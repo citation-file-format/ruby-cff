@@ -126,6 +126,7 @@ module CFF
       @editors = []
       @editors_series = []
       @recipients = []
+      @senders = []
 
       if Hash === param
         build_model(param)
@@ -209,6 +210,21 @@ module CFF
     # Recipients can be a Person or Entity.
     def recipients
       @recipients
+    end
+
+    # :call-seq:
+    #   senders -> Array
+    #
+    # Return the list of senders for this reference. To add a sender to the
+    # list, use:
+    #
+    # ```
+    # reference.senders << sender
+    # ```
+    #
+    # Senders can be a Person or Entity.
+    def senders
+      @senders
     end
 
     # :call-seq:
@@ -296,6 +312,7 @@ module CFF
       ref['editors'] = array_to_fields(@editors) unless @editors.empty?
       ref['editors-series'] = array_to_fields(@editors_series) unless @editors_series.empty?
       ref['recipients'] = array_to_fields(@recipients) unless @recipients.empty?
+      ref['senders'] = array_to_fields(@senders) unless @senders.empty?
 
       ref
     end
