@@ -122,6 +122,7 @@ module CFF
     # Create a new Reference with the supplied title and type. If type is not one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types), 'generic' will be used by default.
     def initialize(param, *more)
       @authors = []
+      @contact = []
 
       if Hash === param
         build_model(param)
@@ -145,6 +146,21 @@ module CFF
     # Authors can be a Person or Entity.
     def authors
       @authors
+    end
+
+    # :call-seq:
+    #   contact -> Array
+    #
+    # Return the list of contacts for this reference. To add a contact to the
+    # list, use:
+    #
+    # ```
+    # model.contact << contact
+    # ```
+    #
+    # Contacts can be a Person or Entity.
+    def contact
+      @contact
     end
 
     # :call-seq:
@@ -228,6 +244,7 @@ module CFF
     def fields # :nodoc:
       ref = @fields.dup
       ref['authors'] = array_to_fields(@authors) unless @authors.empty?
+      ref['contact'] = array_to_fields(@contact) unless @contact.empty?
 
       ref
     end
