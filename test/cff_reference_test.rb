@@ -70,6 +70,15 @@ class CFFReferenceTest < Minitest::Test
     assert_equal @reference.type, "article"
   end
 
+  def test_status_restricted_to_allowed_types
+    @reference.status = "in-press"
+    assert_equal @reference.status, "in-press"
+
+    @reference.status = "published"
+    refute_equal @reference.status, "published"
+    assert_equal @reference.status, "in-press"
+  end
+
   def test_bad_dates_raises_error
     [
       'date_accessed',
@@ -139,7 +148,6 @@ class CFFReferenceTest < Minitest::Test
       'repository_artifact',
       'scope',
       'section',
-      'status',
       'thesis_type',
       'url',
       'version',

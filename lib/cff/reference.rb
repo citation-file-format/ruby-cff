@@ -116,6 +116,16 @@ module CFF
       'website'
     ].freeze
 
+    # The [defined set of reference status types](https://citation-file-format.github.io/1.0.3/specifications/#/status-strings).
+    REFERENCE_STATUS_TYPES = [
+      'abstract',
+      'advance-online',
+      'in-preparation',
+      'in-press',
+      'pre-print',
+      'submitted'
+    ].freeze
+
     # :call-seq:
     #   new(title, type) -> Reference
     #
@@ -309,6 +319,15 @@ module CFF
     # Sets the format of this Reference.
     def format=(fmt)
       @fields['format'] = fmt
+    end
+
+    # :call-seq:
+    #   status = status
+    #
+    # Sets the status of this Reference. The status is restricted to a
+    # [defined set of status types](https://citation-file-format.github.io/1.0.3/specifications/#/status-strings).
+    def status=(status)
+      @fields['status'] = status if REFERENCE_STATUS_TYPES.include?(status)
     end
 
     # :call-seq:
