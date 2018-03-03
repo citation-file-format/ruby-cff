@@ -38,7 +38,8 @@ class CFFReferenceTest < Minitest::Test
       'editors',
       'editors_series',
       'recipients',
-      'senders'
+      'senders',
+      'translators'
     ]
 
     methods.each do |method|

@@ -127,6 +127,7 @@ module CFF
       @editors_series = []
       @recipients = []
       @senders = []
+      @translators = []
 
       if Hash === param
         build_model(param)
@@ -228,6 +229,21 @@ module CFF
     end
 
     # :call-seq:
+    #   translators -> Array
+    #
+    # Return the list of translators for this reference. To add a translator
+    # to the list, use:
+    #
+    # ```
+    # reference.translators << translator
+    # ```
+    #
+    # Translators can be a Person or Entity.
+    def translators
+      @translators
+    end
+
+    # :call-seq:
     #   date_accessed = date
     #
     # Set the `date-accessed` field. If a non-Date object is passed in it will
@@ -313,6 +329,7 @@ module CFF
       ref['editors-series'] = array_to_fields(@editors_series) unless @editors_series.empty?
       ref['recipients'] = array_to_fields(@recipients) unless @recipients.empty?
       ref['senders'] = array_to_fields(@senders) unless @senders.empty?
+      ref['translators'] = array_to_fields(@translators) unless @translators.empty?
 
       ref
     end
