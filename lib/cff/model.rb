@@ -141,12 +141,6 @@ module CFF
     end
 
     def to_yaml # :nodoc:
-      fields = @fields.dup
-      fields['authors'] = array_to_fields(@authors) unless @authors.empty?
-      fields['contact'] = array_to_fields(@contact) unless @contact.empty?
-      fields['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
-      fields['references'] = array_to_fields(@references) unless @references.empty?
-
       YAML.dump fields, :line_width => -1, :indentation => 2
     end
 
@@ -162,6 +156,20 @@ module CFF
     end
 
     private
+
+    def fields
+      model = @fields.dup
+      [
+        ['authors', @authors],
+        ['contact', @contact],
+        ['references', @references]
+      ].each do |field, var|
+        model[field] = array_to_fields(var) unless var.empty?
+      end
+      model['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
+
+      model
+    end
 
     def build_model(fields)
       build_actor_collection(@authors, fields['authors'])
