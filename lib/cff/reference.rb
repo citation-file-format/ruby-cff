@@ -323,13 +323,17 @@ module CFF
     # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
       ref = @fields.dup
-      ref['authors'] = array_to_fields(@authors) unless @authors.empty?
-      ref['contact'] = array_to_fields(@contact) unless @contact.empty?
-      ref['editors'] = array_to_fields(@editors) unless @editors.empty?
-      ref['editors-series'] = array_to_fields(@editors_series) unless @editors_series.empty?
-      ref['recipients'] = array_to_fields(@recipients) unless @recipients.empty?
-      ref['senders'] = array_to_fields(@senders) unless @senders.empty?
-      ref['translators'] = array_to_fields(@translators) unless @translators.empty?
+      [
+        ['authors', @authors],
+        ['contact', @contact],
+        ['editors', @editors],
+        ['editors-series', @editors_series],
+        ['recipients', @recipients],
+        ['senders', @senders],
+        ['translators', @translators]
+      ].each do |field, var|
+        ref[field] = array_to_fields(var) unless var.empty?
+      end
 
       ref
     end
