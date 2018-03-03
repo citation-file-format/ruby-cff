@@ -35,7 +35,8 @@ class CFFReferenceTest < Minitest::Test
     methods = [
       'authors',
       'contact',
-      'editors'
+      'editors',
+      'editors_series'
     ]
 
     methods.each do |method|
@@ -52,7 +53,7 @@ class CFFReferenceTest < Minitest::Test
 
     methods.each do |method|
       assert_equal (@reference.send(method)).length, 3
-      assert y.include? "#{method}:\n- family-names: Second\n  given-names: First\n- name: Company\n"
+      assert y.include? "#{method_to_field(method)}:\n- family-names: Second\n  given-names: First\n- name: Company\n"
     end
   end
 
