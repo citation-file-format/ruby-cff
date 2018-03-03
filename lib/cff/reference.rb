@@ -272,7 +272,7 @@ module CFF
       @fields['type'] = type if REFERENCE_TYPES.include?(type)
     end
 
-    # Override superclass fields as references contain model parts too.
+    # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
       ref = @fields.dup
       ref['authors'] = array_to_fields(@authors) unless @authors.empty?
