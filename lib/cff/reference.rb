@@ -136,11 +136,11 @@ module CFF
     # :call-seq:
     #   authors -> Array
     #
-    # Return the list of authors for this citation. To add an author to the
+    # Return the list of authors for this reference. To add an author to the
     # list, use:
     #
     # ```
-    # model.authors << author
+    # reference.authors << author
     # ```
     #
     # Authors can be a Person or Entity.
@@ -155,7 +155,7 @@ module CFF
     # list, use:
     #
     # ```
-    # model.contact << contact
+    # reference.contact << contact
     # ```
     #
     # Contacts can be a Person or Entity.
