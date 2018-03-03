@@ -123,6 +123,7 @@ module CFF
     def initialize(param, *more)
       @authors = []
       @contact = []
+      @editors = []
 
       if Hash === param
         build_model(param)
@@ -161,6 +162,21 @@ module CFF
     # Contacts can be a Person or Entity.
     def contact
       @contact
+    end
+
+    # :call-seq:
+    #   editors -> Array
+    #
+    # Return the list of editors for this reference. To add an editor to the
+    # list, use:
+    #
+    # ```
+    # reference.editors << editor
+    # ```
+    #
+    # An editor can be a Person or Entity.
+    def editors
+      @editors
     end
 
     # :call-seq:
@@ -245,6 +261,7 @@ module CFF
       ref = @fields.dup
       ref['authors'] = array_to_fields(@authors) unless @authors.empty?
       ref['contact'] = array_to_fields(@contact) unless @contact.empty?
+      ref['editors'] = array_to_fields(@editors) unless @editors.empty?
 
       ref
     end

@@ -34,7 +34,8 @@ class CFFReferenceTest < Minitest::Test
   def test_person_entity_fields_set_and_output_correctly
     methods = [
       'authors',
-      'contact'
+      'contact',
+      'editors'
     ]
 
     methods.each do |method|
