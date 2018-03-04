@@ -79,6 +79,38 @@ class CFFReferenceTest < Minitest::Test
     assert_equal @reference.status, "in-press"
   end
 
+  def test_languages_methods
+    assert_equal @reference.languages, []
+
+    @reference.languages << "eng"
+    assert_equal @reference.languages, []
+
+    @reference.add_language "english"
+    assert_equal @reference.languages, ["eng"]
+    @reference.add_language "GER"
+    assert_equal @reference.languages, ["eng", "deu"]
+    @reference.add_language "en"
+    assert_equal @reference.languages, ["eng", "deu"]
+
+    @reference.reset_languages
+    assert_equal @reference.languages, []
+
+    @reference.add_language "Inglish"
+    assert_equal @reference.languages, []
+  end
+
+  def test_languages_output_correctly
+    %w(en GER french Inglish).each do |lang|
+      @reference.add_language lang
+    end
+    y = @reference.fields.to_yaml
+    assert y.include? "languages:\n- eng\n- deu\n- fra\n"
+
+    @reference.reset_languages
+    y = @reference.fields.to_yaml
+    refute y.include? "languages:\n"
+  end
+
   def test_bad_dates_raises_error
     [
       'date_accessed',

@@ -14,6 +14,7 @@
 
 require "date"
 require "yaml"
+require "language_list"
 
 require "cff/version"
 require "cff/util"

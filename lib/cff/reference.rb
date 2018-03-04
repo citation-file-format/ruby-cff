@@ -254,6 +254,36 @@ module CFF
     end
 
     # :call-seq:
+    #   add_language language
+    #
+    # Add a language to this Reference. Input is converted to the ISO 639-3
+    # three letter language code, so `GER` becomes `deu`, `french` becomes
+    # `fra` and `en` becomes `eng`.
+    def add_language(lang)
+      @fields['languages'] = [] if @fields['languages'].empty?
+      lang = LanguageList::LanguageInfo.find(lang)
+      return if lang.nil?
+      lang = lang.iso_639_3
+      @fields['languages'] << lang unless @fields['languages'].include? lang
+    end
+
+    # :call-seq:
+    #   reset_languages
+    #
+    # Reset the list of languages for this Reference to be empty.
+    def reset_languages
+      @fields.delete('languages')
+    end
+
+    # :call-seq:
+    #   languages -> Array
+    #
+    # Return the list of languages associated with this Reference.
+    def languages
+      @fields['languages'].empty? ? [] : @fields['languages'].dup
+    end
+
+    # :call-seq:
     #   date_accessed = date
     #
     # Set the `date-accessed` field. If a non-Date object is passed in it will
