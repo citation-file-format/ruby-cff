@@ -36,6 +36,10 @@ module CFF
       end
     end
 
+    def expand_field(field)
+      field.fields if field.respond_to?(:fields)
+    end
+
     def expand_array_field(field)
       field.reject do |f|
         !f.respond_to?(:fields)

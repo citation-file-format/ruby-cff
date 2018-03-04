@@ -52,6 +52,16 @@ class CFFUtilTest < Minitest::Test
     assert_equal output[1].name, "Company"
   end
 
+  def test_expand_field
+    string = "some text"
+    person = ::CFF::Person.new('First', 'Second')
+    entity = ::CFF::Entity.new('Company')
+
+    assert_equal expand_field(person), {"family-names"=>"Second", "given-names"=>"First"}
+    assert_equal expand_field(entity), {"name"=>"Company"}
+    assert_nil expand_field(string)
+  end
+
   def test_expand_array_field
     string = "some text"
     data = [
