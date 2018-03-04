@@ -392,7 +392,7 @@ module CFF
         ['senders', @senders],
         ['translators', @translators]
       ].each do |field, var|
-        ref[field] = array_to_fields(var) unless var.empty?
+        ref[field] = expand_array_field(var) unless var.empty?
       end
 
       ref

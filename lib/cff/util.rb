@@ -36,7 +36,7 @@ module CFF
       end
     end
 
-    def array_to_fields(field)
+    def expand_array_field(field)
       field.reject do |f|
         !f.respond_to?(:fields)
       end.map { |f| f.fields }

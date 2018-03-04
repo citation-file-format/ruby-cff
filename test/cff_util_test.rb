@@ -52,7 +52,7 @@ class CFFUtilTest < Minitest::Test
     assert_equal output[1].name, "Company"
   end
 
-  def test_array_to_fields
+  def test_expand_array_field
     string = "some text"
     data = [
       ::CFF::Person.new('First', 'Second'),
@@ -60,7 +60,7 @@ class CFFUtilTest < Minitest::Test
       ::CFF::Entity.new('Company')
     ]
 
-    result = array_to_fields(data)
+    result = expand_array_field(data)
 
     assert_equal data.length, 3
     assert_equal result.length, 2

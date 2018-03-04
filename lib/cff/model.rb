@@ -164,7 +164,7 @@ module CFF
         ['contact', @contact],
         ['references', @references]
       ].each do |field, var|
-        model[field] = array_to_fields(var) unless var.empty?
+        model[field] = expand_array_field(var) unless var.empty?
       end
       model['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
 
