@@ -402,8 +402,14 @@ module CFF
 
     def build_model(fields)
       build_actor_collection(@authors, fields['authors'])
+      build_actor_collection(@contact, fields['contact'])
+      build_actor_collection(@editors, fields['editors'])
+      build_actor_collection(@editors_series, fields['editors-series'])
+      build_actor_collection(@recipients, fields['recipients'])
+      build_actor_collection(@senders, fields['senders'])
+      build_actor_collection(@translators, fields['translators'])
 
-      @fields = delete_from_hash(fields, 'authors')
+      @fields = delete_from_hash(fields, 'authors', 'contact', 'editors', 'editors-series', 'recipients', 'senders', 'translators')
     end
 
   end
