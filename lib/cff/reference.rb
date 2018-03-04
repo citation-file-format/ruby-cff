@@ -284,6 +284,17 @@ module CFF
     end
 
     # :call-seq:
+    #   license = license
+    #
+    # Set the license of this Reference. Only licenses that conform to the
+    # [SPDX License List](https://spdx.org/licenses/) will be accepted. If you
+    # need specify a different license you should set `license-url` with a link
+    # to the license instead.
+    def license=(lic)
+      @fields['license'] = lic unless SpdxLicenses.lookup(lic).nil?
+    end
+
+    # :call-seq:
     #   date_accessed = date
     #
     # Set the `date-accessed` field. If a non-Date object is passed in it will

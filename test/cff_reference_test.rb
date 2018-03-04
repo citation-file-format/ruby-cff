@@ -111,6 +111,22 @@ class CFFReferenceTest < Minitest::Test
     refute y.include? "languages:\n"
   end
 
+  def test_license_is_set_and_output_correctly
+    assert_equal @reference.license, ""
+
+    @reference.license = "Bad Licence"
+    assert_equal @reference.license, ""
+
+    @reference.license = "Apache-2.0"
+    assert_equal @reference.license, "Apache-2.0"
+
+    @reference.license = "Bad Licence"
+    assert_equal @reference.license, "Apache-2.0"
+
+    y = @reference.fields.to_yaml
+    assert y.include? "license: Apache-2.0\n"
+  end
+
   def test_bad_dates_raises_error
     [
       'date_accessed',
@@ -168,7 +184,6 @@ class CFFReferenceTest < Minitest::Test
       'issn',
       'issue_title',
       'journal',
-      'license',
       'license_url',
       'medium',
       'nihmsid',

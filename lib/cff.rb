@@ -15,6 +15,7 @@
 require "date"
 require "yaml"
 require "language_list"
+require "spdx-licenses"
 
 require "cff/version"
 require "cff/util"
