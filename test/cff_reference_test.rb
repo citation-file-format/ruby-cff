@@ -242,4 +242,27 @@ class CFFReferenceTest < Minitest::Test
       assert y.include? "#{method_to_field(method)}: #{value}\n"
     end
   end
+
+  def test_entity_fields_set_and_output_correctly
+    methods = [
+      'conference',
+      'database_provider',
+      'institution',
+      'location',
+      'publisher'
+    ]
+
+    methods.each do |method|
+      value = ::CFF::Entity.new('Company')
+      assert_equal @reference.send(method), ""
+      @reference.send("#{method}=", value)
+      assert_equal @reference.send(method), value
+    end
+
+    y = @reference.fields.to_yaml
+
+    methods.each do |method|
+      assert y.include? "#{method_to_field(method)}:\n  name: Company\n"
+    end
+  end
 end
