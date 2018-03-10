@@ -393,7 +393,12 @@ module CFF
 
     # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
-      ref = @fields.dup
+      ref = {}
+
+      @fields.each do |field, value|
+        ref[field] = value.respond_to?(:fields) ? value.fields : value
+      end
+
       [
         ['authors', @authors],
         ['contact', @contact],
