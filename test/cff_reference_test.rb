@@ -182,6 +182,7 @@ class CFFReferenceTest < Minitest::Test
       'format',
       'isbn',
       'issn',
+      'issue_date',
       'issue_title',
       'journal',
       'license_url',

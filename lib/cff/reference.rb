@@ -47,6 +47,7 @@ module CFF
       'isbn',
       'issn',
       'issue',
+      'issue-date',
       'issue-title',
       'journal',
       'license',
