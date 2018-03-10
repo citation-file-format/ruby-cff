@@ -213,4 +213,33 @@ class CFFReferenceTest < Minitest::Test
       assert y.include? "#{method_to_field(method)}: #{value}\n"
     end
   end
+
+  def test_integer_fields_set_and_output_correctly
+    value = 42
+    methods = [
+      'end',
+      'issue',
+      'loc-end',
+      'loc-start',
+      'month',
+      'number-volumes',
+      'pages',
+      'start',
+      'volume',
+      'year',
+      'year_original'
+    ]
+
+    methods.each do |method|
+      assert_equal @reference.send(method), ""
+      @reference.send("#{method}=", value)
+      assert_equal @reference.send(method), value
+    end
+
+    y = @reference.fields.to_yaml
+
+    methods.each do |method|
+      assert y.include? "#{method_to_field(method)}: #{value}\n"
+    end
+  end
 end
