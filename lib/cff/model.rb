@@ -158,7 +158,16 @@ module CFF
     private
 
     def fields
-      model = @fields.dup
+      model = {}
+
+      @fields.each do |field, value|
+        if value.respond_to?(:map)
+          model[field] = value.map { |v| v.to_s } unless value.empty?
+        else
+          model[field] = value.respond_to?(:fields) ? value.fields : value
+        end
+      end
+
       [
         ['authors', @authors],
         ['contact', @contact],
