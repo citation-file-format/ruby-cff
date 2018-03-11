@@ -393,6 +393,7 @@ module CFF
     # Sets the status of this Reference. The status is restricted to a
     # [defined set of status types](https://citation-file-format.github.io/1.0.3/specifications/#/status-strings).
     def status=(status)
+      status.downcase!
       @fields['status'] = status if REFERENCE_STATUS_TYPES.include?(status)
     end
 
