@@ -164,7 +164,9 @@ module CFF
         @fields['title'] = param
       end
 
-      @fields['keywords'] = [] if @fields['keywords'].empty?
+      [
+        'keywords'
+      ].each { |field| @fields[field] = [] if @fields[field].empty? }
     end
 
     # :call-seq:
