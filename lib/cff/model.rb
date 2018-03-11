@@ -17,9 +17,7 @@ module CFF
 
   # Model is the core data structure for a CITATION.cff file. It can be
   # accessed direcly, or via File.
-  class Model
-
-    include Util
+  class Model < ModelPart
 
     ALLOWED_FIELDS = [
       'abstract',
@@ -131,17 +129,6 @@ module CFF
 
     def to_yaml # :nodoc:
       YAML.dump fields, :line_width => -1, :indentation => 2
-    end
-
-    def method_missing(name, *args) # :nodoc:
-      n = method_to_field(name.id2name)
-      super unless ALLOWED_FIELDS.include?(n.chomp('='))
-
-      if n.end_with?('=')
-        @fields[n.chomp('=')] = args[0] || ''
-      else
-        @fields[n]
-      end
     end
 
     private
