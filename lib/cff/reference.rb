@@ -63,6 +63,7 @@ module CFF
       'number',
       'number-volumes',
       'pages',
+      'patent-states',
       'pmcid',
       'publisher',
       'repository',
@@ -277,21 +278,6 @@ module CFF
     end
 
     # :call-seq:
-    #   patent_states -> Array
-    #
-    # Return the list of patent states for this reference. To add a patent
-    # state to the list, use:
-    #
-    # ```
-    # model.patent_states << patent_state
-    # ```
-    #
-    # Patent states will be converted to Strings on output.
-    def patent_states
-      @fields['patent-states']
-    end
-
-    # :call-seq:
     #   add_language language
     #
     # Add a language to this Reference. Input is converted to the ISO 639-3
@@ -486,5 +472,28 @@ module CFF
     # Replace the list of keywords for this reference.
     #
     # Keywords will be converted to Strings on output.
+
+    ##
+    # :method: patent_states
+    # :call-seq:
+    #   patent_states -> Array
+    #
+    # Return the list of patent states for this reference. To add a patent
+    # state to the list, use:
+    #
+    # ```
+    # model.patent_states << patent_state
+    # ```
+    #
+    # Patent states will be converted to Strings on output.
+
+    ##
+    # :method: patent_states=
+    # :call-seq:
+    #   patent_states = array_of_states -> Array
+    #
+    # Replace the list of patent states for this reference.
+    #
+    # Patent states will be converted to Strings on output.
   end
 end
