@@ -163,6 +163,8 @@ module CFF
         @fields['type'] = REFERENCE_TYPES.include?(more[0]) ? more[0] : 'generic'
         @fields['title'] = param
       end
+
+      @fields['keywords'] = [] if @fields['keywords'].empty?
     end
 
     # :call-seq:
@@ -268,6 +270,21 @@ module CFF
     # Translators can be a Person or Entity.
     def translators
       @translators
+    end
+
+    # :call-seq:
+    #   keywords -> Array
+    #
+    # Return the list of keywords for this reference. To add a keyword to the
+    # list, use:
+    #
+    # ```
+    # model.keywords << keyword
+    # ```
+    #
+    # Keywords will be converted to Strings on output.
+    def keywords
+      @fields['keywords']
     end
 
     # :call-seq:
@@ -402,7 +419,11 @@ module CFF
       ref = {}
 
       @fields.each do |field, value|
-        ref[field] = value.respond_to?(:fields) ? value.fields : value
+        if value.respond_to?(:map)
+          ref[field] = value.map { |v| v.to_s } unless value.empty?
+        else
+          ref[field] = value.respond_to?(:fields) ? value.fields : value
+        end
       end
 
       [

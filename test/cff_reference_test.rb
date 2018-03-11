@@ -162,6 +162,24 @@ class CFFReferenceTest < Minitest::Test
     end
   end
 
+  def test_keywords_set_and_output_correctly
+    ks = ["one", :two, 3]
+    l = 0
+
+    y = @reference.fields.to_yaml
+    refute y.include? "keywords:"
+
+    ks.each do |k|
+      @reference.keywords << k
+      l += 1
+      assert_equal @reference.keywords.length, l
+    end
+
+    y = @reference.fields.to_yaml
+    assert_equal @reference.keywords.length, l
+    assert y.include? "keywords:\n- one\n- two\n- '3'\n"
+  end
+
   def test_simple_fields_set_and_output_correctly
     value = "a simple string field"
     methods = [
