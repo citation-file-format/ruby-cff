@@ -27,6 +27,7 @@ module CFF
       'commit',
       'date-released',
       'doi',
+      'keywords',
       'license',
       'license-url',
       'message',
@@ -48,7 +49,6 @@ module CFF
     def initialize(param)
       @authors = []
       @contact = []
-      @keywords = []
       @references = []
 
       if Hash === param
@@ -59,6 +59,10 @@ module CFF
         @fields['message'] = DEFAULT_MESSAGE
         @fields['title'] = param
       end
+
+      [
+        'keywords'
+      ].each { |field| @fields[field] = [] if @fields[field].empty? }
     end
 
     # :call-seq:
@@ -102,21 +106,6 @@ module CFF
       end
 
       @fields['date-released'] = date
-    end
-
-    # :call-seq:
-    #   keywords -> Array
-    #
-    # Return the list of keywords for this citation. To add a keyword to the
-    # list, use:
-    #
-    # ```
-    # model.keywords << keyword
-    # ```
-    #
-    # Keywords will be converted to Strings on output to a CFF file.
-    def keywords
-      @keywords
     end
 
     # :call-seq:
@@ -175,7 +164,6 @@ module CFF
       ].each do |field, var|
         model[field] = expand_array_field(var) unless var.empty?
       end
-      model['keywords'] = @keywords.map { |k| k.to_s } unless @keywords.empty?
 
       model
     end
@@ -183,13 +171,40 @@ module CFF
     def build_model(fields)
       build_actor_collection(@authors, fields['authors'])
       build_actor_collection(@contact, fields['contact'])
-      @keywords = fields['keywords']
       fields['references'].each do |r|
         @references << Reference.new(r)
       end
 
-      @fields = delete_from_hash(fields, 'authors', 'contact', 'keywords', 'references')
+      @fields = delete_from_hash(fields, 'authors', 'contact', 'references')
     end
+
+    public
+
+    # Some documentation of "hidden" methods is provided here, out of the
+    # way of the main class code.
+
+    ##
+    # :method: keywords
+    # :call-seq:
+    #   keywords -> Array
+    #
+    # Return the list of keywords for this reference. To add a keyword to the
+    # list, use:
+    #
+    # ```
+    # model.keywords << keyword
+    # ```
+    #
+    # Keywords will be converted to Strings on output.
+
+    ##
+    # :method: keywords=
+    # :call-seq:
+    #   keywords = array_of_keywords -> Array
+    #
+    # Replace the list of keywords for this reference.
+    #
+    # Keywords will be converted to Strings on output.
 
   end
 end

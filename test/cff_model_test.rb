@@ -173,18 +173,23 @@ class CFFModelTest < Minitest::Test
 
   def test_keywords_set_and_output_correctly
     m = ::CFF::Model.new('title')
-    ks = ["one", :two, 3]
+    keys = ["one", :two, 3]
     l = 0
 
-    ks.each do |k|
-      m.keywords << k
-      l += 1
-      assert_equal m.keywords.length, l
-    end
+    y = m.to_yaml
+    refute y.include? "keywords:"
+
+    m.keywords = keys
+    l = keys.length
+    assert_equal m.keywords.length, l
+
+    m.keywords << "four"
+    l += 1
+    assert_equal m.keywords.length, l
 
     y = m.to_yaml
     assert_equal m.keywords.length, l
-    assert y.include? "keywords:\n- one\n- two\n- '3'\n"
+    assert y.include? "keywords:\n- one\n- two\n- '3'\n- four\n"
   end
 
   def test_references_set_and_output_correctly
