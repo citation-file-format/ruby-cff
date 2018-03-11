@@ -48,6 +48,10 @@ keywords:
 - citation
 ```
 
+### Library versions
+
+Until this library reaches version 1.0.0 the API may be subject to breaking changes. When version 1.0.0 is released, then the principles of [semantic versioning](https://semver.org/) will be applied.
+
 ### Licence
 
 [Apache 2.0](http://www.apache.org/licenses/). See LICENCE for details.
