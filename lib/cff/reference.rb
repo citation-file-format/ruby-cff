@@ -165,7 +165,8 @@ module CFF
       end
 
       [
-        'keywords'
+        'keywords',
+        'patent-states'
       ].each { |field| @fields[field] = [] if @fields[field].empty? }
     end
 
@@ -287,6 +288,21 @@ module CFF
     # Keywords will be converted to Strings on output.
     def keywords
       @fields['keywords']
+    end
+
+    # :call-seq:
+    #   patent_states -> Array
+    #
+    # Return the list of patent states for this reference. To add a patent
+    # state to the list, use:
+    #
+    # ```
+    # model.patent_states << patent_state
+    # ```
+    #
+    # Patent states will be converted to Strings on output.
+    def patent_states
+      @fields['patent-states']
     end
 
     # :call-seq:

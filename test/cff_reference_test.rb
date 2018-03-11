@@ -162,22 +162,27 @@ class CFFReferenceTest < Minitest::Test
     end
   end
 
-  def test_keywords_set_and_output_correctly
+  def test_keywords_and_patent_states_set_and_output_correctly
     ks = ["one", :two, 3]
     l = 0
 
     y = @reference.fields.to_yaml
     refute y.include? "keywords:"
+    refute y.include? "patent-states:"
 
     ks.each do |k|
       @reference.keywords << k
+      @reference.patent_states << k
       l += 1
       assert_equal @reference.keywords.length, l
+      assert_equal @reference.patent_states.length, l
     end
 
     y = @reference.fields.to_yaml
     assert_equal @reference.keywords.length, l
+    assert_equal @reference.patent_states.length, l
     assert y.include? "keywords:\n- one\n- two\n- '3'\n"
+    assert y.include? "patent-states:\n- one\n- two\n- '3'\n"
   end
 
   def test_simple_fields_set_and_output_correctly
