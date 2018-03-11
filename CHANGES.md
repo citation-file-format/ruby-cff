@@ -1,5 +1,53 @@
 # Changes log for the Ruby CFF Library
 
+## Version 0.3.0
+
+* Update badges for new repo location.
+* Add back the coveralls badge for new repo location.
+* Update gemspec with new repo location.
+* Bump version number for 0.3.0 release.
+* Add a Reference model to represent references.
+* Wire the Reference model into Model and File.
+* Add authors field to Reference.
+* Read the author field properly when parsing a Reference.
+* Remove the ModelPart constructor.
+* Add the DOI badge to the README.
+* Add the simple string fields to Reference.
+* Add format field to Reference.
+* Move duplicated builder methods to Util module.
+* Remove the Util module from the public API.
+* Restrict reference type to the defined set.
+* Add Date type fields to the Reference model.
+* Add contact to the Reference model.
+* Add editors to the Reference model.
+* Add editors-series to the Reference model.
+* Add recipients to the Reference model.
+* Add senders to the Reference model.
+* Add translators to the Reference model.
+* Refactor the Reference#fields method for complexity.
+* Refactor the Model#to_yaml method for complexity.
+* Restrict reference status to the defined set.
+* Add languages to the Reference model.
+* Restrict reference licence to the SPDX Licence List.
+* Rename Util array_to_fields to expand_array_field.
+* Add a Util method expand_field.
+* Correctly read in the actor lists from a file.
+* Update quick start example in the README.
+* Add the integer fields to the Reference model.
+* Refactor Reference#fields to cope with single Entities.
+* Add the singular Entity fields to the Reference model.
+* Add issue-date field to the Reference model.
+* Add the keywords field to the Reference model.
+* Refactor keyword list initialization in Reference.
+* Add patent-states field to the Reference model.
+* Refactor Reference#keywords to be a standard field.
+* Refactor Reference#patent_states to be a field.
+* Extend the tests for Reference after the refactor.
+* Normalize Reference types when they are set.
+* Normalize the Reference status when set.
+* Add a note to the README about versioning.
+* Add a CHANGES file.
+
 ## Version 0.2.0
 
 * Add a rubygems version badge to the README.
