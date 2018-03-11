@@ -162,7 +162,8 @@ module CFF
         build_model(param)
       else
         @fields = Hash.new('')
-        @fields['type'] = REFERENCE_TYPES.include?(more[0]) ? more[0] : 'generic'
+        type = more[0].downcase
+        @fields['type'] = REFERENCE_TYPES.include?(type) ? type : 'generic'
         @fields['title'] = param
       end
 
@@ -401,6 +402,7 @@ module CFF
     # Sets the type of this Reference. The type is restricted to a
     # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
     def type=(type)
+      type.downcase!
       @fields['type'] = type if REFERENCE_TYPES.include?(type)
     end
 
