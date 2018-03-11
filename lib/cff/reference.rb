@@ -50,6 +50,7 @@ module CFF
       'issue-date',
       'issue-title',
       'journal',
+      'keywords',
       'license',
       'license-url',
       'loc-end',
@@ -276,21 +277,6 @@ module CFF
     end
 
     # :call-seq:
-    #   keywords -> Array
-    #
-    # Return the list of keywords for this reference. To add a keyword to the
-    # list, use:
-    #
-    # ```
-    # model.keywords << keyword
-    # ```
-    #
-    # Keywords will be converted to Strings on output.
-    def keywords
-      @fields['keywords']
-    end
-
-    # :call-seq:
     #   patent_states -> Array
     #
     # Return the list of patent states for this reference. To add a patent
@@ -473,5 +459,32 @@ module CFF
       @fields = delete_from_hash(fields, 'authors', 'contact', 'editors', 'editors-series', 'recipients', 'senders', 'translators')
     end
 
+    public
+
+    # Some documentation of "hidden" methods is provided here, out of the
+    # way of the main class code.
+
+    ##
+    # :method: keywords
+    # :call-seq:
+    #   keywords -> Array
+    #
+    # Return the list of keywords for this reference. To add a keyword to the
+    # list, use:
+    #
+    # ```
+    # model.keywords << keyword
+    # ```
+    #
+    # Keywords will be converted to Strings on output.
+
+    ##
+    # :method: keywords=
+    # :call-seq:
+    #   keywords = array_of_keywords -> Array
+    #
+    # Replace the list of keywords for this reference.
+    #
+    # Keywords will be converted to Strings on output.
   end
 end
