@@ -15,13 +15,17 @@
 #
 module CFF
 
-  # :stopdoc:
+  # ModelPart is the superclass of anything that makes up part of the CFF Model.
+  # This includes Model, Person, Entity and Reference.
+  #
+  # ModelPart does not provide any methods or fields for the public API.
   class ModelPart
+    # :stopdoc:
     include Util
 
     attr_reader :fields
 
-    def method_missing(name, *args) # :nodoc:
+    def method_missing(name, *args)
       n = method_to_field(name.id2name)
       super unless self.class::ALLOWED_FIELDS.include?(n.chomp('='))
 
@@ -32,6 +36,6 @@ module CFF
       end
     end
 
+    # :startdoc:
   end
-  # :startdoc:
 end

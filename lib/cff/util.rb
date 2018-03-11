@@ -15,10 +15,11 @@
 #
 module CFF
 
-  # :stopdoc:
-  # Utility methods useful throughout the rest of the CFF library.
-  # This module is not in the public API.
+  # Util provides utility methods useful throughout the rest of the CFF library.
+  #
+  # Util does not provide any methods or fields for the public API.
   module Util
+    # :stopdoc:
 
     def delete_from_hash(hash, *keys)
       h = hash.dup
@@ -42,6 +43,6 @@ module CFF
       end.map { |f| f.fields }
     end
 
+    # :startdoc:
   end
-  # :startdoc:
 end
