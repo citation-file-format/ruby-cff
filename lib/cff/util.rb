@@ -31,12 +31,6 @@ module CFF
       name.gsub('_', '-')
     end
 
-    def build_actor_collection(field, source)
-      source.each do |s|
-        field << (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
-      end
-    end
-
     def build_actor_collection!(source)
       source.map! do |s|
         s = (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))

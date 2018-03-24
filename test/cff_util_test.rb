@@ -38,21 +38,6 @@ class CFFUtilTest < Minitest::Test
   end
 
   def test_build_actor_collection
-    input = [
-      {"family-names"=>"Second", "given-names"=>"First"},
-      {"name"=>"Company"}
-    ]
-    output = []
-
-    build_actor_collection(output, input)
-    assert_equal output.length, 2
-    assert_instance_of ::CFF::Person, output[0]
-    assert_equal output[0].given_names, "First"
-    assert_instance_of ::CFF::Entity, output[1]
-    assert_equal output[1].name, "Company"
-  end
-
-  def test_build_actor_collection_2
     array = [
       {"family-names"=>"Second", "given-names"=>"First"},
       {"name"=>"Company"}
