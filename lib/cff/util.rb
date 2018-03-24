@@ -43,6 +43,10 @@ module CFF
       end.map { |f| f.fields }
     end
 
+    def normalize_modelpart_array!(array)
+      array.reject! { |i| !i.respond_to?(:fields) }
+    end
+
     # :startdoc:
   end
 end

@@ -68,4 +68,19 @@ class CFFUtilTest < Minitest::Test
     assert_equal result[1], {"name"=>"Company"}
     assert !result.include?(string)
   end
+
+  def test_normalize_modelpart_array
+    string = "some text"
+    data = [
+      ::CFF::Person.new('First', 'Second'),
+      string,
+      ::CFF::Entity.new('Company')
+    ]
+
+    normalize_modelpart_array!(data)
+
+    assert_equal data.length, 2
+    assert_instance_of ::CFF::Person, data[0]
+    assert_instance_of ::CFF::Entity, data[1]
+  end
 end
