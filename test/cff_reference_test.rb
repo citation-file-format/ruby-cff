@@ -55,7 +55,7 @@ class CFFReferenceTest < Minitest::Test
     refute y.include? "_ _ _"
 
     methods.each do |method|
-      assert_equal (@reference.send(method)).length, 3
+      assert_equal (@reference.send(method)).length, 2
       assert y.include? "#{method_to_field(method)}:\n- family-names: Second\n  given-names: First\n- name: Company\n"
     end
   end

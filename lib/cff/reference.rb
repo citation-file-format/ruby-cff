@@ -24,11 +24,13 @@ module CFF
     ALLOWED_FIELDS = [
       'abbreviation',
       'abstract',
+      'authors',
       'collection-doi',
       'collection-title',
       'collection-type',
       'commit',
       'conference',
+      'contact',
       'copyright',
       'data-type',
       'database',
@@ -40,6 +42,8 @@ module CFF
       'department',
       'doi',
       'edition',
+      'editors',
+      'editors-series',
       'end',
       'entry',
       'filename',
@@ -66,15 +70,18 @@ module CFF
       'patent-states',
       'pmcid',
       'publisher',
+      'recipients',
       'repository',
       'repository-code',
       'repository-artifact',
       'scope',
       'section',
+      'senders',
       'start',
       'status',
       'thesis-type',
       'title',
+      'translators',
       'type',
       'url',
       'version',
@@ -150,16 +157,8 @@ module CFF
     #
     # Create a new Reference with the supplied title and type. If type is not one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types), 'generic' will be used by default.
     def initialize(param, *more)
-      @authors = []
-      @contact = []
-      @editors = []
-      @editors_series = []
-      @recipients = []
-      @senders = []
-      @translators = []
-
       if Hash === param
-        build_model(param)
+        @fields = build_model(param)
       else
         @fields = Hash.new('')
         type = more[0].downcase
@@ -168,114 +167,16 @@ module CFF
       end
 
       [
+        'authors',
+        'contact',
+        'editors',
+        'editors-series',
         'keywords',
-        'patent-states'
+        'patent-states',
+        'recipients',
+        'senders',
+        'translators'
       ].each { |field| @fields[field] = [] if @fields[field].empty? }
-    end
-
-    # :call-seq:
-    #   authors -> Array
-    #
-    # Return the list of authors for this Reference. To add an author to the
-    # list, use:
-    #
-    # ```
-    # reference.authors << author
-    # ```
-    #
-    # Authors can be a Person or Entity.
-    def authors
-      @authors
-    end
-
-    # :call-seq:
-    #   contact -> Array
-    #
-    # Return the list of contacts for this Reference. To add a contact to the
-    # list, use:
-    #
-    # ```
-    # reference.contact << contact
-    # ```
-    #
-    # Contacts can be a Person or Entity.
-    def contact
-      @contact
-    end
-
-    # :call-seq:
-    #   editors -> Array
-    #
-    # Return the list of editors for this Reference. To add an editor to the
-    # list, use:
-    #
-    # ```
-    # reference.editors << editor
-    # ```
-    #
-    # An editor can be a Person or Entity.
-    def editors
-      @editors
-    end
-
-    # :call-seq:
-    #   editors_series -> Array
-    #
-    # Return the list of series editors for this Reference. To add a series
-    # editor to the list, use:
-    #
-    # ```
-    # reference.editors_series << editor
-    # ```
-    #
-    # An editor can be a Person or Entity.
-    def editors_series
-      @editors_series
-    end
-
-    # :call-seq:
-    #   recipients -> Array
-    #
-    # Return the list of recipients for this Reference. To add a recipient
-    # to the list, use:
-    #
-    # ```
-    # reference.recipients << recipient
-    # ```
-    #
-    # Recipients can be a Person or Entity.
-    def recipients
-      @recipients
-    end
-
-    # :call-seq:
-    #   senders -> Array
-    #
-    # Return the list of senders for this Reference. To add a sender to the
-    # list, use:
-    #
-    # ```
-    # reference.senders << sender
-    # ```
-    #
-    # Senders can be a Person or Entity.
-    def senders
-      @senders
-    end
-
-    # :call-seq:
-    #   translators -> Array
-    #
-    # Return the list of translators for this Reference. To add a translator
-    # to the list, use:
-    #
-    # ```
-    # reference.translators << translator
-    # ```
-    #
-    # Translators can be a Person or Entity.
-    def translators
-      @translators
     end
 
     # :call-seq:
@@ -409,26 +310,27 @@ module CFF
 
     # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
+      [
+        'authors',
+        'contact',
+        'editors',
+        'editors-series',
+        'recipients',
+        'senders',
+        'translators'
+      ].each do |field|
+        normalize_modelpart_array!(@fields[field])
+      end
       ref = {}
 
       @fields.each do |field, value|
         if value.respond_to?(:map)
-          ref[field] = value.map { |v| v.to_s } unless value.empty?
+          unless value.empty?
+            ref[field] = value.map { |v| v.respond_to?(:fields) ? v.fields : v.to_s }
+          end
         else
           ref[field] = value.respond_to?(:fields) ? value.fields : value
         end
-      end
-
-      [
-        ['authors', @authors],
-        ['contact', @contact],
-        ['editors', @editors],
-        ['editors-series', @editors_series],
-        ['recipients', @recipients],
-        ['senders', @senders],
-        ['translators', @translators]
-      ].each do |field, var|
-        ref[field] = expand_array_field(var) unless var.empty?
       end
 
       ref
@@ -437,21 +339,117 @@ module CFF
     private
 
     def build_model(fields)
-      build_actor_collection(@authors, fields['authors'])
-      build_actor_collection(@contact, fields['contact'])
-      build_actor_collection(@editors, fields['editors'])
-      build_actor_collection(@editors_series, fields['editors-series'])
-      build_actor_collection(@recipients, fields['recipients'])
-      build_actor_collection(@senders, fields['senders'])
-      build_actor_collection(@translators, fields['translators'])
+      [
+        'authors',
+        'contact',
+        'editors',
+        'editors-series',
+        'recipients',
+        'senders',
+        'translators'
+      ].each do |field|
+        build_actor_collection!(fields[field])
+      end
 
-      @fields = delete_from_hash(fields, 'authors', 'contact', 'editors', 'editors-series', 'recipients', 'senders', 'translators')
+      fields
     end
 
     public
 
     # Some documentation of "hidden" methods is provided here, out of the
     # way of the main class code.
+
+    ##
+    # :method: authors
+    # :call-seq:
+    #   authors -> Array
+    #
+    # Return the list of authors for this Reference. To add an author to the
+    # list, use:
+    #
+    # ```
+    # reference.authors << author
+    # ```
+    #
+    # Authors can be a Person or Entity.
+
+    ##
+    # :method: authors=
+    # :call-seq:
+    #   authors = array_of_authors -> Array
+    #
+    # Replace the list of authors for this reference.
+    #
+    # Authors can be a Person or Entity.
+
+    ##
+    # :method: contact
+    # :call-seq:
+    #   contact -> Array
+    #
+    # Return the list of contacts for this Reference. To add a contact to the
+    # list, use:
+    #
+    # ```
+    # reference.contact << contact
+    # ```
+    #
+    # Contacts can be a Person or Entity.
+
+    ##
+    # :method: contact=
+    # :call-seq:
+    #   contact = array_of_contacts -> Array
+    #
+    # Replace the list of contacts for this reference.
+    #
+    # Contacts can be a Person or Entity.
+
+    ##
+    # :method: editors
+    # :call-seq:
+    #   editors -> Array
+    #
+    # Return the list of editors for this Reference. To add an editor to the
+    # list, use:
+    #
+    # ```
+    # reference.editors << editor
+    # ```
+    #
+    # An editor can be a Person or Entity.
+
+    ##
+    # :method: editors=
+    # :call-seq:
+    #   editors = array_of_editors -> Array
+    #
+    # Replace the list of editors for this reference.
+    #
+    # Editors can be a Person or Entity.
+
+    ##
+    # :method: editors_series
+    # :call-seq:
+    #   editors_series -> Array
+    #
+    # Return the list of series editors for this Reference. To add a series
+    # editor to the list, use:
+    #
+    # ```
+    # reference.editors_series << editor
+    # ```
+    #
+    # An editor can be a Person or Entity.
+
+    ##
+    # :method: editors_series=
+    # :call-seq:
+    #   editors_series = array_of_series_editors -> Array
+    #
+    # Replace the list of series editors for this reference.
+    #
+    # Series editors can be a Person or Entity.
 
     ##
     # :method: keywords
@@ -498,5 +496,74 @@ module CFF
     # Replace the list of patent states for this reference.
     #
     # Patent states will be converted to Strings on output.
+
+    ##
+    # :method: recipients
+    # :call-seq:
+    #   recipients -> Array
+    #
+    # Return the list of recipients for this Reference. To add a recipient
+    # to the list, use:
+    #
+    # ```
+    # reference.recipients << recipient
+    # ```
+    #
+    # Recipients can be a Person or Entity.
+
+    ##
+    # :method: recipients=
+    # :call-seq:
+    #   recipients = array_of_recipients -> Array
+    #
+    # Replace the list of recipients for this reference.
+    #
+    # Recipients can be a Person or Entity.
+
+    ##
+    # :method: senders
+    # :call-seq:
+    #   senders -> Array
+    #
+    # Return the list of senders for this Reference. To add a sender to the
+    # list, use:
+    #
+    # ```
+    # reference.senders << sender
+    # ```
+    #
+    # Senders can be a Person or Entity.
+
+    ##
+    # :method: senders=
+    # :call-seq:
+    #   senders = array_of_senders -> Array
+    #
+    # Replace the list of senders for this reference.
+    #
+    # Senders can be a Person or Entity.
+
+    ##
+    # :method: translators
+    # :call-seq:
+    #   translators -> Array
+    #
+    # Return the list of translators for this Reference. To add a translator
+    # to the list, use:
+    #
+    # ```
+    # reference.translators << translator
+    # ```
+    #
+    # Translators can be a Person or Entity.
+
+    ##
+    # :method: translators=
+    # :call-seq:
+    #   translators = array_of_translators -> Array
+    #
+    # Replace the list of translators for this reference.
+    #
+    # Translators can be a Person or Entity.
   end
 end
