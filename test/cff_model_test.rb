@@ -218,9 +218,9 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     y = m.to_yaml
 
-    refute y.include? "authors: []\n"
-    refute y.include? "contact: []\n"
-    refute y.include? "keywords: []\n"
-    refute y.include? "references: []\n"
+    refute y.include? "authors:"
+    refute y.include? "contact:"
+    refute y.include? "keywords:"
+    refute y.include? "references:"
   end
 end
