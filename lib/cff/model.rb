@@ -29,6 +29,7 @@ module CFF
       'license',
       'license-url',
       'message',
+      'references',
       'repository',
       'repository-artifact',
       'repository-code',
@@ -47,7 +48,6 @@ module CFF
     def initialize(param)
       @authors = []
       @contact = []
-      @references = []
 
       if Hash === param
         build_model(param)
@@ -59,7 +59,8 @@ module CFF
       end
 
       [
-        'keywords'
+        'keywords',
+        'references'
       ].each { |field| @fields[field] = [] if @fields[field].empty? }
     end
 
@@ -107,19 +108,6 @@ module CFF
     end
 
     # :call-seq:
-    #   references -> Array
-    #
-    # Return the list of references for this citation. To add a reference to the
-    # list, use:
-    #
-    # ```
-    # model.references << reference
-    # ```
-    def references
-      @references
-    end
-
-    # :call-seq:
     #   version = version
     #
     # Set the `version` field.
@@ -134,11 +122,14 @@ module CFF
     private
 
     def fields
+      normalize_modelpart_array!(@fields['references'])
       model = {}
 
       @fields.each do |field, value|
         if value.respond_to?(:map)
-          model[field] = value.map { |v| v.to_s } unless value.empty?
+          unless value.empty?
+            model[field] = value.map { |v| v.respond_to?(:fields) ? v.fields : v.to_s }
+          end
         else
           model[field] = value.respond_to?(:fields) ? value.fields : value
         end
@@ -146,8 +137,7 @@ module CFF
 
       [
         ['authors', @authors],
-        ['contact', @contact],
-        ['references', @references]
+        ['contact', @contact]
       ].each do |field, var|
         model[field] = expand_array_field(var) unless var.empty?
       end
@@ -158,11 +148,11 @@ module CFF
     def build_model(fields)
       build_actor_collection(@authors, fields['authors'])
       build_actor_collection(@contact, fields['contact'])
-      fields['references'].each do |r|
-        @references << Reference.new(r)
+      fields['references'].map! do |r|
+        r = Reference.new(r)
       end
 
-      @fields = delete_from_hash(fields, 'authors', 'contact', 'references')
+      @fields = delete_from_hash(fields, 'authors', 'contact')
     end
 
     public
@@ -193,5 +183,23 @@ module CFF
     #
     # Keywords will be converted to Strings on output.
 
+    ##
+    # :method: references
+    # :call-seq:
+    #   references -> Array
+    #
+    # Return the list of references for this citation. To add a reference to the
+    # list, use:
+    #
+    # ```
+    # model.references << reference
+    # ```
+
+    ##
+    # :method: references=
+    # :call-seq:
+    #   references = array_of_references -> Array
+    #
+    # Replace the list of references for this citation.
   end
 end
