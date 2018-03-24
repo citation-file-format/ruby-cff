@@ -37,12 +37,6 @@ module CFF
       end
     end
 
-    def expand_array_field(field)
-      field.reject do |f|
-        !f.respond_to?(:fields)
-      end.map { |f| f.fields }
-    end
-
     def normalize_modelpart_array!(array)
       array.reject! { |i| !i.respond_to?(:fields) }
     end
