@@ -177,7 +177,7 @@ module CFF
     # :call-seq:
     #   keywords -> Array
     #
-    # Return the list of keywords for this reference. To add a keyword to the
+    # Return the list of keywords for this citation. To add a keyword to the
     # list, use:
     #
     # ```
@@ -191,7 +191,7 @@ module CFF
     # :call-seq:
     #   keywords = array_of_keywords -> Array
     #
-    # Replace the list of keywords for this reference.
+    # Replace the list of keywords for this citation.
     #
     # Keywords will be converted to Strings on output.
 
