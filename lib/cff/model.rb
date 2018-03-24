@@ -21,7 +21,9 @@ module CFF
 
     ALLOWED_FIELDS = [
       'abstract',
+      'authors',
       'cff-version',
+      'contact',
       'commit',
       'date-released',
       'doi',
@@ -46,11 +48,8 @@ module CFF
     #
     # Initialize a new Model with the supplied title.
     def initialize(param)
-      @authors = []
-      @contact = []
-
       if Hash === param
-        build_model(param)
+        @fields = build_model(param)
       else
         @fields = Hash.new('')
         @fields['cff-version'] = DEFAULT_SPEC_VERSION
@@ -59,39 +58,11 @@ module CFF
       end
 
       [
+        'authors',
+        'contact',
         'keywords',
         'references'
       ].each { |field| @fields[field] = [] if @fields[field].empty? }
-    end
-
-    # :call-seq:
-    #   authors -> Array
-    #
-    # Return the list of authors for this citation. To add an author to the
-    # list, use:
-    #
-    # ```
-    # model.authors << author
-    # ```
-    #
-    # Authors can be a Person or Entity.
-    def authors
-      @authors
-    end
-
-    # :call-seq:
-    #   contact -> Array
-    #
-    # Return the list of contacts for this citation. To add a contact to the
-    # list, use:
-    #
-    # ```
-    # model.contact << contact
-    # ```
-    #
-    # Contacts can be a Person or Entity.
-    def contact
-      @contact
     end
 
     # :call-seq:
@@ -122,7 +93,9 @@ module CFF
     private
 
     def fields
-      normalize_modelpart_array!(@fields['references'])
+      ['authors', 'contact', 'references'].each do |field|
+        normalize_modelpart_array!(@fields[field])
+      end
       model = {}
 
       @fields.each do |field, value|
@@ -135,30 +108,69 @@ module CFF
         end
       end
 
-      [
-        ['authors', @authors],
-        ['contact', @contact]
-      ].each do |field, var|
-        model[field] = expand_array_field(var) unless var.empty?
-      end
-
       model
     end
 
     def build_model(fields)
-      build_actor_collection(@authors, fields['authors'])
-      build_actor_collection(@contact, fields['contact'])
+      build_actor_collection!(fields['authors'])
+      build_actor_collection!(fields['contact'])
       fields['references'].map! do |r|
         r = Reference.new(r)
       end
 
-      @fields = delete_from_hash(fields, 'authors', 'contact')
+      fields
     end
 
     public
 
     # Some documentation of "hidden" methods is provided here, out of the
     # way of the main class code.
+
+    ##
+    # :method: authors
+    # :call-seq:
+    #   authors -> Array
+    #
+    # Return the list of authors for this citation. To add an author to the
+    # list, use:
+    #
+    # ```
+    # model.authors << author
+    # ```
+    #
+    # Authors can be a Person or Entity.
+
+    ##
+    # :method: authors=
+    # :call-seq:
+    #   authors = array_of_authors -> Array
+    #
+    # Replace the list of authors for this citation.
+    #
+    # Authors can be a Person or Entity.
+
+    ##
+    # :method: contact
+    # :call-seq:
+    #   contact -> Array
+    #
+    # Return the list of contacts for this citation. To add a contact to the
+    # list, use:
+    #
+    # ```
+    # model.contact << contact
+    # ```
+    #
+    # Contacts can be a Person or Entity.
+
+    ##
+    # :method: contact=
+    # :call-seq:
+    #   contact = array_of_contacts -> Array
+    #
+    # Replace the list of contacts for this citation.
+    #
+    # Contacts can be a Person or Entity.
 
     ##
     # :method: keywords

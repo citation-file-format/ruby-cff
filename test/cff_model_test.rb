@@ -117,14 +117,22 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     a = ::CFF::Person.new('First', 'Second')
     e = ::CFF::Entity.new('Company')
+    r = [::CFF::Person.new('F', 'S'), '_ _ _', ::CFF::Entity.new('Co.')]
+
     m.authors << a
     m.authors << "_ _ _"
     m.authors << e
-    assert_equal m.authors.length, 3
 
     y = m.to_yaml
-    assert_equal m.authors.length, 3
+    assert_equal m.authors.length, 2
     assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
+    refute y.include? "_ _ _"
+
+    m.authors = r
+
+    y = m.to_yaml
+    assert_equal m.authors.length, 2
+    assert y.include? "authors:\n- family-names: S\n  given-names: F\n- name: Co."
     refute y.include? "_ _ _"
   end
 
@@ -160,14 +168,22 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     a = ::CFF::Person.new('First', 'Second')
     e = ::CFF::Entity.new('Company')
+    r = [::CFF::Person.new('F', 'S'), '_ _ _', ::CFF::Entity.new('Co.')]
+
     m.contact << a
     m.contact << "_ _ _"
     m.contact << e
-    assert_equal m.contact.length, 3
 
     y = m.to_yaml
-    assert_equal m.contact.length, 3
+    assert_equal m.contact.length, 2
     assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
+    refute y.include? "_ _ _"
+
+    m.contact = r
+
+    y = m.to_yaml
+    assert_equal m.contact.length, 2
+    assert y.include? "contact:\n- family-names: S\n  given-names: F\n- name: Co."
     refute y.include? "_ _ _"
   end
 
