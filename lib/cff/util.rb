@@ -37,6 +37,12 @@ module CFF
       end
     end
 
+    def build_actor_collection!(source)
+      source.map! do |s|
+        s = (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
+      end
+    end
+
     def expand_array_field(field)
       field.reject do |f|
         !f.respond_to?(:fields)

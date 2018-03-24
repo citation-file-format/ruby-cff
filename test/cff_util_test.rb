@@ -52,6 +52,20 @@ class CFFUtilTest < Minitest::Test
     assert_equal output[1].name, "Company"
   end
 
+  def test_build_actor_collection_2
+    array = [
+      {"family-names"=>"Second", "given-names"=>"First"},
+      {"name"=>"Company"}
+    ]
+
+    build_actor_collection!(array)
+    assert_equal array.length, 2
+    assert_instance_of ::CFF::Person, array[0]
+    assert_equal array[0].given_names, "First"
+    assert_instance_of ::CFF::Entity, array[1]
+    assert_equal array[1].name, "Company"
+  end
+
   def test_expand_array_field
     string = "some text"
     data = [
