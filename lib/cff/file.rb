@@ -43,7 +43,7 @@ module CFF
     #
     # Read a file and parse it for subsequent manipulation.
     def self.read(file)
-      new(YAML::load_file(file))
+      new(YAML.load_file(file))
     end
 
     # :call-seq:

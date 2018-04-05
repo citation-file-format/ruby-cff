@@ -91,12 +91,6 @@ Style/CaseEquality:
     - 'lib/cff/person.rb'
     - 'lib/cff/reference.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/ColonMethodCall:
-  Exclude:
-    - 'lib/cff/file.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:
