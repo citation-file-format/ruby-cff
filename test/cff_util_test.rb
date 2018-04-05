@@ -39,8 +39,8 @@ class CFFUtilTest < Minitest::Test
 
   def test_build_actor_collection
     array = [
-      {"family-names"=>"Second", "given-names"=>"First"},
-      {"name"=>"Company"}
+      {"family-names" => "Second", "given-names" => "First"},
+      {"name" => "Company"}
     ]
 
     build_actor_collection!(array)
