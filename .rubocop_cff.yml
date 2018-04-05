@@ -91,13 +91,6 @@ Lint/UnusedBlockArgument:
   Exclude:
     - 'test/cff_file_test.rb'
 
-# Offense count: 2
-# Configuration parameters: ContextCreatingMethods, MethodCreatingMethods.
-Lint/UselessAccessModifier:
-  Exclude:
-    - 'lib/cff/model.rb'
-    - 'lib/cff/reference.rb'
-
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:

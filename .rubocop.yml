@@ -1,2 +1,9 @@
 inherit_from:
   - .rubocop_cff.yml
+
+# Turn this off for certain files where we have extra documentation
+# towards the end of the file, after a block of private methods.
+Lint/UselessAccessModifier:
+  Exclude:
+    - 'lib/cff/model.rb'
+    - 'lib/cff/reference.rb'
