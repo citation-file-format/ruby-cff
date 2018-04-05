@@ -19,7 +19,7 @@ require "spdx-licenses"
 
 require "cff/version"
 require "cff/util"
-require "cff/model-part"
+require "cff/model_part"
 require "cff/person"
 require "cff/entity"
 require "cff/reference"

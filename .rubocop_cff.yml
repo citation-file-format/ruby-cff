@@ -13,7 +13,7 @@ Layout/EmptyComment:
   Exclude:
     - 'lib/cff/entity.rb'
     - 'lib/cff/file.rb'
-    - 'lib/cff/model-part.rb'
+    - 'lib/cff/model_part.rb'
     - 'lib/cff/model.rb'
     - 'lib/cff/person.rb'
     - 'lib/cff/reference.rb'
@@ -41,7 +41,7 @@ Layout/EmptyLinesAroundModuleBody:
     - 'lib/cff.rb'
     - 'lib/cff/entity.rb'
     - 'lib/cff/file.rb'
-    - 'lib/cff/model-part.rb'
+    - 'lib/cff/model_part.rb'
     - 'lib/cff/model.rb'
     - 'lib/cff/person.rb'
     - 'lib/cff/reference.rb'
@@ -68,13 +68,6 @@ Metrics/ClassLength:
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Max: 49
-
-# Offense count: 1
-# Configuration parameters: ExpectMatchingDefinition, Regex, IgnoreExecutableScripts, AllowedAcronyms.
-# AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
-Naming/FileName:
-  Exclude:
-    - 'lib/cff/model-part.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -135,7 +128,7 @@ Style/InverseMethods:
 Style/MethodMissing:
   Exclude:
     - 'lib/cff/file.rb'
-    - 'lib/cff/model-part.rb'
+    - 'lib/cff/model_part.rb'
 
 # Offense count: 6
 # Cop supports --auto-correct.
