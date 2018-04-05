@@ -28,7 +28,7 @@ module CFF
     end
 
     def method_to_field(name)
-      name.gsub('_', '-')
+      name.tr('_', '-')
     end
 
     def build_actor_collection!(source)

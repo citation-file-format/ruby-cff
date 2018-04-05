@@ -69,12 +69,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 49
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Performance/StringReplacement:
-  Exclude:
-    - 'lib/cff/util.rb'
-
 # Offense count: 13
 Style/CaseEquality:
   Exclude:
