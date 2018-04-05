@@ -47,15 +47,6 @@ Layout/EmptyLinesAroundModuleBody:
     - 'lib/cff/reference.rb'
     - 'lib/cff/util.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'test/cff_util_test.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Lint/StringConversionInInterpolation:

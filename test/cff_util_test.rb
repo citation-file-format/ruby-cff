@@ -18,7 +18,7 @@ class CFFUtilTest < Minitest::Test
   include ::CFF::Util
 
   def test_delete_from_hash
-    h = {one: 1, two: 2, three: 3}
+    h = { one: 1, two: 2, three: 3 }
 
     r = delete_from_hash(h, :rubbish)
     refute_same r, h
@@ -39,8 +39,8 @@ class CFFUtilTest < Minitest::Test
 
   def test_build_actor_collection
     array = [
-      {"family-names" => "Second", "given-names" => "First"},
-      {"name" => "Company"}
+      { "family-names" => "Second", "given-names" => "First" },
+      { "name" => "Company" }
     ]
 
     build_actor_collection!(array)
