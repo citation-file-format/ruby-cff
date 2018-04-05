@@ -1,6 +1,11 @@
 inherit_from:
   - .rubocop_cff.yml
 
+# Turn this off for now. CI checks different versions of ruby anyway.
+Gemspec/RequiredRubyVersion:
+  Exclude:
+    - 'cff.gemspec'
+
 # Turn this off for certain files where we have extra documentation
 # towards the end of the file, after a block of private methods.
 Lint/UselessAccessModifier:
