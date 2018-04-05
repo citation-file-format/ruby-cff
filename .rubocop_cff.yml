@@ -117,13 +117,6 @@ Style/MethodMissing:
     - 'lib/cff/file.rb'
     - 'lib/cff/model_part.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'test/cff_reference_test.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

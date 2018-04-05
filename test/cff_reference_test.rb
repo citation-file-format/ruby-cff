@@ -109,7 +109,7 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_languages_output_correctly
-    %w(en GER french Inglish).each do |lang|
+    %w[en GER french Inglish].each do |lang|
       @reference.add_language lang
     end
     y = @reference.fields.to_yaml
