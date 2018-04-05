@@ -166,7 +166,7 @@ class CFFFileTest < Minitest::Test
     model = ::CFF::Model.new("software")
     model.version = "1.0.0"
     model.date_released = "1999-12-31"
-    within_construct(CONSTRUCT_OPTS) do |construct|
+    within_construct(CONSTRUCT_OPTS) do
       ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
       check_file_contents(OUTPUT_CFF, "cff-version")
       check_file_contents(OUTPUT_CFF, "date-released: 1999-12-31")
@@ -179,7 +179,7 @@ class CFFFileTest < Minitest::Test
     model = ::CFF::Model.new("software")
     model.version = "1.0.0"
     model.date_released = "1999-12-31"
-    within_construct(CONSTRUCT_OPTS) do |construct|
+    within_construct(CONSTRUCT_OPTS) do
       ::CFF::File.write(OUTPUT_CFF, model)
       check_file_contents(OUTPUT_CFF, "cff-version")
       check_file_contents(OUTPUT_CFF, "date-released: 1999-12-31")

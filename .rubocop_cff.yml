@@ -47,13 +47,6 @@ Layout/EmptyLinesAroundModuleBody:
     - 'lib/cff/reference.rb'
     - 'lib/cff/util.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'test/cff_file_test.rb'
-
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
