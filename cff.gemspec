@@ -45,4 +45,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "coveralls", "~> 0.8"
   spec.add_development_dependency "test_construct", "~> 2.0"
   spec.add_development_dependency "rdoc", "~> 6.0"
+  spec.add_development_dependency "rubocop", "~> 0.54"
 end
