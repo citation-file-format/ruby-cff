@@ -21,7 +21,7 @@ require "cff"
 require "test_construct"
 require "minitest/autorun"
 
-FILES_DIR =  ::File.expand_path('../files', __FILE__)
+FILES_DIR = ::File.expand_path('../files', __FILE__)
 OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
 COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
 OUTPUT_CFF = 'CITATION.cff'
