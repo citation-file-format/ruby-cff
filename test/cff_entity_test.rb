@@ -67,8 +67,8 @@ class CFFEntityTest < Minitest::Test
 
     y = @entity.fields.to_yaml
 
-    assert y.include? "date-end: #{date.to_s}\n"
-    assert y.include? "date-start: #{date.to_s}\n"
+    assert y.include? "date-end: #{date}\n"
+    assert y.include? "date-start: #{date}\n"
   end
 
   def test_date_fields_set_and_output_correctly_with_text
