@@ -117,15 +117,6 @@ Style/MethodMissing:
     - 'lib/cff/file.rb'
     - 'lib/cff/model_part.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/cff/file.rb'
-    - 'lib/cff/model.rb'
-    - 'lib/cff/version.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.

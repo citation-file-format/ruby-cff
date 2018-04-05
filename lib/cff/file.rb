@@ -19,7 +19,7 @@ module CFF
   # filesystem utilities.
   class File
 
-    YAML_HEADER = "---\n" # :nodoc:
+    YAML_HEADER = "---\n".freeze # :nodoc:
 
     # :call-seq:
     #   new(title) -> File
