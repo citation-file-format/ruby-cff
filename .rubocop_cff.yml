@@ -111,13 +111,6 @@ Style/IfUnlessModifier:
     - 'lib/cff/model.rb'
     - 'lib/cff/reference.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: InverseMethods, InverseBlocks.
-Style/InverseMethods:
-  Exclude:
-    - 'lib/cff/util.rb'
-
 # Offense count: 2
 Style/MethodMissing:
   Exclude:

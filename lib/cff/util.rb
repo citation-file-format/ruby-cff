@@ -38,7 +38,7 @@ module CFF
     end
 
     def normalize_modelpart_array!(array)
-      array.reject! { |i| !i.respond_to?(:fields) }
+      array.select! { |i| i.respond_to?(:fields) }
     end
 
     # :startdoc:
