@@ -61,14 +61,6 @@ Layout/ExtraSpacing:
   Exclude:
     - 'test/test_helper.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Layout/IndentArray:
-  Enabled: false
-  EnforcedStyle: consistent
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.
