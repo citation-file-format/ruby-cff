@@ -26,9 +26,6 @@ Metrics/MethodLength:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Exclude:
-    - 'lib/cff.rb'
-    - 'lib/cff/model.rb'
-    - 'lib/cff/version.rb'
     - 'test/cff_entity_test.rb'
     - 'test/cff_file_test.rb'
     - 'test/cff_model_test.rb'

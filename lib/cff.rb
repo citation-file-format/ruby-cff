@@ -12,19 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "date"
-require "yaml"
-require "language_list"
-require "spdx-licenses"
+require 'date'
+require 'yaml'
+require 'language_list'
+require 'spdx-licenses'
 
-require "cff/version"
-require "cff/util"
-require "cff/model_part"
-require "cff/person"
-require "cff/entity"
-require "cff/reference"
-require "cff/model"
-require "cff/file"
+require 'cff/version'
+require 'cff/util'
+require 'cff/model_part'
+require 'cff/person'
+require 'cff/entity'
+require 'cff/reference'
+require 'cff/model'
+require 'cff/file'
 
 # This library provides a Ruby interface to manipulate CITATION.cff files. The
 # primary entry points are Model and File.
