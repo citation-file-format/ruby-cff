@@ -12,3 +12,7 @@ Lint/UselessAccessModifier:
   Exclude:
     - 'lib/cff/model.rb'
     - 'lib/cff/reference.rb'
+
+# I think 'has_key?' looks better than 'key?'.
+Style/PreferredHashMethods:
+  EnforcedStyle: verbose
