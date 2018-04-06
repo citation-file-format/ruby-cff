@@ -169,15 +169,8 @@ module CFF
       end
 
       [
-        'authors',
-        'contact',
-        'editors',
-        'editors-series',
-        'keywords',
-        'patent-states',
-        'recipients',
-        'senders',
-        'translators'
+        'authors', 'contact', 'editors', 'editors-series', 'keywords',
+        'patent-states', 'recipients', 'senders', 'translators'
       ].each { |field| @fields[field] = [] if @fields[field].empty? }
     end
 
@@ -305,13 +298,8 @@ module CFF
     # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
       [
-        'authors',
-        'contact',
-        'editors',
-        'editors-series',
-        'recipients',
-        'senders',
-        'translators'
+        'authors', 'contact', 'editors', 'editors-series', 'recipients',
+        'senders', 'translators'
       ].each do |field|
         normalize_modelpart_array!(@fields[field])
       end

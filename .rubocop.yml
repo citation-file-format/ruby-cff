@@ -50,3 +50,9 @@ Metrics/LineLength:
 Metrics/AbcSize:
   Exclude:
     - 'test/**/*.rb'
+
+# Set a more reasonable method length and ignore failures in the tests.
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'test/**/*.rb'
