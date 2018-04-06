@@ -15,6 +15,7 @@
 require 'test_helper'
 
 class CFFFileTest < Minitest::Test
+
   include TestConstruct::Helpers
   include ::CFF::Util
 

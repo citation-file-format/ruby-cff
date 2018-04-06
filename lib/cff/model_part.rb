@@ -20,6 +20,7 @@ module CFF
   #
   # ModelPart does not provide any methods or fields for the public API.
   class ModelPart
+
     # :stopdoc:
     include Util
 

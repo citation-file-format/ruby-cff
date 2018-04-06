@@ -50,6 +50,5 @@ module CFF
         @fields['given-names'] = param
       end
     end
-
   end
 end

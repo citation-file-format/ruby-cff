@@ -15,6 +15,7 @@
 require 'test_helper'
 
 class CFFUtilTest < Minitest::Test
+
   include ::CFF::Util
 
   def test_delete_from_hash

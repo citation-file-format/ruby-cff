@@ -62,6 +62,5 @@ module CFF
     def method_missing(name, *args) # :nodoc:
       @model.send name, *args
     end
-
   end
 end

@@ -75,6 +75,5 @@ module CFF
 
       @fields['date-start'] = date
     end
-
   end
 end

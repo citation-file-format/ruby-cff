@@ -15,6 +15,7 @@
 require "test_helper"
 
 class CFFModelTest < Minitest::Test
+
   include ::CFF::Util
 
   def test_bad_methods_not_allowed

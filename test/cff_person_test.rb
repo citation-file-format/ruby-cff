@@ -15,6 +15,7 @@
 require "test_helper"
 
 class CFFPersonTest < Minitest::Test
+
   include ::CFF::Util
 
   def setup
