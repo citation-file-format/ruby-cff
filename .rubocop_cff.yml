@@ -26,10 +26,6 @@ Metrics/MethodLength:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Exclude:
-    - 'Gemfile'
-    - 'Rakefile'
-    - 'bin/console'
-    - 'cff.gemspec'
     - 'lib/cff.rb'
     - 'lib/cff/model.rb'
     - 'lib/cff/version.rb'
