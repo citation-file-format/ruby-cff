@@ -60,7 +60,11 @@ module CFF
     end
 
     def method_missing(name, *args) # :nodoc:
-      @model.send name, *args
+      @model.respond_to?(name) ? @model.send(name, *args) : super
+    end
+
+    def respond_to_missing?(name, *all) # :nodoc:
+      @model.respond_to?(name, *all)
     end
   end
 end

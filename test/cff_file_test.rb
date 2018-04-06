@@ -22,10 +22,12 @@ class CFFFileTest < Minitest::Test
   def test_bad_methods_not_passed_to_model
     f = ::CFF::File.new("")
 
+    refute f.respond_to?(:aaaaaaa)
     assert_raises(NoMethodError) do
       f.aaaaaaa
     end
 
+    refute f.respond_to?(:Message)
     assert_raises(NoMethodError) do
       f.Message = "hello"
     end

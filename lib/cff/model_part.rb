@@ -37,6 +37,11 @@ module CFF
       end
     end
 
+    def respond_to_missing?(name, *)
+      n = method_to_field(name.id2name)
+      self.class::ALLOWED_FIELDS.include?(n.chomp('=')) || super
+    end
+
     # :startdoc:
   end
 end

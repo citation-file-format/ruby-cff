@@ -27,7 +27,7 @@ Metrics/AbcSize:
 # Offense count: 4
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 242
+  Max: 243
 
 # Offense count: 23
 # Configuration parameters: CountComments.
@@ -42,12 +42,6 @@ Style/IfUnlessModifier:
     - 'lib/cff/file.rb'
     - 'lib/cff/model.rb'
     - 'lib/cff/reference.rb'
-
-# Offense count: 2
-Style/MethodMissing:
-  Exclude:
-    - 'lib/cff/file.rb'
-    - 'lib/cff/model_part.rb'
 
 # Offense count: 290
 # Cop supports --auto-correct.

@@ -23,10 +23,12 @@ class CFFPersonTest < Minitest::Test
   end
 
   def test_bad_methods_not_allowed
+    refute @person.respond_to?(:aaaaaaa)
     assert_raises(NoMethodError) do
       @person.aaaaaaa
     end
 
+    refute @person.respond_to?(:Affiliation)
     assert_raises(NoMethodError) do
       @person.Affiliation = "Company"
     end
