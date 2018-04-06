@@ -56,3 +56,9 @@ Metrics/MethodLength:
   Max: 20
   Exclude:
     - 'test/**/*.rb'
+
+# Set a more reasonable class length and ignore failures in the tests.
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+    - 'test/**/*.rb'
