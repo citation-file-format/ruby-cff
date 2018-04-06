@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
+##
 module CFF
 
   # Util provides utility methods useful throughout the rest of the CFF library.

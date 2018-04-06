@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
+##
 module CFF
 
   # A Person represents a person in a CITATION.cff file. A Person might have a

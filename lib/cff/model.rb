@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
+##
 module CFF
 
   # Model is the core data structure for a CITATION.cff file. It can be
