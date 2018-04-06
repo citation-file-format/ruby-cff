@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "test_helper"
+require 'test_helper'
 
 class CFFEntityTest < Minitest::Test
 
   include ::CFF::Util
 
   def setup
-    @entity = ::CFF::Entity.new("Some Company")
+    @entity = ::CFF::Entity.new('Some Company')
   end
 
   def test_bad_methods_not_allowed
@@ -30,25 +30,25 @@ class CFFEntityTest < Minitest::Test
 
     refute @entity.respond_to?(:Address)
     assert_raises(NoMethodError) do
-      @entity.Address = "A Street"
+      @entity.Address = 'A Street'
     end
   end
 
   def test_simple_fields_set_and_output_correctly
     data = [
-      ["address", "A Street"],
-      ["city", "Manchester"],
-      ["country", "GB"],
-      ["email", "email@example.org"],
-      ["location", "Classified"],
-      ["orcid", "https://orcid.org/0000-0001-2345-6789"],
-      ["post-code", "M13 9PL"],
-      ["region", "Greater Manchester"],
-      ["website", "https://home.example.org"]
+      ['address', 'A Street'],
+      ['city', 'Manchester'],
+      ['country', 'GB'],
+      ['email', 'email@example.org'],
+      ['location', 'Classified'],
+      ['orcid', 'https://orcid.org/0000-0001-2345-6789'],
+      ['post-code', 'M13 9PL'],
+      ['region', 'Greater Manchester'],
+      ['website', 'https://home.example.org']
     ]
 
     data.each do |method, value|
-      assert_equal @entity.send(method), ""
+      assert_equal @entity.send(method), ''
       @entity.send("#{method}=", value)
       assert_equal @entity.send(method), value
     end
@@ -75,7 +75,7 @@ class CFFEntityTest < Minitest::Test
   end
 
   def test_date_fields_set_and_output_correctly_with_text
-    date = "1999-12-31"
+    date = '1999-12-31'
     @entity.date_end = date
     @entity.date_start = date
 
@@ -89,7 +89,7 @@ class CFFEntityTest < Minitest::Test
   end
 
   def test_tel_fax_fields_set_and_output_correctly
-    number = "+44 (0) 161-234-5678"
+    number = '+44 (0) 161-234-5678'
     @entity.fax = number
     @entity.tel = number
 

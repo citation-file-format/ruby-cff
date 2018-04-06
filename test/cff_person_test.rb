@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "test_helper"
+require 'test_helper'
 
 class CFFPersonTest < Minitest::Test
 
   include ::CFF::Util
 
   def setup
-    @person = ::CFF::Person.new("Rob", "Haines")
+    @person = ::CFF::Person.new('Rob', 'Haines')
   end
 
   def test_bad_methods_not_allowed
@@ -30,27 +30,27 @@ class CFFPersonTest < Minitest::Test
 
     refute @person.respond_to?(:Affiliation)
     assert_raises(NoMethodError) do
-      @person.Affiliation = "Company"
+      @person.Affiliation = 'Company'
     end
   end
 
   def test_simple_fields_set_and_output_correctly
     data = [
-      ["address", "A street"],
-      ["affiliation", "A University"],
-      ["city", "Manchester"],
-      ["country", "GB"],
-      ["email", "email@example.org"],
-      ["name-particle", "van der"],
-      ["name-suffix", "III"],
-      ["orcid", "https://orcid.org/0000-0001-2345-6789"],
-      ["post-code", "M13 9PL"],
-      ["region", "Greater Manchester"],
-      ["website", "https://home.example.org"]
+      ['address', 'A street'],
+      ['affiliation', 'A University'],
+      ['city', 'Manchester'],
+      ['country', 'GB'],
+      ['email', 'email@example.org'],
+      ['name-particle', 'van der'],
+      ['name-suffix', 'III'],
+      ['orcid', 'https://orcid.org/0000-0001-2345-6789'],
+      ['post-code', 'M13 9PL'],
+      ['region', 'Greater Manchester'],
+      ['website', 'https://home.example.org']
     ]
 
     data.each do |method, value|
-      assert_equal @person.send(method), ""
+      assert_equal @person.send(method), ''
       @person.send("#{method}=", value)
       assert_equal @person.send(method), value
     end
@@ -63,7 +63,7 @@ class CFFPersonTest < Minitest::Test
   end
 
   def test_tel_fax_fields_set_and_output_correctly
-    number = "+44 (0) 161-234-5678"
+    number = '+44 (0) 161-234-5678'
     @person.fax = number
     @person.tel = number
 

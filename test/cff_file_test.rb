@@ -20,7 +20,7 @@ class CFFFileTest < Minitest::Test
   include ::CFF::Util
 
   def test_bad_methods_not_passed_to_model
-    f = ::CFF::File.new("")
+    f = ::CFF::File.new('')
 
     refute f.respond_to?(:aaaaaaa)
     assert_raises(NoMethodError) do
@@ -29,12 +29,12 @@ class CFFFileTest < Minitest::Test
 
     refute f.respond_to?(:Message)
     assert_raises(NoMethodError) do
-      f.Message = "hello"
+      f.Message = 'hello'
     end
   end
 
   def test_new_file_from_model
-    title = "software"
+    title = 'software'
     model = ::CFF::Model.new(title)
     file = ::CFF::File.new(model)
 
@@ -43,7 +43,7 @@ class CFFFileTest < Minitest::Test
   end
 
   def test_new_file_from_title
-    title = "software"
+    title = 'software'
     file = ::CFF::File.new(title)
 
     assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
@@ -80,11 +80,11 @@ class CFFFileTest < Minitest::Test
     person = cff.authors[0]
     entity = cff.authors[1]
     assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, "Real Person"
-    assert_equal person.affiliation, "Excellent University, Niceplace, Arcadia"
+    assert_equal person.family_names, 'Real Person'
+    assert_equal person.affiliation, 'Excellent University, Niceplace, Arcadia'
     assert_instance_of ::CFF::Entity, entity
-    assert_equal entity.name, "Entity Project Team Conference entity"
-    assert_equal entity.address, "22 Acacia Avenue"
+    assert_equal entity.name, 'Entity Project Team Conference entity'
+    assert_equal entity.address, '22 Acacia Avenue'
 
     assert_equal cff.contact.length, 2
     assert_instance_of ::CFF::Person, cff.contact[0]
@@ -95,16 +95,16 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.references.length, 1
     reference = cff.references[0]
     assert_instance_of ::CFF::Reference, reference
-    assert_equal reference.type, "book"
-    assert_equal reference.title, "Book Title"
+    assert_equal reference.type, 'book'
+    assert_equal reference.title, 'Book Title'
     person = reference.authors[0]
     entity = reference.authors[1]
     assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, "Real Person"
-    assert_equal person.affiliation, "Excellent University, Niceplace, Arcadia"
+    assert_equal person.family_names, 'Real Person'
+    assert_equal person.affiliation, 'Excellent University, Niceplace, Arcadia'
     assert_instance_of ::CFF::Entity, entity
-    assert_equal entity.name, "Entity Project Team Conference entity"
-    assert_equal entity.address, "22 Acacia Avenue"
+    assert_equal entity.name, 'Entity Project Team Conference entity'
+    assert_equal entity.address, '22 Acacia Avenue'
   end
 
   def test_read_complete_cff_file_2
@@ -138,8 +138,8 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.references.length, 1
     reference = cff.references[0]
     assert_instance_of ::CFF::Reference, reference
-    assert_equal reference.type, "book"
-    assert_equal reference.title, "Book Title"
+    assert_equal reference.type, 'book'
+    assert_equal reference.title, 'Book Title'
 
     [
       cff.authors,
@@ -157,37 +157,37 @@ class CFFFileTest < Minitest::Test
       entity = list[1]
 
       assert_instance_of ::CFF::Person, person
-      assert_equal person.family_names, "Real Person"
-      assert_equal person.affiliation, "Excellent University, Niceplace, Arcadia"
+      assert_equal person.family_names, 'Real Person'
+      assert_equal person.affiliation, 'Excellent University, Niceplace, Arcadia'
       assert_instance_of ::CFF::Entity, entity
-      assert_equal entity.name, "Entity Project Team Conference entity"
-      assert_equal entity.address, "22 Acacia Avenue"
+      assert_equal entity.name, 'Entity Project Team Conference entity'
+      assert_equal entity.address, '22 Acacia Avenue'
     end
   end
 
   def test_write_cff_file_from_string
-    model = ::CFF::Model.new("software")
-    model.version = "1.0.0"
-    model.date_released = "1999-12-31"
+    model = ::CFF::Model.new('software')
+    model.version = '1.0.0'
+    model.date_released = '1999-12-31'
     within_construct(CONSTRUCT_OPTS) do
       ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
-      check_file_contents(OUTPUT_CFF, "cff-version")
-      check_file_contents(OUTPUT_CFF, "date-released: 1999-12-31")
+      check_file_contents(OUTPUT_CFF, 'cff-version')
+      check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
-      check_file_contents(OUTPUT_CFF, "version: 1.0.0")
+      check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
     end
   end
 
   def test_write_cff_file_from_model
-    model = ::CFF::Model.new("software")
-    model.version = "1.0.0"
-    model.date_released = "1999-12-31"
+    model = ::CFF::Model.new('software')
+    model.version = '1.0.0'
+    model.date_released = '1999-12-31'
     within_construct(CONSTRUCT_OPTS) do
       ::CFF::File.write(OUTPUT_CFF, model)
-      check_file_contents(OUTPUT_CFF, "cff-version")
-      check_file_contents(OUTPUT_CFF, "date-released: 1999-12-31")
+      check_file_contents(OUTPUT_CFF, 'cff-version')
+      check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
-      check_file_contents(OUTPUT_CFF, "version: 1.0.0")
+      check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
     end
   end
 

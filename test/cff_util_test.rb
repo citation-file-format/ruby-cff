@@ -33,27 +33,27 @@ class CFFUtilTest < Minitest::Test
   end
 
   def test_method_to_field
-    assert_equal method_to_field("field"), "field"
-    assert_equal method_to_field("field_field"), "field-field"
-    assert_equal method_to_field("field-field"), "field-field"
+    assert_equal method_to_field('field'), 'field'
+    assert_equal method_to_field('field_field'), 'field-field'
+    assert_equal method_to_field('field-field'), 'field-field'
   end
 
   def test_build_actor_collection
     array = [
-      { "family-names" => "Second", "given-names" => "First" },
-      { "name" => "Company" }
+      { 'family-names' => 'Second', 'given-names' => 'First' },
+      { 'name' => 'Company' }
     ]
 
     build_actor_collection!(array)
     assert_equal array.length, 2
     assert_instance_of ::CFF::Person, array[0]
-    assert_equal array[0].given_names, "First"
+    assert_equal array[0].given_names, 'First'
     assert_instance_of ::CFF::Entity, array[1]
-    assert_equal array[1].name, "Company"
+    assert_equal array[1].name, 'Company'
   end
 
   def test_normalize_modelpart_array
-    string = "some text"
+    string = 'some text'
     data = [
       ::CFF::Person.new('First', 'Second'),
       string,

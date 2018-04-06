@@ -15,11 +15,11 @@
 require 'coveralls'
 Coveralls.wear!
 
-$LOAD_PATH.unshift ::File.expand_path("../lib", __dir__)
-require "cff"
+$LOAD_PATH.unshift ::File.expand_path('../lib', __dir__)
+require 'cff'
 
-require "test_construct"
-require "minitest/autorun"
+require 'test_construct'
+require 'minitest/autorun'
 
 FILES_DIR = ::File.expand_path('files', __dir__)
 OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')

@@ -20,21 +20,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 49
 
-# Offense count: 290
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'test/cff_entity_test.rb'
-    - 'test/cff_file_test.rb'
-    - 'test/cff_model_test.rb'
-    - 'test/cff_person_test.rb'
-    - 'test/cff_reference_test.rb'
-    - 'test/cff_test.rb'
-    - 'test/cff_util_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 12
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https

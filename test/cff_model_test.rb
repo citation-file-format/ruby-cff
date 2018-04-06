@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "test_helper"
+require 'test_helper'
 
 class CFFModelTest < Minitest::Test
 
   include ::CFF::Util
 
   def test_bad_methods_not_allowed
-    m = ::CFF::Model.new("")
+    m = ::CFF::Model.new('')
 
     refute m.respond_to?(:aaaaaaa)
     assert_raises(NoMethodError) do
@@ -33,13 +33,13 @@ class CFFModelTest < Minitest::Test
   end
 
   def test_default_model_cff_version
-    assert_equal ::CFF::Model.new("").cff_version, ::CFF::DEFAULT_SPEC_VERSION
+    assert_equal ::CFF::Model.new('').cff_version, ::CFF::DEFAULT_SPEC_VERSION
   end
 
   def test_cff_version_is_output_correctly
-    m = ::CFF::Model.new("").to_yaml
-    assert m.include? "cff-version"
-    refute m.include? "cff_version"
+    m = ::CFF::Model.new('').to_yaml
+    assert m.include? 'cff-version'
+    refute m.include? 'cff_version'
   end
 
   def test_message_is_output_correctly
@@ -109,7 +109,7 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
     assert y.include? "date-released: #{date.iso8601}"
 
-    date = "1999-12-31"
+    date = '1999-12-31'
     m.date_released = date
     assert_equal m.date_released, Date.parse(date)
     y = m.to_yaml
@@ -123,39 +123,39 @@ class CFFModelTest < Minitest::Test
     r = [::CFF::Person.new('F', 'S'), '_ _ _', ::CFF::Entity.new('Co.')]
 
     m.authors << a
-    m.authors << "_ _ _"
+    m.authors << '_ _ _'
     m.authors << e
 
     y = m.to_yaml
     assert_equal m.authors.length, 2
     assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
-    refute y.include? "_ _ _"
+    refute y.include? '_ _ _'
 
     m.authors = r
 
     y = m.to_yaml
     assert_equal m.authors.length, 2
     assert y.include? "authors:\n- family-names: S\n  given-names: F\n- name: Co."
-    refute y.include? "_ _ _"
+    refute y.include? '_ _ _'
   end
 
   def test_simple_fields_set_and_output_correctly
     m = ::CFF::Model.new('title')
 
     data = [
-      ["abstract", "An abstract"],
-      ["commit", "dce4a2de56c589b55c13249c49a81924ead238b9"],
-      ["doi", "10.5281/zenodo.1003150"],
-      ["license", "Apache-2.0"],
-      ["license_url", "http://example.org/licence.txt"],
-      ["repository", "http://example.org/repo/cff"],
-      ["repository_artifact", "http://example.org/repo/cff/package"],
-      ["repository_code", "http://example.org/repo/cff/code"],
-      ["url", "http://userid:password@example.com:8080/"]
+      ['abstract', 'An abstract'],
+      ['commit', 'dce4a2de56c589b55c13249c49a81924ead238b9'],
+      ['doi', '10.5281/zenodo.1003150'],
+      ['license', 'Apache-2.0'],
+      ['license_url', 'http://example.org/licence.txt'],
+      ['repository', 'http://example.org/repo/cff'],
+      ['repository_artifact', 'http://example.org/repo/cff/package'],
+      ['repository_code', 'http://example.org/repo/cff/code'],
+      ['url', 'http://userid:password@example.com:8080/']
     ]
 
     data.each do |method, value|
-      assert_equal m.send(method), ""
+      assert_equal m.send(method), ''
       m.send("#{method}=", value)
       assert_equal m.send(method), value
     end
@@ -174,34 +174,34 @@ class CFFModelTest < Minitest::Test
     r = [::CFF::Person.new('F', 'S'), '_ _ _', ::CFF::Entity.new('Co.')]
 
     m.contact << a
-    m.contact << "_ _ _"
+    m.contact << '_ _ _'
     m.contact << e
 
     y = m.to_yaml
     assert_equal m.contact.length, 2
     assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
-    refute y.include? "_ _ _"
+    refute y.include? '_ _ _'
 
     m.contact = r
 
     y = m.to_yaml
     assert_equal m.contact.length, 2
     assert y.include? "contact:\n- family-names: S\n  given-names: F\n- name: Co."
-    refute y.include? "_ _ _"
+    refute y.include? '_ _ _'
   end
 
   def test_keywords_set_and_output_correctly
     m = ::CFF::Model.new('title')
-    keys = ["one", :two, 3]
+    keys = ['one', :two, 3]
 
     y = m.to_yaml
-    refute y.include? "keywords:"
+    refute y.include? 'keywords:'
 
     m.keywords = keys
     l = keys.length
     assert_equal m.keywords.length, l
 
-    m.keywords << "four"
+    m.keywords << 'four'
     l += 1
     assert_equal m.keywords.length, l
 
@@ -216,11 +216,11 @@ class CFFModelTest < Minitest::Test
     e = ::CFF::Entity.new('Company')
     r = ::CFF::Reference.new('book title', 'book')
     r.authors << a
-    r.authors << "_ _ _"
+    r.authors << '_ _ _'
     r.authors << e
 
     m.references << r
-    m.references << "_ _ _"
+    m.references << '_ _ _'
     assert_equal m.references.length, 2
     assert_equal m.references[0].authors.length, 3
 
@@ -229,16 +229,16 @@ class CFFModelTest < Minitest::Test
     assert_equal m.references[0].authors.length, 2
     assert y.include? "references:\n- type: book\n  title: book title\n"
     assert y.include? "  authors:\n  - family-names: Second\n    given-names: First\n  - name: Company\n"
-    refute y.include? "_ _ _"
+    refute y.include? '_ _ _'
   end
 
   def test_empty_collections_are_not_output
     m = ::CFF::Model.new('title')
     y = m.to_yaml
 
-    refute y.include? "authors:"
-    refute y.include? "contact:"
-    refute y.include? "keywords:"
-    refute y.include? "references:"
+    refute y.include? 'authors:'
+    refute y.include? 'contact:'
+    refute y.include? 'keywords:'
+    refute y.include? 'references:'
   end
 end
