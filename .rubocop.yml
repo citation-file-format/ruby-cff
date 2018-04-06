@@ -16,3 +16,7 @@ Lint/UselessAccessModifier:
 # I think 'has_key?' looks better than 'key?'.
 Style/PreferredHashMethods:
   EnforcedStyle: verbose
+
+# Turn this off for now.
+Style/FrozenStringLiteralComment:
+  Enabled: false
