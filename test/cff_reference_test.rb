@@ -174,7 +174,6 @@ class CFFReferenceTest < Minitest::Test
 
   def test_keywords_and_patent_states_set_and_output_correctly
     keys = ["one", :two, 3]
-    l = 0
 
     y = @reference.fields.to_yaml
     refute y.include? "keywords:"

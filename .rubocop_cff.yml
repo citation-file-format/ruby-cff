@@ -35,14 +35,6 @@ Layout/EmptyLinesAroundModuleBody:
     - 'lib/cff/reference.rb'
     - 'lib/cff/util.rb'
 
-# Offense count: 4
-Lint/UselessAssignment:
-  Exclude:
-    - 'lib/cff/model.rb'
-    - 'lib/cff/util.rb'
-    - 'test/cff_model_test.rb'
-    - 'test/cff_reference_test.rb'
-
 # Offense count: 11
 Metrics/AbcSize:
   Max: 61

@@ -191,7 +191,6 @@ class CFFModelTest < Minitest::Test
   def test_keywords_set_and_output_correctly
     m = ::CFF::Model.new('title')
     keys = ["one", :two, 3]
-    l = 0
 
     y = m.to_yaml
     refute y.include? "keywords:"

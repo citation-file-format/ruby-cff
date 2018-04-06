@@ -115,7 +115,7 @@ module CFF
       build_actor_collection!(fields['authors'])
       build_actor_collection!(fields['contact'])
       fields['references'].map! do |r|
-        r = Reference.new(r)
+        Reference.new(r)
       end
 
       fields

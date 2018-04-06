@@ -33,7 +33,7 @@ module CFF
 
     def build_actor_collection!(source)
       source.map! do |s|
-        s = (s.has_key?('given-names') ? Person.new(s) : Entity.new(s))
+        s.has_key?('given-names') ? Person.new(s) : Entity.new(s)
       end
     end
 
