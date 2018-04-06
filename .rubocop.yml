@@ -24,3 +24,8 @@ Style/FrozenStringLiteralComment:
 # Enforce empty lines at the beginning of classes.
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: beginning_only
+
+# Allow empty lines, or not, around module bodies. I like a line at the
+# beginning, but not the end, but this is not an option in RuboCop.
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false

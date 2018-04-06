@@ -20,21 +20,6 @@ Layout/EmptyComment:
     - 'lib/cff/util.rb'
     - 'lib/cff/version.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
-Layout/EmptyLinesAroundModuleBody:
-  Exclude:
-    - 'lib/cff.rb'
-    - 'lib/cff/entity.rb'
-    - 'lib/cff/file.rb'
-    - 'lib/cff/model_part.rb'
-    - 'lib/cff/model.rb'
-    - 'lib/cff/person.rb'
-    - 'lib/cff/reference.rb'
-    - 'lib/cff/util.rb'
-
 # Offense count: 11
 Metrics/AbcSize:
   Max: 61

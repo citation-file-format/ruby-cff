@@ -32,5 +32,4 @@ require "cff/file"
 # See the [CITATION.cff documentation](https://citation-file-format.github.io/)
 # for more details.
 module CFF
-
 end
