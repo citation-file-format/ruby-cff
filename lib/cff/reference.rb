@@ -157,7 +157,7 @@ module CFF
     #
     # Create a new Reference with the supplied title and type. If type is not one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types), 'generic' will be used by default.
     def initialize(param, *more)
-      if Hash === param
+      if param.is_a?(Hash)
         @fields = build_model(param)
       else
         @fields = Hash.new('')
@@ -226,7 +226,7 @@ module CFF
     # Set the `date-accessed` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_accessed=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 
@@ -239,7 +239,7 @@ module CFF
     # Set the `date-downloaded` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_downloaded=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 
@@ -252,7 +252,7 @@ module CFF
     # Set the `date-published` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_published=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 
@@ -265,7 +265,7 @@ module CFF
     # Set the `date-released` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_released=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 

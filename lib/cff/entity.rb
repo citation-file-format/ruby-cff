@@ -42,7 +42,7 @@ module CFF
     #
     # Create a new Entity with the supplied name.
     def initialize(param)
-      if Hash === param
+      if param.is_a?(Hash)
         @fields = param
       else
         @fields = Hash.new('')
@@ -56,7 +56,7 @@ module CFF
     # Set the `date-end` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_end=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 
@@ -69,7 +69,7 @@ module CFF
     # Set the `date-start` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_start=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 

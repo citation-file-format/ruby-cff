@@ -42,7 +42,7 @@ module CFF
     #
     # Create a new Person with the supplied given and family names.
     def initialize(param, *more)
-      if Hash === param
+      if param.is_a?(Hash)
         @fields = param
       else
         @fields = Hash.new('')

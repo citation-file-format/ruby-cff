@@ -34,15 +34,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 49
 
-# Offense count: 13
-Style/CaseEquality:
-  Exclude:
-    - 'lib/cff/entity.rb'
-    - 'lib/cff/file.rb'
-    - 'lib/cff/model.rb'
-    - 'lib/cff/person.rb'
-    - 'lib/cff/reference.rb'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.

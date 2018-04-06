@@ -48,7 +48,7 @@ module CFF
     #
     # Initialize a new Model with the supplied title.
     def initialize(param)
-      if Hash === param
+      if param.is_a?(Hash)
         @fields = build_model(param)
       else
         @fields = Hash.new('')
@@ -71,7 +71,7 @@ module CFF
     # Set the `date-released` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_released=(date)
-      unless Date === date
+      unless date.is_a?(Date)
         date = Date.parse(date)
       end
 
