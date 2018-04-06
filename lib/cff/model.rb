@@ -87,7 +87,7 @@ module CFF
     end
 
     def to_yaml # :nodoc:
-      YAML.dump fields, :line_width => -1, :indentation => 2
+      YAML.dump fields, line_width: -1, indentation: 2
     end
 
     private

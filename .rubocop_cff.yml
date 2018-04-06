@@ -34,16 +34,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 49
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/cff/model.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 9
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:

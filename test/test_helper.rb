@@ -27,5 +27,5 @@ COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
 OUTPUT_CFF = 'CITATION.cff'.freeze
 
 CONSTRUCT_OPTS = {
-  :keep_on_error => true
+  keep_on_error: true
 }.freeze
