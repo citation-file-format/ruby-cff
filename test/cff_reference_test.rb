@@ -35,14 +35,14 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_person_entity_fields_set_and_output_correctly
-    methods = [
-      'authors',
-      'contact',
-      'editors',
-      'editors_series',
-      'recipients',
-      'senders',
-      'translators'
+    methods = %w[
+      authors
+      contact
+      editors
+      editors_series
+      recipients
+      senders
+      translators
     ]
 
     methods.each do |method|
@@ -100,9 +100,9 @@ class CFFReferenceTest < Minitest::Test
     @reference.add_language "english"
     assert_equal @reference.languages, ["eng"]
     @reference.add_language "GER"
-    assert_equal @reference.languages, ["eng", "deu"]
+    assert_equal @reference.languages, %w[eng deu]
     @reference.add_language "en"
-    assert_equal @reference.languages, ["eng", "deu"]
+    assert_equal @reference.languages, %w[eng deu]
 
     @reference.reset_languages
     assert_equal @reference.languages, []
@@ -140,11 +140,8 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_bad_dates_raises_error
-    [
-      'date_accessed',
-      'date_downloaded',
-      'date_published',
-      'date_released'
+    %w[
+      date_accessed date_downloaded date_published date_released
     ].each do |method|
       exp = assert_raises(ArgumentError) do
         @reference.send("#{method}=", 'nonsense')
@@ -154,11 +151,8 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_dates_are_set_and_output_correctly
-    [
-      'date_accessed',
-      'date_downloaded',
-      'date_published',
-      'date_released'
+    %w[
+      date_accessed date_downloaded date_published date_released
     ].each do |method|
       date = Date.today
       @reference.send("#{method}=", date)
@@ -202,42 +196,42 @@ class CFFReferenceTest < Minitest::Test
 
   def test_simple_fields_set_and_output_correctly
     value = "a simple string field"
-    methods = [
-      'abbreviation',
-      'abstract',
-      'collection_doi',
-      'collection_title',
-      'collection_type',
-      'commit',
-      'copyright',
-      'data_type',
-      'database',
-      'department',
-      'doi',
-      'edition',
-      'entry',
-      'filename',
-      'format',
-      'isbn',
-      'issn',
-      'issue_date',
-      'issue_title',
-      'journal',
-      'license_url',
-      'medium',
-      'nihmsid',
-      'notes',
-      'number',
-      'pmcid',
-      'repository',
-      'repository_code',
-      'repository_artifact',
-      'scope',
-      'section',
-      'thesis_type',
-      'url',
-      'version',
-      'volume_title'
+    methods = %w[
+      abbreviation
+      abstract
+      collection_doi
+      collection_title
+      collection_type
+      commit
+      copyright
+      data_type
+      database
+      department
+      doi
+      edition
+      entry
+      filename
+      format
+      isbn
+      issn
+      issue_date
+      issue_title
+      journal
+      license_url
+      medium
+      nihmsid
+      notes
+      number
+      pmcid
+      repository
+      repository_code
+      repository_artifact
+      scope
+      section
+      thesis_type
+      url
+      version
+      volume_title
     ]
 
     methods.each do |method|
@@ -255,18 +249,18 @@ class CFFReferenceTest < Minitest::Test
 
   def test_integer_fields_set_and_output_correctly
     value = 42
-    methods = [
-      'end',
-      'issue',
-      'loc-end',
-      'loc-start',
-      'month',
-      'number-volumes',
-      'pages',
-      'start',
-      'volume',
-      'year',
-      'year_original'
+    methods = %w[
+      end
+      issue
+      loc-end
+      loc-start
+      month
+      number-volumes
+      pages
+      start
+      volume
+      year
+      year_original
     ]
 
     methods.each do |method|
@@ -283,13 +277,7 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_entity_fields_set_and_output_correctly
-    methods = [
-      'conference',
-      'database_provider',
-      'institution',
-      'location',
-      'publisher'
-    ]
+    methods = %w[conference database_provider institution location publisher]
 
     methods.each do |method|
       value = ::CFF::Entity.new('Company')

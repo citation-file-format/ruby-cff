@@ -57,12 +57,9 @@ module CFF
         @fields['title'] = param
       end
 
-      [
-        'authors',
-        'contact',
-        'keywords',
-        'references'
-      ].each { |field| @fields[field] = [] if @fields[field].empty? }
+      %w[authors contact keywords references].each do |field|
+        @fields[field] = [] if @fields[field].empty?
+      end
     end
 
     # :call-seq:
@@ -91,7 +88,7 @@ module CFF
     private
 
     def fields
-      ['authors', 'contact', 'references'].each do |field|
+      %w[authors contact references].each do |field|
         normalize_modelpart_array!(@fields[field])
       end
       model = {}

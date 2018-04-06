@@ -33,3 +33,10 @@ Layout/EmptyLinesAroundModuleBody:
 # Force ruby19 style hash keys, but be consistent within a hash.
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
+
+# Enforce %w notation in the library code, but be less strict in tests.
+Style/WordArray:
+  Exclude:
+    - 'test/cff_entity_test.rb'
+    - 'test/cff_model_test.rb'
+    - 'test/cff_person_test.rb'

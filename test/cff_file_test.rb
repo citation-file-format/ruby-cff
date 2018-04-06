@@ -54,22 +54,22 @@ class CFFFileTest < Minitest::Test
     cff = ::CFF::File.read(COMPLETE_CFF)
     yaml = YAML.load_file(COMPLETE_CFF)
 
-    methods = [
-      "abstract",
-      "cff_version",
-      "commit",
-      "date_released",
-      "doi",
-      "keywords",
-      "license",
-      "license_url",
-      "message",
-      "repository",
-      "repository_artifact",
-      "repository_code",
-      "title",
-      "url",
-      "version"
+    methods = %w[
+      abstract
+      cff_version
+      commit
+      date_released
+      doi
+      keywords
+      license
+      license_url
+      message
+      repository
+      repository_artifact
+      repository_code
+      title
+      url
+      version
     ]
 
     methods.each do |method|
@@ -111,22 +111,22 @@ class CFFFileTest < Minitest::Test
     cff = ::CFF::File.read(COMPLETE_CFF)
     yaml = YAML.load_file(COMPLETE_CFF)
 
-    methods = [
-      "abstract",
-      "cff_version",
-      "commit",
-      "date_released",
-      "doi",
-      "keywords",
-      "license",
-      "license_url",
-      "message",
-      "repository",
-      "repository_artifact",
-      "repository_code",
-      "title",
-      "url",
-      "version"
+    methods = %w[
+      abstract
+      cff_version
+      commit
+      date_released
+      doi
+      keywords
+      license
+      license_url
+      message
+      repository
+      repository_artifact
+      repository_code
+      title
+      url
+      version
     ]
 
     methods.each do |method|
