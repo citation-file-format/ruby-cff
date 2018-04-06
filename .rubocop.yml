@@ -45,3 +45,8 @@ Style/WordArray:
 Metrics/LineLength:
   Exclude:
     - 'test/**/*.rb'
+
+# Ignore ABC failures in the tests.
+Metrics/AbcSize:
+  Exclude:
+    - 'test/**/*.rb'
