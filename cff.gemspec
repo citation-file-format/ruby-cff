@@ -23,7 +23,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['robert.haines@manchester.ac.uk']
 
   spec.summary       = 'A Ruby library for manipulating CITATION.cff files.'
-  spec.description   = 'See https://citation-file-format.github.io/ for more info.'
+  spec.description   = 'See https://citation-file-format.github.io/ ' \
+                       'for more info.'
   spec.homepage      = 'https://github.com/citation-file-format/ruby-cff'
   spec.license       = 'Apache-2.0'
 

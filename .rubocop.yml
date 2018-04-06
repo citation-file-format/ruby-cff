@@ -40,3 +40,8 @@ Style/WordArray:
     - 'test/cff_entity_test.rb'
     - 'test/cff_model_test.rb'
     - 'test/cff_person_test.rb'
+
+# Allow long lines in the tests.
+Metrics/LineLength:
+  Exclude:
+    - 'test/**/*.rb'

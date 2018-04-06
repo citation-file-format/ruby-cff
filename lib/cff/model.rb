@@ -41,7 +41,8 @@ module CFF
     ].freeze # :nodoc:
 
     # The default message to use if none is explicitly set.
-    DEFAULT_MESSAGE = 'If you use this software in your work, please cite it using the following metadata'.freeze
+    DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
+      'it using the following metadata'.freeze
 
     # :call-seq:
     #   new(title) -> Model
@@ -96,7 +97,9 @@ module CFF
       @fields.each do |field, value|
         if value.respond_to?(:map)
           unless value.empty?
-            model[field] = value.map { |v| v.respond_to?(:fields) ? v.fields : v.to_s }
+            model[field] = value.map do |v|
+              v.respond_to?(:fields) ? v.fields : v.to_s
+            end
           end
         else
           model[field] = value.respond_to?(:fields) ? value.fields : value

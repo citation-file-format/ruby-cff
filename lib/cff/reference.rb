@@ -155,7 +155,9 @@ module CFF
     # :call-seq:
     #   new(title, type) -> Reference
     #
-    # Create a new Reference with the supplied title and type. If type is not one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types), 'generic' will be used by default.
+    # Create a new Reference with the supplied title and type. If type is not
+    # one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types),
+    # 'generic' will be used by default.
     def initialize(param, *more)
       if param.is_a?(Hash)
         @fields = build_model(param)
@@ -318,7 +320,9 @@ module CFF
       @fields.each do |field, value|
         if value.respond_to?(:map)
           unless value.empty?
-            ref[field] = value.map { |v| v.respond_to?(:fields) ? v.fields : v.to_s }
+            ref[field] = value.map do |v|
+              v.respond_to?(:fields) ? v.fields : v.to_s
+            end
           end
         else
           ref[field] = value.respond_to?(:fields) ? value.fields : value
