@@ -31,9 +31,7 @@ module CFF
     # All methods provided by Model are also available directly on File
     # objects.
     def initialize(param)
-      unless param.is_a?(Model)
-        param = Model.new(param)
-      end
+      param = Model.new(param) unless param.is_a?(Model)
 
       @model = param
     end
@@ -52,9 +50,7 @@ module CFF
     #
     # Write the supplied model or yaml string to `file`.
     def self.write(file, cff)
-      unless cff.is_a?(String)
-        cff = cff.to_yaml
-      end
+      cff = cff.to_yaml unless cff.is_a?(String)
 
       ::File.write(file, cff[YAML_HEADER.length...-1])
     end

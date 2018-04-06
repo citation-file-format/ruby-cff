@@ -34,15 +34,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 49
 
-# Offense count: 9
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/cff/entity.rb'
-    - 'lib/cff/file.rb'
-    - 'lib/cff/model.rb'
-    - 'lib/cff/reference.rb'
-
 # Offense count: 290
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.

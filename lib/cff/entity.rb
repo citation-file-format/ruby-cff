@@ -56,9 +56,7 @@ module CFF
     # Set the `date-end` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_end=(date)
-      unless date.is_a?(Date)
-        date = Date.parse(date)
-      end
+      date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-end'] = date
     end
@@ -69,9 +67,7 @@ module CFF
     # Set the `date-start` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_start=(date)
-      unless date.is_a?(Date)
-        date = Date.parse(date)
-      end
+      date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-start'] = date
     end

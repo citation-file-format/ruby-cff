@@ -226,9 +226,7 @@ module CFF
     # Set the `date-accessed` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_accessed=(date)
-      unless date.is_a?(Date)
-        date = Date.parse(date)
-      end
+      date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-accessed'] = date
     end
@@ -239,9 +237,7 @@ module CFF
     # Set the `date-downloaded` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_downloaded=(date)
-      unless date.is_a?(Date)
-        date = Date.parse(date)
-      end
+      date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-downloaded'] = date
     end
@@ -252,9 +248,7 @@ module CFF
     # Set the `date-published` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_published=(date)
-      unless date.is_a?(Date)
-        date = Date.parse(date)
-      end
+      date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-published'] = date
     end
@@ -265,9 +259,7 @@ module CFF
     # Set the `date-released` field. If a non-Date object is passed in it will
     # be parsed into a Date.
     def date_released=(date)
-      unless date.is_a?(Date)
-        date = Date.parse(date)
-      end
+      date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-released'] = date
     end
