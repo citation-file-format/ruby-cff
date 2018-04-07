@@ -210,21 +210,8 @@ module CFF
       ].each do |field|
         normalize_modelpart_array!(@fields[field])
       end
-      ref = {}
 
-      @fields.each do |field, value|
-        if value.respond_to?(:map)
-          unless value.empty?
-            ref[field] = value.map do |v|
-              v.respond_to?(:fields) ? v.fields : v.to_s
-            end
-          end
-        else
-          ref[field] = value.respond_to?(:fields) ? value.fields : value
-        end
-      end
-
-      ref
+      fields_to_hash(@fields)
     end
 
     private

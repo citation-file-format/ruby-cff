@@ -78,21 +78,8 @@ module CFF
       %w[authors contact references].each do |field|
         normalize_modelpart_array!(@fields[field])
       end
-      model = {}
 
-      @fields.each do |field, value|
-        if value.respond_to?(:map)
-          unless value.empty?
-            model[field] = value.map do |v|
-              v.respond_to?(:fields) ? v.fields : v.to_s
-            end
-          end
-        else
-          model[field] = value.respond_to?(:fields) ? value.fields : value
-        end
-      end
-
-      model
+      fields_to_hash(@fields)
     end
 
     def build_model(fields)
