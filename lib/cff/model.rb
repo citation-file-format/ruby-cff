@@ -20,24 +20,10 @@ module CFF
   class Model < ModelPart
 
     ALLOWED_FIELDS = [
-      'abstract',
-      'authors',
-      'cff-version',
-      'contact',
-      'commit',
-      'date-released',
-      'doi',
-      'keywords',
-      'license',
-      'license-url',
-      'message',
-      'references',
-      'repository',
-      'repository-artifact',
-      'repository-code',
-      'title',
-      'url',
-      'version'
+      'abstract', 'authors', 'cff-version', 'contact', 'commit',
+      'date-released', 'doi', 'keywords', 'license', 'license-url', 'message',
+      'references', 'repository', 'repository-artifact', 'repository-code',
+      'title', 'url', 'version'
     ].freeze # :nodoc:
 
     # The default message to use if none is explicitly set.
