@@ -21,12 +21,6 @@ module CFF
   module Util
     # :stopdoc:
 
-    def delete_from_hash(hash, *keys)
-      h = hash.dup
-      keys.each { |key| h.delete(key) }
-      h
-    end
-
     def method_to_field(name)
       name.tr('_', '-')
     end

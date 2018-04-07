@@ -18,20 +18,6 @@ class CFFUtilTest < Minitest::Test
 
   include ::CFF::Util
 
-  def test_delete_from_hash
-    h = { one: 1, two: 2, three: 3 }
-
-    r = delete_from_hash(h, :rubbish)
-    refute_same r, h
-    assert_equal r, h
-
-    r = delete_from_hash(h, :one)
-    refute_equal r, h
-    assert !r.has_key?(:one)
-    assert_equal r.size, 2
-    assert_equal h.size, 3
-  end
-
   def test_method_to_field
     assert_equal method_to_field('field'), 'field'
     assert_equal method_to_field('field_field'), 'field-field'
