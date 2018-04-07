@@ -64,6 +64,9 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_type_restricted_to_allowed_types
+    ref = ::CFF::Reference.new('Title')
+    assert_equal ref.type, 'generic'
+
     ref = ::CFF::Reference.new('Title', 'Article')
     assert_equal ref.type, 'article'
 

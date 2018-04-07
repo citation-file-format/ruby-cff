@@ -58,17 +58,19 @@ module CFF
     ].freeze
 
     # :call-seq:
+    #   new(title) -> Reference
     #   new(title, type) -> Reference
     #
-    # Create a new Reference with the supplied title and type. If type is not
-    # one of the [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types),
+    # Create a new Reference with the supplied title and, optionally, type.
+    # If type is not given, or is not one of the
+    # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types),
     # 'generic' will be used by default.
     def initialize(param, *more)
       if param.is_a?(Hash)
         @fields = build_model(param)
       else
         @fields = Hash.new('')
-        type = more[0].downcase
+        type = more[0] &&= more[0].downcase
         @fields['type'] = REFERENCE_TYPES.include?(type) ? type : 'generic'
         @fields['title'] = param
       end
