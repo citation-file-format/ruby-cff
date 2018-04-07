@@ -227,7 +227,7 @@ module CFF
 
     private
 
-    def build_model(fields)
+    def build_model(fields) # :nodoc:
       [
         'authors', 'contact', 'editors', 'editors-series', 'recipients',
         'senders', 'translators'
