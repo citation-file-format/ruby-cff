@@ -55,6 +55,14 @@ module CFF
       ::File.write(file, cff[YAML_HEADER.length...-1])
     end
 
+    # :call-seq:
+    #   write(file)
+    #
+    # Write this CFF File to `file`.
+    def write(file)
+      File.write(file, @model)
+    end
+
     def method_missing(name, *args) # :nodoc:
       @model.respond_to?(name) ? @model.send(name, *args) : super
     end

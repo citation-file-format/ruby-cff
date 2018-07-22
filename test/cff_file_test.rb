@@ -191,6 +191,22 @@ class CFFFileTest < Minitest::Test
     end
   end
 
+  def test_write_cff_file_from_file
+    model = ::CFF::Model.new('software')
+    model.version = '1.0.0'
+    model.date_released = '1999-12-31'
+
+    file = ::CFF::File.new(model)
+
+    within_construct(CONSTRUCT_OPTS) do
+      file.write(OUTPUT_CFF)
+      check_file_contents(OUTPUT_CFF, 'cff-version')
+      check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+    end
+  end
+
   private
 
   def check_file_contents(file, contents, exists = true)
