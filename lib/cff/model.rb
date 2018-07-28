@@ -37,6 +37,7 @@ module CFF
     def initialize(param)
       if param.is_a?(Hash)
         @fields = build_model(param)
+        @fields.default = ''
       else
         @fields = Hash.new('')
         @fields['cff-version'] = DEFAULT_SPEC_VERSION
