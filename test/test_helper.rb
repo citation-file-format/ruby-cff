@@ -24,6 +24,8 @@ require 'minitest/autorun'
 FILES_DIR = ::File.expand_path('files', __dir__)
 OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
 COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
+SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
+MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
 OUTPUT_CFF = 'CITATION.cff'.freeze
 
 CONSTRUCT_OPTS = {

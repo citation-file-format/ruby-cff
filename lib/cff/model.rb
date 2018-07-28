@@ -84,9 +84,9 @@ module CFF
     end
 
     def build_model(fields)
-      build_actor_collection!(fields['authors'])
-      build_actor_collection!(fields['contact'])
-      fields['references'].map! do |r|
+      build_actor_collection!(fields['authors'] || [])
+      build_actor_collection!(fields['contact'] || [])
+      (fields['references'] || []).map! do |r|
         Reference.new(r)
       end
 

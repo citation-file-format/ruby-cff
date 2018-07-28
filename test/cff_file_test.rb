@@ -50,6 +50,81 @@ class CFFFileTest < Minitest::Test
     assert_equal file.title, title
   end
 
+  def test_read_minimal_cff_file
+    cff = ::CFF::File.read(MINIMAL_CFF)
+    yaml = YAML.load_file(MINIMAL_CFF)
+    yaml.default = ''
+
+    methods = %w[
+      abstract
+      cff_version
+      commit
+      date_released
+      doi
+      license
+      license_url
+      message
+      repository
+      repository_artifact
+      repository_code
+      title
+      url
+      version
+    ]
+
+    methods.each do |method|
+      assert_equal cff.send(method), yaml[method_to_field(method)]
+    end
+
+    assert_equal cff.authors.length, 1
+    person = cff.authors[0]
+    assert_instance_of ::CFF::Person, person
+    assert_equal person.family_names, 'Haines'
+    assert_equal person.affiliation, 'The University of Manchester, UK'
+
+    assert_equal cff.contact.length, 0
+    assert_equal cff.keywords.length, 0
+    assert_equal cff.references.length, 0
+  end
+
+  def test_read_short_cff_file
+    cff = ::CFF::File.read(SHORT_CFF)
+    yaml = YAML.load_file(SHORT_CFF)
+    yaml.default = ''
+
+    methods = %w[
+      abstract
+      cff_version
+      commit
+      date_released
+      doi
+      keywords
+      license
+      license_url
+      message
+      repository
+      repository_artifact
+      repository_code
+      title
+      url
+      version
+    ]
+
+    methods.each do |method|
+      assert_equal cff.send(method), yaml[method_to_field(method)]
+    end
+
+    assert_equal cff.authors.length, 1
+    person = cff.authors[0]
+    assert_instance_of ::CFF::Person, person
+    assert_equal person.family_names, 'Haines'
+    assert_equal person.affiliation, 'The University of Manchester, UK'
+
+    assert_equal cff.contact.length, 0
+    assert_equal cff.keywords.length, 3
+    assert_equal cff.references.length, 0
+  end
+
   def test_read_complete_cff_file
     cff = ::CFF::File.read(COMPLETE_CFF)
     yaml = YAML.load_file(COMPLETE_CFF)
