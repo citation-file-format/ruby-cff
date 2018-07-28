@@ -151,63 +151,6 @@ class CFFFileTest < Minitest::Test
       assert_equal cff.send(method), yaml[method_to_field(method)]
     end
 
-    assert_equal cff.authors.length, 2
-    person = cff.authors[0]
-    entity = cff.authors[1]
-    assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, 'Real Person'
-    assert_equal person.affiliation, 'Excellent University, Niceplace, Arcadia'
-    assert_instance_of ::CFF::Entity, entity
-    assert_equal entity.name, 'Entity Project Team Conference entity'
-    assert_equal entity.address, '22 Acacia Avenue'
-
-    assert_equal cff.contact.length, 2
-    assert_instance_of ::CFF::Person, cff.contact[0]
-    assert_instance_of ::CFF::Entity, cff.contact[1]
-
-    assert_equal cff.keywords.length, 4
-
-    assert_equal cff.references.length, 1
-    reference = cff.references[0]
-    assert_instance_of ::CFF::Reference, reference
-    assert_equal reference.type, 'book'
-    assert_equal reference.title, 'Book Title'
-    person = reference.authors[0]
-    entity = reference.authors[1]
-    assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, 'Real Person'
-    assert_equal person.affiliation, 'Excellent University, Niceplace, Arcadia'
-    assert_instance_of ::CFF::Entity, entity
-    assert_equal entity.name, 'Entity Project Team Conference entity'
-    assert_equal entity.address, '22 Acacia Avenue'
-  end
-
-  def test_read_complete_cff_file_2
-    cff = ::CFF::File.read(COMPLETE_CFF)
-    yaml = YAML.load_file(COMPLETE_CFF)
-
-    methods = %w[
-      abstract
-      cff_version
-      commit
-      date_released
-      doi
-      keywords
-      license
-      license_url
-      message
-      repository
-      repository_artifact
-      repository_code
-      title
-      url
-      version
-    ]
-
-    methods.each do |method|
-      assert_equal cff.send(method), yaml[method_to_field(method)]
-    end
-
     assert_equal cff.keywords.length, 4
 
     assert_equal cff.references.length, 1
