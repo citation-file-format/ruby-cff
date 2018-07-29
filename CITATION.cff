@@ -15,7 +15,7 @@ keywords:
 - cff
 version: 0.4.0
 doi: 10.5281/zenodo.1184077
-date-released: 2018-07-28
+date-released: 2018-07-29
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff

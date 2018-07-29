@@ -1,5 +1,34 @@
 # Changes log for the Ruby CFF Library
 
+## Version 0.4.0
+
+* Remove unused Util#expand_field method.
+* Changed Model#keywords to be a field type.
+* Model is now a subclass of ModelPart.
+* Document ModelPart and Util just enough.
+* Add Util::normalize_modelpart_array! method.
+* Tighten up checking for empty collections in model.
+* Move the references into the Model fields.
+* Add an in-place actor collection builder method.
+* Move authors and contact to Model fields.
+* Refactor Reference so the actor lists are fields.
+* Remove unused method: Util::build_actor_collection.
+* Remove unused method: Util::expand_array_field.
+* Add rubocop to the development dependencies.
+* Add rubocop configuration files.
+* Add rubocop rake tasks.
+* Many rubocop fixes.
+* Compact ALLOWED_FIELDS lists for consistency.
+* Allow creation of a Reference without a type.
+* Remove unused method: Util.delete_from_hash.
+* Refactor duplicated code into Util.fields_to_hash.
+* Add File#write (instance method).
+* Ensure a model always returns '' for missing fields.
+* Test reading short and minimal CFF files.
+* Cleanup duplicated tests.
+* Don't store dotfiles in the gemfile.
+* Add a CITATION.cff file!
+
 ## Version 0.3.0
 
 * Update badges for new repo location.
