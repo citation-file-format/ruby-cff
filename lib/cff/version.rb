@@ -15,6 +15,6 @@
 ##
 module CFF
   # :nodoc:
-  VERSION = '0.4.0'.freeze
+  VERSION = '0.5.0'.freeze
   DEFAULT_SPEC_VERSION = '1.0.3'.freeze
 end
