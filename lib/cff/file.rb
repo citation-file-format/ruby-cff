@@ -60,7 +60,10 @@ module CFF
     #
     # Read a file and parse it for subsequent manipulation.
     def self.read(file)
-      new(YAML.load_file(file))
+      content = ::File.read(file)
+      comment = File.parse_comment(content)
+
+      new(YAML.load(content), comment)
     end
 
     # :call-seq:
@@ -68,10 +71,11 @@ module CFF
     #   write(file, yaml)
     #
     # Write the supplied model or yaml string to `file`.
-    def self.write(file, cff)
+    def self.write(file, cff, comment = '')
       cff = cff.to_yaml unless cff.is_a?(String)
+      content = File.format_comment(comment) + cff[YAML_HEADER.length...-1]
 
-      ::File.write(file, cff[YAML_HEADER.length...-1])
+      ::File.write(file, content)
     end
 
     # :call-seq:
@@ -79,7 +83,7 @@ module CFF
     #
     # Write this CFF File to `file`.
     def write(file)
-      File.write(file, @model)
+      File.write(file, @model, @comment)
     end
 
     def method_missing(name, *args) # :nodoc:

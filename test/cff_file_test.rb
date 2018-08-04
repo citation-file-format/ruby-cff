@@ -85,6 +85,9 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.contact.length, 0
     assert_equal cff.keywords.length, 0
     assert_equal cff.references.length, 0
+
+    assert_equal cff.comment,
+                 ['A minimal CFF file with only the required fields included.']
   end
 
   def test_read_short_cff_file
@@ -123,6 +126,8 @@ class CFFFileTest < Minitest::Test
     assert_equal cff.contact.length, 0
     assert_equal cff.keywords.length, 3
     assert_equal cff.references.length, 0
+
+    assert_equal cff.comment, ['An incomplete CFF file']
   end
 
   def test_read_complete_cff_file
@@ -193,6 +198,7 @@ class CFFFileTest < Minitest::Test
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+      check_file_comment(OUTPUT_CFF, [])
     end
   end
 
@@ -206,15 +212,18 @@ class CFFFileTest < Minitest::Test
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+      check_file_comment(OUTPUT_CFF, [])
     end
   end
 
   def test_write_cff_file_from_file
+    comment = 'Test comment.'
     model = ::CFF::Model.new('software')
     model.version = '1.0.0'
     model.date_released = '1999-12-31'
 
-    file = ::CFF::File.new(model)
+    file = ::CFF::File.new(model, comment)
+    assert_equal file.comment, comment
 
     within_construct(CONSTRUCT_OPTS) do
       file.write(OUTPUT_CFF)
@@ -222,6 +231,7 @@ class CFFFileTest < Minitest::Test
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+      check_file_comment(OUTPUT_CFF, [comment])
     end
   end
 
@@ -262,5 +272,11 @@ class CFFFileTest < Minitest::Test
     else
       refute file.include?(contents)
     end
+  end
+
+  def check_file_comment(file, comment)
+    file = ::File.read(file)
+
+    assert_equal ::CFF::File.parse_comment(file), comment
   end
 end
