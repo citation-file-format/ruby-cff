@@ -70,5 +70,12 @@ module CFF
     def respond_to_missing?(name, *all) # :nodoc:
       @model.respond_to?(name, *all)
     end
+
+    def self.format_comment(comment) # :nodoc:
+      return '' if comment.empty?
+      comment = comment.scan(/.{1,75}/) if comment.is_a?(String)
+
+      comment.map { |l| '# ' + l }.join("\n") + "\n\n"
+    end
   end
 end

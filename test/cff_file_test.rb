@@ -225,6 +225,22 @@ class CFFFileTest < Minitest::Test
     end
   end
 
+  def test_format_comment_array
+    before = ['A multi-line', 'comment.']
+    after = "# A multi-line\n# comment.\n\n"
+
+    assert_equal ::CFF::File.format_comment([]), ''
+    assert_equal ::CFF::File.format_comment(before), after
+  end
+
+  def test_format_comment_string
+    before = 'A very 01234567890123456789012345678901234567890123456789012345678901234567890123456789 long comment'
+    after = "# A very 01234567890123456789012345678901234567890123456789012345678901234567\n# 890123456789 long comment\n\n"
+
+    assert_equal ::CFF::File.format_comment(''), ''
+    assert_equal ::CFF::File.format_comment(before), after
+  end
+
   private
 
   def check_file_contents(file, contents, exists = true)
