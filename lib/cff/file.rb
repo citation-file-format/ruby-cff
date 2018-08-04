@@ -19,7 +19,25 @@ module CFF
   # filesystem utilities.
   class File
 
+    # A comment to be inserted at the top of the resultant CFF file. This can
+    # be supplied as a simple string or an array of strings. When the file is
+    # saved this comment is formatted as follows:
+    #
+    # * a simple string is split into 75 character lines and `'# '` is prepended
+    # to each line;
+    # * an array of strings is joined into a single string with `'\n'` and
+    # `'# '` is prepended to each line;
+    #
+    # If you care about formatting, use an array of strings for your comment,
+    # if not, use a single string.
+    attr_accessor :comment
+
     YAML_HEADER = "---\n".freeze # :nodoc:
+    CFF_COMMENT = [
+      "This CITATION.cff file was created by ruby-cff (v #{CFF::VERSION}).",
+      'Gem: https://rubygems.org/gems/cff',
+      'CFF: https://citation-file-format.github.io/'
+    ].freeze # :nodoc:
 
     # :call-seq:
     #   new(title) -> File
@@ -30,10 +48,11 @@ module CFF
     #
     # All methods provided by Model are also available directly on File
     # objects.
-    def initialize(param)
+    def initialize(param, comment = CFF_COMMENT)
       param = Model.new(param) unless param.is_a?(Model)
 
       @model = param
+      @comment = comment
     end
 
     # :call-seq:
