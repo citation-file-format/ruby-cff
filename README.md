@@ -32,6 +32,10 @@ CFF::File.write("CITATION.cff", cff)
 Will produce a file that looks something like this:
 
 ```
+# This CITATION.cff file was created by ruby-cff (v 0.5.0).
+# Gem: https://rubygems.org/gems/cff
+# CFF: https://citation-file-format.github.io/
+
 cff-version: 1.0.3
 message: If you use this software in your work, please cite it using the following metadata
 title: Ruby CFF Library
