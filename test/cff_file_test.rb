@@ -241,6 +241,17 @@ class CFFFileTest < Minitest::Test
     assert_equal ::CFF::File.format_comment(before), after
   end
 
+  def test_parse_comment
+    before_s = "###   A comment#.\n"
+    after_s = ['A comment#.']
+    before_m = "# A   \n### multi-line\n#    comment with #s\n\n# More"
+    after_m = ['A', 'multi-line', 'comment with #s']
+
+    assert_equal ::CFF::File.parse_comment(''), []
+    assert_equal ::CFF::File.parse_comment(before_s), after_s
+    assert_equal ::CFF::File.parse_comment(before_m), after_m
+  end
+
   private
 
   def check_file_contents(file, contents, exists = true)

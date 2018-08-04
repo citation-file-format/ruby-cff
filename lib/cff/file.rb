@@ -77,5 +77,14 @@ module CFF
 
       comment.map { |l| '# ' + l }.join("\n") + "\n\n"
     end
+
+    def self.parse_comment(content) # :nodoc:
+      content = content.split("\n")
+
+      content.reduce([]) do |acc, line|
+        break acc unless line.start_with?('#')
+        acc << line.sub(/^#+/, '').strip
+      end
+    end
   end
 end
