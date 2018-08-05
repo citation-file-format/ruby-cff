@@ -236,8 +236,8 @@ class CFFFileTest < Minitest::Test
   end
 
   def test_format_comment_array
-    before = ['A multi-line', 'comment.']
-    after = "# A multi-line\n# comment.\n\n"
+    before = ['A multi-line', '', 'comment.']
+    after = "# A multi-line\n#\n# comment.\n\n"
 
     assert_equal ::CFF::File.format_comment([]), ''
     assert_equal ::CFF::File.format_comment(before), after
@@ -254,8 +254,8 @@ class CFFFileTest < Minitest::Test
   def test_parse_comment
     before_s = "###   A comment#.\n"
     after_s = ['A comment#.']
-    before_m = "# A   \n### multi-line\n#    comment with #s\n\n# More"
-    after_m = ['A', 'multi-line', 'comment with #s']
+    before_m = "###\n# A   \n### multi-line\n#    comment with #s\n\n# More"
+    after_m = ['', 'A', 'multi-line', 'comment with #s']
 
     assert_equal ::CFF::File.parse_comment(''), []
     assert_equal ::CFF::File.parse_comment(before_s), after_s
