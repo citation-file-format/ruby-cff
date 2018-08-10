@@ -17,6 +17,28 @@ module CFF
 
   # Model is the core data structure for a CITATION.cff file. It can be
   # accessed direcly, or via File.
+  #
+  # Model implements all of the fields listed in the CFF standard. Complex
+  # fields - `authors`, `contact`, `keywords` and `references` - are
+  # documented below. All other fields are simple strings and can be set as
+  # such. A field which has not been set will return the empty string. The
+  # simple fields are (with defaults in parentheses):
+  #
+  # * `abstract`
+  # * `cff_version` (1.0.3)
+  # * `commit`
+  # * `date_released`
+  # * `doi`
+  # * `license`
+  # * `license_url`
+  # * `message` (If you use this software in your work, please cite it using
+  # the following metadata)
+  # * `repository`
+  # * `repository_artifact`
+  # * `repository_code`
+  # * `title`
+  # * `url`
+  # * `version`
   class Model < ModelPart
 
     ALLOWED_FIELDS = [
