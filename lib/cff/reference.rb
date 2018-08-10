@@ -19,6 +19,72 @@ module CFF
   # software itself, e.g., a software paper describing the abstract concepts of
   # the software, a paper describing an algorithm that has been implemented in
   # the software version, etc.
+  #
+  # Reference implements all of the fields listed in the CFF standard. Complex
+  # fields - `authors`, `contact`, `editors`, `editors_series`, `keywords`,
+  # `languages`, `patent_states`, `recipients`, `senders` and `translators` -
+  # are documented below. All other fields are simple strings and can be set as
+  # such. A field which has not been set will return the empty string. The
+  # simple fields are (with defaults in parentheses):
+  #
+  # * `abbreviation`
+  # * `abstract`
+  # * `collection_doi`
+  # * `collection_title`
+  # * `collection_type`
+  # * `commit`
+  # * `conference`
+  # * `copyright`
+  # * `data-type`
+  # * `database`
+  # * `database_provider`
+  # * `date_accessed` - *Note:* returns a `Date` object
+  # * `date_downloaded` - *Note:* returns a `Date` object
+  # * `date_published` - *Note:* returns a `Date` object
+  # * `date_released` - *Note:* returns a `Date` object
+  # * `department`
+  # * `doi`
+  # * `edition`
+  # * `end`
+  # * `entry`
+  # * `filename`
+  # * `institution`
+  # * `isbn`
+  # * `issn`
+  # * `issue`
+  # * `issue_date` - *Note:* returns a `Date` object
+  # * `issue_title`
+  # * `journal`
+  # * `license` - *Note:* see documentation for `license =` below
+  # * `license_url`
+  # * `loc_end`
+  # * `loc_start`
+  # * `location`
+  # * `medium`
+  # * `month`
+  # * `nihmsid`
+  # * `notes`
+  # * `number`
+  # * `number_volumes`
+  # * `pages`
+  # * `pmcid`
+  # * `publisher`
+  # * `repository`
+  # * `repository_code`
+  # * `repository_artifact`
+  # * `scope`
+  # * `section`
+  # * `start`
+  # * `status` - *Note:* see documentation for `status =` below
+  # * `thesis_type`
+  # * `title`
+  # * `type` - *Note:* see documentation for `type =` below
+  # * `url`
+  # * `version`
+  # * `volume`
+  # * `volume_title`
+  # * `year`
+  # * `year_original`
   class Reference < ModelPart
 
     ALLOWED_FIELDS = [
