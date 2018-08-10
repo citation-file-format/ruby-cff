@@ -27,7 +27,7 @@ module CFF
   # * `abstract`
   # * `cff_version` (1.0.3)
   # * `commit`
-  # * `date_released`
+  # * `date_released` - *Note:* returns a `Date` object
   # * `doi`
   # * `license`
   # * `license_url`
