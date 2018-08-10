@@ -20,7 +20,8 @@ module CFF
   # the software, a paper describing an algorithm that has been implemented in
   # the software version, etc.
   #
-  # Reference implements all of the fields listed in the CFF standard. Complex
+  # Reference implements all of the fields listed in the
+  # [CFF standard](https://citation-file-format.github.io/). Complex
   # fields - `authors`, `contact`, `editors`, `editors_series`, `keywords`,
   # `languages`, `patent_states`, `recipients`, `senders` and `translators` -
   # are documented below. All other fields are simple strings and can be set as

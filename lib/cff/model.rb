@@ -18,7 +18,8 @@ module CFF
   # Model is the core data structure for a CITATION.cff file. It can be
   # accessed direcly, or via File.
   #
-  # Model implements all of the fields listed in the CFF standard. Complex
+  # Model implements all of the fields listed in the
+  # [CFF standard](https://citation-file-format.github.io/). Complex
   # fields - `authors`, `contact`, `keywords` and `references` - are
   # documented below. All other fields are simple strings and can be set as
   # such. A field which has not been set will return the empty string. The

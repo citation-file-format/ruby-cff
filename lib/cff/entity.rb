@@ -19,7 +19,8 @@ module CFF
   # company, or conference. Like a Person, an Entity might have a number of
   # roles, such as author, contact, editor, etc.
   #
-  # Entity implements all of the fields listed in the CFF standard. All fields
+  # Entity implements all of the fields listed in the
+  # [CFF standard](https://citation-file-format.github.io/). All fields
   # are simple strings and can be set as such. A field which has not been set
   # will return the empty string. The simple fields are (with defaults in
   # parentheses):
