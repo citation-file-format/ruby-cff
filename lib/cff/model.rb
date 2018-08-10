@@ -83,11 +83,8 @@ module CFF
       @fields['date-released'] = date
     end
 
-    # :call-seq:
-    #   version = version
-    #
-    # Set the `version` field.
-    def version=(version)
+    # Set the `version` field, converting to string if necessary.
+    def version=(version) # :nodoc:
       @fields['version'] = version.to_s
     end
 
