@@ -18,6 +18,26 @@ module CFF
   # An Entity can represent different types of entities, e.g., a publishing
   # company, or conference. Like a Person, an Entity might have a number of
   # roles, such as author, contact, editor, etc.
+  #
+  # Entity implements all of the fields listed in the CFF standard. All fields
+  # are simple strings and can be set as such. A field which has not been set
+  # will return the empty string. The simple fields are (with defaults in
+  # parentheses):
+  #
+  # * `address`
+  # * `city`
+  # * `country`
+  # * `email`
+  # * `date_end` - *Note:* returns a `Date` object
+  # * `date_start` - *Note:* returns a `Date` object
+  # * `fax`
+  # * `location`
+  # * `name`
+  # * `orcid`
+  # * `post_code`
+  # * `region`
+  # * `tel`
+  # * `website`
   class Entity < ModelPart
 
     ALLOWED_FIELDS = [
