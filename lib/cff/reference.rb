@@ -48,6 +48,7 @@ module CFF
   # * `end`
   # * `entry`
   # * `filename`
+  # * `format`
   # * `institution`
   # * `isbn`
   # * `issn`
@@ -232,19 +233,19 @@ module CFF
       @fields['date-released'] = date
     end
 
-    # :call-seq:
-    #   format -> String
-    #
     # Returns the format of this Reference.
-    def format
+    #
+    # This method is explicitly defined to override the private format method
+    # that all objects seem to have.
+    def format # :nodoc:
       @fields['format']
     end
 
-    # :call-seq:
-    #   format = format
-    #
     # Sets the format of this Reference.
-    def format=(fmt)
+    #
+    # This method is explicitly defined to override the private format method
+    # that all objects seem to have.
+    def format=(fmt) # :nodoc:
       @fields['format'] = fmt
     end
 
