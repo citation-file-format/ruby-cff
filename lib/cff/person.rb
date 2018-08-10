@@ -17,6 +17,27 @@ module CFF
 
   # A Person represents a person in a CITATION.cff file. A Person might have a
   # number of roles, such as author, contact, editor, etc.
+  #
+  # Person implements all of the fields listed in the CFF standard. All fields
+  # are simple strings and can be set as such. A field which has not been set
+  # will return the empty string. The simple fields are (with defaults in
+  # parentheses):
+  #
+  # * `address`
+  # * `affiliation`
+  # * `city`
+  # * `country`
+  # * `email`
+  # * `family_names`
+  # * `fax`
+  # * `given_names`
+  # * `name_particle`
+  # * `name_suffix`
+  # * `orcid`
+  # * `post_code`
+  # * `region`
+  # * `tel`
+  # * `website`
   class Person < ModelPart
 
     ALLOWED_FIELDS = [
