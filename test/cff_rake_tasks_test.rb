@@ -52,4 +52,17 @@ class CFFRakeTasksTest < Minitest::Test
 
     assert cff.verbose
   end
+
+  def test_running_create_rake_task_verbose
+    ::CFF::RakeTask.new do |task|
+      task.verbose = true
+    end
+
+    out, err = capture_io do
+      Rake::Task['cff:create'].execute
+    end
+
+    refute_empty out
+    assert_empty err
+  end
 end
