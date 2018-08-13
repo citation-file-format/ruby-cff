@@ -42,7 +42,7 @@ module CFF
 
     def generate_task(*args, &task_block)
       namespace(name) do
-        desc 'A description'
+        desc 'Generate a CFF file from available project data'
         task(:generate, *args) do |_, task_args|
           RakeFileUtils.verbose(verbose) do
             yield(*[self, task_args].slice(0, task_block.arity)) if block_given?
