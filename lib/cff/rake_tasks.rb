@@ -37,16 +37,16 @@ module CFF
 
       yield self if block_given?
 
-      create_task(*args, &task_block)
+      generate_task(*args, &task_block)
     end
 
-    def create_task(*args, &task_block)
+    def generate_task(*args, &task_block)
       namespace(name) do
         desc 'A description'
-        task(:create, *args) do |_, task_args|
+        task(:generate, *args) do |_, task_args|
           RakeFileUtils.verbose(verbose) do
             yield(*[self, task_args].slice(0, task_block.arity)) if block_given?
-            create
+            generate
           end
         end
       end
@@ -54,8 +54,8 @@ module CFF
 
     private
 
-    def create
-      puts 'Creating CFF file...' if verbose
+    def generate
+      puts 'Generating CFF file...' if verbose
     end
   end
 end
