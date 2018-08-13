@@ -18,6 +18,7 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rdoc/task'
 require 'rubocop/rake_task'
+require 'cff/rake_tasks'
 
 task default: :test
 
@@ -36,3 +37,5 @@ RDoc::Task.new do |r|
 end
 
 RuboCop::RakeTask.new
+
+CFF::RakeTask.new
