@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -256,7 +258,7 @@ module CFF
     # Sets the status of this Reference. The status is restricted to a
     # [defined set of status types](https://citation-file-format.github.io/1.0.3/specifications/#/status-strings).
     def status=(status)
-      status.downcase!
+      status = status.downcase
       @fields['status'] = status if REFERENCE_STATUS_TYPES.include?(status)
     end
 
@@ -266,7 +268,7 @@ module CFF
     # Sets the type of this Reference. The type is restricted to a
     # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
     def type=(type)
-      type.downcase!
+      type = type.downcase
       @fields['type'] = type if REFERENCE_TYPES.include?(type)
     end
 

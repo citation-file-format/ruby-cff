@@ -17,10 +17,6 @@ Lint/UselessAccessModifier:
 Style/PreferredHashMethods:
   EnforcedStyle: verbose
 
-# Turn this off for now.
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 # Enforce empty lines at the beginning of classes.
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: beginning_only

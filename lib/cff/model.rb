@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,7 +53,7 @@ module CFF
 
     # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
-      'it using the following metadata'.freeze
+      'it using the following metadata'
 
     # :call-seq:
     #   new(title) -> Model

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +34,7 @@ module CFF
     # if not, use a single string.
     attr_accessor :comment
 
-    YAML_HEADER = "---\n".freeze # :nodoc:
+    YAML_HEADER = "---\n" # :nodoc:
     CFF_COMMENT = [
       "This CITATION.cff file was created by ruby-cff (v #{CFF::VERSION}).",
       'Gem: https://rubygems.org/gems/cff',

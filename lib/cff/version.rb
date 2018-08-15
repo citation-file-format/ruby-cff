@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +17,6 @@
 ##
 module CFF
   # :nodoc:
-  VERSION = '0.5.0'.freeze
-  DEFAULT_SPEC_VERSION = '1.0.3'.freeze
+  VERSION = '0.5.0'
+  DEFAULT_SPEC_VERSION = '1.0.3'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

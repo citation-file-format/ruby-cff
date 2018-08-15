@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +28,7 @@ OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
 COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
 SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
 MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
-OUTPUT_CFF = 'CITATION.cff'.freeze
+OUTPUT_CFF = 'CITATION.cff'
 
 CONSTRUCT_OPTS = {
   keep_on_error: true
