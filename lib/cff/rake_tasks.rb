@@ -26,7 +26,7 @@ module CFF
   # CFF::RakeTask.new
   class RakeTask < Rake::TaskLib
 
-    DEFAULT_NAMESPACE = :cff # :nodoc:
+    DEFAULT_NAMESPACE = :citation # :nodoc:
 
     attr_accessor :name
     attr_accessor :verbose

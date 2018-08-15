@@ -26,8 +26,8 @@ class CFFRakeTasksTest < Minitest::Test
   def test_default_rake_tasks_defined
     cff = ::CFF::RakeTask.new
 
-    assert_equal cff.name, :cff
-    assert Rake::Task.task_defined?('cff:generate')
+    assert_equal cff.name, :citation
+    assert Rake::Task.task_defined?('citation:generate')
   end
 
   def test_named_rake_tasks_defined
@@ -59,7 +59,7 @@ class CFFRakeTasksTest < Minitest::Test
     end
 
     out, err = capture_io do
-      Rake::Task['cff:generate'].execute
+      Rake::Task['citation:generate'].execute
     end
 
     refute_empty out
