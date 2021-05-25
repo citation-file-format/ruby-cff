@@ -33,10 +33,10 @@ module CFF
     end
 
     def self.combine_authors(authors)
-      return authors.first
+      #return authors.first
 
       if authors.length === 1
-        return authors
+        return authors.first
       end
 
       if authors.length === 2
