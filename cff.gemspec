@@ -40,13 +40,13 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.2.0'
 
   spec.add_runtime_dependency 'language_list', '~> 1.2'
-  spec.add_runtime_dependency 'spdx-licenses', '~> 1.1'
+  spec.add_runtime_dependency 'spdx-licenses', '~> 1.3'
 
-  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'bundler', '~> 2.1'
   spec.add_development_dependency 'coveralls', '~> 0.8'
-  spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rdoc', '~> 6.0'
-  spec.add_development_dependency 'rubocop', '~> 0.54'
+  spec.add_development_dependency 'minitest', '~> 5.14'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rdoc', '~> 6.3'
+  spec.add_development_dependency 'rubocop', '~> 1.15'
   spec.add_development_dependency 'test_construct', '~> 2.0'
 end
