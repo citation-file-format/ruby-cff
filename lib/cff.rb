@@ -27,6 +27,8 @@ require 'cff/entity'
 require 'cff/reference'
 require 'cff/model'
 require 'cff/file'
+require 'cff/apa_formatter'
+require 'cff/bibtex_formatter'
 
 # This library provides a Ruby interface to manipulate CITATION.cff files. The
 # primary entry points are Model and File.

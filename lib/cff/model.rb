@@ -93,7 +93,7 @@ module CFF
     end
 
     def to_apalike
-
+      CFF::ApaFormatter.format(model: self)
     end
 
     def to_bibtex

@@ -1,2 +1,1 @@
-Haines R. (2018). Ruby CFF Library (version 0.4.0). root@21b73e469097:/cff-converter-python# cffconvert -if /files/complete.cff -f apalike
 van der Real Person IV O.T. (2017). Citation File Format 1.0.0 (version 1.0.0). DOI: http://doi.org/10.5281/zenodo.1003150 URL: http://foo.com/blah_(wikipedia)_blah#cite-1
