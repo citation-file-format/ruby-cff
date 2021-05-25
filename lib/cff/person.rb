@@ -62,5 +62,9 @@ module CFF
         @fields['given-names'] = param
       end
     end
+
+    def bibtex_name
+      @fields['given-names'] + ' ' + @fields['family-names']
+    end
   end
 end

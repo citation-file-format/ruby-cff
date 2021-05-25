@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Copyright (c) 2018 Robert Haines.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,7 +41,6 @@ module CFF
   # * `url`
   # * `version`
   class Model < ModelPart
-
     ALLOWED_FIELDS = [
       'abstract', 'authors', 'cff-version', 'contact', 'commit',
       'date-released', 'doi', 'keywords', 'license', 'license-url', 'message',
@@ -95,12 +92,24 @@ module CFF
       YAML.dump fields, line_width: -1, indentation: 2
     end
 
-    def to_bibtex
-      "wurstchen"
-    end
-
     def to_apalike
 
+    end
+
+    def to_bibtex
+      supported_bibtex_props = ['author', 'doi', 'month', 'title', 'url', 'year']
+
+      bibtex = ""
+      bibtex << "@misc{\n"
+      bibtex << "authors = " + self.authors.map(&:bibtex_name).join(", ") + ",\n"
+      bibtex << "title = {" + self.title + "},\n"
+      bibtex << "url = {" + self.url + "},\n" if url
+      bibtex << "year = {" + self.date_released.year.to_s + "},\n"
+      bibtex << "month = {" + self.date_released.month.to_s + "},\n"
+      bibtex << "doi = {" + self.doi + "},\n" if doi
+      bibtex << "}"
+
+      return bibtex
     end
 
     private
