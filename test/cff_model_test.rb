@@ -243,4 +243,34 @@ class CFFModelTest < Minitest::Test
     refute y.include? 'keywords:'
     refute y.include? 'references:'
   end
+
+  def test_bibtex_minimal
+    cff = ::CFF::File.read(MINIMAL_CFF)
+    assert_equal File.read(MINIMAL_CFF_BIBTEX), cff.to_bibtex
+  end
+
+  def test_apalike_minimal
+    cff = ::CFF::File.read(MINIMAL_CFF)
+    assert_equal File.read(MINIMAL_CFF_APALIKE), cff.to_apalike
+  end
+
+  def test_bibtex_complete
+    cff = ::CFF::File.read(COMPLETE_CFF)
+    assert_equal File.read(COMPLETE_CFF_BIBTEX), cff.to_bibtex
+  end
+
+  def test_apalike_complete
+    cff = ::CFF::File.read(COMPLETE_CFF)
+    assert_equal File.read(COMPLETE_CFF_APALIKE), cff.to_apalike
+  end
+
+  def test_bibtex_short
+    cff = ::CFF::File.read(SHORT_CFF)
+    assert_equal File.read(SHORT_CFF_BIBTEX), cff.to_bibtex
+  end
+
+  def test_apalike_short
+    cff = ::CFF::File.read(SHORT_CFF)
+    assert_equal File.read(SHORT_CFF_APALIKE), cff.to_apalike
+  end
 end

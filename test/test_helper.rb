@@ -30,6 +30,16 @@ SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
 MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
 OUTPUT_CFF = 'CITATION.cff'
 
+CONVERTED_DIR = ::File.expand_path('converted', __dir__)
+SHORT_CFF_BIBTEX = ::File.join(CONVERTED_DIR, 'short_bibtex.txt')
+SHORT_CFF_APALIKE = ::File.join(CONVERTED_DIR, 'short_apalike.txt')
+
+MINIMAL_CFF_BIBTEX = ::File.join(CONVERTED_DIR, 'minimal_bibtex.txt')
+MINIMAL_CFF_APALIKE = ::File.join(CONVERTED_DIR, 'minimal_apalike.txt')
+
+COMPLETE_CFF_BIBTEX = ::File.join(CONVERTED_DIR, 'complete_bibtex.txt')
+COMPLETE_CFF_APALIKE = ::File.join(CONVERTED_DIR, 'complete_apalike.txt')
+
 CONSTRUCT_OPTS = {
   keep_on_error: true
 }.freeze

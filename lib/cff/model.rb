@@ -95,6 +95,14 @@ module CFF
       YAML.dump fields, line_width: -1, indentation: 2
     end
 
+    def to_bibtex
+      "wurstchen"
+    end
+
+    def to_apalike
+
+    end
+
     private
 
     def fields
