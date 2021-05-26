@@ -98,8 +98,8 @@ module CFF
 
     def self.format_comment(comment) # :nodoc:
       return '' if comment.empty?
-      comment = comment.scan(/.{1,75}/) if comment.is_a?(String)
 
+      comment = comment.scan(/.{1,75}/) if comment.is_a?(String)
       comment.map do |l|
         l.empty? ? '#' : '# ' + l
       end.join("\n") + "\n\n"
@@ -110,6 +110,7 @@ module CFF
 
       content.reduce([]) do |acc, line|
         break acc unless line.start_with?('#')
+
         acc << line.sub(/^#+/, '').strip
       end
     end

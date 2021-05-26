@@ -6,13 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'lib/cff/file.rb'
-    - 'lib/cff/reference.rb'
-
 # Offense count: 4
 Lint/MissingSuper:
   Exclude:

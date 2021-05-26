@@ -161,6 +161,7 @@ module CFF
       @fields['languages'] = [] if @fields['languages'].empty?
       lang = LanguageList::LanguageInfo.find(lang)
       return if lang.nil?
+
       lang = lang.iso_639_3
       @fields['languages'] << lang unless @fields['languages'].include? lang
     end
