@@ -46,5 +46,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 12.3.3'
   spec.add_development_dependency 'rdoc', '~> 6.0'
   spec.add_development_dependency 'rubocop', '~> 1.15.0'
+  spec.add_development_dependency 'rubocop-rake', '~> 0.5.0'
   spec.add_development_dependency 'test_construct', '~> 2.0'
 end
