@@ -27,6 +27,7 @@ require 'cff/entity'
 require 'cff/reference'
 require 'cff/model'
 require 'cff/file'
+require 'cff/formatter'
 require 'cff/apa_formatter'
 require 'cff/bibtex_formatter'
 

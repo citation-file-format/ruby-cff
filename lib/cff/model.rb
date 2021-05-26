@@ -97,19 +97,7 @@ module CFF
     end
 
     def to_bibtex
-      supported_bibtex_props = ['author', 'doi', 'month', 'title', 'url', 'year']
-
-      bibtex = ""
-      bibtex << "@misc{\n"
-      bibtex << "authors = " + self.authors.map(&:bibtex_name).join(", ") + ",\n"
-      bibtex << "title = {" + self.title + "},\n"
-      bibtex << "url = {" + self.url + "},\n" if url
-      bibtex << "year = {" + self.date_released.year.to_s + "},\n"
-      bibtex << "month = {" + self.date_released.month.to_s + "},\n"
-      bibtex << "doi = {" + self.doi + "},\n" if doi
-      bibtex << "}"
-
-      return bibtex
+      CFF::BibtexFormatter.format(model: self)
     end
 
     private
