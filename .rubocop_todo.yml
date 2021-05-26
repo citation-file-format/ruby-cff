@@ -20,9 +20,3 @@ Lint/MissingSuper:
 Style/OptionalBooleanParameter:
   Exclude:
     - 'test/cff_file_test.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/StringConcatenation:
-  Exclude:
-    - 'lib/cff/file.rb'

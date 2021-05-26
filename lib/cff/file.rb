@@ -100,9 +100,11 @@ module CFF
       return '' if comment.empty?
 
       comment = comment.scan(/.{1,75}/) if comment.is_a?(String)
-      comment.map do |l|
-        l.empty? ? '#' : '# ' + l
-      end.join("\n") + "\n\n"
+      c = comment.map do |l|
+        l.empty? ? '#' : "# #{l}"
+      end.join("\n")
+
+      "#{c}\n\n"
     end
 
     def self.parse_comment(content) # :nodoc:
