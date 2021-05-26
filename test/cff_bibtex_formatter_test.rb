@@ -4,6 +4,11 @@ class CFFBibtexFormatterTest < Minitest::Test
 
   include ::CFF::Util
 
+  def test_can_tolerate_invalid_file
+    cff = CFF::Model.new(nil)
+    assert_nil cff.to_bibtex
+  end
+
   def test_bibtex_minimal
     cff = ::CFF::File.read(MINIMAL_CFF)
     assert_equal File.read(MINIMAL_CFF_BIBTEX), cff.to_bibtex

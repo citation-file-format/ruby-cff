@@ -4,6 +4,11 @@ class CFFApaFormatterTest < Minitest::Test
 
   include ::CFF::Util
 
+  def test_can_tolerate_invalid_file
+    cff = CFF::Model.new(nil)
+    assert_nil cff.to_apalike
+  end
+
   def test_apalike_minimal
     cff = ::CFF::File.read(MINIMAL_CFF)
     assert_equal File.read(MINIMAL_CFF_APALIKE), cff.to_apalike

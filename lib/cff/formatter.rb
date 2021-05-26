@@ -1,5 +1,9 @@
 module CFF
   class Formatter
+    def self.has_required_fields?(model)
+      !(model.authors.empty? || !date_present?(model.date_released) || model.title.empty? || model.version.empty?)
+    end
+
     def self.format_author(author)
       if author.kind_of?(Person)
         output = ""
@@ -10,15 +14,23 @@ module CFF
         return output
       end
 
-      if author.kind_of?(Entity)
-        return author.name
+      return author.name if author.kind_of?(Entity)
+    end
+
+    def self.date_present?(attribute)
+      if attribute.kind_of?(String)
+        return !attribute.empty?
       end
+
+      if attribute.kind_of?(Date)
+        return !attribute.nil?
+      end
+
+      false
     end
 
     def self.present?(attribute)
-      if defined?(attribute.empty?)
-        return attribute && !attribute.empty?
-      end
+      return attribute && !attribute.empty? if defined?(attribute) && defined?(attribute.empty?)
       return attribute
     end
 
@@ -28,18 +40,11 @@ module CFF
 
     # This is following the specs for APA like
     def self.combine_authors(authors)
-      if authors.length === 1
-        return authors.first
-      end
+      return authors.first if authors.length === 1
 
-      if authors.length === 2
-        return "#{authors.first} & #{authors.last}"
-      end
+      return "#{authors.first} & #{authors.last}" if authors.length === 2
 
-      if authors.length > 2 && authors.length <= 5
-        return "#{authors[0..authors.length-1].join(", ")} & #{authors.last}"
-      end
+      return "#{authors[0..authors.length - 1].join(", ")} & #{authors.last}" if authors.length > 2 && authors.length <= 5
     end
-
   end
 end
