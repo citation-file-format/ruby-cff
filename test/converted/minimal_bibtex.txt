@@ -1,5 +1,5 @@
 @misc{YourReferenceHere,
-author = {Robert Haines},
+author = {Haines R},
 month = {7},
 title = {Ruby CFF Library},
 year = {2018}
