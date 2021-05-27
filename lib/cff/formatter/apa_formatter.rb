@@ -9,8 +9,8 @@ module CFF
       output << "(#{model.date_released.strftime("%Y")}). " if present?(model.date_released)
       output << "#{model.title}" if present?(model.title)
       output << " (version #{model.version})." if present?(model.version)
-      output << " DOI: http://doi.org/#{model.doi} " if present?(model.doi)
-      output << "URL: #{model.repository_code}" if present?(model.repository_code)
+      output << " DOI: http://doi.org/#{model.doi}" if present?(model.doi)
+      output << " URL: #{model.repository_code}" if present?(model.repository_code)
       return output
 
     rescue
