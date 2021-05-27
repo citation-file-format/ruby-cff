@@ -7,7 +7,7 @@ inherit_from:
 
 # Set our base version of ruby and enable all cops.
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
   NewCops: enable
 
 # Turn this off for certain files where we have extra documentation
