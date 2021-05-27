@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018 Robert Haines.
+# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -98,11 +98,13 @@ module CFF
 
     def self.format_comment(comment) # :nodoc:
       return '' if comment.empty?
-      comment = comment.scan(/.{1,75}/) if comment.is_a?(String)
 
-      comment.map do |l|
-        l.empty? ? '#' : '# ' + l
-      end.join("\n") + "\n\n"
+      comment = comment.scan(/.{1,75}/) if comment.is_a?(String)
+      c = comment.map do |l|
+        l.empty? ? '#' : "# #{l}"
+      end.join("\n")
+
+      "#{c}\n\n"
     end
 
     def self.parse_comment(content) # :nodoc:
@@ -110,6 +112,7 @@ module CFF
 
       content.reduce([]) do |acc, line|
         break acc unless line.start_with?('#')
+
         acc << line.sub(/^#+/, '').strip
       end
     end

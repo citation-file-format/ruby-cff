@@ -1,0 +1,19 @@
+name: Linter
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout rubyzip code
+      uses: actions/checkout@v2
+
+    - name: Install and set up ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+        bundler-cache: true
+
+    - name: Rubocop
+      run: bundle exec rubocop

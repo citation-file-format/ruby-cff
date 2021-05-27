@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018 Robert Haines.
+# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -161,6 +161,7 @@ module CFF
       @fields['languages'] = [] if @fields['languages'].empty?
       lang = LanguageList::LanguageInfo.find(lang)
       return if lang.nil?
+
       lang = lang.iso_639_3
       @fields['languages'] << lang unless @fields['languages'].include? lang
     end

@@ -1,10 +1,14 @@
-inherit_from:
-  - .rubocop_cff.yml
+require:
+  - rubocop-performance
+  - rubocop-rake
 
-# Turn this off for now. CI checks different versions of ruby anyway.
-Gemspec/RequiredRubyVersion:
-  Exclude:
-    - 'cff.gemspec'
+inherit_from:
+  - .rubocop_todo.yml
+
+# Set our base version of ruby and enable all cops.
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
 
 # Turn this off for certain files where we have extra documentation
 # towards the end of the file, after a block of private methods.
@@ -26,21 +30,18 @@ Layout/EmptyLinesAroundClassBody:
 Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
+# Allow long lines in the tests.
+Layout/LineLength:
+  Exclude:
+    - 'test/**/*.rb'
+
 # Force ruby19 style hash keys, but be consistent within a hash.
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys
 
 # Enforce %w notation in the library code, but be less strict in tests.
 Style/WordArray:
-  Exclude:
-    - 'test/cff_entity_test.rb'
-    - 'test/cff_model_test.rb'
-    - 'test/cff_person_test.rb'
-
-# Allow long lines in the tests.
-Metrics/LineLength:
-  Exclude:
-    - 'test/**/*.rb'
+  Enabled: false
 
 # Ignore ABC failures in the tests.
 Metrics/AbcSize:

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018 Robert Haines.
+# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'cff/version'
+require_relative 'lib/cff/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'cff'
@@ -37,16 +35,17 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.2.0'
+  spec.required_ruby_version = '>= 2.6'
 
   spec.add_runtime_dependency 'language_list', '~> 1.2'
-  spec.add_runtime_dependency 'spdx-licenses', '~> 1.1'
+  spec.add_runtime_dependency 'spdx-licenses', '~> 1.3'
 
-  spec.add_development_dependency 'bundler', '>= 2.2.10'
   spec.add_development_dependency 'coveralls', '~> 0.8'
-  spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'rake', '>= 12.3.3'
-  spec.add_development_dependency 'rdoc', '~> 6.0'
-  spec.add_development_dependency 'rubocop', '~> 0.54'
+  spec.add_development_dependency 'minitest', '~> 5.14'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rdoc', '~> 6.3'
+  spec.add_development_dependency 'rubocop', '~> 1.15'
+  spec.add_development_dependency 'rubocop-performance', '~> 1.11.0'
+  spec.add_development_dependency 'rubocop-rake', '~> 0.5.0'
   spec.add_development_dependency 'test_construct', '~> 2.0'
 end
