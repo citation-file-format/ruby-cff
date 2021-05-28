@@ -1,36 +1,44 @@
+# frozen_string_literal: true
+
 module CFF
+
+  # Generates an BibTex citation string
   class BibtexFormatter < Formatter
-    def self.format(model:)
-      return nil unless self.has_required_fields?(model)
+
+    def self.format(model:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      return nil unless required_fields?(model)
 
       values = {}
-      values["author"] = combine_authors(model.authors.map { |author| format_author(author) })
-      values["title"] = model.title if present?(model.title)
-      values["doi"] = model.doi if present?(model.doi)
+      values['author'] = combine_authors(model.authors.map { |author| format_author(author) })
+      values['title'] = model.title if present?(model.title)
+      values['doi'] = model.doi if present?(model.doi)
 
-      values["month"] = model.date_released.month.to_s if present?(model.date_released) && present?(model.date_released.month)
-      values["year"] = model.date_released.year.to_s if present?(model.date_released) && present?(model.date_released.year)
+      if present?(model.date_released) && present?(model.date_released.month)
+        values['month'] =
+          model.date_released.month.to_s
+      end
+      if present?(model.date_released) && present?(model.date_released.year)
+        values['year'] =
+          model.date_released.year.to_s
+      end
 
       # prefer repository_code over url
       if present?(model.repository_code)
-        values["url"] = model.repository_code
-      else
-        values["url"] = model.url if present?(model.url)
+        values['url'] = model.repository_code
+      elsif present?(model.url)
+        values['url'] = model.url
       end
 
       sorted_values = values.sort.map { |key, value| pair(key: key, value: value) }
-      sorted_values.insert(0, "@misc{YourReferenceHere")
+      sorted_values.insert(0, '@misc{YourReferenceHere')
 
       output = sorted_values.join(",\n")
       output << "\n}"
 
-      return output
-
-    rescue
-      return nil
+      output
+    rescue StandardError
+      nil
     end
-
-    private
 
     def self.pair(key:, value:)
       "#{key} = {#{value}}" if present?(value)

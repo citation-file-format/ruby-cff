@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class CFFApaFormatterTest < Minitest::Test
+
   include ::CFF::Util
 
   Dir[::File.join(FILES_DIR, '*')].each do |input_file|

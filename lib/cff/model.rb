@@ -43,6 +43,7 @@ module CFF
   # * `url`
   # * `version`
   class Model < ModelPart
+
     ALLOWED_FIELDS = [
       'abstract', 'authors', 'cff-version', 'contact', 'commit',
       'date-released', 'doi', 'keywords', 'license', 'license-url', 'message',
