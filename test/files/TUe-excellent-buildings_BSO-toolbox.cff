@@ -10,14 +10,3 @@ title: "BSO Toolbox"
 version: 1.0
 doi: 10.5281/zenodo.3823893
 date-released: 2020-05-xx
-
-bibtex:
-@software{bso_toolbox,
-	title={BSO toolbox},
-	author={Boonstra, Sjonnie and Hofmeyer, H\`{e}rm},
-	version={v1.0},
-	publisher={Zenodo},
-	year={2020},
-	month={5},
-	doi={10.5281/zenodo.3823893}
-}
