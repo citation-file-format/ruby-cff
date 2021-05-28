@@ -22,7 +22,7 @@ class CFFFileTest < Minitest::Test
   include ::CFF::Util
 
   def test_bad_methods_not_passed_to_model
-    f = ::CFF::File.new('')
+    f = ::CFF::File.new('', '')
 
     refute f.respond_to?(:aaaaaaa)
     assert_raises(NoMethodError) do
@@ -38,7 +38,7 @@ class CFFFileTest < Minitest::Test
   def test_new_file_from_model
     title = 'software'
     model = ::CFF::Model.new(title)
-    file = ::CFF::File.new(model)
+    file = ::CFF::File.new('', model)
 
     assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
     assert_equal file.title, title
@@ -46,7 +46,7 @@ class CFFFileTest < Minitest::Test
 
   def test_new_file_from_title
     title = 'software'
-    file = ::CFF::File.new(title)
+    file = ::CFF::File.new('', title)
 
     assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
     assert_equal file.title, title
@@ -224,11 +224,11 @@ class CFFFileTest < Minitest::Test
     model.version = '1.0.0'
     model.date_released = '1999-12-31'
 
-    file = ::CFF::File.new(model, comment)
+    file = ::CFF::File.new(OUTPUT_CFF, model, comment)
     assert_equal file.comment, comment
 
     within_construct(CONSTRUCT_OPTS) do
-      file.write(OUTPUT_CFF)
+      file.write
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
