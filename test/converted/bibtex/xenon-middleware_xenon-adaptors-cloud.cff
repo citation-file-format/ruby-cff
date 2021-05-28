@@ -1,0 +1,8 @@
+@misc{YourReferenceHere,
+author = {Stefan Verhoeven and Jason Maassen and Atze van der Ploeg},
+doi = {10.5281/zenodo.3245389},
+month = {8},
+title = {Cloud related adaptors for Xenon},
+url = {https://github.com/xenon-middleware/xenon-adaptors-cloud},
+year = {2019}
+}
