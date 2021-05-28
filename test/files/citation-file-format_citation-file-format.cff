@@ -1,0 +1,48 @@
+cff-version: 1.1.0
+message: "If you use CFF in your research, please cite it using these metadata."
+abstract: CITATION.cff files are plain text files with human- and machine-readable citation information for software. Code developers can include them in their repositories to let others know how to correctly cite their software. This is the specification for the Citation File Format.
+authors:
+  - family-names: Druskat
+    given-names: Stephan
+    orcid: https://orcid.org/0000-0003-4925-7248
+  - family-names: Spaaks
+    given-names: Jurriaan H.
+    orcid: https://orcid.org/0000-0002-7064-4069
+  - family-names: Chue Hong
+    given-names: Neil
+    orcid: https://orcid.org/0000-0002-8876-7606
+  - family-names: Haines
+    given-names: Robert
+    orcid: https://orcid.org/0000-0002-9538-7919
+  - family-names: Baker
+    given-names: James
+    orcid: https://orcid.org/0000-0002-2682-6922
+  - family-names: Bliven
+    given-names: Spencer
+    orcid: https://orcid.org/0000-0002-1200-1698
+    email: spencer.bliven@gmail.com
+  - family-names: Willighagen
+    given-names: Egon
+    orcid: https://orcid.org/0000-0001-7542-0286
+  - family-names: Pérez-Suárez
+    given-names: David
+    orcid: https://orcid.org/0000-0003-0784-6909
+    website: https://dpshelio.github.io
+  - family-names: Konovalov
+    given-names: Alexander
+    orcid: https://orcid.org/0000-0001-5299-3292
+title: Citation File Format
+version: 1.1.0
+doi: 10.5281/zenodo.4751536
+date-released: 2021-05-12
+keywords:
+  - citation file format
+  - CFF
+  - citation files
+  - software citation
+  - file format
+  - YAML
+  - software sustainability
+  - research software
+  - credit
+license: "CC-BY-4.0"
