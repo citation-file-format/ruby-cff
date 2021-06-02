@@ -148,7 +148,7 @@ module CFF
       [
         'authors', 'contact', 'editors', 'editors-series', 'keywords',
         'patent-states', 'recipients', 'senders', 'translators'
-      ].each { |field| @fields[field] = [] if @fields[field].empty? }
+      ].each { |field| @fields[field] = [] if @fields[field] != nil && @fields[field].empty? }
     end
 
     # :call-seq:
@@ -292,7 +292,7 @@ module CFF
         'authors', 'contact', 'editors', 'editors-series', 'recipients',
         'senders', 'translators'
       ].each do |field|
-        build_actor_collection!(fields[field])
+        build_actor_collection!(fields[field]) if fields.include?(field)
       end
 
       fields
