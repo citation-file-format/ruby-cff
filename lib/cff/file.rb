@@ -65,7 +65,7 @@ module CFF
       content = ::File.read(file)
       comment = File.parse_comment(content)
 
-      new(YAML.safe_load(content, [Date]), comment)
+      new(YAML.safe_load(content, [Date, Time]), comment)
     end
 
     # :call-seq:
