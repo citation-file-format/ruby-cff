@@ -7,7 +7,7 @@ date-released: 2018-09-05
 commit: Revision 6473.
 version: Internal development version, situated between release 1.1.1 and prospective future release 1.2
 license-url: http://www.ls1-mardyn.de/license.html
-abstract: The molecular dynamics code ls1 mardyn (large systems 1: molecular dynamics), developed by the Boltzmann-Zuse Society for Computational Molecular Engineering, is a scalable massively-parallel molecular modelling and simulation code for classical-mechanical intermolecular pair potential models of low-molecular fluids.
+abstract: "The molecular dynamics code ls1 mardyn (large systems 1: molecular dynamics), developed by the Boltzmann-Zuse Society for Computational Molecular Engineering, is a scalable massively-parallel molecular modelling and simulation code for classical-mechanical intermolecular pair potential models of low-molecular fluids."
 contact:
  - given-names: Philipp
    family-names: Neumann
@@ -16,7 +16,7 @@ author:
    country: DE
 references:
  - type: article
-   title: ls1 mardyn: The massively parallel molecular dynamics code for large systems
+   title: "ls1 mardyn: The massively parallel molecular dynamics code for large systems"
    year: 2014
    authors:
     - given-names: Christoph
