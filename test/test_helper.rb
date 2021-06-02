@@ -31,8 +31,6 @@ MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
 OUTPUT_CFF = 'CITATION.cff'
 
 CONVERTED_DIR = ::File.expand_path('converted', __dir__)
-CONVERTED_APALIKE_DIR = ::File.join(CONVERTED_DIR, 'apalike')
-CONVERTED_BIBTEX_DIR = ::File.join(CONVERTED_DIR, 'bibtex')
 
 CONSTRUCT_OPTS = {
   keep_on_error: true
