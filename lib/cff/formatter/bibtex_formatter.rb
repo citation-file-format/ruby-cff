@@ -14,8 +14,14 @@ module CFF
       values['title'] = model.title if present?(model.title)
       values['doi'] = model.doi if present?(model.doi)
 
-      values['month'] = try_get_month(model.date_released) if present?(model.date_released) && try_get_month(model.date_released) != nil
-      values['year'] = try_get_year(model.date_released) if present?(model.date_released) && try_get_year(model.date_released) != nil
+      if present?(model.date_released) && !try_get_month(model.date_released).nil?
+        values['month'] =
+          try_get_month(model.date_released)
+      end
+      if present?(model.date_released) && !try_get_year(model.date_released).nil?
+        values['year'] =
+          try_get_year(model.date_released)
+      end
 
       # prefer repository_code over url
       if present?(model.repository_code)
@@ -31,7 +37,7 @@ module CFF
       output << "\n}"
 
       output
-    rescue StandardError => error
+    rescue StandardError => e
       nil
     end
 
@@ -39,7 +45,7 @@ module CFF
       "#{key} = {#{value}}" if present?(value)
     end
 
-    def self.format_author(author) # rubocop:disable Metrics/AbcSize
+    def self.format_author(author)
       if author.is_a?(Person)
         output = []
         output << author.given_names if present?(author.given_names)

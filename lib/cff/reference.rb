@@ -148,7 +148,7 @@ module CFF
       [
         'authors', 'contact', 'editors', 'editors-series', 'keywords',
         'patent-states', 'recipients', 'senders', 'translators'
-      ].each { |field| @fields[field] = [] if @fields[field] != nil && @fields[field].empty? }
+      ].each { |field| @fields[field] = [] if !@fields[field].nil? && @fields[field].empty? }
     end
 
     # :call-seq:

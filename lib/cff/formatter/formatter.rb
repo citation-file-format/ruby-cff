@@ -11,6 +11,7 @@ module CFF
     def self.date_present?(attribute)
       return !attribute.empty? if attribute.is_a?(String)
       return !attribute.nil? if attribute.is_a?(Date)
+
       false
     end
 
