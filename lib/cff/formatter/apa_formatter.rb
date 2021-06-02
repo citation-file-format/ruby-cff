@@ -18,7 +18,7 @@ module CFF
       output << " DOI: http://doi.org/#{model.doi}" if present?(model.doi)
       output << " URL: #{model.repository_code}" if present?(model.repository_code)
       output
-    rescue StandardError => e
+    rescue StandardError
       nil
     end
 

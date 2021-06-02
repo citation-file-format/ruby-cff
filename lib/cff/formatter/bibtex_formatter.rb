@@ -37,7 +37,7 @@ module CFF
       output << "\n}"
 
       output
-    rescue StandardError => e
+    rescue StandardError
       nil
     end
 

@@ -135,7 +135,7 @@ module CFF
     # If type is not given, or is not one of the
     # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types),
     # 'generic' will be used by default.
-    def initialize(param, *more)
+    def initialize(param, *more) # rubocop:disable Metrics/AbcSize
       if param.is_a?(Hash)
         @fields = build_model(param)
       else
