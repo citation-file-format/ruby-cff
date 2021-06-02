@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 module CFF
-
   # Formatter base class
   class Formatter
-
     def self.required_fields?(model)
-      !(model.authors.empty? || !date_present?(model.date_released) || model.title.empty? || model.version.empty?)
+      !((model.authors.empty? && model.references.empty?) || model.title.empty? || model.version.to_s.empty?)
     end
 
     def self.format_author(author) # rubocop:disable Metrics/AbcSize
@@ -24,9 +22,7 @@ module CFF
 
     def self.date_present?(attribute)
       return !attribute.empty? if attribute.is_a?(String)
-
       return !attribute.nil? if attribute.is_a?(Date)
-
       false
     end
 
@@ -40,13 +36,21 @@ module CFF
       name.split.map { |part| part[0].capitalize }.join('.')
     end
 
-    # This is following the specs for APA like
     def self.combine_authors(authors)
-      return authors.first if authors.length == 1
+      raise NotImplementedError
+    end
 
-      return "#{authors.first} & #{authors.last}" if authors.length == 2
-
-      "#{authors[0..authors.length - 1].join(', ')} & #{authors.last}" if authors.length > 2 && authors.length <= 5
+    def self.try_get_year(value)
+      if value.instance_of? Date
+        value.year
+      else
+        begin
+          date = Date.parse(value)
+          date.year.to_s
+        rescue ArgumentError
+          nil
+        end
+      end
     end
   end
 end
