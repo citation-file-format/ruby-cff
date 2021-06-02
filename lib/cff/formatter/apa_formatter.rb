@@ -8,7 +8,9 @@ module CFF
       return nil unless required_fields?(model)
 
       output = +''
-      output << self.combine_authors(model.authors.map { |author| format_author(author) })
+      if model.authors.length.positive?
+        output << self.combine_authors(model.authors.map { |author| format_author(author) })
+      end
       output << '. ' if model.authors&.length&.positive?
       output << "(#{self.try_get_year(model.date_released)}). " if present?(model.date_released) && self.try_get_year(model.date_released) != nil
       output << model.title.to_s if present?(model.title)
@@ -22,6 +24,19 @@ module CFF
 
     def self.combine_authors(authors)
       authors.join('., ')
+    end
+
+    def self.format_author(author) # rubocop:disable Metrics/AbcSize
+      if author.is_a?(Person)
+        output = +''
+        output << "#{author.name_particle} " if present?(author.name_particle)
+        output << author.family_names if present?(author.family_names)
+        output << " #{author.name_suffix}" if present?(author.name_suffix)
+        output << " #{initials(author.given_names)}" if present?(author.given_names)
+        return output
+      end
+
+      return author.name if author.is_a?(Entity)
     end
   end
 end

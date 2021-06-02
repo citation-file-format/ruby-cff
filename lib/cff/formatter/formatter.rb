@@ -3,21 +3,9 @@
 module CFF
   # Formatter base class
   class Formatter
+
     def self.required_fields?(model)
-      !((model.authors.empty? && model.references.empty?) || model.title.empty? || model.version.to_s.empty?)
-    end
-
-    def self.format_author(author) # rubocop:disable Metrics/AbcSize
-      if author.is_a?(Person)
-        output = +''
-        output << "#{author.name_particle} " if present?(author.name_particle)
-        output << author.family_names if present?(author.family_names)
-        output << " #{author.name_suffix}" if present?(author.name_suffix)
-        output << " #{initials(author.given_names)}" if present?(author.given_names)
-        return output
-      end
-
-      return author.name if author.is_a?(Entity)
+      !(model.authors.empty? || model.title.empty? || model.version.to_s.empty?)
     end
 
     def self.date_present?(attribute)
@@ -40,12 +28,25 @@ module CFF
       raise NotImplementedError
     end
 
+    def self.try_get_month(value)
+      if value.instance_of? Date
+        value.month
+      else
+        begin
+          date = Date.parse(value.to_s)
+          date.month.to_s
+        rescue ArgumentError
+          nil
+        end
+      end
+    end
+
     def self.try_get_year(value)
       if value.instance_of? Date
         value.year
       else
         begin
-          date = Date.parse(value)
+          date = Date.parse(value.to_s)
           date.year.to_s
         rescue ArgumentError
           nil

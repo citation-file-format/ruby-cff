@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module CFF
-
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter
 
@@ -9,18 +8,14 @@ module CFF
       return nil unless required_fields?(model)
 
       values = {}
-      values['author'] = combine_authors(model.authors.map { |author| format_author(author) })
+      if model.authors.length.positive?
+        values['author'] = combine_authors(model.authors.map { |author| format_author(author) })
+      end
       values['title'] = model.title if present?(model.title)
       values['doi'] = model.doi if present?(model.doi)
 
-      if present?(model.date_released) && present?(model.date_released.month)
-        values['month'] =
-          model.date_released.month.to_s
-      end
-      if present?(model.date_released) && present?(model.date_released.year)
-        values['year'] =
-          model.date_released.year.to_s
-      end
+      values['month'] = try_get_month(model.date_released) if present?(model.date_released) && try_get_month(model.date_released) != nil
+      values['year'] = try_get_year(model.date_released) if present?(model.date_released) && try_get_year(model.date_released) != nil
 
       # prefer repository_code over url
       if present?(model.repository_code)
@@ -36,12 +31,27 @@ module CFF
       output << "\n}"
 
       output
-    rescue StandardError
+    rescue StandardError => error
       nil
     end
 
     def self.pair(key:, value:)
       "#{key} = {#{value}}" if present?(value)
+    end
+
+    def self.format_author(author) # rubocop:disable Metrics/AbcSize
+      if author.is_a?(Person)
+        output = []
+        output << author.given_names if present?(author.given_names)
+        output << author.family_names if present?(author.family_names)
+        return output.join(' ')
+      end
+
+      return author.name if author.is_a?(Entity)
+    end
+
+    def self.combine_authors(authors)
+      authors.join(' and ')
     end
   end
 end
