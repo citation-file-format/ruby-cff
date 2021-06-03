@@ -34,6 +34,9 @@ module CFF
     # if not, use a single string.
     attr_accessor :comment
 
+    # The filename of this CFF file.
+    attr_reader :filename
+
     YAML_HEADER = "---\n" # :nodoc:
     CFF_COMMENT = [
       "This CITATION.cff file was created by ruby-cff (v #{CFF::VERSION}).",
@@ -42,17 +45,18 @@ module CFF
     ].freeze # :nodoc:
 
     # :call-seq:
-    #   new(title) -> File
-    #   new(model) -> File
+    #   new(filename, title) -> File
+    #   new(filename, model) -> File
     #
     # Create a new File. Either a pre-existing Model can be passed in or, as
     # with Model itself, a title can be supplied to initalize a new File.
     #
     # All methods provided by Model are also available directly on File
     # objects.
-    def initialize(param, comment = CFF_COMMENT)
+    def initialize(filename, param, comment = CFF_COMMENT)
       param = Model.new(param) unless param.is_a?(Model)
 
+      @filename = filename
       @model = param
       @comment = comment
     end
@@ -65,7 +69,9 @@ module CFF
       content = ::File.read(file)
       comment = File.parse_comment(content)
 
-      new(YAML.safe_load(content, [Date, Time]), comment)
+      new(
+        file, YAML.safe_load(content, permitted_classes: [Date, Time]), comment
+      )
     end
 
     # :call-seq:
@@ -84,8 +90,8 @@ module CFF
     #   write(file)
     #
     # Write this CFF File to `file`.
-    def write(file)
-      File.write(file, @model, @comment)
+    def write
+      File.write(@filename, @model, @comment)
     end
 
     def method_missing(name, *args) # :nodoc:
