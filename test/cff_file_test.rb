@@ -190,6 +190,123 @@ class CFFFileTest < Minitest::Test
     end
   end
 
+  def test_open_minimal_cff_file
+    mtime = ::File.mtime(MINIMAL_CFF)
+    cff = ::CFF::File.open(MINIMAL_CFF)
+    yaml = YAML.load_file(MINIMAL_CFF)
+    yaml.default = ''
+
+    methods = %w[
+      abstract
+      cff_version
+      commit
+      date_released
+      doi
+      license
+      license_url
+      message
+      repository
+      repository_artifact
+      repository_code
+      title
+      url
+      version
+    ]
+
+    methods.each do |method|
+      assert_equal cff.send(method), yaml[method_to_field(method)]
+    end
+
+    assert_equal cff.authors.length, 1
+    person = cff.authors[0]
+    assert_instance_of ::CFF::Person, person
+    assert_equal person.family_names, 'Haines'
+    assert_equal person.affiliation, 'The University of Manchester, UK'
+
+    assert_equal cff.contact.length, 0
+    assert_equal cff.keywords.length, 0
+    assert_equal cff.references.length, 0
+
+    assert_equal cff.comment,
+                 ['A minimal CFF file with only the required fields included.']
+
+    assert_equal mtime, File.mtime(MINIMAL_CFF)
+  end
+
+  def test_open_minimal_cff_file_with_block
+    mtime = ::File.mtime(MINIMAL_CFF)
+    yaml = YAML.load_file(MINIMAL_CFF)
+    yaml.default = ''
+
+    ::CFF::File.open(MINIMAL_CFF) do |cff|
+      methods = %w[
+        abstract
+        cff_version
+        commit
+        date_released
+        doi
+        license
+        license_url
+        message
+        repository
+        repository_artifact
+        repository_code
+        title
+        url
+        version
+      ]
+
+      methods.each do |method|
+        assert_equal cff.send(method), yaml[method_to_field(method)]
+      end
+
+      assert_equal cff.authors.length, 1
+      person = cff.authors[0]
+      assert_instance_of ::CFF::Person, person
+      assert_equal person.family_names, 'Haines'
+      assert_equal person.affiliation, 'The University of Manchester, UK'
+
+      assert_equal cff.contact.length, 0
+      assert_equal cff.keywords.length, 0
+      assert_equal cff.references.length, 0
+
+      assert_equal cff.comment,
+                   ['A minimal CFF file with only the required fields included.']
+    end
+
+    assert_equal mtime, File.mtime(MINIMAL_CFF)
+  end
+
+  def test_open_new_cff_file
+    within_construct(CONSTRUCT_OPTS) do
+      file = ::CFF::File.open(OUTPUT_CFF)
+      file.title = 'software'
+      file.version = '1.0.0'
+      file.date_released = '1999-12-31'
+      file.write
+
+      check_file_contents(OUTPUT_CFF, 'cff-version')
+      check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+    end
+  end
+
+  def test_open_new_cff_file_with_block
+    within_construct(CONSTRUCT_OPTS) do
+      ::CFF::File.open(OUTPUT_CFF) do |file|
+        file.title = 'software'
+        file.version = '1.0.0'
+        file.date_released = '1999-12-31'
+      end
+
+      check_file_contents(OUTPUT_CFF, 'cff-version')
+      check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+    end
+  end
+
   def test_write_cff_file_from_string
     model = ::CFF::Model.new('software')
     model.version = '1.0.0'
@@ -224,7 +341,7 @@ class CFFFileTest < Minitest::Test
     model.version = '1.0.0'
     model.date_released = '1999-12-31'
 
-    file = ::CFF::File.new(OUTPUT_CFF, model, comment)
+    file = ::CFF::File.new(OUTPUT_CFF, model, comment, create: true)
     assert_equal file.comment, comment
 
     within_construct(CONSTRUCT_OPTS) do

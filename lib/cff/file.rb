@@ -21,18 +21,8 @@ module CFF
   # filesystem utilities.
   class File
 
-    # A comment to be inserted at the top of the resultant CFF file. This can
-    # be supplied as a simple string or an array of strings. When the file is
-    # saved this comment is formatted as follows:
-    #
-    # * a simple string is split into 75 character lines and `'# '` is prepended
-    # to each line;
-    # * an array of strings is joined into a single string with `'\n'` and
-    # `'# '` is prepended to each line;
-    #
-    # If you care about formatting, use an array of strings for your comment,
-    # if not, use a single string.
-    attr_accessor :comment
+    # A comment to be inserted at the top of the resultant CFF file.
+    attr_reader :comment
 
     # The filename of this CFF file.
     attr_reader :filename
@@ -53,12 +43,13 @@ module CFF
     #
     # All methods provided by Model are also available directly on File
     # objects.
-    def initialize(filename, param, comment = CFF_COMMENT)
+    def initialize(filename, param, comment = CFF_COMMENT, create: false)
       param = Model.new(param) unless param.is_a?(Model)
 
       @filename = filename
       @model = param
       @comment = comment
+      @dirty = create
     end
 
     # :call-seq:
@@ -72,6 +63,26 @@ module CFF
       new(
         file, YAML.safe_load(content, permitted_classes: [Date, Time]), comment
       )
+    end
+
+    def self.open(file)
+      if ::File.exist?(file)
+        content = ::File.read(file)
+        comment = File.parse_comment(content)
+        yaml = YAML.safe_load(content, permitted_classes: [Date, Time])
+      else
+        comment = CFF_COMMENT
+        yaml = ''
+      end
+
+      cff = new(file, yaml, comment, create: (yaml == ''))
+      return cff unless block_given?
+
+      begin
+        yield cff
+      ensure
+        cff.write
+      end
     end
 
     # :call-seq:
@@ -91,11 +102,36 @@ module CFF
     #
     # Write this CFF File to `file`.
     def write
-      File.write(@filename, @model, @comment)
+      File.write(@filename, @model, @comment) if @dirty
+      @dirty = false
+    end
+
+    # :call-seq:
+    #   comment = string or array
+    #
+    # A comment to be inserted at the top of the resultant CFF file. This can
+    # be supplied as a simple string or an array of strings. When the file is
+    # saved this comment is formatted as follows:
+    #
+    # * a simple string is split into 75 character lines and `'# '` is prepended
+    # to each line;
+    # * an array of strings is joined into a single string with `'\n'` and
+    # `'# '` is prepended to each line;
+    #
+    # If you care about formatting, use an array of strings for your comment,
+    # if not, use a single string.
+    def comment=(comment)
+      @dirty = true
+      @comment = comment
     end
 
     def method_missing(name, *args) # :nodoc:
-      @model.respond_to?(name) ? @model.send(name, *args) : super
+      if @model.respond_to?(name)
+        @dirty = true if name.to_s.end_with?('=') # Remove to_s when Ruby >2.6.
+        @model.send(name, *args)
+      else
+        super
+      end
     end
 
     def respond_to_missing?(name, *all) # :nodoc:

@@ -48,6 +48,12 @@ Metrics/AbcSize:
   Exclude:
     - 'test/**/*.rb'
 
+# Ignore block length failures in the tests.
+Metrics/BlockLength:
+  Exclude:
+    - 'cff.gemspec'
+    - 'test/**/*.rb'
+
 # Set a more reasonable method length and ignore failures in the tests.
 Metrics/MethodLength:
   Max: 20
