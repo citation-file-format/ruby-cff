@@ -65,6 +65,17 @@ module CFF
       )
     end
 
+    # :call-seq:
+    #   open(file) -> File
+    #   open(file) {|cff| block }
+    #
+    # With no associated block, File.open is a synonym for ::read. If the
+    # optional code block is given, it will be passed the opened file as an
+    # argument and the File object will automatically be written (if edited)
+    # and closed when the block terminates.
+    #
+    # File.open will create a new file if one does not already exist with the
+    # provided file name.
     def self.open(file)
       if ::File.exist?(file)
         content = ::File.read(file)
@@ -98,9 +109,9 @@ module CFF
     end
 
     # :call-seq:
-    #   write(file)
+    #   write
     #
-    # Write this CFF File to `file`.
+    # Write this CFF File.
     def write
       File.write(@filename, @model, @comment) if @dirty
       @dirty = false
