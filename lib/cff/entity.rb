@@ -50,6 +50,7 @@ module CFF
 
     # :call-seq:
     #   new(name) -> Entity
+    #   new(name) { |entity| block } -> Entity
     #
     # Create a new Entity with the supplied name.
     def initialize(param)
@@ -59,6 +60,8 @@ module CFF
         @fields = Hash.new('')
         @fields['name'] = param
       end
+
+      yield self if block_given?
     end
 
     # :call-seq:

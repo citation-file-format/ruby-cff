@@ -103,4 +103,15 @@ class CFFEntityTest < Minitest::Test
     assert y.include? "fax: \"#{number}\"\n"
     assert y.include? "tel: \"#{number}\"\n"
   end
+
+  def test_new_with_block
+    entity = ::CFF::Entity.new('My Company') do |e|
+      assert_equal e.name, 'My Company'
+      e.tel = '+44 (0) 161-234-5678'
+    end
+
+    assert_equal entity.name, 'My Company'
+    assert_equal entity.tel, '+44 (0) 161-234-5678'
+    assert entity.is_a?(::CFF::Entity)
+  end
 end
