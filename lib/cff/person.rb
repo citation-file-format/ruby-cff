@@ -51,6 +51,7 @@ module CFF
 
     # :call-seq:
     #   new(given_name, family_name) -> Person
+    #   new(given_name, family_name) { |person| block } -> Person
     #
     # Create a new Person with the supplied given and family names.
     def initialize(param, *more)
@@ -61,6 +62,8 @@ module CFF
         @fields['family-names'] = more[0]
         @fields['given-names'] = param
       end
+
+      yield self if block_given?
     end
   end
 end

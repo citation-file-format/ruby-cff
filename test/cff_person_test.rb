@@ -77,4 +77,17 @@ class CFFPersonTest < Minitest::Test
     assert y.include? "fax: \"#{number}\"\n"
     assert y.include? "tel: \"#{number}\"\n"
   end
+
+  def test_new_with_block
+    person = ::CFF::Person.new('Rob', 'Haines') do |p|
+      assert_equal p.given_names, 'Rob'
+      assert_equal p.family_names, 'Haines'
+      p.email = 'email@example.org'
+    end
+
+    assert_equal person.given_names, 'Rob'
+    assert_equal person.family_names, 'Haines'
+    assert_equal person.email, 'email@example.org'
+    assert person.is_a?(::CFF::Person)
+  end
 end
