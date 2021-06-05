@@ -243,4 +243,15 @@ class CFFModelTest < Minitest::Test
     refute y.include? 'keywords:'
     refute y.include? 'references:'
   end
+
+  def test_new_with_block
+    model = ::CFF::Model.new('title') do |cff|
+      assert_equal cff.title, 'title'
+      cff.version = '2.0.0'
+    end
+
+    assert_equal model.title, 'title'
+    assert_equal model.version, '2.0.0'
+    assert model.is_a?(::CFF::Model)
+  end
 end

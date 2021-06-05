@@ -57,6 +57,7 @@ module CFF
 
     # :call-seq:
     #   new(title) -> Model
+    #   new(title) { |model| block } -> Model
     #
     # Initialize a new Model with the supplied title.
     def initialize(param)
@@ -73,6 +74,8 @@ module CFF
       %w[authors contact keywords references].each do |field|
         @fields[field] = [] if @fields[field].empty?
       end
+
+      yield self if block_given?
     end
 
     # :call-seq:
