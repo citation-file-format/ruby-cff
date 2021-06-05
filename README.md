@@ -18,32 +18,27 @@ See the [CITATION.cff documentation](https://citation-file-format.github.io/) fo
 
 ### Quick start
 
+You can quickly build and save a CFF model like this:
+
 ```ruby
-cff = CFF::Model.new("Ruby CFF Library")
-cff.version = CFF::VERSION
-cff.date_released = Date.today
-cff.authors << CFF::Person.new("Robert", "Haines")
-cff.license = "Apache-2.0"
-cff.keywords << "ruby" << "credit" << "citation"
-cff.repository_artifact = "https://rubygems.org/gems/cff"
+model = CFF::Model.new("Ruby CFF Library") do |cff|
+  cff.version = CFF::VERSION
+  cff.date_released = Date.today
+  cff.authors << CFF::Person.new("Robert", "Haines")
+  cff.license = "Apache-2.0"
+  cff.keywords << "ruby" << "credit" << "citation"
+  cff.repository_artifact = "https://rubygems.org/gems/cff"
+end
 
-CFF::File.write("CITATION.cff", cff)
+CFF::File.write("CITATION.cff", model)
 ```
 
-Will produce a file that looks something like this:
+Which will produce a file that looks something like this:
 
-```
-# This CITATION.cff file was created by ruby-cff (v 0.5.0).
-# Gem: https://rubygems.org/gems/cff
-# CFF: https://citation-file-format.github.io/
-
+```yaml
 cff-version: 1.0.3
 message: If you use this software in your work, please cite it using the following metadata
 title: Ruby CFF Library
-version: 0.3.0
-date-released: 2018-03-04
-license: Apache-2.0
-repository-artifact: https://rubygems.org/gems/cff
 authors:
 - family-names: Haines
   given-names: Robert
@@ -51,6 +46,23 @@ keywords:
 - ruby
 - credit
 - citation
+version: 0.6.0
+date-released: 2021-06-05
+license: Apache-2.0
+repository-artifact: https://rubygems.org/gems/cff
+```
+
+`CFF::File` can be used to create a file directly, and it exposes the underlying `CFF::Model` directly. If using a block with `CFF::File::open` the file will get written on closing it:
+
+```ruby
+CFF::File.open('CITATION.cff') do |cff|
+  cff.version = CFF::VERSION
+  cff.date_released = Date.today
+  cff.authors << CFF::Person.new("Robert", "Haines")
+  cff.license = "Apache-2.0"
+  cff.keywords << "ruby" << "credit" << "citation"
+  cff.repository_artifact = "https://rubygems.org/gems/cff"
+end
 ```
 
 ### Library versions
