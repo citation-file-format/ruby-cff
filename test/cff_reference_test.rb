@@ -297,4 +297,17 @@ class CFFReferenceTest < Minitest::Test
       assert y.include? "#{method_to_field(method)}:\n  name: Company\n"
     end
   end
+
+  def test_new_with_block
+    ref = ::CFF::Reference.new('A Paper', 'article') do |r|
+      assert_equal r.title, 'A Paper'
+      assert_equal r.type, 'article'
+      r.conference = 'International Conference of Hard Problems'
+    end
+
+    assert_equal ref.title, 'A Paper'
+    assert_equal ref.type, 'article'
+    assert_equal ref.conference, 'International Conference of Hard Problems'
+    assert ref.is_a?(::CFF::Reference)
+  end
 end

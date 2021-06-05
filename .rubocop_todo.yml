@@ -14,6 +14,14 @@ Lint/MissingSuper:
     - 'lib/cff/person.rb'
     - 'lib/cff/reference.rb'
 
+# Reference::new is a little complex right now.
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/cff/reference.rb'
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'lib/cff/reference.rb'
+
 # Offense count: 1
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?

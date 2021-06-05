@@ -129,7 +129,9 @@ module CFF
 
     # :call-seq:
     #   new(title) -> Reference
+    #   new(title) { |ref| block } -> Reference
     #   new(title, type) -> Reference
+    #   new(title, type) { |ref| block } -> Reference
     #
     # Create a new Reference with the supplied title and, optionally, type.
     # If type is not given, or is not one of the
@@ -149,6 +151,8 @@ module CFF
         'authors', 'contact', 'editors', 'editors-series', 'keywords',
         'patent-states', 'recipients', 'senders', 'translators'
       ].each { |field| @fields[field] = [] if !@fields[field].nil? && @fields[field].empty? }
+
+      yield self if block_given?
     end
 
     # :call-seq:
