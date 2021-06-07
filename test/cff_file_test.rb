@@ -54,7 +54,7 @@ class CFFFileTest < Minitest::Test
 
   def test_read_minimal_cff_file
     cff = ::CFF::File.read(MINIMAL_CFF)
-    yaml = YAML.load_file(MINIMAL_CFF)
+    yaml = load_yaml(MINIMAL_CFF)
     yaml.default = ''
 
     methods = %w[
@@ -94,7 +94,7 @@ class CFFFileTest < Minitest::Test
 
   def test_read_short_cff_file
     cff = ::CFF::File.read(SHORT_CFF)
-    yaml = YAML.load_file(SHORT_CFF)
+    yaml = load_yaml(SHORT_CFF)
     yaml.default = ''
 
     methods = %w[
@@ -134,7 +134,7 @@ class CFFFileTest < Minitest::Test
 
   def test_read_complete_cff_file
     cff = ::CFF::File.read(COMPLETE_CFF)
-    yaml = YAML.load_file(COMPLETE_CFF)
+    yaml = load_yaml(COMPLETE_CFF)
 
     methods = %w[
       abstract
@@ -193,7 +193,7 @@ class CFFFileTest < Minitest::Test
   def test_open_minimal_cff_file
     mtime = ::File.mtime(MINIMAL_CFF)
     cff = ::CFF::File.open(MINIMAL_CFF)
-    yaml = YAML.load_file(MINIMAL_CFF)
+    yaml = load_yaml(MINIMAL_CFF)
     yaml.default = ''
 
     methods = %w[
@@ -235,7 +235,7 @@ class CFFFileTest < Minitest::Test
 
   def test_open_minimal_cff_file_with_block
     mtime = ::File.mtime(MINIMAL_CFF)
-    yaml = YAML.load_file(MINIMAL_CFF)
+    yaml = load_yaml(MINIMAL_CFF)
     yaml.default = ''
 
     ::CFF::File.open(MINIMAL_CFF) do |cff|
@@ -397,5 +397,15 @@ class CFFFileTest < Minitest::Test
     file = ::File.read(file)
 
     assert_equal ::CFF::File.parse_comment(file), comment
+  end
+
+  if RUBY_VERSION[0..2].to_f >= 3
+    def load_yaml(file)
+      YAML.safe_load_file(file, permitted_classes: [Date, Time])
+    end
+  else
+    def load_yaml(file)
+      YAML.load_file(file)
+    end
   end
 end
