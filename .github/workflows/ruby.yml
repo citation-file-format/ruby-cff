@@ -24,3 +24,21 @@ jobs:
 
     - name: Run tests
       run: bundle exec rake
+
+    - name: Coveralls
+      if: ${{ !endsWith(matrix.ruby, 'head') }}
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        flag-name: ${{ matrix.ruby }}
+        parallel: true
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true

@@ -14,23 +14,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'simplecov'
+require 'simplecov-lcov'
 
-$LOAD_PATH.unshift ::File.expand_path('../lib', __dir__)
-require 'cff'
+SimpleCov::Formatter::LcovFormatter.config do |c|
+  c.output_directory = 'coverage'
+  c.lcov_file_name = 'lcov.info'
+  c.report_with_single_file = true
+  c.single_report_path = 'coverage/lcov.info'
+end
 
-require 'test_construct'
-require 'minitest/autorun'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::LcovFormatter
+  ]
+)
 
-FILES_DIR = ::File.expand_path('files', __dir__)
-OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
-COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
-SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
-MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
-OUTPUT_CFF = 'CITATION.cff'
-
-CONVERTED_DIR = ::File.expand_path('converted', __dir__)
-
-CONSTRUCT_OPTS = {
-  keep_on_error: true
-}.freeze
+SimpleCov.start do
+  enable_coverage :branch
+  add_filter '/test/'
+end
