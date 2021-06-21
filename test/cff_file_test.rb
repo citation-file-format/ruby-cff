@@ -40,16 +40,16 @@ class CFFFileTest < Minitest::Test
     model = ::CFF::Model.new(title)
     file = ::CFF::File.new('', model)
 
-    assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
-    assert_equal file.title, title
+    assert_equal(::CFF::DEFAULT_SPEC_VERSION, file.cff_version)
+    assert_equal(title, file.title)
   end
 
   def test_new_file_from_title
     title = 'software'
     file = ::CFF::File.new('', title)
 
-    assert_equal file.cff_version, ::CFF::DEFAULT_SPEC_VERSION
-    assert_equal file.title, title
+    assert_equal(::CFF::DEFAULT_SPEC_VERSION, file.cff_version)
+    assert_equal(title, file.title)
   end
 
   def test_read_minimal_cff_file
@@ -75,21 +75,23 @@ class CFFFileTest < Minitest::Test
     ]
 
     methods.each do |method|
-      assert_equal cff.send(method), yaml[method_to_field(method)]
+      assert_equal(yaml[method_to_field(method)], cff.send(method))
     end
 
-    assert_equal cff.authors.length, 1
+    assert_equal(1, cff.authors.length)
     person = cff.authors[0]
     assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, 'Haines'
-    assert_equal person.affiliation, 'The University of Manchester, UK'
+    assert_equal('Haines', person.family_names)
+    assert_equal('The University of Manchester, UK', person.affiliation)
 
-    assert_equal cff.contact.length, 0
-    assert_equal cff.keywords.length, 0
-    assert_equal cff.references.length, 0
+    assert_equal(0, cff.contact.length)
+    assert_equal(0, cff.keywords.length)
+    assert_equal(0, cff.references.length)
 
-    assert_equal cff.comment,
-                 ['A minimal CFF file with only the required fields included.']
+    assert_equal(
+      ['A minimal CFF file with only the required fields included.'],
+      cff.comment
+    )
   end
 
   def test_read_short_cff_file
@@ -116,20 +118,20 @@ class CFFFileTest < Minitest::Test
     ]
 
     methods.each do |method|
-      assert_equal cff.send(method), yaml[method_to_field(method)]
+      assert_equal(yaml[method_to_field(method)], cff.send(method))
     end
 
-    assert_equal cff.authors.length, 1
+    assert_equal(1, cff.authors.length)
     person = cff.authors[0]
     assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, 'Haines'
-    assert_equal person.affiliation, 'The University of Manchester, UK'
+    assert_equal('Haines', person.family_names)
+    assert_equal('The University of Manchester, UK', person.affiliation)
 
-    assert_equal cff.contact.length, 0
-    assert_equal cff.keywords.length, 3
-    assert_equal cff.references.length, 0
+    assert_equal(0, cff.contact.length)
+    assert_equal(3, cff.keywords.length)
+    assert_equal(0, cff.references.length)
 
-    assert_equal cff.comment, ['An incomplete CFF file']
+    assert_equal(['An incomplete CFF file'], cff.comment)
   end
 
   def test_read_complete_cff_file
@@ -155,16 +157,16 @@ class CFFFileTest < Minitest::Test
     ]
 
     methods.each do |method|
-      assert_equal cff.send(method), yaml[method_to_field(method)]
+      assert_equal(yaml[method_to_field(method)], cff.send(method))
     end
 
-    assert_equal cff.keywords.length, 4
+    assert_equal(4, cff.keywords.length)
 
-    assert_equal cff.references.length, 1
+    assert_equal(1, cff.references.length)
     reference = cff.references[0]
     assert_instance_of ::CFF::Reference, reference
-    assert_equal reference.type, 'book'
-    assert_equal reference.title, 'Book Title'
+    assert_equal('book', reference.type)
+    assert_equal('Book Title', reference.title)
 
     [
       cff.authors,
@@ -177,16 +179,18 @@ class CFFFileTest < Minitest::Test
       reference.senders,
       reference.translators
     ].each do |list|
-      assert_equal list.length, 2
+      assert_equal(2, list.length)
       person = list[0]
       entity = list[1]
 
       assert_instance_of ::CFF::Person, person
-      assert_equal person.family_names, 'Real Person'
-      assert_equal person.affiliation, 'Excellent University, Niceplace, Arcadia'
+      assert_equal('Real Person', person.family_names)
+      assert_equal(
+        'Excellent University, Niceplace, Arcadia', person.affiliation
+      )
       assert_instance_of ::CFF::Entity, entity
-      assert_equal entity.name, 'Entity Project Team Conference entity'
-      assert_equal entity.address, '22 Acacia Avenue'
+      assert_equal('Entity Project Team Conference entity', entity.name)
+      assert_equal('22 Acacia Avenue', entity.address)
     end
   end
 
@@ -214,23 +218,25 @@ class CFFFileTest < Minitest::Test
     ]
 
     methods.each do |method|
-      assert_equal cff.send(method), yaml[method_to_field(method)]
+      assert_equal(yaml[method_to_field(method)], cff.send(method))
     end
 
-    assert_equal cff.authors.length, 1
+    assert_equal(1, cff.authors.length)
     person = cff.authors[0]
     assert_instance_of ::CFF::Person, person
-    assert_equal person.family_names, 'Haines'
-    assert_equal person.affiliation, 'The University of Manchester, UK'
+    assert_equal('Haines', person.family_names)
+    assert_equal('The University of Manchester, UK', person.affiliation)
 
-    assert_equal cff.contact.length, 0
-    assert_equal cff.keywords.length, 0
-    assert_equal cff.references.length, 0
+    assert_equal(0, cff.contact.length)
+    assert_equal(0, cff.keywords.length)
+    assert_equal(0, cff.references.length)
 
-    assert_equal cff.comment,
-                 ['A minimal CFF file with only the required fields included.']
+    assert_equal(
+      ['A minimal CFF file with only the required fields included.'],
+      cff.comment
+    )
 
-    assert_equal mtime, File.mtime(MINIMAL_CFF)
+    assert_equal(File.mtime(MINIMAL_CFF), mtime)
   end
 
   def test_open_minimal_cff_file_with_block
@@ -257,24 +263,26 @@ class CFFFileTest < Minitest::Test
       ]
 
       methods.each do |method|
-        assert_equal cff.send(method), yaml[method_to_field(method)]
+        assert_equal(yaml[method_to_field(method)], cff.send(method))
       end
 
-      assert_equal cff.authors.length, 1
+      assert_equal(1, cff.authors.length)
       person = cff.authors[0]
       assert_instance_of ::CFF::Person, person
-      assert_equal person.family_names, 'Haines'
-      assert_equal person.affiliation, 'The University of Manchester, UK'
+      assert_equal('Haines', person.family_names)
+      assert_equal('The University of Manchester, UK', person.affiliation)
 
-      assert_equal cff.contact.length, 0
-      assert_equal cff.keywords.length, 0
-      assert_equal cff.references.length, 0
+      assert_equal(0, cff.contact.length)
+      assert_equal(0, cff.keywords.length)
+      assert_equal(0, cff.references.length)
 
-      assert_equal cff.comment,
-                   ['A minimal CFF file with only the required fields included.']
+      assert_equal(
+        ['A minimal CFF file with only the required fields included.'],
+        cff.comment
+      )
     end
 
-    assert_equal mtime, File.mtime(MINIMAL_CFF)
+    assert_equal(File.mtime(MINIMAL_CFF), mtime)
   end
 
   def test_open_new_cff_file
@@ -358,16 +366,16 @@ class CFFFileTest < Minitest::Test
     before = ['A multi-line', '', 'comment.']
     after = "# A multi-line\n#\n# comment.\n\n"
 
-    assert_equal ::CFF::File.format_comment([]), ''
-    assert_equal ::CFF::File.format_comment(before), after
+    assert_equal('', ::CFF::File.format_comment([]))
+    assert_equal(after, ::CFF::File.format_comment(before))
   end
 
   def test_format_comment_string
     before = 'A very 01234567890123456789012345678901234567890123456789012345678901234567890123456789 long comment'
     after = "# A very 01234567890123456789012345678901234567890123456789012345678901234567\n# 890123456789 long comment\n\n"
 
-    assert_equal ::CFF::File.format_comment(''), ''
-    assert_equal ::CFF::File.format_comment(before), after
+    assert_equal('', ::CFF::File.format_comment(''))
+    assert_equal(after, ::CFF::File.format_comment(before))
   end
 
   def test_parse_comment
@@ -376,9 +384,9 @@ class CFFFileTest < Minitest::Test
     before_m = "###\n# A   \n### multi-line\n#    comment with #s\n\n# More"
     after_m = ['', 'A', 'multi-line', 'comment with #s']
 
-    assert_equal ::CFF::File.parse_comment(''), []
-    assert_equal ::CFF::File.parse_comment(before_s), after_s
-    assert_equal ::CFF::File.parse_comment(before_m), after_m
+    assert_empty(::CFF::File.parse_comment(''))
+    assert_equal(after_s, ::CFF::File.parse_comment(before_s))
+    assert_equal(after_m, ::CFF::File.parse_comment(before_m))
   end
 
   private
@@ -396,7 +404,7 @@ class CFFFileTest < Minitest::Test
   def check_file_comment(file, comment)
     file = ::File.read(file)
 
-    assert_equal ::CFF::File.parse_comment(file), comment
+    assert_equal(comment, ::CFF::File.parse_comment(file))
   end
 
   if RUBY_VERSION[0..2].to_f >= 3
