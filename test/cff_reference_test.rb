@@ -25,12 +25,12 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_bad_methods_not_allowed
-    refute @reference.respond_to?(:aaaaaaa)
+    refute_respond_to(@reference, :aaaaaaa)
     assert_raises(NoMethodError) do
       @reference.aaaaaaa
     end
 
-    refute @reference.respond_to?(:Type)
+    refute_respond_to(@reference, :Type)
     assert_raises(NoMethodError) do
       @reference.Type = 'book'
     end

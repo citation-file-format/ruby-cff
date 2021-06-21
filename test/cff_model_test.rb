@@ -23,12 +23,12 @@ class CFFModelTest < Minitest::Test
   def test_bad_methods_not_allowed
     m = ::CFF::Model.new('')
 
-    refute m.respond_to?(:aaaaaaa)
+    refute_respond_to(m, :aaaaaaa)
     assert_raises(NoMethodError) do
       m.aaaaaaa
     end
 
-    refute m.respond_to?(:Message)
+    refute_respond_to(m, :Message)
     assert_raises(NoMethodError) do
       m.Message
     end

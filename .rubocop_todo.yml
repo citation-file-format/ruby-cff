@@ -46,16 +46,6 @@ Minitest/RefuteIncludes:
     - 'test/cff_model_test.rb'
     - 'test/cff_reference_test.rb'
 
-# Offense count: 10
-# Cop supports --auto-correct.
-Minitest/RefuteRespondTo:
-  Exclude:
-    - 'test/cff_entity_test.rb'
-    - 'test/cff_file_test.rb'
-    - 'test/cff_model_test.rb'
-    - 'test/cff_person_test.rb'
-    - 'test/cff_reference_test.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?

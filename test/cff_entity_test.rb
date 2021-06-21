@@ -25,12 +25,12 @@ class CFFEntityTest < Minitest::Test
   end
 
   def test_bad_methods_not_allowed
-    refute @entity.respond_to?(:aaaaaaa)
+    refute_respond_to(@entity, :aaaaaaa)
     assert_raises(NoMethodError) do
       @entity.aaaaaaa
     end
 
-    refute @entity.respond_to?(:Address)
+    refute_respond_to(@entity, :Address)
     assert_raises(NoMethodError) do
       @entity.Address = 'A Street'
     end
