@@ -397,7 +397,7 @@ class CFFFileTest < Minitest::Test
     if exists
       assert file.include?(contents)
     else
-      refute file.include?(contents)
+      refute_includes(file, contents)
     end
   end
 

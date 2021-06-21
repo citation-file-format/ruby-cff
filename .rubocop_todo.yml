@@ -38,14 +38,6 @@ Minitest/AssertIncludes:
 Minitest/MultipleAssertions:
   Max: 13
 
-# Offense count: 16
-# Cop supports --auto-correct.
-Minitest/RefuteIncludes:
-  Exclude:
-    - 'test/cff_file_test.rb'
-    - 'test/cff_model_test.rb'
-    - 'test/cff_reference_test.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?

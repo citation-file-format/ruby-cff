@@ -41,7 +41,7 @@ class CFFModelTest < Minitest::Test
   def test_cff_version_is_output_correctly
     m = ::CFF::Model.new('').to_yaml
     assert m.include? 'cff-version'
-    refute m.include? 'cff_version'
+    refute_includes(m, 'cff_version')
   end
 
   def test_message_is_output_correctly
@@ -131,14 +131,14 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
     assert_equal(2, m.authors.length)
     assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
-    refute y.include? '_ _ _'
+    refute_includes(y, '_ _ _')
 
     m.authors = r
 
     y = m.to_yaml
     assert_equal(2, m.authors.length)
     assert y.include? "authors:\n- family-names: S\n  given-names: F\n- name: Co."
-    refute y.include? '_ _ _'
+    refute_includes(y, '_ _ _')
   end
 
   def test_simple_fields_set_and_output_correctly
@@ -182,14 +182,14 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
     assert_equal(2, m.contact.length)
     assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
-    refute y.include? '_ _ _'
+    refute_includes(y, '_ _ _')
 
     m.contact = r
 
     y = m.to_yaml
     assert_equal(2, m.contact.length)
     assert y.include? "contact:\n- family-names: S\n  given-names: F\n- name: Co."
-    refute y.include? '_ _ _'
+    refute_includes(y, '_ _ _')
   end
 
   def test_keywords_set_and_output_correctly
@@ -197,7 +197,7 @@ class CFFModelTest < Minitest::Test
     keys = ['one', :two, 3]
 
     y = m.to_yaml
-    refute y.include? 'keywords:'
+    refute_includes(y, 'keywords:')
 
     m.keywords = keys
     l = keys.length
@@ -231,17 +231,17 @@ class CFFModelTest < Minitest::Test
     assert_equal(2, m.references[0].authors.length)
     assert y.include? "references:\n- type: book\n  title: book title\n"
     assert y.include? "  authors:\n  - family-names: Second\n    given-names: First\n  - name: Company\n"
-    refute y.include? '_ _ _'
+    refute_includes(y, '_ _ _')
   end
 
   def test_empty_collections_are_not_output
     m = ::CFF::Model.new('title')
     y = m.to_yaml
 
-    refute y.include? 'authors:'
-    refute y.include? 'contact:'
-    refute y.include? 'keywords:'
-    refute y.include? 'references:'
+    refute_includes(y, 'authors:')
+    refute_includes(y, 'contact:')
+    refute_includes(y, 'keywords:')
+    refute_includes(y, 'references:')
   end
 
   def test_new_with_block

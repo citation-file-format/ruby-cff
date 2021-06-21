@@ -57,7 +57,7 @@ class CFFReferenceTest < Minitest::Test
     end
 
     y = @reference.fields.to_yaml
-    refute y.include? '_ _ _'
+    refute_includes(y, '_ _ _')
 
     methods.each do |method|
       assert_equal(2, @reference.send(method).length)
@@ -125,7 +125,7 @@ class CFFReferenceTest < Minitest::Test
 
     @reference.reset_languages
     y = @reference.fields.to_yaml
-    refute y.include? "languages:\n"
+    refute_includes(y, "languages:\n")
   end
 
   def test_license_is_set_and_output_correctly
@@ -177,8 +177,8 @@ class CFFReferenceTest < Minitest::Test
     keys = ['one', :two, 3]
 
     y = @reference.fields.to_yaml
-    refute y.include? 'keywords:'
-    refute y.include? 'patent-states:'
+    refute_includes(y, 'keywords:')
+    refute_includes(y, 'patent-states:')
 
     @reference.keywords = keys.dup
     @reference.patent_states = keys.dup
