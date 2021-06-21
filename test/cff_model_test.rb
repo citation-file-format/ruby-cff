@@ -35,7 +35,7 @@ class CFFModelTest < Minitest::Test
   end
 
   def test_default_model_cff_version
-    assert_equal ::CFF::Model.new('').cff_version, ::CFF::DEFAULT_SPEC_VERSION
+    assert_equal(::CFF::DEFAULT_SPEC_VERSION, ::CFF::Model.new('').cff_version)
   end
 
   def test_cff_version_is_output_correctly
@@ -59,7 +59,7 @@ class CFFModelTest < Minitest::Test
 
     m.message = 'this is a message'
     y = m.to_yaml
-    assert_equal m.message, 'this is a message'
+    assert_equal('this is a message', m.message)
     assert y.include? 'message: this is a message'
   end
 
@@ -73,12 +73,12 @@ class CFFModelTest < Minitest::Test
   def test_set_title
     title = 'software title'
     m = ::CFF::Model.new(title)
-    assert_equal m.title, title
+    assert_equal(title, m.title)
 
     title = 'new title'
     m.title = title
     y = m.to_yaml
-    assert_equal m.title, title
+    assert_equal(title, m.title)
     assert y.include? "title: #{title}"
   end
 
@@ -86,7 +86,7 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     [1.0, '1.0.0'].each do |version|
       m.version = version
-      assert_equal m.version, version.to_s
+      assert_equal(version.to_s, m.version)
 
       y = m.to_yaml
       assert y.include? "version: #{version}"
@@ -107,13 +107,13 @@ class CFFModelTest < Minitest::Test
 
     date = Date.today
     m.date_released = date
-    assert_equal m.date_released, date
+    assert_equal(date, m.date_released)
     y = m.to_yaml
     assert y.include? "date-released: #{date.iso8601}"
 
     date = '1999-12-31'
     m.date_released = date
-    assert_equal m.date_released, Date.parse(date)
+    assert_equal(Date.parse(date), m.date_released)
     y = m.to_yaml
     assert y.include? "date-released: #{date}"
   end
@@ -129,14 +129,14 @@ class CFFModelTest < Minitest::Test
     m.authors << e
 
     y = m.to_yaml
-    assert_equal m.authors.length, 2
+    assert_equal(2, m.authors.length)
     assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
     refute y.include? '_ _ _'
 
     m.authors = r
 
     y = m.to_yaml
-    assert_equal m.authors.length, 2
+    assert_equal(2, m.authors.length)
     assert y.include? "authors:\n- family-names: S\n  given-names: F\n- name: Co."
     refute y.include? '_ _ _'
   end
@@ -157,9 +157,9 @@ class CFFModelTest < Minitest::Test
     ]
 
     data.each do |method, value|
-      assert_equal m.send(method), ''
+      assert_equal('', m.send(method))
       m.send("#{method}=", value)
-      assert_equal m.send(method), value
+      assert_equal(value, m.send(method))
     end
 
     y = m.to_yaml
@@ -180,14 +180,14 @@ class CFFModelTest < Minitest::Test
     m.contact << e
 
     y = m.to_yaml
-    assert_equal m.contact.length, 2
+    assert_equal(2, m.contact.length)
     assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
     refute y.include? '_ _ _'
 
     m.contact = r
 
     y = m.to_yaml
-    assert_equal m.contact.length, 2
+    assert_equal(2, m.contact.length)
     assert y.include? "contact:\n- family-names: S\n  given-names: F\n- name: Co."
     refute y.include? '_ _ _'
   end
@@ -201,14 +201,14 @@ class CFFModelTest < Minitest::Test
 
     m.keywords = keys
     l = keys.length
-    assert_equal m.keywords.length, l
+    assert_equal(l, m.keywords.length)
 
     m.keywords << 'four'
     l += 1
-    assert_equal m.keywords.length, l
+    assert_equal(l, m.keywords.length)
 
     y = m.to_yaml
-    assert_equal m.keywords.length, l
+    assert_equal(l, m.keywords.length)
     assert y.include? "keywords:\n- one\n- two\n- '3'\n- four\n"
   end
 
@@ -223,12 +223,12 @@ class CFFModelTest < Minitest::Test
 
     m.references << r
     m.references << '_ _ _'
-    assert_equal m.references.length, 2
-    assert_equal m.references[0].authors.length, 3
+    assert_equal(2, m.references.length)
+    assert_equal(3, m.references[0].authors.length)
 
     y = m.to_yaml
-    assert_equal m.references.length, 1
-    assert_equal m.references[0].authors.length, 2
+    assert_equal(1, m.references.length)
+    assert_equal(2, m.references[0].authors.length)
     assert y.include? "references:\n- type: book\n  title: book title\n"
     assert y.include? "  authors:\n  - family-names: Second\n    given-names: First\n  - name: Company\n"
     refute y.include? '_ _ _'
@@ -246,12 +246,12 @@ class CFFModelTest < Minitest::Test
 
   def test_new_with_block
     model = ::CFF::Model.new('title') do |cff|
-      assert_equal cff.title, 'title'
+      assert_equal('title', cff.title)
       cff.version = '2.0.0'
     end
 
-    assert_equal model.title, 'title'
-    assert_equal model.version, '2.0.0'
+    assert_equal('title', model.title)
+    assert_equal('2.0.0', model.version)
     assert model.is_a?(::CFF::Model)
   end
 end
