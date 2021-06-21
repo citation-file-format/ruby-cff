@@ -395,7 +395,7 @@ class CFFFileTest < Minitest::Test
     file = ::File.read(file)
 
     if exists
-      assert file.include?(contents)
+      assert_includes(file, contents)
     else
       refute_includes(file, contents)
     end

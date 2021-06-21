@@ -58,7 +58,7 @@ class CFFEntityTest < Minitest::Test
     y = @entity.fields.to_yaml
 
     data.each do |method, value|
-      assert y.include? "#{method_to_field(method)}: #{value}\n"
+      assert_includes(y, "#{method_to_field(method)}: #{value}\n")
     end
   end
 
@@ -72,8 +72,8 @@ class CFFEntityTest < Minitest::Test
 
     y = @entity.fields.to_yaml
 
-    assert y.include? "date-end: #{date}\n"
-    assert y.include? "date-start: #{date}\n"
+    assert_includes(y, "date-end: #{date}\n")
+    assert_includes(y, "date-start: #{date}\n")
   end
 
   def test_date_fields_set_and_output_correctly_with_text
@@ -86,8 +86,8 @@ class CFFEntityTest < Minitest::Test
 
     y = @entity.fields.to_yaml
 
-    assert y.include? "date-end: #{date}\n"
-    assert y.include? "date-start: #{date}\n"
+    assert_includes(y, "date-end: #{date}\n")
+    assert_includes(y, "date-start: #{date}\n")
   end
 
   def test_tel_fax_fields_set_and_output_correctly
@@ -100,8 +100,8 @@ class CFFEntityTest < Minitest::Test
 
     y = @entity.fields.to_yaml
 
-    assert y.include? "fax: \"#{number}\"\n"
-    assert y.include? "tel: \"#{number}\"\n"
+    assert_includes(y, "fax: \"#{number}\"\n")
+    assert_includes(y, "tel: \"#{number}\"\n")
   end
 
   def test_new_with_block

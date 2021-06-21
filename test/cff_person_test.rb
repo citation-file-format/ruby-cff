@@ -60,7 +60,7 @@ class CFFPersonTest < Minitest::Test
     y = @person.fields.to_yaml
 
     data.each do |method, value|
-      assert y.include? "#{method_to_field(method)}: #{value}\n"
+      assert_includes(y, "#{method_to_field(method)}: #{value}\n")
     end
   end
 
@@ -74,8 +74,8 @@ class CFFPersonTest < Minitest::Test
 
     y = @person.fields.to_yaml
 
-    assert y.include? "fax: \"#{number}\"\n"
-    assert y.include? "tel: \"#{number}\"\n"
+    assert_includes(y, "fax: \"#{number}\"\n")
+    assert_includes(y, "tel: \"#{number}\"\n")
   end
 
   def test_new_with_block

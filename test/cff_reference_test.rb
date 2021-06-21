@@ -61,7 +61,10 @@ class CFFReferenceTest < Minitest::Test
 
     methods.each do |method|
       assert_equal(2, @reference.send(method).length)
-      assert y.include? "#{method_to_field(method)}:\n- family-names: Second\n  given-names: First\n- name: Company\n"
+      assert_includes(
+        y,
+        "#{method_to_field(method)}:\n- family-names: Second\n  given-names: First\n- name: Company\n"
+      )
     end
   end
 
@@ -121,7 +124,7 @@ class CFFReferenceTest < Minitest::Test
       @reference.add_language lang
     end
     y = @reference.fields.to_yaml
-    assert y.include? "languages:\n- eng\n- deu\n- fra\n"
+    assert_includes(y, "languages:\n- eng\n- deu\n- fra\n")
 
     @reference.reset_languages
     y = @reference.fields.to_yaml
@@ -141,7 +144,7 @@ class CFFReferenceTest < Minitest::Test
     assert_equal('Apache-2.0', @reference.license)
 
     y = @reference.fields.to_yaml
-    assert y.include? "license: Apache-2.0\n"
+    assert_includes(y, "license: Apache-2.0\n")
   end
 
   def test_bad_dates_raises_error
@@ -151,7 +154,7 @@ class CFFReferenceTest < Minitest::Test
       exp = assert_raises(ArgumentError) do
         @reference.send("#{method}=", 'nonsense')
       end
-      assert exp.message.include?('invalid date')
+      assert_includes(exp.message, 'invalid date')
     end
   end
 
@@ -163,13 +166,13 @@ class CFFReferenceTest < Minitest::Test
       @reference.send("#{method}=", date)
       assert_equal(date, @reference.send(method))
       y = @reference.fields.to_yaml
-      assert y.include? "#{method_to_field(method)}: #{date.iso8601}"
+      assert_includes(y, "#{method_to_field(method)}: #{date.iso8601}")
 
       date = '1999-12-31'
       @reference.send("#{method}=", date)
       assert_equal(Date.parse(date), @reference.send(method))
       y = @reference.fields.to_yaml
-      assert y.include? "#{method_to_field(method)}: #{date}"
+      assert_includes(y, "#{method_to_field(method)}: #{date}")
     end
   end
 
@@ -195,8 +198,8 @@ class CFFReferenceTest < Minitest::Test
     y = @reference.fields.to_yaml
     assert_equal(l, @reference.keywords.length)
     assert_equal(l, @reference.patent_states.length)
-    assert y.include? "keywords:\n- one\n- two\n- '3'\n- four\n"
-    assert y.include? "patent-states:\n- one\n- two\n- '3'\n- four\n"
+    assert_includes(y, "keywords:\n- one\n- two\n- '3'\n- four\n")
+    assert_includes(y, "patent-states:\n- one\n- two\n- '3'\n- four\n")
   end
 
   def test_simple_fields_set_and_output_correctly
@@ -248,7 +251,7 @@ class CFFReferenceTest < Minitest::Test
     y = @reference.fields.to_yaml
 
     methods.each do |method|
-      assert y.include? "#{method_to_field(method)}: #{value}\n"
+      assert_includes(y, "#{method_to_field(method)}: #{value}\n")
     end
   end
 
@@ -277,7 +280,7 @@ class CFFReferenceTest < Minitest::Test
     y = @reference.fields.to_yaml
 
     methods.each do |method|
-      assert y.include? "#{method_to_field(method)}: #{value}\n"
+      assert_includes(y, "#{method_to_field(method)}: #{value}\n")
     end
   end
 
@@ -294,7 +297,7 @@ class CFFReferenceTest < Minitest::Test
     y = @reference.fields.to_yaml
 
     methods.each do |method|
-      assert y.include? "#{method_to_field(method)}:\n  name: Company\n"
+      assert_includes(y, "#{method_to_field(method)}:\n  name: Company\n")
     end
   end
 

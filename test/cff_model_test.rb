@@ -40,14 +40,14 @@ class CFFModelTest < Minitest::Test
 
   def test_cff_version_is_output_correctly
     m = ::CFF::Model.new('').to_yaml
-    assert m.include? 'cff-version'
+    assert_includes(m, 'cff-version')
     refute_includes(m, 'cff_version')
   end
 
   def test_message_is_output_correctly
     ['', 'aaabbbccc'].each do |title|
       m = ::CFF::Model.new(title).to_yaml
-      assert m.include? "message: #{::CFF::Model::DEFAULT_MESSAGE}"
+      assert_includes(m, "message: #{::CFF::Model::DEFAULT_MESSAGE}")
     end
   end
 
@@ -55,18 +55,18 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     m.message = nil
     y = m.to_yaml
-    assert y.include? "message: ''"
+    assert_includes(y, "message: ''")
 
     m.message = 'this is a message'
     y = m.to_yaml
     assert_equal('this is a message', m.message)
-    assert y.include? 'message: this is a message'
+    assert_includes(y, 'message: this is a message')
   end
 
   def test_title_is_output_correctly
     ['', 'aaabbbccc'].each do |title|
       m = ::CFF::Model.new(title).to_yaml
-      assert m.include? "title: #{title}"
+      assert_includes(m, "title: #{title}")
     end
   end
 
@@ -79,7 +79,7 @@ class CFFModelTest < Minitest::Test
     m.title = title
     y = m.to_yaml
     assert_equal(title, m.title)
-    assert y.include? "title: #{title}"
+    assert_includes(y, "title: #{title}")
   end
 
   def test_version_is_set_and_output_correctly
@@ -89,7 +89,7 @@ class CFFModelTest < Minitest::Test
       assert_equal(version.to_s, m.version)
 
       y = m.to_yaml
-      assert y.include? "version: #{version}"
+      assert_includes(y, "version: #{version}")
     end
   end
 
@@ -99,7 +99,7 @@ class CFFModelTest < Minitest::Test
     exp = assert_raises(ArgumentError) do
       m.date_released = 'nonsense'
     end
-    assert exp.message.include?('invalid date')
+    assert_includes(exp.message, 'invalid date')
   end
 
   def test_date_released_is_set_and_output_correctly
@@ -109,13 +109,13 @@ class CFFModelTest < Minitest::Test
     m.date_released = date
     assert_equal(date, m.date_released)
     y = m.to_yaml
-    assert y.include? "date-released: #{date.iso8601}"
+    assert_includes(y, "date-released: #{date.iso8601}")
 
     date = '1999-12-31'
     m.date_released = date
     assert_equal(Date.parse(date), m.date_released)
     y = m.to_yaml
-    assert y.include? "date-released: #{date}"
+    assert_includes(y, "date-released: #{date}")
   end
 
   def test_authors_set_and_output_correctly
@@ -130,14 +130,19 @@ class CFFModelTest < Minitest::Test
 
     y = m.to_yaml
     assert_equal(2, m.authors.length)
-    assert y.include? "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
+    assert_includes(
+      y,
+      "authors:\n- family-names: Second\n  given-names: First\n- name: Company"
+    )
     refute_includes(y, '_ _ _')
 
     m.authors = r
 
     y = m.to_yaml
     assert_equal(2, m.authors.length)
-    assert y.include? "authors:\n- family-names: S\n  given-names: F\n- name: Co."
+    assert_includes(
+      y, "authors:\n- family-names: S\n  given-names: F\n- name: Co."
+    )
     refute_includes(y, '_ _ _')
   end
 
@@ -165,7 +170,7 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
 
     data.each do |method, value|
-      assert y.include? "#{method_to_field(method)}: #{value}\n"
+      assert_includes(y, "#{method_to_field(method)}: #{value}\n")
     end
   end
 
@@ -181,14 +186,19 @@ class CFFModelTest < Minitest::Test
 
     y = m.to_yaml
     assert_equal(2, m.contact.length)
-    assert y.include? "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
+    assert_includes(
+      y,
+      "contact:\n- family-names: Second\n  given-names: First\n- name: Company"
+    )
     refute_includes(y, '_ _ _')
 
     m.contact = r
 
     y = m.to_yaml
     assert_equal(2, m.contact.length)
-    assert y.include? "contact:\n- family-names: S\n  given-names: F\n- name: Co."
+    assert_includes(
+      y, "contact:\n- family-names: S\n  given-names: F\n- name: Co."
+    )
     refute_includes(y, '_ _ _')
   end
 
@@ -209,7 +219,7 @@ class CFFModelTest < Minitest::Test
 
     y = m.to_yaml
     assert_equal(l, m.keywords.length)
-    assert y.include? "keywords:\n- one\n- two\n- '3'\n- four\n"
+    assert_includes(y, "keywords:\n- one\n- two\n- '3'\n- four\n")
   end
 
   def test_references_set_and_output_correctly
@@ -229,8 +239,11 @@ class CFFModelTest < Minitest::Test
     y = m.to_yaml
     assert_equal(1, m.references.length)
     assert_equal(2, m.references[0].authors.length)
-    assert y.include? "references:\n- type: book\n  title: book title\n"
-    assert y.include? "  authors:\n  - family-names: Second\n    given-names: First\n  - name: Company\n"
+    assert_includes(y, "references:\n- type: book\n  title: book title\n")
+    assert_includes(
+      y,
+      "  authors:\n  - family-names: Second\n    given-names: First\n  - name: Company\n"
+    )
     refute_includes(y, '_ _ _')
   end
 
