@@ -34,12 +34,6 @@ Minitest/AssertIncludes:
     - 'test/cff_person_test.rb'
     - 'test/cff_reference_test.rb'
 
-# Offense count: 99
-# Cop supports --auto-correct.
-Minitest/LiteralAsActualArgument:
-  Exclude:
-    - 'test/cff_util_test.rb'
-
 # Offense count: 32
 Minitest/MultipleAssertions:
   Max: 13

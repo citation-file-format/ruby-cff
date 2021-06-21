@@ -21,9 +21,9 @@ class CFFUtilTest < Minitest::Test
   include ::CFF::Util
 
   def test_method_to_field
-    assert_equal method_to_field('field'), 'field'
-    assert_equal method_to_field('field_field'), 'field-field'
-    assert_equal method_to_field('field-field'), 'field-field'
+    assert_equal('field', method_to_field('field'))
+    assert_equal('field-field', method_to_field('field_field'))
+    assert_equal('field-field', method_to_field('field-field'))
   end
 
   def test_build_actor_collection
@@ -33,11 +33,11 @@ class CFFUtilTest < Minitest::Test
     ]
 
     build_actor_collection!(array)
-    assert_equal array.length, 2
+    assert_equal(2, array.length)
     assert_instance_of ::CFF::Person, array[0]
-    assert_equal array[0].given_names, 'First'
+    assert_equal('First', array[0].given_names)
     assert_instance_of ::CFF::Entity, array[1]
-    assert_equal array[1].name, 'Company'
+    assert_equal('Company', array[1].name)
   end
 
   def test_normalize_modelpart_array
@@ -50,7 +50,7 @@ class CFFUtilTest < Minitest::Test
 
     normalize_modelpart_array!(data)
 
-    assert_equal data.length, 2
+    assert_equal(2, data.length)
     assert_instance_of ::CFF::Person, data[0]
     assert_instance_of ::CFF::Entity, data[1]
   end
