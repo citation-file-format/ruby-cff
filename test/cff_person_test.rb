@@ -52,9 +52,9 @@ class CFFPersonTest < Minitest::Test
     ]
 
     data.each do |method, value|
-      assert_equal @person.send(method), ''
+      assert_equal('', @person.send(method))
       @person.send("#{method}=", value)
-      assert_equal @person.send(method), value
+      assert_equal(value, @person.send(method))
     end
 
     y = @person.fields.to_yaml
@@ -69,8 +69,8 @@ class CFFPersonTest < Minitest::Test
     @person.fax = number
     @person.tel = number
 
-    assert_equal @person.fax, number
-    assert_equal @person.tel, number
+    assert_equal(number, @person.fax)
+    assert_equal(number, @person.tel)
 
     y = @person.fields.to_yaml
 
@@ -80,14 +80,14 @@ class CFFPersonTest < Minitest::Test
 
   def test_new_with_block
     person = ::CFF::Person.new('Rob', 'Haines') do |p|
-      assert_equal p.given_names, 'Rob'
-      assert_equal p.family_names, 'Haines'
+      assert_equal('Rob', p.given_names)
+      assert_equal('Haines', p.family_names)
       p.email = 'email@example.org'
     end
 
-    assert_equal person.given_names, 'Rob'
-    assert_equal person.family_names, 'Haines'
-    assert_equal person.email, 'email@example.org'
+    assert_equal('Rob', person.given_names)
+    assert_equal('Haines', person.family_names)
+    assert_equal('email@example.org', person.email)
     assert person.is_a?(::CFF::Person)
   end
 end
