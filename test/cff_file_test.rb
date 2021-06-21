@@ -295,7 +295,7 @@ class CFFFileTest < Minitest::Test
 
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
-      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
     end
   end
@@ -310,7 +310,7 @@ class CFFFileTest < Minitest::Test
 
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
-      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
     end
   end
@@ -323,7 +323,7 @@ class CFFFileTest < Minitest::Test
       ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
-      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
       check_file_comment(OUTPUT_CFF, [])
     end
@@ -337,7 +337,7 @@ class CFFFileTest < Minitest::Test
       ::CFF::File.write(OUTPUT_CFF, model)
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
-      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
       check_file_comment(OUTPUT_CFF, [])
     end
@@ -356,7 +356,7 @@ class CFFFileTest < Minitest::Test
       file.write
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
-      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, false)
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
       check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
       check_file_comment(OUTPUT_CFF, [comment])
     end
@@ -391,7 +391,7 @@ class CFFFileTest < Minitest::Test
 
   private
 
-  def check_file_contents(file, contents, exists = true)
+  def check_file_contents(file, contents, exists: true)
     file = ::File.read(file)
 
     if exists

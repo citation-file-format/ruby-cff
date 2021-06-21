@@ -27,10 +27,3 @@ Metrics/PerceivedComplexity:
 # Offense count: 32
 Minitest/MultipleAssertions:
   Max: 13
-
-# Offense count: 1
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: respond_to_missing?
-Style/OptionalBooleanParameter:
-  Exclude:
-    - 'test/cff_file_test.rb'
