@@ -53,67 +53,67 @@ class CFFReferenceTest < Minitest::Test
       @reference.send(method) << a
       @reference.send(method) << '_ _ _'
       @reference.send(method) << e
-      assert_equal @reference.send(method).length, 3
+      assert_equal(3, @reference.send(method).length)
     end
 
     y = @reference.fields.to_yaml
     refute y.include? '_ _ _'
 
     methods.each do |method|
-      assert_equal @reference.send(method).length, 2
+      assert_equal(2, @reference.send(method).length)
       assert y.include? "#{method_to_field(method)}:\n- family-names: Second\n  given-names: First\n- name: Company\n"
     end
   end
 
   def test_type_restricted_to_allowed_types
     ref = ::CFF::Reference.new('Title')
-    assert_equal ref.type, 'generic'
+    assert_equal('generic', ref.type)
 
     ref = ::CFF::Reference.new('Title', 'Article')
-    assert_equal ref.type, 'article'
+    assert_equal('article', ref.type)
 
     ref = ::CFF::Reference.new('Title', 'cake')
-    refute_equal ref.type, 'cake'
-    assert_equal ref.type, 'generic'
+    refute_equal('cake', ref.type)
+    assert_equal('generic', ref.type)
 
     @reference.type = 'cake'
-    refute_equal @reference.type, 'cake'
-    assert_equal @reference.type, 'article'
+    refute_equal('cake', @reference.type)
+    assert_equal('article', @reference.type)
 
     @reference.type = 'Book'
-    assert_equal @reference.type, 'book'
+    assert_equal('book', @reference.type)
   end
 
   def test_status_restricted_to_allowed_types
     @reference.status = 'in-press'
-    assert_equal @reference.status, 'in-press'
+    assert_equal('in-press', @reference.status)
 
     @reference.status = 'published'
-    refute_equal @reference.status, 'published'
-    assert_equal @reference.status, 'in-press'
+    refute_equal('published', @reference.status)
+    assert_equal('in-press', @reference.status)
 
     @reference.status = 'Pre-Print'
-    assert_equal @reference.status, 'pre-print'
+    assert_equal('pre-print', @reference.status)
   end
 
   def test_languages_methods
-    assert_equal @reference.languages, []
+    assert_empty(@reference.languages)
 
     @reference.languages << 'eng'
-    assert_equal @reference.languages, []
+    assert_empty(@reference.languages)
 
     @reference.add_language 'english'
-    assert_equal @reference.languages, ['eng']
+    assert_equal(['eng'], @reference.languages)
     @reference.add_language 'GER'
-    assert_equal @reference.languages, %w[eng deu]
+    assert_equal(%w[eng deu], @reference.languages)
     @reference.add_language 'en'
-    assert_equal @reference.languages, %w[eng deu]
+    assert_equal(%w[eng deu], @reference.languages)
 
     @reference.reset_languages
-    assert_equal @reference.languages, []
+    assert_empty(@reference.languages)
 
     @reference.add_language 'Inglish'
-    assert_equal @reference.languages, []
+    assert_empty(@reference.languages)
   end
 
   def test_languages_output_correctly
@@ -129,16 +129,16 @@ class CFFReferenceTest < Minitest::Test
   end
 
   def test_license_is_set_and_output_correctly
-    assert_equal @reference.license, ''
+    assert_equal('', @reference.license)
 
     @reference.license = 'Bad Licence'
-    assert_equal @reference.license, ''
+    assert_equal('', @reference.license)
 
     @reference.license = 'Apache-2.0'
-    assert_equal @reference.license, 'Apache-2.0'
+    assert_equal('Apache-2.0', @reference.license)
 
     @reference.license = 'Bad Licence'
-    assert_equal @reference.license, 'Apache-2.0'
+    assert_equal('Apache-2.0', @reference.license)
 
     y = @reference.fields.to_yaml
     assert y.include? "license: Apache-2.0\n"
@@ -161,13 +161,13 @@ class CFFReferenceTest < Minitest::Test
     ].each do |method|
       date = Date.today
       @reference.send("#{method}=", date)
-      assert_equal @reference.send(method), date
+      assert_equal(date, @reference.send(method))
       y = @reference.fields.to_yaml
       assert y.include? "#{method_to_field(method)}: #{date.iso8601}"
 
       date = '1999-12-31'
       @reference.send("#{method}=", date)
-      assert_equal @reference.send(method), Date.parse(date)
+      assert_equal(Date.parse(date), @reference.send(method))
       y = @reference.fields.to_yaml
       assert y.include? "#{method_to_field(method)}: #{date}"
     end
@@ -183,18 +183,18 @@ class CFFReferenceTest < Minitest::Test
     @reference.keywords = keys.dup
     @reference.patent_states = keys.dup
     l = keys.length
-    assert_equal @reference.keywords.length, l
-    assert_equal @reference.patent_states.length, l
+    assert_equal(l, @reference.keywords.length)
+    assert_equal(l, @reference.patent_states.length)
 
     @reference.keywords << 'four'
     @reference.patent_states << 'four'
     l += 1
-    assert_equal @reference.keywords.length, l
-    assert_equal @reference.patent_states.length, l
+    assert_equal(l, @reference.keywords.length)
+    assert_equal(l, @reference.patent_states.length)
 
     y = @reference.fields.to_yaml
-    assert_equal @reference.keywords.length, l
-    assert_equal @reference.patent_states.length, l
+    assert_equal(l, @reference.keywords.length)
+    assert_equal(l, @reference.patent_states.length)
     assert y.include? "keywords:\n- one\n- two\n- '3'\n- four\n"
     assert y.include? "patent-states:\n- one\n- two\n- '3'\n- four\n"
   end
@@ -240,9 +240,9 @@ class CFFReferenceTest < Minitest::Test
     ]
 
     methods.each do |method|
-      assert_equal @reference.send(method), ''
+      assert_equal('', @reference.send(method))
       @reference.send("#{method}=", value)
-      assert_equal @reference.send(method), value
+      assert_equal(value, @reference.send(method))
     end
 
     y = @reference.fields.to_yaml
@@ -269,9 +269,9 @@ class CFFReferenceTest < Minitest::Test
     ]
 
     methods.each do |method|
-      assert_equal @reference.send(method), ''
+      assert_equal('', @reference.send(method))
       @reference.send("#{method}=", value)
-      assert_equal @reference.send(method), value
+      assert_equal(value, @reference.send(method))
     end
 
     y = @reference.fields.to_yaml
@@ -286,9 +286,9 @@ class CFFReferenceTest < Minitest::Test
 
     methods.each do |method|
       value = ::CFF::Entity.new('Company')
-      assert_equal @reference.send(method), ''
+      assert_equal('', @reference.send(method))
       @reference.send("#{method}=", value)
-      assert_equal @reference.send(method), value
+      assert_equal(value, @reference.send(method))
     end
 
     y = @reference.fields.to_yaml
@@ -300,14 +300,14 @@ class CFFReferenceTest < Minitest::Test
 
   def test_new_with_block
     ref = ::CFF::Reference.new('A Paper', 'article') do |r|
-      assert_equal r.title, 'A Paper'
-      assert_equal r.type, 'article'
+      assert_equal('A Paper', r.title)
+      assert_equal('article', r.type)
       r.conference = 'International Conference of Hard Problems'
     end
 
-    assert_equal ref.title, 'A Paper'
-    assert_equal ref.type, 'article'
-    assert_equal ref.conference, 'International Conference of Hard Problems'
+    assert_equal('A Paper', ref.title)
+    assert_equal('article', ref.type)
+    assert_equal('International Conference of Hard Problems', ref.conference)
     assert ref.is_a?(::CFF::Reference)
   end
 end
