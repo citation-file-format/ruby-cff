@@ -50,9 +50,9 @@ class CFFEntityTest < Minitest::Test
     ]
 
     data.each do |method, value|
-      assert_equal @entity.send(method), ''
+      assert_equal('', @entity.send(method))
       @entity.send("#{method}=", value)
-      assert_equal @entity.send(method), value
+      assert_equal(value, @entity.send(method))
     end
 
     y = @entity.fields.to_yaml
@@ -67,8 +67,8 @@ class CFFEntityTest < Minitest::Test
     @entity.date_end = date
     @entity.date_start = date
 
-    assert_equal @entity.date_end, date
-    assert_equal @entity.date_start, date
+    assert_equal(date, @entity.date_end)
+    assert_equal(date, @entity.date_start)
 
     y = @entity.fields.to_yaml
 
@@ -81,8 +81,8 @@ class CFFEntityTest < Minitest::Test
     @entity.date_end = date
     @entity.date_start = date
 
-    assert_equal @entity.date_end, Date.parse(date)
-    assert_equal @entity.date_start, Date.parse(date)
+    assert_equal(Date.parse(date), @entity.date_end)
+    assert_equal(Date.parse(date), @entity.date_start)
 
     y = @entity.fields.to_yaml
 
@@ -95,8 +95,8 @@ class CFFEntityTest < Minitest::Test
     @entity.fax = number
     @entity.tel = number
 
-    assert_equal @entity.fax, number
-    assert_equal @entity.tel, number
+    assert_equal(number, @entity.fax)
+    assert_equal(number, @entity.tel)
 
     y = @entity.fields.to_yaml
 
@@ -106,12 +106,12 @@ class CFFEntityTest < Minitest::Test
 
   def test_new_with_block
     entity = ::CFF::Entity.new('My Company') do |e|
-      assert_equal e.name, 'My Company'
+      assert_equal('My Company', e.name)
       e.tel = '+44 (0) 161-234-5678'
     end
 
-    assert_equal entity.name, 'My Company'
-    assert_equal entity.tel, '+44 (0) 161-234-5678'
+    assert_equal('My Company', entity.name)
+    assert_equal('+44 (0) 161-234-5678', entity.tel)
     assert entity.is_a?(::CFF::Entity)
   end
 end
