@@ -53,7 +53,7 @@ module CFF
 
     # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
-      'it using the following metadata'
+                      'it using the following metadata'
 
     # :call-seq:
     #   new(title) -> Model
