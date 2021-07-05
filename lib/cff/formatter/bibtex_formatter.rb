@@ -31,7 +31,7 @@ module CFF
       end
 
       sorted_values = values.sort.map { |key, value| pair(key: key, value: value) }
-      sorted_values.insert(0, '@misc{YourReferenceHere')
+      sorted_values.insert(0, "@misc{#{generate_reference(values)}")
 
       output = sorted_values.join(",\n")
       output << "\n}"
@@ -58,6 +58,14 @@ module CFF
 
     def self.combine_authors(authors)
       authors.join(' and ')
+    end
+
+    def self.generate_reference(fields)
+      author = fields['author'].split(',', 2)[0].tr(' -', '_')
+      title = fields['title'].split[0..2].map do |word|
+        word.tr('-$£%&()+!?/\\:;\'"~#', '')
+      end
+      [author, title, fields['year']].compact.join('_')
     end
   end
 end
