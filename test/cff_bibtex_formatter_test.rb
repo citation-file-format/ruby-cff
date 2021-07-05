@@ -21,4 +21,27 @@ class CFFBibtexFormatterTest < Minitest::Test
     cff = CFF::Model.new(nil)
     assert_nil cff.to_bibtex
   end
+
+  def test_generate_reference
+    [
+      [
+        {
+          'author' => 'von Haines, Robert and Robert, Haines',
+          'title' => 'My Family and Other Animals',
+          'year' => '2021'
+        },
+        'von_Haines_My_Family_and_2021'
+      ],
+      [
+        {
+          'year' => nil,
+          'author' => 'An Organisation',
+          'title' => "Really?! 'Everyone' Disagrees?"
+        },
+        'An_Organisation_Really_Everyone_Disagrees'
+      ]
+    ].each do |fields, reference|
+      assert_equal(reference, ::CFF::BibtexFormatter.generate_reference(fields))
+    end
+  end
 end
