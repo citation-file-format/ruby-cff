@@ -15,7 +15,7 @@ module CFF
       end
       output << model.title.to_s if present?(model.title)
       output << " (version #{model.version})." if present?(model.version)
-      output << " DOI: http://doi.org/#{model.doi}" if present?(model.doi)
+      output << " DOI: https://doi.org/#{model.doi}" if present?(model.doi)
       output << " URL: #{model.repository_code}" if present?(model.repository_code)
       output
     rescue StandardError
