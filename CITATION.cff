@@ -1,8 +1,8 @@
-# This CITATION.cff file was created by ruby-cff (v 0.5.0).
+# This CITATION.cff file was created by ruby-cff (v 0.6.0).
 # Gem: https://rubygems.org/gems/cff
 # CFF: https://citation-file-format.github.io/
 
-cff-version: 1.0.3
+cff-version: 1.2.0
 message: If you use ruby-cff in your work, please cite it using the following metadata
 title: Ruby CFF Library
 abstract: This library provides a Ruby interface to manipulate CITATION.cff files
@@ -17,7 +17,7 @@ keywords:
 - citation
 - metadata
 - cff
-version: 0.5.0
+version: 0.6.0
 doi: 10.5281/zenodo.1184077
 date-released: 2018-07-29
 license: Apache-2.0

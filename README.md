@@ -23,22 +23,22 @@ See the [full API documentation](https://citation-file-format.github.io/ruby-cff
 You can quickly build and save a CFF model like this:
 
 ```ruby
-model = CFF::Model.new("Ruby CFF Library") do |cff|
+model = CFF::Model.new('Ruby CFF Library') do |cff|
   cff.version = CFF::VERSION
   cff.date_released = Date.today
-  cff.authors << CFF::Person.new("Robert", "Haines")
-  cff.license = "Apache-2.0"
-  cff.keywords << "ruby" << "credit" << "citation"
-  cff.repository_artifact = "https://rubygems.org/gems/cff"
+  cff.authors << CFF::Person.new('Robert', 'Haines')
+  cff.license = 'Apache-2.0'
+  cff.keywords << 'ruby' << 'credit' << 'citation'
+  cff.repository_artifact = 'https://rubygems.org/gems/cff'
 end
 
-CFF::File.write("CITATION.cff", model)
+CFF::File.write('CITATION.cff', model)
 ```
 
 Which will produce a file that looks something like this:
 
 ```yaml
-cff-version: 1.0.3
+cff-version: 1.2.0
 message: If you use this software in your work, please cite it using the following metadata
 title: Ruby CFF Library
 authors:
@@ -60,10 +60,10 @@ repository-artifact: https://rubygems.org/gems/cff
 CFF::File.open('CITATION.cff') do |cff|
   cff.version = CFF::VERSION
   cff.date_released = Date.today
-  cff.authors << CFF::Person.new("Robert", "Haines")
-  cff.license = "Apache-2.0"
-  cff.keywords << "ruby" << "credit" << "citation"
-  cff.repository_artifact = "https://rubygems.org/gems/cff"
+  cff.authors << CFF::Person.new('Robert', 'Haines')
+  cff.license = 'Apache-2.0'
+  cff.keywords << 'ruby' << 'credit' << 'citation'
+  cff.repository_artifact = 'https://rubygems.org/gems/cff'
 end
 ```
 
