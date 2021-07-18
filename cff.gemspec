@@ -28,9 +28,17 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/citation-file-format/ruby-cff'
   spec.license       = 'Apache-2.0'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.metadata = {
+    'bug_tracker_uri' => 'https://github.com/citation-file-format/ruby-cff/issues',
+    'changelog_uri' => 'https://github.com/citation-file-format/ruby-cff/blob/main/CHANGES.md',
+    'documentation_uri' => 'https://citation-file-format.github.io/ruby-cff/',
+    'source_code_uri' => 'https://github.com/citation-file-format/ruby-cff'
+  }
+
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^((test|spec|features)/|\.)})
   end
+
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
