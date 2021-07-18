@@ -217,7 +217,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 135</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 143</span>
     </pre>
           </div>
         </div>
@@ -239,7 +239,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 149</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 157</span>
     </pre>
           </div>
         </div>
@@ -264,7 +264,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 158</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 166</span>
     </pre>
           </div>
         </div>
@@ -286,7 +286,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 172</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 180</span>
     </pre>
           </div>
         </div>
@@ -335,7 +335,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 181</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 189</span>
     </pre>
           </div>
         </div>
@@ -357,7 +357,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 195</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 203</span>
     </pre>
           </div>
         </div>
@@ -380,7 +380,7 @@
 </pre>
 
           <div class="method-source-code" id="references-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 204</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 212</span>
     </pre>
           </div>
         </div>
@@ -400,7 +400,7 @@
           <p>Replace the list of references for this citation.</p>
 
           <div class="method-source-code" id="references-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 216</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 224</span>
   </pre>
           </div>
         </div>
@@ -410,16 +410,17 @@
 
       <div id="method-i-to_apalike" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">to_apalike</span><span
-            class="method-args">()</span>
+          <span class="method-callseq">
+            to_apalike &rarr; String
+          </span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          
+          <p>Output this <a href="Model.html"><code>Model</code></a> in an APA-like format.</p>
 
           <div class="method-source-code" id="to_apalike-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 101</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_apalike</span>
   <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">ApaFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -431,16 +432,17 @@
 
       <div id="method-i-to_bibtex" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">to_bibtex</span><span
-            class="method-args">()</span>
+          <span class="method-callseq">
+            to_bibtex &rarr; String
+          </span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          
+          <p>Output this <a href="Model.html"><code>Model</code></a> in BibTeX format.</p>
 
           <div class="method-source-code" id="to_bibtex-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 105</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_bibtex</span>
   <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">BibtexFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
