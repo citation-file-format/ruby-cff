@@ -14,7 +14,9 @@ A Ruby library for manipulating CITATION.cff files.
 
 This library provides a Ruby interface to manipulate CITATION.cff files. The primary entry points are the Model and File classes.
 
-See the [CITATION.cff documentation](https://citation-file-format.github.io/) for more details.
+See the [CITATION.cff documentation](https://citation-file-format.github.io/) for more details about the Citation File Format.
+
+See the [full API documentation](https://citation-file-format.github.io/ruby-cff/) for more details about Ruby CFF.
 
 ### Quick start
 
