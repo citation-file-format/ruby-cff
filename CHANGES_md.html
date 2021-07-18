@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>CHANGES -  Ruby CFF Library version 0.6.0</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby CFF Library</a>
+    <li><a href="#label-Version+0.4.0">Version 0.4.0</a>
+    <li><a href="#label-Version+0.3.0">Version 0.3.0</a>
+    <li><a href="#label-Version+0.2.0">Version 0.2.0</a>
+    <li><a href="#label-Version+0.1.0">Version 0.1.0</a>
+    <li><a href="#label-About+this+file">About this file</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./CHANGES_md.html">CHANGES</a>
+    <li><a href="./LICENCE.html">LICENCE</a>
+    <li><a href="./README_md.html">README</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page CHANGES.md">
+
+<h1 id="label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby <a href="CFF.html"><code>CFF</code></a> Library<span><a href="#label-Changes+log+for+the+Ruby+CFF+Library">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Version+0.4.0">Version 0.4.0<span><a href="#label-Version+0.4.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Remove unused Util#expand_field method.</p>
+</li><li>
+<p>Changed Model#keywords to be a field type.</p>
+</li><li>
+<p>Model is now a subclass of ModelPart.</p>
+</li><li>
+<p>Document ModelPart and Util just enough.</p>
+</li><li>
+<p>Add Util::normalize_modelpart_array! method.</p>
+</li><li>
+<p>Tighten up checking for empty collections in model.</p>
+</li><li>
+<p>Move the references into the Model fields.</p>
+</li><li>
+<p>Add an in-place actor collection builder method.</p>
+</li><li>
+<p>Move authors and contact to Model fields.</p>
+</li><li>
+<p>Refactor Reference so the actor lists are fields.</p>
+</li><li>
+<p>Remove unused method: Util::build_actor_collection.</p>
+</li><li>
+<p>Remove unused method: Util::expand_array_field.</p>
+</li><li>
+<p>Add rubocop to the development dependencies.</p>
+</li><li>
+<p>Add rubocop configuration files.</p>
+</li><li>
+<p>Add rubocop rake tasks.</p>
+</li><li>
+<p>Many rubocop fixes.</p>
+</li><li>
+<p>Compact ALLOWED_FIELDS lists for consistency.</p>
+</li><li>
+<p>Allow creation of a Reference without a type.</p>
+</li><li>
+<p>Remove unused method: Util.delete_from_hash.</p>
+</li><li>
+<p>Refactor duplicated code into Util.fields_to_hash.</p>
+</li><li>
+<p>Add File#write (instance method).</p>
+</li><li>
+<p>Ensure a model always returns &#39;&#39; for missing fields.</p>
+</li><li>
+<p>Test reading short and minimal <a href="CFF.html"><code>CFF</code></a> files.</p>
+</li><li>
+<p>Cleanup duplicated tests.</p>
+</li><li>
+<p>Don&#39;t store dotfiles in the gemfile.</p>
+</li><li>
+<p>Add a CITATION.cff file!</p>
+</li></ul>
+
+<h2 id="label-Version+0.3.0">Version 0.3.0<span><a href="#label-Version+0.3.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Update badges for new repo location.</p>
+</li><li>
+<p>Add back the coveralls badge for new repo location.</p>
+</li><li>
+<p>Update gemspec with new repo location.</p>
+</li><li>
+<p>Bump version number for 0.3.0 release.</p>
+</li><li>
+<p>Add a Reference model to represent references.</p>
+</li><li>
+<p>Wire the Reference model into Model and File.</p>
+</li><li>
+<p>Add authors field to Reference.</p>
+</li><li>
+<p>Read the author field properly when parsing a Reference.</p>
+</li><li>
+<p>Remove the ModelPart constructor.</p>
+</li><li>
+<p>Add the DOI badge to the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Add the simple string fields to Reference.</p>
+</li><li>
+<p>Add format field to Reference.</p>
+</li><li>
+<p>Move duplicated builder methods to Util module.</p>
+</li><li>
+<p>Remove the Util module from the public API.</p>
+</li><li>
+<p>Restrict reference type to the defined set.</p>
+</li><li>
+<p>Add Date type fields to the Reference model.</p>
+</li><li>
+<p>Add contact to the Reference model.</p>
+</li><li>
+<p>Add editors to the Reference model.</p>
+</li><li>
+<p>Add editors-series to the Reference model.</p>
+</li><li>
+<p>Add recipients to the Reference model.</p>
+</li><li>
+<p>Add senders to the Reference model.</p>
+</li><li>
+<p>Add translators to the Reference model.</p>
+</li><li>
+<p>Refactor the Reference#fields method for complexity.</p>
+</li><li>
+<p>Refactor the Model#to_yaml method for complexity.</p>
+</li><li>
+<p>Restrict reference status to the defined set.</p>
+</li><li>
+<p>Add languages to the Reference model.</p>
+</li><li>
+<p>Restrict reference licence to the SPDX Licence List.</p>
+</li><li>
+<p>Rename Util array_to_fields to expand_array_field.</p>
+</li><li>
+<p>Add a Util method expand_field.</p>
+</li><li>
+<p>Correctly read in the actor lists from a file.</p>
+</li><li>
+<p>Update quick start example in the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Add the integer fields to the Reference model.</p>
+</li><li>
+<p>Refactor Reference#fields to cope with single Entities.</p>
+</li><li>
+<p>Add the singular Entity fields to the Reference model.</p>
+</li><li>
+<p>Add issue-date field to the Reference model.</p>
+</li><li>
+<p>Add the keywords field to the Reference model.</p>
+</li><li>
+<p>Refactor keyword list initialization in Reference.</p>
+</li><li>
+<p>Add patent-states field to the Reference model.</p>
+</li><li>
+<p>Refactor Reference#keywords to be a standard field.</p>
+</li><li>
+<p>Refactor Reference#patent_states to be a field.</p>
+</li><li>
+<p>Extend the tests for Reference after the refactor.</p>
+</li><li>
+<p>Normalize Reference types when they are set.</p>
+</li><li>
+<p>Normalize the Reference status when set.</p>
+</li><li>
+<p>Add a note to the <a href="README_md.html">README</a> about versioning.</p>
+</li><li>
+<p>Add a <a href="CHANGES_md.html">CHANGES</a> file.</p>
+</li></ul>
+
+<h2 id="label-Version+0.2.0">Version 0.2.0<span><a href="#label-Version+0.2.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Add a rubygems version badge to the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Add older rubies to the CI, but allow failures.</p>
+</li><li>
+<p>Add the licence to the gemspec.</p>
+</li><li>
+<p>Rename the ALLOWED_METHODS list to FIELDS.</p>
+</li><li>
+<p>Send missing methods straight to Model, from File.</p>
+</li><li>
+<p>Fix passing through arguments for missing methods (File).</p>
+</li><li>
+<p>Add a Util module with delete_from_hash as first utility.</p>
+</li><li>
+<p>Move method_to_field to the Util module.</p>
+</li><li>
+<p>Refactor for more complete parsing ability.</p>
+</li><li>
+<p>Freeze the allowed fields constant in Model.</p>
+</li><li>
+<p>Change allowed fields to be more flexible</p>
+</li><li>
+<p>Add abstract to Model.</p>
+</li><li>
+<p>Factor out the process of converting array fields to yaml.</p>
+</li><li>
+<p>Fix test for authors that was split incorrectly.</p>
+</li><li>
+<p>Add contact to Model.</p>
+</li><li>
+<p>Add tests to check capitalized fields are rejected.</p>
+</li><li>
+<p>Refactor model building for maintainability.</p>
+</li><li>
+<p>Add commit to the Model.</p>
+</li><li>
+<p>Add doi to the Model.</p>
+</li><li>
+<p>Add keywords to Model.</p>
+</li><li>
+<p>Fix #11: prevent serialization of empty collections.</p>
+</li><li>
+<p>Add license to Model.</p>
+</li><li>
+<p>Refactor testing simple fields.</p>
+</li><li>
+<p>Add license-url to Model.</p>
+</li><li>
+<p>Simplify parsing the keywords in Model.</p>
+</li><li>
+<p>Refactor testing reading complete <a href="CFF.html"><code>CFF</code></a> file.</p>
+</li><li>
+<p>Add repository* to Model.</p>
+</li><li>
+<p>Add url to Model.</p>
+</li><li>
+<p>Fix #12: typo in <a href="README_md.html">README</a> example usage.</p>
+</li><li>
+<p>Add to the quick start example in the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Create a new base class (ModelPart) for parts of the model.</p>
+</li><li>
+<p>Add ModelPart#method_missing.</p>
+</li><li>
+<p>Add affiliation to Person, and tests for it too.</p>
+</li><li>
+<p>Add address to Entity, and tests for it too.</p>
+</li><li>
+<p>Add accessors for required fields on Person, Entity.</p>
+</li><li>
+<p>Add the rest of the optional fields in Person.</p>
+</li><li>
+<p>Add the rest of the simple fields in Entity.</p>
+</li><li>
+<p>Add the date fields in Entity.</p>
+</li><li>
+<p>Test dates in Entity with text inputs.</p>
+</li></ul>
+
+<h2 id="label-Version+0.1.0">Version 0.1.0<span><a href="#label-Version+0.1.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Add a code of conduct.</p>
+</li><li>
+<p>Add Travis configuration.</p>
+</li><li>
+<p>Add licence text to all source files.</p>
+</li><li>
+<p>Add a Travis badge to the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Add a CodeClimate badge to the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Set up coveralls integration.</p>
+</li><li>
+<p>Add a coveralls badge to the <a href="README_md.html">README</a>.</p>
+</li><li>
+<p>Add the current <a href="CFF.html"><code>CFF</code></a> spec version as the default.</p>
+</li><li>
+<p>Add a simple model class.</p>
+</li><li>
+<p>Message doesn&#39;t need to be passed to new.</p>
+</li><li>
+<p>Add title to model and wire into default message.</p>
+</li><li>
+<p>Add a method to set the message.</p>
+</li><li>
+<p>Remove the default values on ingestion.</p>
+</li><li>
+<p>Swap requires in main cff file.</p>
+</li><li>
+<p>Only set a default message on construction.</p>
+</li><li>
+<p>Add a File class to read and write <a href="CFF.html"><code>CFF</code></a> files.</p>
+</li><li>
+<p>Switch to using standard accessor for message field.</p>
+</li><li>
+<p>Streamline title output tests.</p>
+</li><li>
+<p>Add a set title method to Model and test it.</p>
+</li><li>
+<p>Turn off line wrapping in Model yaml output.</p>
+</li><li>
+<p>Fix #2. Don&#39;t include title in the default message.</p>
+</li><li>
+<p>Test that yaml output doesn&#39;t include the header.</p>
+</li><li>
+<p>Write cff from a String or Model.</p>
+</li><li>
+<p>Fix #3. Create a File from either a model or title.</p>
+</li><li>
+<p>When testing file loading, compare to yaml directly.</p>
+</li><li>
+<p>Test the message is loaded correctly into a File.</p>
+</li><li>
+<p>Add version to the Model and File APIs.</p>
+</li><li>
+<p>Add date-released to the Model and File APIs.</p>
+</li><li>
+<p>Fix cff_version test.</p>
+</li><li>
+<p>Move the Model class to a Hash-based implementation.</p>
+</li><li>
+<p>Initialize Model with a title or a Hash.</p>
+</li><li>
+<p>Update the File class to use the new Model class.</p>
+</li><li>
+<p>Use a method whitelist for Model and File.</p>
+</li><li>
+<p>Add a Person model to represent authors.</p>
+</li><li>
+<p>Add an Entity model to represent authors.</p>
+</li></ul>
+
+<h2 id="label-About+this+file">About this file<span><a href="#label-About+this+file">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This file is, at least in part, generated by the following command:</p>
+
+<pre>$ git log --pretty=format:&quot;* %s&quot; --reverse --no-merges &lt;commit-hash&gt;..</pre>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
