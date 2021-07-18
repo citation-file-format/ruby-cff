@@ -1,16 +1,16 @@
-Sun, 18 Jul 2021 09:52:23 +0000
-README.md	Sun, 18 Jul 2021 09:52:18 +0000
-LICENCE	Sun, 18 Jul 2021 09:52:18 +0000
-CHANGES.md	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/entity.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/file.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/formatter/apa_formatter.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/formatter/bibtex_formatter.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/formatter/formatter.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/model.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/model_part.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/person.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/reference.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/util.rb	Sun, 18 Jul 2021 09:52:18 +0000
-lib/cff/version.rb	Sun, 18 Jul 2021 09:52:18 +0000
+Sun, 18 Jul 2021 09:59:39 +0000
+README.md	Sun, 18 Jul 2021 09:59:35 +0000
+LICENCE	Sun, 18 Jul 2021 09:59:35 +0000
+CHANGES.md	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/entity.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/file.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/formatter/apa_formatter.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/formatter/bibtex_formatter.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/formatter/formatter.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/model.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/model_part.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/person.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/reference.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/util.rb	Sun, 18 Jul 2021 09:59:35 +0000
+lib/cff/version.rb	Sun, 18 Jul 2021 09:59:35 +0000
