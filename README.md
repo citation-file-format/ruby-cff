@@ -1,5 +1,5 @@
 # Ruby CFF
-## Robert Haines
+## Robert Haines and The Ruby Citation File Format Developers
 
 A Ruby library for manipulating CITATION.cff files.
 

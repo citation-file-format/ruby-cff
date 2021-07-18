@@ -19,7 +19,10 @@ require_relative 'lib/cff/version'
 Gem::Specification.new do |spec|
   spec.name          = 'cff'
   spec.version       = CFF::VERSION
-  spec.authors       = ['Robert Haines']
+  spec.authors       = [
+    'Robert Haines',
+    'The Ruby Citation File Format Developers'
+  ]
   spec.email         = ['robert.haines@manchester.ac.uk']
 
   spec.summary       = 'A Ruby library for manipulating CITATION.cff files.'
