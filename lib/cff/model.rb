@@ -98,10 +98,18 @@ module CFF
       YAML.dump fields, line_width: -1, indentation: 2
     end
 
+    # :call-seq:
+    #   to_apalike -> String
+    #
+    # Output this Model in an APA-like format.
     def to_apalike
       CFF::ApaFormatter.format(model: self)
     end
 
+    # :call-seq:
+    #   to_bibtex -> String
+    #
+    # Output this Model in BibTeX format.
     def to_bibtex
       CFF::BibtexFormatter.format(model: self)
     end
