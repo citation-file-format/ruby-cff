@@ -114,7 +114,7 @@
           
 
           <div class="method-source-code" id="combine_authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/apa_formatter.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/apa_formatter.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">combine_authors</span>(<span class="ruby-identifier">authors</span>)
   <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;., &#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -135,7 +135,7 @@
           
 
           <div class="method-source-code" id="format-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/apa_formatter.rb, line 7</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/apa_formatter.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">format</span>(<span class="ruby-value">model:</span>) <span class="ruby-comment"># rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">required_fields?</span>(<span class="ruby-identifier">model</span>)
 
@@ -170,7 +170,7 @@
           
 
           <div class="method-source-code" id="format_author-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/apa_formatter.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/apa_formatter.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">format_author</span>(<span class="ruby-identifier">author</span>) <span class="ruby-comment"># rubocop:disable Metrics/AbcSize</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">author</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Person</span>)
     <span class="ruby-identifier">output</span> = <span class="ruby-string">+&#39;&#39;</span>

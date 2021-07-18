@@ -116,7 +116,7 @@
           
 
           <div class="method-source-code" id="combine_authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">combine_authors</span>(<span class="ruby-identifier">authors</span>)
   <span class="ruby-identifier">authors</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; and &#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -137,7 +137,7 @@
           
 
           <div class="method-source-code" id="format-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 7</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">format</span>(<span class="ruby-value">model:</span>) <span class="ruby-comment"># rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">required_fields?</span>(<span class="ruby-identifier">model</span>)
 
@@ -191,7 +191,7 @@
           
 
           <div class="method-source-code" id="format_author-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">format_author</span>(<span class="ruby-identifier">author</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">author</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Person</span>)
     <span class="ruby-identifier">output</span> = []
@@ -219,7 +219,7 @@
           
 
           <div class="method-source-code" id="generate_reference-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 63</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">generate_reference</span>(<span class="ruby-identifier">fields</span>)
   <span class="ruby-identifier">author</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;author&#39;</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;,&#39;</span>, <span class="ruby-value">2</span>)[<span class="ruby-value">0</span>].<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39; -&#39;</span>, <span class="ruby-string">&#39;_&#39;</span>)
   <span class="ruby-identifier">title</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;title&#39;</span>].<span class="ruby-identifier">split</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
@@ -244,7 +244,7 @@
           
 
           <div class="method-source-code" id="pair-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 44</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/bibtex_formatter.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">pair</span>(<span class="ruby-value">key:</span>, <span class="ruby-value">value:</span>)
   <span class="ruby-node">&quot;#{key} = {#{value}}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">present?</span>(<span class="ruby-identifier">value</span>)
 <span class="ruby-keyword">end</span></pre>

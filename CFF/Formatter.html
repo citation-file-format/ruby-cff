@@ -118,7 +118,7 @@
           
 
           <div class="method-source-code" id="combine_authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 28</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">combine_authors</span>(<span class="ruby-identifier">authors</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>
 <span class="ruby-keyword">end</span></pre>
@@ -139,7 +139,7 @@
           
 
           <div class="method-source-code" id="date_present-3F-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 11</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">date_present?</span>(<span class="ruby-identifier">attribute</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-operator">!</span><span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-operator">!</span><span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
@@ -163,7 +163,7 @@
           
 
           <div class="method-source-code" id="initials-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 24</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">initials</span>(<span class="ruby-identifier">name</span>)
   <span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">part</span><span class="ruby-operator">|</span> <span class="ruby-identifier">part</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">capitalize</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;.&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -184,7 +184,7 @@
           
 
           <div class="method-source-code" id="present-3F-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 18</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">present?</span>(<span class="ruby-identifier">attribute</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">attribute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-identifier">attribute</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">empty?</span>)
 
@@ -207,7 +207,7 @@
           
 
           <div class="method-source-code" id="required_fields-3F-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 7</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">required_fields?</span>(<span class="ruby-identifier">model</span>)
   <span class="ruby-operator">!</span>(<span class="ruby-identifier">model</span>.<span class="ruby-identifier">authors</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">model</span>.<span class="ruby-identifier">version</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -228,7 +228,7 @@
           
 
           <div class="method-source-code" id="try_get_month-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 32</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">try_get_month</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Date</span>
     <span class="ruby-identifier">value</span>.<span class="ruby-identifier">month</span>
@@ -258,7 +258,7 @@
           
 
           <div class="method-source-code" id="try_get_year-source">
-            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/cff/formatter/formatter.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">try_get_year</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Date</span>
     <span class="ruby-identifier">value</span>.<span class="ruby-identifier">year</span>
