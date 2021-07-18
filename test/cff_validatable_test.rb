@@ -65,6 +65,28 @@ class CFFValidatableTest < Minitest::Test
     assert_equal('cff-version', error.path[1])
   end
 
+  def test_file_validate
+    assert_equal([true, []], ::CFF::File.validate(MINIMAL_CFF))
+    result = ::CFF::File.validate(COMPLETE_CFF)
+
+    refute(result[0])
+    refute_empty(result[1])
+    assert_equal(1, result[1].length)
+
+    error = result[1][0]
+    assert_instance_of(::JsonSchema::ValidationError, error)
+    assert_equal(:pattern_failed, error.type)
+    assert_equal('cff-version', error.path[1])
+  end
+
+  def test_file_validate!
+    assert_nil(::CFF::File.validate!(MINIMAL_CFF))
+
+    assert_raises(::CFF::ValidationError) do
+      ::CFF::File.validate!(COMPLETE_CFF)
+    end
+  end
+
   def test_validate_model
     cff = ::CFF::Model.new('My software')
     assert_raises(::CFF::ValidationError) do

@@ -97,6 +97,26 @@ module CFF
     end
 
     # :call-seq:
+    #   validate(file) -> Array
+    #
+    # Read a file and return an array with the result. The result array is a
+    # two-element array, with `true`/`false` at index 0 to indicate pass/fail,
+    # and an array of errors at index 1 (if any).
+    def self.validate(file)
+      File.read(file).validate
+    end
+
+    # :call-seq:
+    #   validate!(file)
+    #
+    # Read a file and raise a ValidationError upon failure. If an error is
+    # raised it will contain the detected validation failures for further
+    # inspection.
+    def self.validate!(file)
+      File.read(file).validate!
+    end
+
+    # :call-seq:
     #   write(file, model)
     #   write(file, yaml)
     #
