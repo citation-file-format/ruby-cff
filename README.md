@@ -1,7 +1,7 @@
 # Ruby CFF
 ## Robert Haines and The Ruby Citation File Format Developers
 
-A Ruby library for manipulating CITATION.cff files.
+A Ruby library for creating, editing, validating and converting CITATION.cff files.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1184077.svg)](https://doi.org/10.5281/zenodo.1184077)
 [![Gem Version](https://badge.fury.io/rb/cff.svg)](https://badge.fury.io/rb/cff)
@@ -12,7 +12,9 @@ A Ruby library for manipulating CITATION.cff files.
 
 ### Synopsis
 
-This library provides a Ruby interface to manipulate CITATION.cff files. The primary entry points are the Model and File classes.
+This library provides a Ruby interface to create and edit Citation File Format (CFF) files. The resulting files can be validated against a formal schema to ensure correctness and can be output in a number of different citation-friendly formats.
+
+The primary API entry points are the `Model` and `File` classes.
 
 See the [CITATION.cff documentation](https://citation-file-format.github.io/) for more details about the Citation File Format.
 
@@ -66,6 +68,33 @@ CFF::File.open('CITATION.cff') do |cff|
   cff.repository_artifact = 'https://rubygems.org/gems/cff'
 end
 ```
+
+### Validating CFF files
+
+To quickly validate a file and raise an error on failure, you can use `CFF::File` directly:
+
+```ruby
+begin
+  CFF::File.validate!('CITATION.cff')
+rescue CFF::ValidationError => e
+  # Handle validation errors here...
+end
+```
+
+Both `CFF::File` and `CFF::Model` have instance methods to validate CFF files as well:
+
+```ruby
+cff = CFF::File.read('CITATION.cff')
+begin
+  cff.validate!(fail_fast: true)
+rescue CFF::ValidationError => e
+  # Handle validation errors here...
+end
+```
+
+Non-bang methods (`validate`) return a two-element array, with `true`/`false` at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).
+
+Passing `fail_fast: true` (default: `false`) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on `CFF::File` and `CFF::Model` provide the `fail_fast` option.
 
 ### Library versions
 
