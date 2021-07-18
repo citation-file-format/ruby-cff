@@ -17,7 +17,7 @@
 ##
 module CFF
   # Generates an APALIKE citation string
-  class ApaFormatter < Formatter
+  class ApaFormatter < Formatter # :nodoc:
 
     def self.format(model:) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       return nil unless required_fields?(model)

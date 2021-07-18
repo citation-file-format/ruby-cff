@@ -17,7 +17,7 @@
 ##
 module CFF
   # Generates an BibTex citation string
-  class BibtexFormatter < Formatter
+  class BibtexFormatter < Formatter # :nodoc:
 
     def self.format(model:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       return nil unless required_fields?(model)
