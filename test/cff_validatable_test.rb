@@ -44,15 +44,15 @@ class CFFValidatableTest < Minitest::Test
     assert_empty(result[1])
   end
 
-  def test_complete_103_example_file_raises_error
-    cff = ::CFF::File.read(COMPLETE_CFF)
+  def test_incomplete_example_file_raises_error
+    cff = ::CFF::File.read(INCOMPLETE_CFF)
     assert_raises(::CFF::ValidationError) do
       cff.validate!
     end
   end
 
-  def test_complete_103_example_file_lists_correct_error
-    cff = ::CFF::File.read(COMPLETE_CFF)
+  def test_incomplete_example_file_lists_correct_error
+    cff = ::CFF::File.read(INCOMPLETE_CFF)
     result = cff.validate
 
     refute(result[0])
@@ -61,13 +61,12 @@ class CFFValidatableTest < Minitest::Test
 
     error = result[1][0]
     assert_instance_of(::JsonSchema::ValidationError, error)
-    assert_equal(:pattern_failed, error.type)
-    assert_equal('cff-version', error.path[1])
+    assert_equal(:required_failed, error.type)
   end
 
   def test_file_validate
     assert_equal([true, []], ::CFF::File.validate(MINIMAL_CFF))
-    result = ::CFF::File.validate(COMPLETE_CFF)
+    result = ::CFF::File.validate(INCOMPLETE_CFF)
 
     refute(result[0])
     refute_empty(result[1])
@@ -75,15 +74,14 @@ class CFFValidatableTest < Minitest::Test
 
     error = result[1][0]
     assert_instance_of(::JsonSchema::ValidationError, error)
-    assert_equal(:pattern_failed, error.type)
-    assert_equal('cff-version', error.path[1])
+    assert_equal(:required_failed, error.type)
   end
 
   def test_file_validate!
     assert_nil(::CFF::File.validate!(MINIMAL_CFF))
 
     assert_raises(::CFF::ValidationError) do
-      ::CFF::File.validate!(COMPLETE_CFF)
+      ::CFF::File.validate!(INCOMPLETE_CFF)
     end
   end
 
