@@ -140,7 +140,6 @@ class CFFFileTest < Minitest::Test
 
     methods = %w[
       abstract
-      cff_version
       commit
       date_released
       doi
@@ -159,6 +158,9 @@ class CFFFileTest < Minitest::Test
     methods.each do |method|
       assert_equal(yaml[method_to_field(method)], cff.send(method))
     end
+
+    # `cff-version` will be updated to a validatable version.
+    assert_equal(::CFF::MIN_VALIDATABLE_VERSION, cff.cff_version)
 
     assert_equal(4, cff.keywords.length)
 

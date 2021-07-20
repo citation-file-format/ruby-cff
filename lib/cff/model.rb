@@ -127,6 +127,7 @@ module CFF
       (fields['references'] || []).map! do |r|
         Reference.new(r)
       end
+      fields['cff-version'] = update_cff_version(fields['cff-version'])
 
       fields
     end
