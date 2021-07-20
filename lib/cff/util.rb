@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'rubygems'
+
 ##
 module CFF
 
@@ -22,6 +24,16 @@ module CFF
   # Util does not provide any methods or fields for the public API.
   module Util
     # :stopdoc:
+
+    def update_cff_version(version)
+      return DEFAULT_SPEC_VERSION if version.nil? || version.empty?
+
+      if Gem::Version.new(version) < Gem::Version.new(MIN_VALIDATABLE_VERSION)
+        MIN_VALIDATABLE_VERSION
+      else
+        version
+      end
+    end
 
     def method_to_field(name)
       name.tr('_', '-')
