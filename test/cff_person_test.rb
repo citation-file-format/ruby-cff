@@ -40,6 +40,7 @@ class CFFPersonTest < Minitest::Test
     data = [
       ['address', 'A street'],
       ['affiliation', 'A University'],
+      ['alias', 'A Pseudonym'],
       ['city', 'Manchester'],
       ['country', 'GB'],
       ['email', 'email@example.org'],

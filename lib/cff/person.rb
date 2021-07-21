@@ -28,6 +28,7 @@ module CFF
   #
   # * `address`
   # * `affiliation`
+  # * `alias`
   # * `city`
   # * `country`
   # * `email`
@@ -44,9 +45,9 @@ module CFF
   class Person < ModelPart
 
     ALLOWED_FIELDS = [
-      'address', 'affiliation', 'city', 'country', 'email', 'family-names',
-      'fax', 'given-names', 'name-particle', 'name-suffix', 'orcid',
-      'post-code', 'region', 'tel', 'website'
+      'address', 'affiliation', 'alias', 'city', 'country', 'email',
+      'family-names', 'fax', 'given-names', 'name-particle', 'name-suffix',
+      'orcid', 'post-code', 'region', 'tel', 'website'
     ].freeze # :nodoc:
 
     # :call-seq:
