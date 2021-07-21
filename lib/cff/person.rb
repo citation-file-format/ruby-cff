@@ -51,17 +51,22 @@ module CFF
     ].freeze # :nodoc:
 
     # :call-seq:
+    #   new -> Person
+    #   new { |person| block } -> Person
     #   new(given_name, family_name) -> Person
     #   new(given_name, family_name) { |person| block } -> Person
     #
-    # Create a new Person with the supplied given and family names.
-    def initialize(param, *more)
+    # Create a new Person with the optionally supplied given and family names.
+    def initialize(param = nil, *more)
       if param.is_a?(Hash)
         @fields = param
       else
         @fields = Hash.new('')
-        @fields['family-names'] = more[0]
-        @fields['given-names'] = param
+
+        unless param.nil?
+          @fields['family-names'] = more[0]
+          @fields['given-names'] = param
+        end
       end
 
       yield self if block_given?

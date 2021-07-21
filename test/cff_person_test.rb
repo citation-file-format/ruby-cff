@@ -91,4 +91,20 @@ class CFFPersonTest < Minitest::Test
     assert_equal('email@example.org', person.email)
     assert person.is_a?(::CFF::Person)
   end
+
+  def test_new_no_params
+    person = ::CFF::Person.new
+    assert_empty(person.given_names)
+    assert_empty(person.family_names)
+  end
+
+  def test_new_no_params_with_block
+    person = ::CFF::Person.new do |p|
+      assert_empty(p.given_names)
+      assert_empty(p.family_names)
+      p.alias = 'E.T.'
+    end
+
+    assert_equal('E.T.', person.alias)
+  end
 end
