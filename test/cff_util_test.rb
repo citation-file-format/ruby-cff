@@ -21,8 +21,7 @@ class CFFUtilTest < Minitest::Test
   include ::CFF::Util
 
   def test_update_cff_version
-    assert_equal(::CFF::DEFAULT_SPEC_VERSION, update_cff_version(nil))
-    assert_equal(::CFF::DEFAULT_SPEC_VERSION, update_cff_version(''))
+    assert_equal('', update_cff_version(''))
     assert_equal(::CFF::MIN_VALIDATABLE_VERSION, update_cff_version('1.0.3'))
     assert_equal(::CFF::MIN_VALIDATABLE_VERSION, update_cff_version('1.1.0'))
     assert_equal('1.2.0', update_cff_version('1.2.0'))

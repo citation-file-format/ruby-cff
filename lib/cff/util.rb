@@ -26,7 +26,7 @@ module CFF
     # :stopdoc:
 
     def update_cff_version(version)
-      return DEFAULT_SPEC_VERSION if version.nil? || version.empty?
+      return '' if version.nil? || version.empty?
 
       if Gem::Version.new(version) < Gem::Version.new(MIN_VALIDATABLE_VERSION)
         MIN_VALIDATABLE_VERSION

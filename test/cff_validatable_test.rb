@@ -44,6 +44,30 @@ class CFFValidatableTest < Minitest::Test
     assert_empty(result[1])
   end
 
+  def test_empty_cff_version_raises_error
+    cff = ::CFF::File.read(MINIMAL_CFF)
+    cff.cff_version = ''
+    assert_raises(::CFF::ValidationError) do
+      cff.validate!
+    end
+  end
+
+  def test_nil_cff_version_raises_error
+    cff = ::CFF::File.read(MINIMAL_CFF)
+    cff.cff_version = nil
+    assert_raises(::CFF::ValidationError) do
+      cff.validate!
+    end
+  end
+
+  def test_missing_cff_version_raises_error
+    cff = ::CFF::File.read(NO_CFF_VERSION_CFF)
+    assert_equal('', cff.cff_version)
+    assert_raises(::CFF::ValidationError) do
+      cff.validate!
+    end
+  end
+
   def test_incomplete_example_file_raises_error
     cff = ::CFF::File.read(INCOMPLETE_CFF)
     assert_raises(::CFF::ValidationError) do
@@ -82,6 +106,10 @@ class CFFValidatableTest < Minitest::Test
 
     assert_raises(::CFF::ValidationError) do
       ::CFF::File.validate!(INCOMPLETE_CFF)
+    end
+
+    assert_raises(::CFF::ValidationError) do
+      ::CFF::File.validate!(NO_CFF_VERSION_CFF)
     end
   end
 

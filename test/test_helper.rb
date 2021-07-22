@@ -28,6 +28,7 @@ COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
 SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
 MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
 INCOMPLETE_CFF = ::File.join(FILES_DIR, 'bad', 'incomplete.cff')
+NO_CFF_VERSION_CFF = ::File.join(FILES_DIR, 'bad', 'no-cff-version.cff')
 OUTPUT_CFF = 'CITATION.cff'
 
 CONVERTED_DIR = ::File.expand_path('converted', __dir__)
