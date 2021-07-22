@@ -65,6 +65,14 @@
 </div>
 
     
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="include" href="Validatable.html">CFF::Validatable</a>
+  </ul>
+</div>
+
     
     
 <!-- Method Quickref -->
@@ -103,7 +111,7 @@
 <ul><li>
 <p><code>abstract</code></p>
 </li><li>
-<p><code>cff_version</code> (1.0.3)</p>
+<p><code>cff_version</code></p>
 </li><li>
 <p><code>commit</code></p>
 </li><li>
@@ -169,7 +177,7 @@
           <p>Initialize a new <a href="Model.html"><code>Model</code></a> with the supplied title.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 63</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
     <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">build_model</span>(<span class="ruby-identifier">param</span>)
@@ -217,7 +225,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 143</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 141</span>
     </pre>
           </div>
         </div>
@@ -239,7 +247,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 157</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 155</span>
     </pre>
           </div>
         </div>
@@ -264,7 +272,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 166</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 164</span>
     </pre>
           </div>
         </div>
@@ -286,7 +294,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 180</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 178</span>
     </pre>
           </div>
         </div>
@@ -306,7 +314,7 @@
           <p>Set the <code>date-released</code> field. If a non-Date object is passed in it will be parsed into a Date.</p>
 
           <div class="method-source-code" id="date_released-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 86</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">date_released=</span>(<span class="ruby-identifier">date</span>)
   <span class="ruby-identifier">date</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
 
@@ -335,7 +343,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 189</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 187</span>
     </pre>
           </div>
         </div>
@@ -357,7 +365,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 203</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 201</span>
     </pre>
           </div>
         </div>
@@ -380,7 +388,7 @@
 </pre>
 
           <div class="method-source-code" id="references-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 212</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 210</span>
     </pre>
           </div>
         </div>
@@ -400,7 +408,7 @@
           <p>Replace the list of references for this citation.</p>
 
           <div class="method-source-code" id="references-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 224</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 222</span>
   </pre>
           </div>
         </div>
@@ -420,7 +428,7 @@
           <p>Output this <a href="Model.html"><code>Model</code></a> in an APA-like format.</p>
 
           <div class="method-source-code" id="to_apalike-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 105</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_apalike</span>
   <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">ApaFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -442,7 +450,7 @@
           <p>Output this <a href="Model.html"><code>Model</code></a> in BibTeX format.</p>
 
           <div class="method-source-code" id="to_bibtex-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 113</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_bibtex</span>
   <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">BibtexFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
