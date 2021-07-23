@@ -24,11 +24,11 @@ module CFF
   #
   # Reference implements all of the fields listed in the
   # [CFF standard](https://citation-file-format.github.io/). Complex
-  # fields - `authors`, `contact`, `editors`, `editors_series`, `keywords`,
-  # `languages`, `patent_states`, `recipients`, `senders` and `translators` -
-  # are documented below. All other fields are simple strings and can be set as
-  # such. A field which has not been set will return the empty string. The
-  # simple fields are (with defaults in parentheses):
+  # fields - `authors`, `contact`, `editors`, `editors_series`, `identifiers`,
+  # `keywords`, `languages`, `patent_states`, `recipients`, `senders` and
+  # `translators` - are documented below. All other fields are simple strings
+  # and can be set as such. A field which has not been set will return the
+  # empty string. The simple fields are (with defaults in parentheses):
   #
   # * `abbreviation`
   # * `abstract`
@@ -97,14 +97,14 @@ module CFF
       'copyright', 'data-type', 'database', 'database-provider',
       'date-accessed', 'date-downloaded', 'date-published', 'date-released',
       'department', 'doi', 'edition', 'editors', 'editors-series', 'end',
-      'entry', 'filename', 'institution', 'isbn', 'issn', 'issue', 'issue-date',
-      'issue-title', 'journal', 'keywords', 'license', 'license-url', 'loc-end',
-      'loc-start', 'location', 'medium', 'month', 'nihmsid', 'notes', 'number',
-      'number-volumes', 'pages', 'patent-states', 'pmcid', 'publisher',
-      'recipients', 'repository', 'repository-code', 'repository-artifact',
-      'scope', 'section', 'senders', 'start', 'status', 'thesis-type', 'title',
-      'translators', 'type', 'url', 'version', 'volume', 'volume-title', 'year',
-      'year-original'
+      'entry', 'filename', 'identifiers', 'institution', 'isbn', 'issn',
+      'issue', 'issue-date', 'issue-title', 'journal', 'keywords', 'license',
+      'license-url', 'loc-end', 'loc-start', 'location', 'medium', 'month',
+      'nihmsid', 'notes', 'number', 'number-volumes', 'pages', 'patent-states',
+      'pmcid', 'publisher', 'recipients', 'repository', 'repository-code',
+      'repository-artifact', 'scope', 'section', 'senders', 'start', 'status',
+      'thesis-type', 'title', 'translators', 'type', 'url', 'version',
+      'volume', 'volume-title', 'year', 'year-original'
     ].freeze # :nodoc:
 
     # The [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
@@ -149,8 +149,8 @@ module CFF
       end
 
       [
-        'authors', 'contact', 'editors', 'editors-series', 'keywords',
-        'patent-states', 'recipients', 'senders', 'translators'
+        'authors', 'contact', 'editors', 'editors-series', 'identifiers',
+        'keywords', 'patent-states', 'recipients', 'senders', 'translators'
       ].each do |field|
         @fields[field] = [] if @fields[field].empty?
       end
@@ -283,8 +283,8 @@ module CFF
     # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
       [
-        'authors', 'contact', 'editors', 'editors-series', 'recipients',
-        'senders', 'translators'
+        'authors', 'contact', 'editors', 'editors-series', 'identifiers',
+        'recipients', 'senders', 'translators'
       ].each do |field|
         normalize_modelpart_array!(@fields[field])
       end
@@ -300,6 +300,10 @@ module CFF
         'senders', 'translators'
       ].each do |field|
         build_actor_collection!(fields[field]) if fields.include?(field)
+      end
+
+      (fields['identifiers'] || []).map! do |i|
+        Identifier.new(i)
       end
 
       fields
@@ -401,6 +405,25 @@ module CFF
     # Replace the list of series editors for this reference.
     #
     # Series editors can be a Person or Entity.
+
+    ##
+    # :method: identifiers
+    # :call-seq:
+    #   identifiers -> Array
+    #
+    # Return the list of identifiers for this citation. To add a identifier to
+    # the list, use:
+    #
+    # ```
+    # model.identifiers << identifier
+    # ```
+
+    ##
+    # :method: identifiers=
+    # :call-seq:
+    #   identifiers = array_of_identifiers -> Array
+    #
+    # Replace the list of identifiers for this citation.
 
     ##
     # :method: keywords

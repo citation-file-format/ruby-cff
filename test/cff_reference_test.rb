@@ -301,6 +301,32 @@ class CFFReferenceTest < Minitest::Test
     end
   end
 
+  def test_identifiers_set_and_output_correctly
+    i = ::CFF::Identifier.new('doi', '10.5281/zenodo.1184077')
+    r = [::CFF::Identifier.new('other', 'other-id:00:CFF'), '_ _ _']
+
+    @reference.identifiers << i
+    @reference.identifiers << '_ _ _'
+
+    y = @reference.fields.to_yaml
+    assert_equal(1, @reference.identifiers.length)
+    assert_includes(
+      y,
+      "identifiers:\n- type: doi\n  value: 10.5281/zenodo.1184077"
+    )
+    refute_includes(y, '_ _ _')
+
+    @reference.identifiers = r
+
+    y = @reference.fields.to_yaml
+    assert_equal(1, @reference.identifiers.length)
+    assert_includes(
+      y,
+      "identifiers:\n- type: other\n  value: other-id:00:CFF"
+    )
+    refute_includes(y, '_ _ _')
+  end
+
   def test_new_with_block
     ref = ::CFF::Reference.new('A Paper', 'article') do |r|
       assert_equal('A Paper', r.title)
