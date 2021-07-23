@@ -202,6 +202,33 @@ class CFFModelTest < Minitest::Test
     refute_includes(y, '_ _ _')
   end
 
+  def test_identifiers_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    i = ::CFF::Identifier.new('doi', '10.5281/zenodo.1184077')
+    r = [::CFF::Identifier.new('other', 'other-id:00:CFF'), '_ _ _']
+
+    m.identifiers << i
+    m.identifiers << '_ _ _'
+
+    y = m.to_yaml
+    assert_equal(1, m.identifiers.length)
+    assert_includes(
+      y,
+      "identifiers:\n- type: doi\n  value: 10.5281/zenodo.1184077"
+    )
+    refute_includes(y, '_ _ _')
+
+    m.identifiers = r
+
+    y = m.to_yaml
+    assert_equal(1, m.identifiers.length)
+    assert_includes(
+      y,
+      "identifiers:\n- type: other\n  value: other-id:00:CFF"
+    )
+    refute_includes(y, '_ _ _')
+  end
+
   def test_keywords_set_and_output_correctly
     m = ::CFF::Model.new('title')
     keys = ['one', :two, 3]

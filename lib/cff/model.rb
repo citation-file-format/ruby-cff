@@ -22,9 +22,9 @@ module CFF
   #
   # Model implements all of the fields listed in the
   # [CFF standard](https://citation-file-format.github.io/). Complex
-  # fields - `authors`, `contact`, `keywords` and `references` - are
-  # documented below. All other fields are simple strings and can be set as
-  # such. A field which has not been set will return the empty string. The
+  # fields - `authors`, `contact`, `identifiers`, `keywords` and `references`
+  # - are documented below. All other fields are simple strings and can be set
+  # as such. A field which has not been set will return the empty string. The
   # simple fields are (with defaults in parentheses):
   #
   # * `abstract`
@@ -48,9 +48,9 @@ module CFF
 
     ALLOWED_FIELDS = [
       'abstract', 'authors', 'cff-version', 'contact', 'commit',
-      'date-released', 'doi', 'keywords', 'license', 'license-url', 'message',
-      'references', 'repository', 'repository-artifact', 'repository-code',
-      'title', 'url', 'version'
+      'date-released', 'doi', 'identifiers', 'keywords', 'license',
+      'license-url', 'message', 'references', 'repository',
+      'repository-artifact', 'repository-code', 'title', 'url', 'version'
     ].freeze # :nodoc:
 
     # The default message to use if none is explicitly set.
@@ -73,7 +73,7 @@ module CFF
         @fields['title'] = param
       end
 
-      %w[authors contact keywords references].each do |field|
+      %w[authors contact identifiers keywords references].each do |field|
         @fields[field] = [] if @fields[field].empty?
       end
 
@@ -114,7 +114,7 @@ module CFF
     private
 
     def fields
-      %w[authors contact references].each do |field|
+      %w[authors contact identifiers references].each do |field|
         normalize_modelpart_array!(@fields[field])
       end
 
@@ -124,6 +124,9 @@ module CFF
     def build_model(fields)
       build_actor_collection!(fields['authors'] || [])
       build_actor_collection!(fields['contact'] || [])
+      (fields['identifiers'] || []).map! do |i|
+        Identifier.new(i)
+      end
       (fields['references'] || []).map! do |r|
         Reference.new(r)
       end
@@ -184,6 +187,25 @@ module CFF
     # Replace the list of contacts for this citation.
     #
     # Contacts can be a Person or Entity.
+
+    ##
+    # :method: identifiers
+    # :call-seq:
+    #   identifiers -> Array
+    #
+    # Return the list of identifiers for this citation. To add a identifier to
+    # the list, use:
+    #
+    # ```
+    # model.identifiers << identifier
+    # ```
+
+    ##
+    # :method: identifiers=
+    # :call-seq:
+    #   identifiers = array_of_identifiers -> Array
+    #
+    # Replace the list of identifiers for this citation.
 
     ##
     # :method: keywords
