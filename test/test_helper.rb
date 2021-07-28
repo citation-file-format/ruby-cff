@@ -22,6 +22,8 @@ require 'cff'
 require 'test_construct'
 require 'minitest/autorun'
 
+Minitest::Test.make_my_diffs_pretty!
+
 FILES_DIR = ::File.expand_path('files', __dir__)
 OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
 COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
