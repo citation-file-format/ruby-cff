@@ -140,6 +140,7 @@ module CFF
     def initialize(param, *more) # rubocop:disable Metrics/AbcSize
       if param.is_a?(Hash)
         @fields = build_model(param)
+        @fields.default = ''
       else
         @fields = Hash.new('')
         type = more[0] &&= more[0].downcase
@@ -150,7 +151,9 @@ module CFF
       [
         'authors', 'contact', 'editors', 'editors-series', 'keywords',
         'patent-states', 'recipients', 'senders', 'translators'
-      ].each { |field| @fields[field] = [] if !@fields[field].nil? && @fields[field].empty? }
+      ].each do |field|
+        @fields[field] = [] if @fields[field].empty?
+      end
 
       yield self if block_given?
     end

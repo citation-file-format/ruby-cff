@@ -122,4 +122,10 @@ class CFFValidatableTest < Minitest::Test
     cff.authors << ::CFF::Person.new('Robert', 'Haines')
     cff.validate!
   end
+
+  def test_files_in_validation_directory
+    Dir[::File.join(VALIDATION_DIR, '*.cff')].each do |input_file|
+      ::CFF::File.validate!(input_file)
+    end
+  end
 end

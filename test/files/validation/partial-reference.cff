@@ -1,0 +1,22 @@
+cff-version: "1.1.0"
+message: |
+  To reference this project in scholarly work, please cite the following work.
+  To reference a particular version of these standards, please see the entries
+  under "references"
+title: "Methods Included: Standardizing Computational Reuse and Portability"
+identifiers:
+  - type: url
+    value: "https://example.org/abs/2105.07028"
+authors:
+  - given-names: "Michael R."
+    family-names: Crusoe
+    affiliation: "VU Amsterdam, Department of Computer Science; Software Freedom Conservancy, Common Workflow Language project"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+references:
+  - type: standard
+    title: "Common Workflow Language, v1.0"
+    authors:
+     - given-names: Peter
+       family-names: Amstutz
+       orcid: "https://orcid.org/0000-0000-0000-0000"
+       affiliation: "Arvados Veritas"
