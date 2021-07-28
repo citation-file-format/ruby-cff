@@ -86,6 +86,8 @@
     <li ><a href="#method-i-editors-3D">#editors=</a>
     <li ><a href="#method-i-editors_series">#editors_series</a>
     <li ><a href="#method-i-editors_series-3D">#editors_series=</a>
+    <li ><a href="#method-i-identifiers">#identifiers</a>
+    <li ><a href="#method-i-identifiers-3D">#identifiers=</a>
     <li ><a href="#method-i-keywords">#keywords</a>
     <li ><a href="#method-i-keywords-3D">#keywords=</a>
     <li ><a href="#method-i-languages">#languages</a>
@@ -116,7 +118,7 @@
     
 <p><a href="Reference.html"><code>Reference</code></a> provides a reference pertaining to the software version or the software itself, e.g., a software paper describing the abstract concepts of the software, a paper describing an algorithm that has been implemented in the software version, etc.</p>
 
-<p><a href="Reference.html"><code>Reference</code></a> implements all of the fields listed in the <a href="https://citation-file-format.github.io/">CFF standard</a>. Complex fields - <code>authors</code>, <code>contact</code>, <code>editors</code>, <code>editors_series</code>, <code>keywords</code>, <code>languages</code>, <code>patent_states</code>, <code>recipients</code>, <code>senders</code> and <code>translators</code> - are documented below. All other fields are simple strings and can be set as such. A field which has not been set will return the empty string. The simple fields are (with defaults in parentheses):</p>
+<p><a href="Reference.html"><code>Reference</code></a> implements all of the fields listed in the <a href="https://citation-file-format.github.io/">CFF standard</a>. Complex fields - <code>authors</code>, <code>contact</code>, <code>editors</code>, <code>editors_series</code>, <code>identifiers</code>, <code>keywords</code>, <code>languages</code>, <code>patent_states</code>, <code>recipients</code>, <code>senders</code> and <code>translators</code> - are documented below. All other fields are simple strings and can be set as such. A field which has not been set will return the empty string. The simple fields are (with defaults in parentheses):</p>
 <ul><li>
 <p><code>abbreviation</code></p>
 </li><li>
@@ -301,8 +303,8 @@
   <span class="ruby-keyword">end</span>
 
   [
-    <span class="ruby-string">&#39;authors&#39;</span>, <span class="ruby-string">&#39;contact&#39;</span>, <span class="ruby-string">&#39;editors&#39;</span>, <span class="ruby-string">&#39;editors-series&#39;</span>, <span class="ruby-string">&#39;keywords&#39;</span>,
-    <span class="ruby-string">&#39;patent-states&#39;</span>, <span class="ruby-string">&#39;recipients&#39;</span>, <span class="ruby-string">&#39;senders&#39;</span>, <span class="ruby-string">&#39;translators&#39;</span>
+    <span class="ruby-string">&#39;authors&#39;</span>, <span class="ruby-string">&#39;contact&#39;</span>, <span class="ruby-string">&#39;editors&#39;</span>, <span class="ruby-string">&#39;editors-series&#39;</span>, <span class="ruby-string">&#39;identifiers&#39;</span>,
+    <span class="ruby-string">&#39;keywords&#39;</span>, <span class="ruby-string">&#39;patent-states&#39;</span>, <span class="ruby-string">&#39;recipients&#39;</span>, <span class="ruby-string">&#39;senders&#39;</span>, <span class="ruby-string">&#39;translators&#39;</span>
   ].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
     <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>] = [] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">empty?</span>
   <span class="ruby-keyword">end</span>
@@ -366,7 +368,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 314</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 318</span>
     </pre>
           </div>
         </div>
@@ -388,7 +390,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 328</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 332</span>
     </pre>
           </div>
         </div>
@@ -413,7 +415,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 337</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 341</span>
     </pre>
           </div>
         </div>
@@ -435,7 +437,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 351</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 355</span>
     </pre>
           </div>
         </div>
@@ -556,7 +558,7 @@
 <p>An editor can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 360</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 364</span>
     </pre>
           </div>
         </div>
@@ -578,7 +580,7 @@
 <p>Editors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 374</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 378</span>
     </pre>
           </div>
         </div>
@@ -603,7 +605,7 @@
 <p>An editor can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors_series-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 383</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 387</span>
     </pre>
           </div>
         </div>
@@ -625,7 +627,50 @@
 <p>Series editors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors_series-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 397</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 401</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-identifiers" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            identifiers &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of identifiers for this citation. To add a identifier to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">model</span>.<span class="ruby-identifier">identifiers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">identifier</span>
+</pre>
+
+          <div class="method-source-code" id="identifiers-source">
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 410</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-identifiers-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            identifiers = array_of_identifiers &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of identifiers for this citation.</p>
+
+          <div class="method-source-code" id="identifiers-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 422</span>
     </pre>
           </div>
         </div>
@@ -650,7 +695,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 406</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 429</span>
     </pre>
           </div>
         </div>
@@ -672,7 +717,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 420</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 443</span>
     </pre>
           </div>
         </div>
@@ -741,7 +786,7 @@
 <p>Patent states will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="patent_states-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 429</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 452</span>
     </pre>
           </div>
         </div>
@@ -763,7 +808,7 @@
 <p>Patent states will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="patent_states-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 443</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 466</span>
     </pre>
           </div>
         </div>
@@ -788,7 +833,7 @@
 <p>Recipients can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="recipients-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 452</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 475</span>
     </pre>
           </div>
         </div>
@@ -810,7 +855,7 @@
 <p>Recipients can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="recipients-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 466</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 489</span>
     </pre>
           </div>
         </div>
@@ -857,7 +902,7 @@
 <p>Senders can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="senders-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 475</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 498</span>
     </pre>
           </div>
         </div>
@@ -879,7 +924,7 @@
 <p>Senders can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="senders-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 489</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 512</span>
     </pre>
           </div>
         </div>
@@ -927,7 +972,7 @@
 <p>Translators can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="translators-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 498</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 521</span>
     </pre>
           </div>
         </div>
@@ -949,7 +994,7 @@
 <p>Translators can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="translators-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 512</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 535</span>
   </pre>
           </div>
         </div>

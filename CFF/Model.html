@@ -86,6 +86,8 @@
     <li ><a href="#method-i-contact">#contact</a>
     <li ><a href="#method-i-contact-3D">#contact=</a>
     <li ><a href="#method-i-date_released-3D">#date_released=</a>
+    <li ><a href="#method-i-identifiers">#identifiers</a>
+    <li ><a href="#method-i-identifiers-3D">#identifiers=</a>
     <li ><a href="#method-i-keywords">#keywords</a>
     <li ><a href="#method-i-keywords-3D">#keywords=</a>
     <li ><a href="#method-i-references">#references</a>
@@ -107,7 +109,7 @@
     
 <p><a href="Model.html"><code>Model</code></a> is the core data structure for a CITATION.cff file. It can be accessed direcly, or via <a href="File.html"><code>File</code></a>.</p>
 
-<p><a href="Model.html"><code>Model</code></a> implements all of the fields listed in the <a href="https://citation-file-format.github.io/">CFF standard</a>. Complex fields - <code>authors</code>, <code>contact</code>, <code>keywords</code> and <code>references</code> - are documented below. All other fields are simple strings and can be set as such. A field which has not been set will return the empty string. The simple fields are (with defaults in parentheses):</p>
+<p><a href="Model.html"><code>Model</code></a> implements all of the fields listed in the <a href="https://citation-file-format.github.io/">CFF standard</a>. Complex fields - <code>authors</code>, <code>contact</code>, <code>identifiers</code>, <code>keywords</code> and <code>references</code> - are documented below. All other fields are simple strings and can be set as such. A field which has not been set will return the empty string. The simple fields are (with defaults in parentheses):</p>
 <ul><li>
 <p><code>abstract</code></p>
 </li><li>
@@ -189,7 +191,7 @@
     <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;title&#39;</span>] = <span class="ruby-identifier">param</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-node">%w[authors contact keywords references]</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+  <span class="ruby-node">%w[authors contact identifiers keywords references]</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
     <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>] = [] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">empty?</span>
   <span class="ruby-keyword">end</span>
 
@@ -225,7 +227,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 143</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 146</span>
     </pre>
           </div>
         </div>
@@ -247,7 +249,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 157</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 160</span>
     </pre>
           </div>
         </div>
@@ -272,7 +274,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 166</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 169</span>
     </pre>
           </div>
         </div>
@@ -294,7 +296,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 180</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 183</span>
     </pre>
           </div>
         </div>
@@ -326,6 +328,49 @@
 
       </div>
 
+      <div id="method-i-identifiers" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            identifiers &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of identifiers for this citation. To add a identifier to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">model</span>.<span class="ruby-identifier">identifiers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">identifier</span>
+</pre>
+
+          <div class="method-source-code" id="identifiers-source">
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 192</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-identifiers-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            identifiers = array_of_identifiers &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of identifiers for this citation.</p>
+
+          <div class="method-source-code" id="identifiers-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 204</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
       <div id="method-i-keywords" class="method-detail ">
         <div class="method-heading">
           <span class="method-callseq">
@@ -343,7 +388,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 189</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 211</span>
     </pre>
           </div>
         </div>
@@ -365,7 +410,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 203</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 225</span>
     </pre>
           </div>
         </div>
@@ -388,7 +433,7 @@
 </pre>
 
           <div class="method-source-code" id="references-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 212</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 234</span>
     </pre>
           </div>
         </div>
@@ -408,7 +453,7 @@
           <p>Replace the list of references for this citation.</p>
 
           <div class="method-source-code" id="references-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 224</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 246</span>
   </pre>
           </div>
         </div>
