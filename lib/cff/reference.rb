@@ -107,7 +107,7 @@ module CFF
       'volume', 'volume-title', 'year', 'year-original'
     ].freeze # :nodoc:
 
-    # The [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
+    # The [defined set of reference types](https://github.com/citation-file-format/citation-file-format#reference-types).
     REFERENCE_TYPES = [
       'art', 'article', 'audiovisual', 'bill', 'blog', 'book', 'catalogue',
       'conference', 'conference-paper', 'data', 'database', 'dictionary',
@@ -121,7 +121,7 @@ module CFF
       'thesis', 'unpublished', 'video', 'website'
     ].freeze
 
-    # The [defined set of reference status types](https://citation-file-format.github.io/1.0.3/specifications/#/status-strings).
+    # The [defined set of reference status types](https://github.com/citation-file-format/citation-file-format#status-strings).
     REFERENCE_STATUS_TYPES = [
       'abstract', 'advance-online', 'in-preparation', 'in-press',
       'pre-print', 'submitted'
@@ -135,7 +135,7 @@ module CFF
     #
     # Create a new Reference with the supplied title and, optionally, type.
     # If type is not given, or is not one of the
-    # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types),
+    # [defined set of reference types](https://github.com/citation-file-format/citation-file-format#reference-types),
     # 'generic' will be used by default.
     def initialize(param, *more) # rubocop:disable Metrics/AbcSize
       if param.is_a?(Hash)
@@ -264,7 +264,7 @@ module CFF
     #   status = status
     #
     # Sets the status of this Reference. The status is restricted to a
-    # [defined set of status types](https://citation-file-format.github.io/1.0.3/specifications/#/status-strings).
+    # [defined set of status types](https://github.com/citation-file-format/citation-file-format#status-strings).
     def status=(status)
       status = status.downcase
       @fields['status'] = status if REFERENCE_STATUS_TYPES.include?(status)
@@ -274,7 +274,7 @@ module CFF
     #   type = type
     #
     # Sets the type of this Reference. The type is restricted to a
-    # [defined set of reference types](https://citation-file-format.github.io/1.0.3/specifications/#/reference-types).
+    # [defined set of reference types](https://github.com/citation-file-format/citation-file-format#reference-types).
     def type=(type)
       type = type.downcase
       @fields['type'] = type if REFERENCE_TYPES.include?(type)
