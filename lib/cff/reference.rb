@@ -302,6 +302,13 @@ module CFF
         build_actor_collection!(fields[field]) if fields.include?(field)
       end
 
+      [
+        'conference', 'database-provider', 'institution', 'location',
+        'publisher'
+      ].each do |field|
+        fields[field] &&= Entity.new(fields[field])
+      end
+
       (fields['identifiers'] || []).map! do |i|
         Identifier.new(i)
       end

@@ -136,7 +136,7 @@ class CFFFileTest < Minitest::Test
     assert_equal(['An incomplete CFF file'], cff.comment)
   end
 
-  def test_read_complete_cff_file
+  def test_read_complete_cff_file_simple_fields
     cff = ::CFF::File.read(COMPLETE_CFF)
     yaml = load_yaml(COMPLETE_CFF)
 
@@ -161,6 +161,10 @@ class CFFFileTest < Minitest::Test
     methods.each do |method|
       assert_equal(yaml[method_to_field(method)], cff.send(method))
     end
+  end
+
+  def test_read_complete_cff_file_complex_fields
+    cff = ::CFF::File.read(COMPLETE_CFF)
 
     assert_equal(4, cff.identifiers.length)
     cff.identifiers.each do |id|
@@ -180,6 +184,7 @@ class CFFFileTest < Minitest::Test
     assert_equal('book', reference.type)
     assert_equal('Book Title', reference.title)
 
+    # Test Person/Entity lists in References
     [
       cff.authors,
       cff.contact,
@@ -200,6 +205,19 @@ class CFFFileTest < Minitest::Test
       assert_equal(
         'Excellent University, Niceplace, Arcadia', person.affiliation
       )
+      assert_instance_of ::CFF::Entity, entity
+      assert_equal('Entity Project Team Conference entity', entity.name)
+      assert_equal('22 Acacia Avenue', entity.address)
+    end
+
+    # Test Entities in References
+    [
+      reference.conference,
+      reference.database_provider,
+      reference.institution,
+      reference.location,
+      reference.publisher
+    ].each do |entity|
       assert_instance_of ::CFF::Entity, entity
       assert_equal('Entity Project Team Conference entity', entity.name)
       assert_equal('22 Acacia Avenue', entity.address)
