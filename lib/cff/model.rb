@@ -22,10 +22,11 @@ module CFF
   #
   # Model implements all of the fields listed in the
   # [CFF standard](https://citation-file-format.github.io/). Complex
-  # fields - `authors`, `contact`, `identifiers`, `keywords` and `references`
-  # - are documented below. All other fields are simple strings and can be set
-  # as such. A field which has not been set will return the empty string. The
-  # simple fields are (with defaults in parentheses):
+  # fields - `authors`, `contact`, `identifiers`, `keywords`,
+  # `preferred-citation` and `references` - are documented below. All other
+  # fields are simple strings and can be set as such. A field which has not
+  # been set will return the empty string. The simple fields are (with defaults
+  # in parentheses):
   #
   # * `abstract`
   # * `cff_version`
@@ -49,8 +50,9 @@ module CFF
     ALLOWED_FIELDS = [
       'abstract', 'authors', 'cff-version', 'contact', 'commit',
       'date-released', 'doi', 'identifiers', 'keywords', 'license',
-      'license-url', 'message', 'references', 'repository',
-      'repository-artifact', 'repository-code', 'title', 'url', 'version'
+      'license-url', 'message', 'preferred-citation', 'references',
+      'repository', 'repository-artifact', 'repository-code', 'title',
+      'url', 'version'
     ].freeze # :nodoc:
 
     # The default message to use if none is explicitly set.
@@ -121,7 +123,7 @@ module CFF
       fields_to_hash(@fields)
     end
 
-    def build_model(fields)
+    def build_model(fields) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
       build_actor_collection!(fields['authors'] || [])
       build_actor_collection!(fields['contact'] || [])
       (fields['identifiers'] || []).map! do |i|
@@ -130,6 +132,8 @@ module CFF
       (fields['references'] || []).map! do |r|
         Reference.new(r)
       end
+      fields['preferred-citation'] &&=
+        Reference.new(fields['preferred-citation'])
 
       # Only attempt an update of the `cff-version` field if it is present.
       fields['cff-version'] &&= update_cff_version(fields['cff-version'])
@@ -229,6 +233,20 @@ module CFF
     # Replace the list of keywords for this citation.
     #
     # Keywords will be converted to Strings on output.
+
+    ##
+    # :method: preferred_citation
+    # :call-seq:
+    #   preferred_citation -> Reference
+    #
+    # Return the preferred citation for this citation.
+
+    ##
+    # :method: preferred_citation=
+    # :call-seq:
+    #   preferred_citation = Reference
+    #
+    # Replace the preferred citation for this citation.
 
     ##
     # :method: references

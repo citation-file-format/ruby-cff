@@ -169,6 +169,11 @@ class CFFFileTest < Minitest::Test
 
     assert_equal(4, cff.keywords.length)
 
+    pref_cite = cff.preferred_citation
+    assert_instance_of(::CFF::Reference, pref_cite)
+    assert_equal('book', pref_cite.type)
+    assert_equal('Book Title', pref_cite.title)
+
     assert_equal(1, cff.references.length)
     reference = cff.references[0]
     assert_instance_of ::CFF::Reference, reference

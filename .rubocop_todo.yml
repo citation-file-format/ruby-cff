@@ -27,4 +27,4 @@ Metrics/PerceivedComplexity:
 
 # Offense count: 32
 Minitest/MultipleAssertions:
-  Max: 15
+  Max: 20

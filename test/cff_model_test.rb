@@ -249,6 +249,18 @@ class CFFModelTest < Minitest::Test
     assert_includes(y, "keywords:\n- one\n- two\n- '3'\n- four\n")
   end
 
+  def test_preferred_citation_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    r = ::CFF::Reference.new('book title', 'book')
+
+    m.preferred_citation = r
+
+    y = m.to_yaml
+    assert_includes(
+      y, "preferred-citation:\n  type: book\n  title: book title\n"
+    )
+  end
+
   def test_references_set_and_output_correctly
     m = ::CFF::Model.new('title')
     a = ::CFF::Person.new('First', 'Second')
