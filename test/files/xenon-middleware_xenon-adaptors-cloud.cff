@@ -12,7 +12,8 @@ authors:
   family-names: Maassen
   affiliation: Netherlands eScience Center
 - given-names: Atze
-  family-names: van der Ploeg
+  family-names: Ploeg
+  name-particle: van der
   affiliation: Netherlands eScience Center
 version: 3.0.2
 doi: 10.5281/zenodo.3245389

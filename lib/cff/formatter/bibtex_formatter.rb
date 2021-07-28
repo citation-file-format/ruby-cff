@@ -62,8 +62,11 @@ module CFF
 
     def self.format_author(author)
       if author.is_a?(Person)
+        particle =
+          present?(author.name_particle) ? "#{author.name_particle} " : ''
+
         output = []
-        output << author.family_names if present?(author.family_names)
+        output << "#{particle}#{author.family_names}" if present?(author.family_names)
         output << author.given_names if present?(author.given_names)
         return output.join(', ')
       end
