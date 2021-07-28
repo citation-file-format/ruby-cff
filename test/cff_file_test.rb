@@ -101,45 +101,6 @@ class CFFFileTest < Minitest::Test
 
     methods = %w[
       abstract
-      cff_version
-      commit
-      date_released
-      doi
-      keywords
-      license
-      license_url
-      message
-      repository
-      repository_artifact
-      repository_code
-      title
-      url
-      version
-    ]
-
-    methods.each do |method|
-      assert_equal(yaml[method_to_field(method)], cff.send(method))
-    end
-
-    assert_equal(1, cff.authors.length)
-    person = cff.authors[0]
-    assert_instance_of ::CFF::Person, person
-    assert_equal('Haines', person.family_names)
-    assert_equal('The University of Manchester, UK', person.affiliation)
-
-    assert_equal(0, cff.contact.length)
-    assert_equal(3, cff.keywords.length)
-    assert_equal(0, cff.references.length)
-
-    assert_equal(['An incomplete CFF file'], cff.comment)
-  end
-
-  def test_read_complete_cff_file
-    cff = ::CFF::File.read(COMPLETE_CFF)
-    yaml = load_yaml(COMPLETE_CFF)
-
-    methods = %w[
-      abstract
       commit
       date_released
       doi
@@ -161,6 +122,50 @@ class CFFFileTest < Minitest::Test
 
     # `cff-version` will be updated to a validatable version.
     assert_equal(::CFF::MIN_VALIDATABLE_VERSION, cff.cff_version)
+
+    assert_equal(1, cff.authors.length)
+    person = cff.authors[0]
+    assert_instance_of ::CFF::Person, person
+    assert_equal('Haines', person.family_names)
+    assert_equal('The University of Manchester, UK', person.affiliation)
+
+    assert_equal(0, cff.contact.length)
+    assert_equal(3, cff.keywords.length)
+    assert_equal(0, cff.references.length)
+
+    assert_equal(['An incomplete CFF file'], cff.comment)
+  end
+
+  def test_read_complete_cff_file
+    cff = ::CFF::File.read(COMPLETE_CFF)
+    yaml = load_yaml(COMPLETE_CFF)
+
+    methods = %w[
+      abstract
+      cff_version
+      commit
+      date_released
+      doi
+      keywords
+      license
+      license_url
+      message
+      repository
+      repository_artifact
+      repository_code
+      title
+      url
+      version
+    ]
+
+    methods.each do |method|
+      assert_equal(yaml[method_to_field(method)], cff.send(method))
+    end
+
+    assert_equal(4, cff.identifiers.length)
+    cff.identifiers.each do |id|
+      assert_instance_of(::CFF::Identifier, id)
+    end
 
     assert_equal(4, cff.keywords.length)
 
