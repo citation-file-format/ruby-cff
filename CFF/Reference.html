@@ -292,6 +292,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">more</span>) <span class="ruby-comment"># rubocop:disable Metrics/AbcSize</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
     <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">build_model</span>(<span class="ruby-identifier">param</span>)
+    <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">default</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@fields</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&#39;</span>)
     <span class="ruby-identifier">type</span> = <span class="ruby-identifier">more</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&amp;&amp;=</span> <span class="ruby-identifier">more</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">downcase</span>
@@ -302,7 +303,9 @@
   [
     <span class="ruby-string">&#39;authors&#39;</span>, <span class="ruby-string">&#39;contact&#39;</span>, <span class="ruby-string">&#39;editors&#39;</span>, <span class="ruby-string">&#39;editors-series&#39;</span>, <span class="ruby-string">&#39;keywords&#39;</span>,
     <span class="ruby-string">&#39;patent-states&#39;</span>, <span class="ruby-string">&#39;recipients&#39;</span>, <span class="ruby-string">&#39;senders&#39;</span>, <span class="ruby-string">&#39;translators&#39;</span>
-  ].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>] = [] <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">empty?</span> }
+  ].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>] = [] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">end</span>
 
   <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -331,7 +334,7 @@
           <p>Add a language to this <a href="Reference.html"><code>Reference</code></a>. Input is converted to the ISO 639-3 three letter language code, so <code>GER</code> becomes <code>deu</code>, <code>french</code> becomes <code>fra</code> and <code>en</code> becomes <code>eng</code>.</p>
 
           <div class="method-source-code" id="add_language-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 164</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 167</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_language</span>(<span class="ruby-identifier">lang</span>)
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;languages&#39;</span>] = [] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;languages&#39;</span>].<span class="ruby-identifier">empty?</span>
   <span class="ruby-identifier">lang</span> = <span class="ruby-constant">LanguageList</span><span class="ruby-operator">::</span><span class="ruby-constant">LanguageInfo</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">lang</span>)
@@ -363,7 +366,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 311</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 314</span>
     </pre>
           </div>
         </div>
@@ -385,7 +388,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 325</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 328</span>
     </pre>
           </div>
         </div>
@@ -410,7 +413,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 334</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 337</span>
     </pre>
           </div>
         </div>
@@ -432,7 +435,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 348</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 351</span>
     </pre>
           </div>
         </div>
@@ -452,7 +455,7 @@
           <p>Set the <code>date-accessed</code> field. If a non-Date object is passed in it will be parsed into a Date.</p>
 
           <div class="method-source-code" id="date_accessed-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 205</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 208</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">date_accessed=</span>(<span class="ruby-identifier">date</span>)
   <span class="ruby-identifier">date</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
 
@@ -476,7 +479,7 @@
           <p>Set the <code>date-downloaded</code> field. If a non-Date object is passed in it will be parsed into a Date.</p>
 
           <div class="method-source-code" id="date_downloaded-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 216</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">date_downloaded=</span>(<span class="ruby-identifier">date</span>)
   <span class="ruby-identifier">date</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
 
@@ -500,7 +503,7 @@
           <p>Set the <code>date-published</code> field. If a non-Date object is passed in it will be parsed into a Date.</p>
 
           <div class="method-source-code" id="date_published-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 227</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 230</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">date_published=</span>(<span class="ruby-identifier">date</span>)
   <span class="ruby-identifier">date</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
 
@@ -524,7 +527,7 @@
           <p>Set the <code>date-released</code> field. If a non-Date object is passed in it will be parsed into a Date.</p>
 
           <div class="method-source-code" id="date_released-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 238</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">date_released=</span>(<span class="ruby-identifier">date</span>)
   <span class="ruby-identifier">date</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
 
@@ -553,7 +556,7 @@
 <p>An editor can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 357</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 360</span>
     </pre>
           </div>
         </div>
@@ -575,7 +578,7 @@
 <p>Editors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 371</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 374</span>
     </pre>
           </div>
         </div>
@@ -600,7 +603,7 @@
 <p>An editor can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors_series-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 380</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 383</span>
     </pre>
           </div>
         </div>
@@ -622,7 +625,7 @@
 <p>Series editors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="editors_series-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 394</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 397</span>
     </pre>
           </div>
         </div>
@@ -647,7 +650,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 403</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 406</span>
     </pre>
           </div>
         </div>
@@ -669,7 +672,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 417</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 420</span>
     </pre>
           </div>
         </div>
@@ -689,7 +692,7 @@
           <p>Return the list of languages associated with this <a href="Reference.html"><code>Reference</code></a>.</p>
 
           <div class="method-source-code" id="languages-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 185</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">languages</span>
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;languages&#39;</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;languages&#39;</span>].<span class="ruby-identifier">dup</span>
 <span class="ruby-keyword">end</span></pre>
@@ -711,7 +714,7 @@
           <p>Set the license of this <a href="Reference.html"><code>Reference</code></a>. Only licenses that conform to the <a href="https://spdx.org/licenses/">SPDX License List</a> will be accepted. If you need specify a different license you should set <code>license-url</code> with a link to the license instead.</p>
 
           <div class="method-source-code" id="license-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 196</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 199</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">license=</span>(<span class="ruby-identifier">lic</span>)
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;license&#39;</span>] = <span class="ruby-identifier">lic</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">SpdxLicenses</span>.<span class="ruby-identifier">lookup</span>(<span class="ruby-identifier">lic</span>).<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -738,7 +741,7 @@
 <p>Patent states will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="patent_states-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 426</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 429</span>
     </pre>
           </div>
         </div>
@@ -760,7 +763,7 @@
 <p>Patent states will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="patent_states-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 440</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 443</span>
     </pre>
           </div>
         </div>
@@ -785,7 +788,7 @@
 <p>Recipients can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="recipients-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 449</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 452</span>
     </pre>
           </div>
         </div>
@@ -807,7 +810,7 @@
 <p>Recipients can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="recipients-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 463</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 466</span>
     </pre>
           </div>
         </div>
@@ -827,7 +830,7 @@
           <p>Reset the list of languages for this <a href="Reference.html"><code>Reference</code></a> to be empty.</p>
 
           <div class="method-source-code" id="reset_languages-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 177</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">reset_languages</span>
   <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;languages&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -854,7 +857,7 @@
 <p>Senders can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="senders-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 472</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 475</span>
     </pre>
           </div>
         </div>
@@ -876,7 +879,7 @@
 <p>Senders can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="senders-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 486</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 489</span>
     </pre>
           </div>
         </div>
@@ -896,7 +899,7 @@
           <p>Sets the status of this <a href="Reference.html"><code>Reference</code></a>. The status is restricted to a <a href="https://citation-file-format.github.io/1.0.3/specifications/#/status-strings">defined set of status types</a>.</p>
 
           <div class="method-source-code" id="status-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 265</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 268</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">status=</span>(<span class="ruby-identifier">status</span>)
   <span class="ruby-identifier">status</span> = <span class="ruby-identifier">status</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;status&#39;</span>] = <span class="ruby-identifier">status</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">REFERENCE_STATUS_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">status</span>)
@@ -924,7 +927,7 @@
 <p>Translators can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="translators-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 495</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 498</span>
     </pre>
           </div>
         </div>
@@ -946,7 +949,7 @@
 <p>Translators can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="translators-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 509</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 512</span>
   </pre>
           </div>
         </div>
@@ -966,7 +969,7 @@
           <p>Sets the type of this <a href="Reference.html"><code>Reference</code></a>. The type is restricted to a <a href="https://citation-file-format.github.io/1.0.3/specifications/#/reference-types">defined set of reference types</a>.</p>
 
           <div class="method-source-code" id="type-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 275</span>
+            <pre><span class="ruby-comment"># File lib/cff/reference.rb, line 278</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type=</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">type</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">REFERENCE_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>)
