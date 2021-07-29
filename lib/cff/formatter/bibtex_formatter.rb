@@ -26,7 +26,7 @@ module CFF
       if model.authors.length.positive?
         values['author'] = combine_authors(model.authors.map { |author| format_author(author) })
       end
-      values['title'] = model.title if present?(model.title)
+      values['title'] = "{#{model.title}}" if present?(model.title)
       values['doi'] = model.doi if present?(model.doi)
 
       if present?(model.date_released) && !try_get_month(model.date_released).nil?
@@ -81,7 +81,7 @@ module CFF
     def self.generate_reference(fields)
       author = fields['author'].split(',', 2)[0].tr(' -', '_')
       title = fields['title'].split[0..2].map do |word|
-        word.tr('-$£%&()+!?/\\:;\'"~#', '')
+        word.tr('-$£%&(){}+!?/\\:;\'"~#', '')
       end
       [author, title, fields['year']].compact.join('_')
     end
