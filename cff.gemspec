@@ -50,7 +50,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'json_schema', '~> 0.21.0'
   spec.add_runtime_dependency 'language_list', '~> 1.2'
-  spec.add_runtime_dependency 'spdx-licenses', '~> 1.3'
 
   spec.add_development_dependency 'minitest', '~> 5.14'
   spec.add_development_dependency 'rake', '~> 13.0'

@@ -20,6 +20,8 @@ module CFF
   # Functionality to add licence(s) to parts of the CFF model.
   module Licensable
 
+    LICENSES = SCHEMA_FILE['definitions']['license-enum']['enum'].dup.freeze
+
     # :call-seq:
     #   license = license
     #   license = Array
@@ -29,7 +31,7 @@ module CFF
     # If you need specify a different license you should set `license-url`
     # with a link to the license instead.
     def license=(lic)
-      list = [*lic].reject { |l| SpdxLicenses.lookup(l).nil? }
+      list = [*lic].select { |l| LICENSES.include?(l) }
       @fields['license'] = case list.length
                            when 0
                              @fields['license']
