@@ -20,7 +20,17 @@ require 'yaml'
 
 require 'json_schema'
 require 'language_list'
-require 'spdx-licenses'
+
+# This library provides a Ruby interface to manipulate CITATION.cff files. The
+# primary entry points are Model and File.
+#
+# See the [CITATION.cff documentation](https://citation-file-format.github.io/)
+# for more details.
+module CFF
+  SCHEMA_PATH = ::File.join(__dir__, 'schema', '1.2.0.json') # :nodoc:
+  SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))         # :nodoc:
+  SCHEMA = JsonSchema.parse!(SCHEMA_FILE)                    # :nodoc:
+end
 
 require 'cff/version'
 require 'cff/errors'
@@ -37,14 +47,3 @@ require 'cff/file'
 require 'cff/formatter/formatter'
 require 'cff/formatter/apa_formatter'
 require 'cff/formatter/bibtex_formatter'
-
-# This library provides a Ruby interface to manipulate CITATION.cff files. The
-# primary entry points are Model and File.
-#
-# See the [CITATION.cff documentation](https://citation-file-format.github.io/)
-# for more details.
-module CFF
-  SCHEMA_PATH = ::File.join(__dir__, 'schema', '1.2.0.json') # :nodoc:
-  SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))         # :nodoc:
-  SCHEMA = JsonSchema.parse!(SCHEMA_FILE)                    # :nodoc:
-end
