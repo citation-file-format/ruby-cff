@@ -249,6 +249,33 @@ class CFFModelTest < Minitest::Test
     assert_includes(y, "keywords:\n- one\n- two\n- '3'\n- four\n")
   end
 
+  def test_license_is_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    assert_equal('', m.license)
+
+    m.license = 'Bad Licence'
+    assert_equal('', m.license)
+
+    m.license = 'Apache-2.0'
+    assert_equal('Apache-2.0', m.license)
+
+    m.license = 'Bad Licence'
+    assert_equal('Apache-2.0', m.license)
+
+    assert_includes(m.to_yaml, "license: Apache-2.0\n")
+
+    m.license = ['Bad Licence', 'Apache-2.0']
+    assert_equal('Apache-2.0', m.license)
+    assert_includes(m.to_yaml, "license: Apache-2.0\n")
+
+    m.license = ['Apache-2.0', 'Ruby']
+    assert_equal(['Apache-2.0', 'Ruby'], m.license)
+    assert_includes(m.to_yaml, "license:\n- Apache-2.0\n- Ruby\n")
+
+    m.license = 'Bad Licence'
+    assert_equal(['Apache-2.0', 'Ruby'], m.license)
+  end
+
   def test_preferred_citation_set_and_output_correctly
     m = ::CFF::Model.new('title')
     r = ::CFF::Reference.new('book title', 'book')
