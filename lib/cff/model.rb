@@ -45,6 +45,7 @@ module CFF
   # * `version`
   class Model < ModelPart
 
+    include Licensable
     include Validatable
 
     ALLOWED_FIELDS = [
