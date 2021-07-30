@@ -91,6 +91,8 @@ module CFF
   # * `year_original`
   class Reference < ModelPart
 
+    include Licensable
+
     ALLOWED_FIELDS = [
       'abbreviation', 'abstract', 'authors', 'collection-doi',
       'collection-title', 'collection-type', 'commit', 'conference', 'contact',
@@ -187,17 +189,6 @@ module CFF
     # Return the list of languages associated with this Reference.
     def languages
       @fields['languages'].empty? ? [] : @fields['languages'].dup
-    end
-
-    # :call-seq:
-    #   license = license
-    #
-    # Set the license of this Reference. Only licenses that conform to the
-    # [SPDX License List](https://spdx.org/licenses/) will be accepted. If you
-    # need specify a different license you should set `license-url` with a link
-    # to the license instead.
-    def license=(lic)
-      @fields['license'] = lic unless SpdxLicenses.lookup(lic).nil?
     end
 
     # :call-seq:
