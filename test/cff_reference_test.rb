@@ -143,8 +143,21 @@ class CFFReferenceTest < Minitest::Test
     @reference.license = 'Bad Licence'
     assert_equal('Apache-2.0', @reference.license)
 
-    y = @reference.fields.to_yaml
-    assert_includes(y, "license: Apache-2.0\n")
+    assert_includes(@reference.fields.to_yaml, "license: Apache-2.0\n")
+
+    @reference.license = ['Bad Licence', 'Apache-2.0']
+    assert_equal('Apache-2.0', @reference.license)
+    assert_includes(@reference.fields.to_yaml, "license: Apache-2.0\n")
+
+    @reference.license = ['Apache-2.0', 'Ruby']
+    assert_equal(['Apache-2.0', 'Ruby'], @reference.license)
+    assert_includes(
+      @reference.fields.to_yaml,
+      "license:\n- Apache-2.0\n- Ruby\n"
+    )
+
+    @reference.license = 'Bad Licence'
+    assert_equal(['Apache-2.0', 'Ruby'], @reference.license)
   end
 
   def test_bad_dates_raises_error
