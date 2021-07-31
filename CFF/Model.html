@@ -69,6 +69,7 @@
   <h3>Included Modules</h3>
 
   <ul class="link-list">
+    <li><a class="include" href="Licensable.html">CFF::Licensable</a>
     <li><a class="include" href="Validatable.html">CFF::Validatable</a>
   </ul>
 </div>
@@ -181,7 +182,7 @@
           <p>Initialize a new <a href="Model.html"><code>Model</code></a> with the supplied title.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 67</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
     <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">build_model</span>(<span class="ruby-identifier">param</span>)
@@ -229,7 +230,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 150</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 151</span>
     </pre>
           </div>
         </div>
@@ -251,7 +252,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 164</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 165</span>
     </pre>
           </div>
         </div>
@@ -276,7 +277,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 173</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 174</span>
     </pre>
           </div>
         </div>
@@ -298,7 +299,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 187</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 188</span>
     </pre>
           </div>
         </div>
@@ -318,7 +319,7 @@
           <p>Set the <code>date-released</code> field. If a non-Date object is passed in it will be parsed into a Date.</p>
 
           <div class="method-source-code" id="date_released-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 90</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">date_released=</span>(<span class="ruby-identifier">date</span>)
   <span class="ruby-identifier">date</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">date</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
 
@@ -345,7 +346,7 @@
 </pre>
 
           <div class="method-source-code" id="identifiers-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 196</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 197</span>
     </pre>
           </div>
         </div>
@@ -365,7 +366,7 @@
           <p>Replace the list of identifiers for this citation.</p>
 
           <div class="method-source-code" id="identifiers-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 208</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 209</span>
     </pre>
           </div>
         </div>
@@ -390,7 +391,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 215</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 216</span>
     </pre>
           </div>
         </div>
@@ -412,7 +413,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 229</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 230</span>
     </pre>
           </div>
         </div>
@@ -432,7 +433,7 @@
           <p>Return the preferred citation for this citation.</p>
 
           <div class="method-source-code" id="preferred_citation-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 238</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 239</span>
     </pre>
           </div>
         </div>
@@ -452,7 +453,7 @@
           <p>Replace the preferred citation for this citation.</p>
 
           <div class="method-source-code" id="preferred_citation-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 245</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 246</span>
     </pre>
           </div>
         </div>
@@ -475,7 +476,7 @@
 </pre>
 
           <div class="method-source-code" id="references-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 252</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 253</span>
     </pre>
           </div>
         </div>
@@ -495,7 +496,7 @@
           <p>Replace the list of references for this citation.</p>
 
           <div class="method-source-code" id="references-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 264</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 265</span>
   </pre>
           </div>
         </div>
@@ -515,7 +516,7 @@
           <p>Output this <a href="Model.html"><code>Model</code></a> in an APA-like format.</p>
 
           <div class="method-source-code" id="to_apalike-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 104</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_apalike</span>
   <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">ApaFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -537,7 +538,7 @@
           <p>Output this <a href="Model.html"><code>Model</code></a> in BibTeX format.</p>
 
           <div class="method-source-code" id="to_bibtex-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 112</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_bibtex</span>
   <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">BibtexFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
