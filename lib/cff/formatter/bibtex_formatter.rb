@@ -71,7 +71,7 @@ module CFF
         return output.join(', ')
       end
 
-      return author.name if author.is_a?(Entity)
+      return "{#{author.name}}" if author.is_a?(Entity)
     end
 
     def self.combine_authors(authors)
@@ -80,10 +80,10 @@ module CFF
 
     def self.generate_reference(fields)
       author = fields['author'].split(',', 2)[0].tr(' -', '_')
-      title = fields['title'].split[0..2].map do |word|
-        word.tr('-$£%&(){}+!?/\\:;\'"~#', '')
-      end
-      [author, title, fields['year']].compact.join('_')
+      title = fields['title'].split[0..2]
+      [author, title, fields['year']].compact
+                                     .join('_')
+                                     .tr('-$£%&(){}+!?/\\:;\'"~#', '')
     end
   end
 end

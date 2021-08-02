@@ -35,7 +35,7 @@ class CFFBibtexFormatterTest < Minitest::Test
       [
         {
           'year' => nil,
-          'author' => 'An Organisation',
+          'author' => '{An Organisation}',
           'title' => "Really?! 'Everyone' Disagrees?"
         },
         'An_Organisation_Really_Everyone_Disagrees'
