@@ -26,7 +26,7 @@ class CFFBibtexFormatterTest < Minitest::Test
     [
       [
         {
-          'author' => 'von Haines, Robert and Robert, Haines',
+          'author' => 'von Haines, Jr, Robert and Robert, Haines',
           'title' => 'My Family and Other Animals',
           'year' => '2021'
         },

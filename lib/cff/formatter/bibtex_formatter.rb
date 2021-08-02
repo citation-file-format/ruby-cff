@@ -67,6 +67,7 @@ module CFF
 
         output = []
         output << "#{particle}#{author.family_names}" if present?(author.family_names)
+        output << author.name_suffix if present?(author.name_suffix)
         output << author.given_names if present?(author.given_names)
         return output.join(', ')
       end
