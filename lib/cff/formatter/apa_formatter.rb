@@ -41,17 +41,15 @@ module CFF
       authors.join('., ')
     end
 
-    def self.format_author(author) # rubocop:disable Metrics/AbcSize
-      if author.is_a?(Person)
-        output = +''
-        output << "#{author.name_particle} " if present?(author.name_particle)
-        output << author.family_names if present?(author.family_names)
-        output << " #{author.name_suffix}" if present?(author.name_suffix)
-        output << " #{initials(author.given_names)}" if present?(author.given_names)
-        return output
-      end
-
+    def self.format_author(author)
       return author.name if author.is_a?(Entity)
+
+      [
+        author.name_particle,
+        author.family_names,
+        author.name_suffix,
+        initials(author.given_names)
+      ].reject(&:empty?).join(' ')
     end
   end
 end
