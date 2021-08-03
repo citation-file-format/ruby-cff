@@ -56,6 +56,7 @@ module CFF
     def initialize(param)
       if param.is_a?(Hash)
         @fields = param
+        @fields.default = ''
       else
         @fields = Hash.new('')
         @fields['name'] = param
