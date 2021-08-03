@@ -149,6 +149,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">more</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
     <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">param</span>
+    <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">default</span> = <span class="ruby-string">&#39;&#39;</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@fields</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&#39;</span>)
 
@@ -185,7 +186,7 @@
           <p>Sets the type of this <a href="Identifier.html"><code>Identifier</code></a>. The type is restricted to a <a href="https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings">defined set of identifier types</a>.</p>
 
           <div class="method-source-code" id="type-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 65</span>
+            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type=</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">type</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">IDENTIFIER_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>)
