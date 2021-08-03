@@ -61,18 +61,16 @@ module CFF
     end
 
     def self.format_author(author)
-      if author.is_a?(Person)
-        particle =
-          present?(author.name_particle) ? "#{author.name_particle} " : ''
-
-        output = []
-        output << "#{particle}#{author.family_names}" if present?(author.family_names)
-        output << author.name_suffix if present?(author.name_suffix)
-        output << author.given_names if present?(author.given_names)
-        return output.join(', ')
-      end
-
       return "{#{author.name}}" if author.is_a?(Entity)
+
+      particle =
+        author.name_particle.empty? ? '' : "#{author.name_particle} "
+
+      [
+        "#{particle}#{author.family_names}",
+        author.name_suffix,
+        author.given_names
+      ].reject(&:empty?).join(', ')
     end
 
     def self.combine_authors(authors)
