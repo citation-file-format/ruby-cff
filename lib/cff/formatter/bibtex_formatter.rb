@@ -80,11 +80,11 @@ module CFF
     end
 
     def self.generate_reference(fields)
-      author = fields['author'].split(',', 2)[0].tr(' -', '_')
-      title = fields['title'].split[0..2]
-      [author, title, fields['year']].compact
-                                     .join('_')
-                                     .tr('-$£%&(){}+!?/\\:;\'"~#', '')
+      [
+        fields['author'].split(',', 2)[0].tr(' -', '_'),
+        fields['title'].split[0..2],
+        fields['year']
+      ].compact.join('_').tr('-$£%&(){}+!?/\\:;\'"~#', '')
     end
   end
 end
