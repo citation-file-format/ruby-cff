@@ -32,6 +32,7 @@ module CFF
   SCHEMA = JsonSchema.parse!(SCHEMA_FILE)                    # :nodoc:
 end
 
+require 'array'
 require 'cff/version'
 require 'cff/errors'
 require 'cff/util'
@@ -47,3 +48,6 @@ require 'cff/file'
 require 'cff/formatter/formatter'
 require 'cff/formatter/apa_formatter'
 require 'cff/formatter/bibtex_formatter'
+require 'cff/formatter/csl_formatter'
+require 'citeproc'
+require 'csl'
