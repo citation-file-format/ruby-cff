@@ -20,6 +20,7 @@ module CFF
   # Functionality to add licence(s) to parts of the CFF model.
   module Licensable
 
+    # :nodoc:
     LICENSES = SCHEMA_FILE['definitions']['license-enum']['enum'].dup.freeze
 
     # :call-seq:
