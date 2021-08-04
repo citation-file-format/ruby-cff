@@ -61,15 +61,6 @@
     
     
     
-<!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    <li ><a href="#method-i-license-3D">#license=</a>
-  </ul>
-</div>
-
   </div>
 </nav>
 
@@ -87,59 +78,8 @@
   <section id="5Buntitled-5D" class="documentation-section">
 
 
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
-        <dt id="LICENSES">LICENSES
-        <dd>
-      </dl>
-    </section>
 
 
-
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-      <div id="method-i-license-3D" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-callseq">
-            license = license
-          </span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            license = Array
-          </span>
-        </div>
-
-        <div class="method-description">
-          <p>Set the license, or licenses, of this work. Only licenses that conform to the <a href="https://spdx.org/licenses/">SPDX License List</a> will be accepted. If you need specify a different license you should set <code>license-url</code> with a link to the license instead.</p>
-
-          <div class="method-source-code" id="license-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/licensable.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">license=</span>(<span class="ruby-identifier">lic</span>)
-  <span class="ruby-identifier">list</span> = [<span class="ruby-operator">*</span><span class="ruby-identifier">lic</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-constant">LICENSES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">l</span>) }
-  <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;license&#39;</span>] = <span class="ruby-keyword">case</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">length</span>
-                       <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
-                         <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;license&#39;</span>]
-                       <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
-                         <span class="ruby-identifier">list</span>[<span class="ruby-value">0</span>]
-                       <span class="ruby-keyword">else</span>
-                         <span class="ruby-identifier">list</span>
-                       <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-    </section>
 
   </section>
 </main>
