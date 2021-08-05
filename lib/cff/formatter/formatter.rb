@@ -37,6 +37,19 @@ module CFF
       raise NotImplementedError
     end
 
+    def self.month_and_year_from_date(value)
+      if value.is_a?(Date)
+        [value.month, value.year]
+      else
+        begin
+          date = Date.parse(value.to_s)
+          [date.month, date.year]
+        rescue ArgumentError
+          ['', '']
+        end
+      end
+    end
+
     def self.try_get_month(value)
       if value.instance_of? Date
         value.month
