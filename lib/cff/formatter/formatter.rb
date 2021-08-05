@@ -37,6 +37,11 @@ module CFF
       raise NotImplementedError
     end
 
+    # Prefer `repository_code` over `url`
+    def self.url(model)
+      model.repository_code.empty? ? model.url : model.repository_code
+    end
+
     def self.month_and_year_from_date(value)
       if value.is_a?(Date)
         [value.month, value.year]
