@@ -66,5 +66,9 @@ class CFFCslFormatterTest < Minitest::Test
     def test_year
       assert_equal({ 'date-parts' => [[2021]] }, ::CFF::CslFormatter.get_date_parts('2021'))
     end
+
+    def test_invalid_date
+      assert_nil ::CFF::CslFormatter.get_date_parts([2021])
+    end
   end
 end

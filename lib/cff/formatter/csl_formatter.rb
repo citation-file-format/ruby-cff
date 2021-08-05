@@ -31,9 +31,10 @@ module CFF
   class CslFormatter < Formatter # :nodoc:
 
     def self.format(model:, style: 'apa', locale: 'en-US') # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      return nil unless required_fields?(model)
       # only support built-in styles
       return nil unless ['apa', 'harvard-cite-them-right', 'ieee'].include? style
+
+      return nil unless required_fields?(model)
 
       CSL::Style.root = ::File.expand_path('../../../lib/styles', __dir__)
       CSL::Locale.root = ::File.expand_path('../../../lib/locales', __dir__)
@@ -86,7 +87,7 @@ module CFF
       month = iso8601_time[5..6].to_i
       day = iso8601_time[8..9].to_i
       { 'date-parts' => [[year, month, day].reject(&:zero?)] }
-    rescue TypeError
+    rescue TypeError, NoMethodError
       nil
     end
   end
