@@ -39,6 +39,16 @@ class CFFCslFormatterTest < Minitest::Test
     end
   end
 
+  def test_all_supported_styles_installed
+    assert_equal ['ieee.csl', 'harvard-cite-them-right.csl', 'apa.csl'], (Dir.glob('lib/styles/*.csl').map { |f| f.split('/').last })
+  end
+
+  # unsupported styles should return nil
+  def test_handle_unsupported_style
+    model = ::CFF::Model.new('title')
+    assert_nil CFF::CslFormatter.format(model: model, style: 'mla')
+  end
+
   def test_can_tolerate_invalid_file
     cff = CFF::Model.new(nil)
     assert_nil cff.to_apa

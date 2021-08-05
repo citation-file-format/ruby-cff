@@ -36,6 +36,8 @@ OUTPUT_CFF = 'CITATION.cff'
 VALIDATION_DIR = ::File.join(FILES_DIR, 'validation')
 CONVERTED_DIR = ::File.expand_path('converted', __dir__)
 
+STYLES_DIR = ::File.expand_path('../styles', __dir__)
+
 CONSTRUCT_OPTS = {
   keep_on_error: true
 }.freeze

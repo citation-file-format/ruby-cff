@@ -16,13 +16,17 @@
 
 require 'test_helper'
 
-class CFFTest < Minitest::Test
+class ArrayTest < Minitest::Test
 
-  def test_that_it_has_a_version_number
-    refute_nil ::CFF::VERSION
+  def test_array_one
+    assert_equal([3], Array.wrap(3))
   end
 
-  def test_that_it_has_a_spec_version_number
-    refute_nil ::CFF::DEFAULT_SPEC_VERSION
+  def test_array_two
+    assert_equal([3, 4], Array.wrap([3, 4]))
+  end
+
+  def test_empty_array
+    assert_empty(Array.wrap(nil))
   end
 end

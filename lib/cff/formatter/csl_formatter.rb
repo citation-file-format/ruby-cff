@@ -32,6 +32,8 @@ module CFF
 
     def self.format(model:, style: 'apa', locale: 'en-US') # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       return nil unless required_fields?(model)
+      # only support built-in styles
+      return nil unless ['apa', 'harvard-cite-them-right', 'ieee'].include? style
 
       CSL::Style.root = ::File.expand_path('../../../lib/styles', __dir__)
       CSL::Locale.root = ::File.expand_path('../../../lib/locales', __dir__)
