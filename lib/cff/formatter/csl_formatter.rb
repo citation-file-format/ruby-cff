@@ -30,7 +30,7 @@ module CFF
   # and the Ruby Citeproc processor
   class CslFormatter < Formatter # :nodoc:
 
-    def self.format(model:, style: 'apa', locale: 'en-US')
+    def self.format(model:, style: 'apa', locale: 'en-US') # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       return nil unless required_fields?(model)
 
       CSL::Style.root = ::File.expand_path('../../../lib/styles', __dir__)
