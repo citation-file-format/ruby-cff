@@ -41,6 +41,20 @@ class CFFCslFormatterTest < Minitest::Test
 
   def test_can_tolerate_invalid_file
     cff = CFF::Model.new(nil)
-    assert_nil cff.to_apalike
+    assert_nil cff.to_apa
+  end
+
+  describe 'get_date_parts' do
+    def test_year_month_day
+      assert_equal({ 'date-parts' => [[2021, 2, 3]] }, ::CFF::CslFormatter.get_date_parts('2021-02-03'))
+    end
+
+    def test_year_month
+      assert_equal({ 'date-parts' => [[2021, 2]] }, ::CFF::CslFormatter.get_date_parts('2021-02'))
+    end
+
+    def test_year
+      assert_equal({ 'date-parts' => [[2021]] }, ::CFF::CslFormatter.get_date_parts('2021'))
+    end
   end
 end

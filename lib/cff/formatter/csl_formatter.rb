@@ -40,7 +40,7 @@ module CFF
 
       # citeproc_hsh is input format for citeproc-ruby
       citeproc_hsh = {
-        # using type book is workaround for current CSL version
+        # using type book is workaround for software for current CSL version
         'type' => 'book',
         'id' => present?(model.doi) ? "https://doi.org/#{model.doi}" : nil,
         'categories' => Array.wrap(model.keywords),
@@ -67,9 +67,11 @@ module CFF
     def self.to_citeproc(element)
       Array.wrap(element).map do |a|
         {
-          'family' => a.fields['family-names'],
           'given' => a.fields['given-names'],
-          'literal' => present?(a.fields['family-names']) ? a.fields['name'] : nil
+          'non-dropping-particle' => a.fields['name-particle'],
+          'family' => a.fields['family-names'],
+          'suffix' => a.fields['name-suffix'],
+          'literal' => a.fields['name']
         }.compact
       end
     end
