@@ -19,45 +19,33 @@ module CFF
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter # :nodoc:
 
-    def self.format(model:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    def self.format(model:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       return nil unless required_fields?(model)
 
       values = {}
       if model.authors.length.positive?
-        values['author'] = combine_authors(model.authors.map { |author| format_author(author) })
+        values['author'] = combine_authors(
+          model.authors.map { |author| format_author(author) }
+        )
       end
-      values['title'] = "{#{model.title}}" if present?(model.title)
-      values['doi'] = model.doi if present?(model.doi)
+      values['title'] = "{#{model.title}}"
+      values['doi'] = model.doi
 
-      if present?(model.date_released) && !try_get_month(model.date_released).nil?
-        values['month'] =
-          try_get_month(model.date_released)
+      month, year = month_and_year_from_date(model.date_released)
+      values['month'] = month.to_s
+      values['year'] = year.to_s
+
+      values['url'] = url(model)
+
+      values.reject! { |_, v| v.empty? }
+      sorted_values = values.sort.map do |key, value|
+        "#{key} = {#{value}}"
       end
-      if present?(model.date_released) && !try_get_year(model.date_released).nil?
-        values['year'] =
-          try_get_year(model.date_released)
-      end
+      sorted_values.insert(0, generate_reference(values))
 
-      # prefer repository_code over url
-      if present?(model.repository_code)
-        values['url'] = model.repository_code
-      elsif present?(model.url)
-        values['url'] = model.url
-      end
-
-      sorted_values = values.sort.map { |key, value| pair(key: key, value: value) }
-      sorted_values.insert(0, "@misc{#{generate_reference(values)}")
-
-      output = sorted_values.join(",\n")
-      output << "\n}"
-
-      output
+      "@misc{#{sorted_values.join(",\n")}\n}"
     rescue StandardError
       nil
-    end
-
-    def self.pair(key:, value:)
-      "#{key} = {#{value}}" if present?(value)
     end
 
     def self.format_author(author)
