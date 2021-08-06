@@ -107,6 +107,30 @@ module CFF
     end
 
     # :call-seq:
+    #   to_apa -> String
+    #
+    # Output this Model in APA format, using CSL.
+    def to_apa
+      CFF::CslFormatter.format(model: self, style: 'apa')
+    end
+
+    # :call-seq:
+    #   to_harvard -> String
+    #
+    # Output this Model in Harvard format, using CSL.
+    def to_harvard
+      CFF::CslFormatter.format(model: self, style: 'harvard-cite-them-right')
+    end
+
+    # :call-seq:
+    #   to_ieee -> String
+    #
+    # Output this Model in APA format, using CSL.
+    def to_ieee
+      CFF::CslFormatter.format(model: self, style: 'ieee')
+    end
+
+    # :call-seq:
     #   to_bibtex -> String
     #
     # Output this Model in BibTeX format.
