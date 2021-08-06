@@ -30,7 +30,7 @@ module CFF
     end
 
     def self.initials(name)
-      name.split.map { |part| part[0].capitalize }.join('.')
+      name.split.map { |part| part[0].capitalize }.join('. ')
     end
 
     def self.combine_authors(authors)

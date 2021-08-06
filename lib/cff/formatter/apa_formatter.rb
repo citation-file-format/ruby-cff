@@ -19,37 +19,47 @@ module CFF
   # Generates an APALIKE citation string
   class ApaFormatter < Formatter # :nodoc:
 
-    def self.format(model:) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    def self.format(model:) # rubocop:disable Metrics/AbcSize
       return nil unless required_fields?(model)
 
-      output = +''
-      output << combine_authors(model.authors.map { |author| format_author(author) }) if model.authors.length.positive?
-      output << '. ' if model.authors&.length&.positive?
-      if present?(model.date_released) && !try_get_year(model.date_released).nil?
-        output << "(#{try_get_year(model.date_released)}). "
+      output = []
+      if model.authors.length.positive?
+        output << combine_authors(
+          model.authors.map { |author| format_author(author) }
+        )
       end
-      output << model.title.to_s if present?(model.title)
-      output << " (version #{model.version})." if present?(model.version)
-      output << " DOI: https://doi.org/#{model.doi}" if present?(model.doi)
-      output << " URL: #{model.repository_code}" if present?(model.repository_code)
-      output
+
+      _, year = month_and_year_from_date(model.date_released)
+      output << "(#{year})" unless year.to_s.empty?
+
+      version = "(Version #{model.version}) " unless model.version.to_s.empty?
+      output << "#{model.title} #{version}[Computer software]"
+      output << url(model)
+
+      output.reject(&:empty?).join('. ')
     rescue StandardError
       nil
     end
 
+    # Prefer a DOI over the other URI options.
+    def self.url(model)
+      model.doi.empty? ? super : "https://doi.org/#{model.doi}"
+    end
+
     def self.combine_authors(authors)
-      authors.join('., ')
+      return authors[0].chomp('.') if authors.length == 1
+
+      "#{authors[0..-2].join(', ')}, & #{authors[-1]}".chomp('.')
     end
 
     def self.format_author(author)
       return author.name if author.is_a?(Entity)
 
-      [
-        author.name_particle,
-        author.family_names,
-        author.name_suffix,
-        initials(author.given_names)
-      ].reject(&:empty?).join(' ')
+      particle =
+        author.name_particle.empty? ? '' : "#{author.name_particle} "
+      suffix = author.name_suffix.empty? ? '.' : "., #{author.name_suffix}"
+
+      "#{particle}#{author.family_names}, #{initials(author.given_names)}#{suffix}"
     end
   end
 end
