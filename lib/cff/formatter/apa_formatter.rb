@@ -33,8 +33,8 @@ module CFF
       _, year = month_and_year_from_date(model.date_released)
       output << "(#{year})" unless year.to_s.empty?
 
-      version = "(Version #{model.version}) " unless model.version.to_s.empty?
-      output << "#{model.title} #{version}[Computer software]"
+      version = "(Version #{model.version})" unless model.version.to_s.empty?
+      output << "#{model.title} #{version}#{software_label(model)}"
       output << url(model)
 
       output.reject(&:empty?).join('. ')
@@ -43,6 +43,12 @@ module CFF
     # Prefer a DOI over the other URI options.
     def self.url(model)
       model.doi.empty? ? super : "https://doi.org/#{model.doi}"
+    end
+
+    def self.software_label(model)
+      return '' if model.is_a?(Reference) && !model.type.include?('software')
+
+      ' [Computer software]'
     end
 
     def self.combine_authors(authors)

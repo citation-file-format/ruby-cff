@@ -21,4 +21,22 @@ class CFFApaFormatterTest < Minitest::Test
     cff = CFF::Model.new(nil)
     assert_nil cff.to_apalike
   end
+
+  def test_software_label
+    ref = ::CFF::Reference.new('Title')
+    assert_equal('', ::CFF::ApaFormatter.software_label(ref))
+
+    ref.type = 'book'
+    assert_equal('', ::CFF::ApaFormatter.software_label(ref))
+
+    ref.type = 'software'
+    assert_equal(
+      ' [Computer software]', ::CFF::ApaFormatter.software_label(ref)
+    )
+
+    ref.type = 'software-container'
+    assert_equal(
+      ' [Computer software]', ::CFF::ApaFormatter.software_label(ref)
+    )
+  end
 end
