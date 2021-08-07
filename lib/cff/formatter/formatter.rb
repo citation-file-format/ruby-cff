@@ -32,10 +32,6 @@ module CFF
       name.split.map { |part| part[0].capitalize }.join('. ')
     end
 
-    def self.combine_authors(authors)
-      raise NotImplementedError
-    end
-
     # Prefer `repository_code` over `url`
     def self.url(model)
       model.repository_code.empty? ? model.url : model.repository_code
