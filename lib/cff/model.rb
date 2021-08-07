@@ -99,19 +99,31 @@ module CFF
     end
 
     # :call-seq:
-    #   to_apalike -> String
+    #   to_apalike(preferred_citation: true) -> String
     #
-    # Output this Model in an APA-like format.
-    def to_apalike
-      CFF::ApaFormatter.format(model: self)
+    # Output this Model in an APA-like format. Setting
+    # `preferred_citation: true` will honour the `preferred_citation` field in
+    # the model if one is present (default).
+    #
+    # *Note:* This method assumes that this Model is valid when called.
+    def to_apalike(preferred_citation: true)
+      CFF::ApaFormatter.format(
+        model: self, preferred_citation: preferred_citation
+      )
     end
 
     # :call-seq:
-    #   to_bibtex -> String
+    #   to_bibtex(preferred_citation: true) -> String
     #
-    # Output this Model in BibTeX format.
-    def to_bibtex
-      CFF::BibtexFormatter.format(model: self)
+    # Output this Model in BibTeX format. Setting
+    # `preferred_citation: true` will honour the `preferred_citation` field in
+    # the model if one is present (default).
+    #
+    # *Note:* This method assumes that this Model is valid when called.
+    def to_bibtex(preferred_citation: true)
+      CFF::BibtexFormatter.format(
+        model: self, preferred_citation: preferred_citation
+      )
     end
 
     private

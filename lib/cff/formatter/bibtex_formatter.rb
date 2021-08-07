@@ -19,8 +19,8 @@ module CFF
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter # :nodoc:
 
-    def self.format(model:) # rubocop:disable Metrics/AbcSize
-      model = check_model(model)
+    def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
+      model = select_and_check_model(model, preferred_citation)
       return if model.nil?
 
       values = {}

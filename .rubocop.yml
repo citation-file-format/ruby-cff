@@ -39,6 +39,7 @@ Layout/EmptyLinesAroundModuleBody:
 
 # Allow long lines in the tests.
 Layout/LineLength:
+  Max: 100
   Exclude:
     - 'test/**/*.rb'
 

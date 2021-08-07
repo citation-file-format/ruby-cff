@@ -19,7 +19,12 @@ module CFF
   # Formatter base class
   class Formatter # :nodoc:
 
-    def self.check_model(model)
+    def self.select_and_check_model(model, preferred_citation)
+      if preferred_citation && model.preferred_citation.is_a?(Reference)
+        model = model.preferred_citation
+      end
+
+      # Safe to assume valid `Model`s and `Reference`s will have these fields.
       model.authors.empty? || model.title.empty? ? nil : model
     end
 
