@@ -19,7 +19,7 @@ module CFF
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter # :nodoc:
 
-    def self.format(model:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    def self.format(model:) # rubocop:disable Metrics/AbcSize
       return nil unless required_fields?(model)
 
       values = {}
@@ -44,8 +44,6 @@ module CFF
       sorted_values.insert(0, generate_reference(values))
 
       "@misc{#{sorted_values.join(",\n")}\n}"
-    rescue StandardError
-      nil
     end
 
     def self.format_author(author)

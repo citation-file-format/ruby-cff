@@ -20,7 +20,7 @@ module CFF
   class Formatter # :nodoc:
 
     def self.required_fields?(model)
-      !(model.authors.empty? || model.title.empty? || model.version.to_s.empty?)
+      !(model.authors.empty? || model.title.empty?)
     end
 
     def self.initials(name)

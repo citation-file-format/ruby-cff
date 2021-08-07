@@ -37,8 +37,6 @@ module CFF
       output << url(model)
 
       output.reject(&:empty?).join('. ')
-    rescue StandardError
-      nil
     end
 
     # Prefer a DOI over the other URI options.
