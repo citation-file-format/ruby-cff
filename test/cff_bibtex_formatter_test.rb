@@ -22,6 +22,31 @@ class CFFBibtexFormatterTest < Minitest::Test
     assert_nil cff.to_bibtex
   end
 
+  def test_bibtex_type
+    model = ::CFF::Model.new('Title')
+    assert_equal('misc', ::CFF::BibtexFormatter.bibtex_type(model))
+
+    ref = ::CFF::Reference.new('Title')
+    assert_equal('misc', ::CFF::BibtexFormatter.bibtex_type(ref))
+
+    ref.type = 'newspaper-article'
+    assert_equal('article', ::CFF::BibtexFormatter.bibtex_type(ref))
+
+    ref.type = 'conference-paper'
+    assert_equal('inproceedings', ::CFF::BibtexFormatter.bibtex_type(ref))
+
+    ref.type = 'proceedings'
+    assert_equal('proceedings', ::CFF::BibtexFormatter.bibtex_type(ref))
+
+    ref.type = 'pamphlet'
+    assert_equal('booklet', ::CFF::BibtexFormatter.bibtex_type(ref))
+
+    ['article', 'book', 'manual', 'unpublished'].each do |type|
+      ref.type = type
+      assert_equal(type, ::CFF::BibtexFormatter.bibtex_type(ref))
+    end
+  end
+
   def test_generate_reference
     [
       [

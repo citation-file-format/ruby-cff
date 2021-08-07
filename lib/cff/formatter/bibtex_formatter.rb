@@ -44,7 +44,28 @@ module CFF
       end
       sorted_values.insert(0, generate_reference(values))
 
-      "@misc{#{sorted_values.join(",\n")}\n}"
+      "@#{bibtex_type(model)}{#{sorted_values.join(",\n")}\n}"
+    end
+
+    # Do what we can to map between CFF reference types and bibtex types.
+    # Reference: https://www.bibtex.com/e/entry-types/
+    def self.bibtex_type(model)
+      return 'misc' unless model.is_a?(Reference)
+
+      case model.type
+      when 'article', 'book', 'manual', 'unpublished'
+        model.type
+      when 'conference', 'proceedings'
+        'proceedings'
+      when 'conference-paper'
+        'inproceedings'
+      when 'magazine-article', 'newspaper-article'
+        'article'
+      when 'pamphlet'
+        'booklet'
+      else
+        'misc'
+      end
     end
 
     def self.format_author(author)
