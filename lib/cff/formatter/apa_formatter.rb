@@ -20,7 +20,8 @@ module CFF
   class ApaFormatter < Formatter # :nodoc:
 
     def self.format(model:) # rubocop:disable Metrics/AbcSize
-      return nil unless required_fields?(model)
+      model = check_model(model)
+      return if model.nil?
 
       output = []
       if model.authors.length.positive?

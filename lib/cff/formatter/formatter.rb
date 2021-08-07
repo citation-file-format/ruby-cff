@@ -19,8 +19,8 @@ module CFF
   # Formatter base class
   class Formatter # :nodoc:
 
-    def self.required_fields?(model)
-      !(model.authors.empty? || model.title.empty?)
+    def self.check_model(model)
+      model.authors.empty? || model.title.empty? ? nil : model
     end
 
     def self.initials(name)

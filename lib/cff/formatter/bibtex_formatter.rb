@@ -20,7 +20,8 @@ module CFF
   class BibtexFormatter < Formatter # :nodoc:
 
     def self.format(model:) # rubocop:disable Metrics/AbcSize
-      return nil unless required_fields?(model)
+      model = check_model(model)
+      return if model.nil?
 
       values = {}
       if model.authors.length.positive?
