@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+preferred-citation:
+  authors:
+    - family-names: Smith
+      given-names: A. M.
+    - family-names: Katz
+      given-names: D. S.
+    - family-names: Niemeyer
+      given-names: K. E.
+    - name: "FORCE11 Software Citation Working Group"
+  doi: "10.7717/peerj-cs.86"
+  journal: "PeerJ Computer Science"
+  month: 9
+  start: e86
+  title: "Software citation principles"
+  type: article
+  volume: 2
+  issue: 123
+  year: 2016
