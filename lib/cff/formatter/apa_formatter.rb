@@ -24,11 +24,9 @@ module CFF
       return if model.nil?
 
       output = []
-      if model.authors.length.positive?
-        output << combine_authors(
-          model.authors.map { |author| format_author(author) }
-        )
-      end
+      output << combine_authors(
+        model.authors.map { |author| format_author(author) }
+      )
 
       _, year = month_and_year_from_date(model.date_released)
       output << "(#{year})" unless year.to_s.empty?

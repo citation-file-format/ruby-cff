@@ -24,11 +24,9 @@ module CFF
       return if model.nil?
 
       values = {}
-      if model.authors.length.positive?
-        values['author'] = combine_authors(
-          model.authors.map { |author| format_author(author) }
-        )
-      end
+      values['author'] = combine_authors(
+        model.authors.map { |author| format_author(author) }
+      )
       values['title'] = "{#{model.title}}"
       values['doi'] = model.doi
 
