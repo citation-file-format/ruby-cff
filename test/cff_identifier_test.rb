@@ -24,6 +24,18 @@ class CFFIdentifierTest < Minitest::Test
     assert_equal('10.5281/zenodo.1184077', id.value)
   end
 
+  def test_new_with_block
+    id = ::CFF::Identifier.new('doi', '10.5281/zenodo.1184077') do |i|
+      assert_equal('doi', i.type)
+      assert_equal('10.5281/zenodo.1184077', i.value)
+      i.value = '10.9999/zenodo.1234567'
+    end
+
+    assert_equal('doi', id.type)
+    assert_equal('10.9999/zenodo.1234567', id.value)
+    assert id.is_a?(::CFF::Identifier)
+  end
+
   def test_new_no_params
     id = ::CFF::Identifier.new
     assert_empty(id.type)
