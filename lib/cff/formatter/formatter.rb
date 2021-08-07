@@ -23,12 +23,6 @@ module CFF
       !(model.authors.empty? || model.title.empty? || model.version.to_s.empty?)
     end
 
-    def self.present?(attribute)
-      return attribute && !attribute.empty? if defined?(attribute) && defined?(attribute.empty?)
-
-      attribute
-    end
-
     def self.initials(name)
       name.split.map { |part| part[0].capitalize }.join('. ')
     end
@@ -51,32 +45,6 @@ module CFF
           [date.month, date.year]
         rescue ArgumentError
           ['', '']
-        end
-      end
-    end
-
-    def self.try_get_month(value)
-      if value.instance_of? Date
-        value.month
-      else
-        begin
-          date = Date.parse(value.to_s)
-          date.month.to_s
-        rescue ArgumentError
-          nil
-        end
-      end
-    end
-
-    def self.try_get_year(value)
-      if value.instance_of? Date
-        value.year
-      else
-        begin
-          date = Date.parse(value.to_s)
-          date.year.to_s
-        rescue ArgumentError
-          nil
         end
       end
     end
