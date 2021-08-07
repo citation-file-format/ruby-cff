@@ -230,7 +230,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 151</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 163</span>
     </pre>
           </div>
         </div>
@@ -252,7 +252,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 165</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 177</span>
     </pre>
           </div>
         </div>
@@ -277,7 +277,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 174</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 186</span>
     </pre>
           </div>
         </div>
@@ -299,7 +299,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 188</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 200</span>
     </pre>
           </div>
         </div>
@@ -346,7 +346,7 @@
 </pre>
 
           <div class="method-source-code" id="identifiers-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 197</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 209</span>
     </pre>
           </div>
         </div>
@@ -366,7 +366,7 @@
           <p>Replace the list of identifiers for this citation.</p>
 
           <div class="method-source-code" id="identifiers-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 209</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 221</span>
     </pre>
           </div>
         </div>
@@ -391,7 +391,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 216</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 228</span>
     </pre>
           </div>
         </div>
@@ -413,7 +413,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 230</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 242</span>
     </pre>
           </div>
         </div>
@@ -433,7 +433,7 @@
           <p>Return the preferred citation for this citation.</p>
 
           <div class="method-source-code" id="preferred_citation-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 239</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 251</span>
     </pre>
           </div>
         </div>
@@ -453,7 +453,7 @@
           <p>Replace the preferred citation for this citation.</p>
 
           <div class="method-source-code" id="preferred_citation-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 246</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 258</span>
     </pre>
           </div>
         </div>
@@ -476,7 +476,7 @@
 </pre>
 
           <div class="method-source-code" id="references-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 253</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 265</span>
     </pre>
           </div>
         </div>
@@ -496,7 +496,7 @@
           <p>Replace the list of references for this citation.</p>
 
           <div class="method-source-code" id="references-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 265</span>
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 277</span>
   </pre>
           </div>
         </div>
@@ -507,18 +507,22 @@
       <div id="method-i-to_apalike" class="method-detail ">
         <div class="method-heading">
           <span class="method-callseq">
-            to_apalike &rarr; String
+            to_apalike(preferred_citation: true) &rarr; String
           </span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          <p>Output this <a href="Model.html"><code>Model</code></a> in an APA-like format.</p>
+          <p>Output this <a href="Model.html"><code>Model</code></a> in an APA-like format. Setting <code>preferred_citation: true</code> will honour the <code>preferred_citation</code> field in the model if one is present (default).</p>
+
+<p><em>Note:</em> This method assumes that this <a href="Model.html"><code>Model</code></a> is valid when called.</p>
 
           <div class="method-source-code" id="to_apalike-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 105</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_apalike</span>
-  <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">ApaFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_apalike</span>(<span class="ruby-value">preferred_citation:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">ApaFormatter</span>.<span class="ruby-identifier">format</span>(
+    <span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">preferred_citation:</span> <span class="ruby-identifier">preferred_citation</span>
+  )
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -529,18 +533,22 @@
       <div id="method-i-to_bibtex" class="method-detail ">
         <div class="method-heading">
           <span class="method-callseq">
-            to_bibtex &rarr; String
+            to_bibtex(preferred_citation: true) &rarr; String
           </span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          <p>Output this <a href="Model.html"><code>Model</code></a> in BibTeX format.</p>
+          <p>Output this <a href="Model.html"><code>Model</code></a> in BibTeX format. Setting <code>preferred_citation: true</code> will honour the <code>preferred_citation</code> field in the model if one is present (default).</p>
+
+<p><em>Note:</em> This method assumes that this <a href="Model.html"><code>Model</code></a> is valid when called.</p>
 
           <div class="method-source-code" id="to_bibtex-source">
-            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 113</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_bibtex</span>
-  <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">BibtexFormatter</span>.<span class="ruby-identifier">format</span>(<span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>)
+            <pre><span class="ruby-comment"># File lib/cff/model.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_bibtex</span>(<span class="ruby-value">preferred_citation:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">BibtexFormatter</span>.<span class="ruby-identifier">format</span>(
+    <span class="ruby-value">model:</span> <span class="ruby-keyword">self</span>, <span class="ruby-value">preferred_citation:</span> <span class="ruby-identifier">preferred_citation</span>
+  )
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
