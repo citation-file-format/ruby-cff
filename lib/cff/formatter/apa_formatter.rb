@@ -31,8 +31,9 @@ module CFF
       _, year = month_and_year_from_model(model)
       output << "(#{year})" unless year.empty?
 
-      version = "(Version #{model.version})" unless model.version.to_s.empty?
-      output << "#{model.title} #{version}#{software_label(model)}"
+      version = " (Version #{model.version})" unless model.version.to_s.empty?
+      output << "#{model.title}#{version}#{software_label(model)}"
+      output << publication_data_from_model(model)
       output << url(model)
 
       output.reject(&:empty?).join('. ')
