@@ -61,16 +61,6 @@
     
     
     
-<!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    <li ><a href="#method-i-validate">#validate</a>
-    <li ><a href="#method-i-validate-21">#validate!</a>
-  </ul>
-</div>
-
   </div>
 </nav>
 
@@ -90,60 +80,6 @@
 
 
 
-
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-      <div id="method-i-validate" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-callseq">
-            validate(fail_fast: false) &rarr; Array
-          </span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-
-        <div class="method-description">
-          <p>Validate a <a href="../CFF.html"><code>CFF</code></a> file or model and return an array with the result. The result array is a two-element array, with <code>true</code>/<code>false</code> at index 0 to indicate pass/fail, and an array of errors at index 1 (if any). Setting <code>fail_fast</code> to true will fail validation at the first detected failure, rather than gathering and returning all failures.</p>
-
-          <div class="method-source-code" id="validate-source">
-            <pre><span class="ruby-comment"># File lib/cff/validatable.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate</span>(<span class="ruby-value">fail_fast:</span> <span class="ruby-keyword">false</span>)
-  <span class="ruby-constant">SCHEMA</span>.<span class="ruby-identifier">validate</span>(<span class="ruby-identifier">fields</span>, <span class="ruby-value">fail_fast:</span> <span class="ruby-identifier">fail_fast</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-validate-21" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-callseq">
-            validate!(fail_fast: false)
-          </span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-
-        <div class="method-description">
-          <p>Validate a <a href="../CFF.html"><code>CFF</code></a> file or model and raise a <a href="ValidationError.html"><code>ValidationError</code></a> upon failure. If an error is raised it will contain the detected validation failures for further inspection. Setting <code>fail_fast</code> to true will fail validation at the first detected failure, rather than gathering and returning all failures.</p>
-
-          <div class="method-source-code" id="validate-21-source">
-            <pre><span class="ruby-comment"># File lib/cff/validatable.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate!</span>(<span class="ruby-value">fail_fast:</span> <span class="ruby-keyword">false</span>)
-  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">validate</span>(<span class="ruby-value">fail_fast:</span> <span class="ruby-identifier">fail_fast</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>[<span class="ruby-value">0</span>]
-
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ValidationError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">result</span>[<span class="ruby-value">1</span>])
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-    </section>
 
   </section>
 </main>
