@@ -1,5 +1,14 @@
 cff-version: 1.2.0
 message: If you use this software, please cite it as below.
+authors:
+  - family-names: Smith
+    given-names: Arfon M.
+  - family-names: Katz
+    given-names: Daniel S.
+  - family-names: Niemeyer
+    given-names: Kyle E.
+  - name: "FORCE11 Software Citation Working Group"
+title: "Software citation principles"
 preferred-citation:
   authors:
     - family-names: Smith
