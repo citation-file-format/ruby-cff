@@ -18,7 +18,6 @@ require 'date'
 require 'json'
 require 'yaml'
 
-require 'json_schema'
 require 'language_list'
 
 # This library provides a Ruby interface to manipulate CITATION.cff files. The
@@ -29,7 +28,6 @@ require 'language_list'
 module CFF
   SCHEMA_PATH = ::File.join(__dir__, 'schema', '1.2.0.json') # :nodoc:
   SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))         # :nodoc:
-  SCHEMA = JsonSchema.parse!(SCHEMA_FILE)                    # :nodoc:
 end
 
 require 'cff/version'

@@ -14,11 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'json_schema'
+
 ##
 module CFF
 
   # Methods to validate CFF files/models against a formal schema.
   module Validatable
+
+    # :nodoc:
+    SCHEMA = JsonSchema.parse!(SCHEMA_FILE)
 
     # :call-seq:
     #   validate!(fail_fast: false)
