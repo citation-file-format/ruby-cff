@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>README -  Ruby CFF Library version 0.6.0</title>
+<title>README -  Ruby CFF Library version 0.8.0</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -63,6 +63,11 @@
     <li><a href="#label-Synopsis">Synopsis</a>
     <li><a href="#label-Quick+start">Quick start</a>
     <li><a href="#label-Validating+CFF+files">Validating CFF files</a>
+    <li><a href="#label-Outputting+citation+text">Outputting citation text</a>
+    <li><a href="#label-BibTeX+format">BibTeX format</a>
+    <li><a href="#label-APA-like+format">APA-like format</a>
+    <li><a href="#label-Citing+a+paper+rather+than+software">Citing a paper rather than software</a>
+    <li><a href="#label-A+note+on+citation+formats">A note on citation formats</a>
     <li><a href="#label-Library+versions">Library versions</a>
     <li><a href="#label-Licence">Licence</a>
     <li><a href="#label-Research+notice">Research notice</a>
@@ -116,6 +121,7 @@
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">license</span> = <span class="ruby-string">&#39;Apache-2.0&#39;</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">keywords</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;ruby&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;credit&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;citation&#39;</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">repository_artifact</span> = <span class="ruby-string">&#39;https://rubygems.org/gems/cff&#39;</span>
+  <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">repository_code</span> = <span class="ruby-string">&#39;https://github.com/citation-file-format/ruby-cff&#39;</span>
 <span class="ruby-keyword">end</span>
 
 <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>, <span class="ruby-identifier">model</span>)
@@ -133,10 +139,11 @@ keywords:
 - ruby
 - credit
 - citation
-version: 0.6.0
-date-released: 2021-06-05
+version: 0.8.0
+date-released: 2021-08-08
 license: Apache-2.0
-repository-artifact: https://rubygems.org/gems/cff</pre>
+repository-artifact: https://rubygems.org/gems/cff
+repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 
 <p><code>CFF::File</code> can be used to create a file directly, and it exposes the underlying <code>CFF::Model</code> directly. If using a block with <code>CFF::File::open</code> the file will get written on closing it:</p>
 
@@ -147,6 +154,7 @@ repository-artifact: https://rubygems.org/gems/cff</pre>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">license</span> = <span class="ruby-string">&#39;Apache-2.0&#39;</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">keywords</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;ruby&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;credit&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;citation&#39;</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">repository_artifact</span> = <span class="ruby-string">&#39;https://rubygems.org/gems/cff&#39;</span>
+  <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">repository_code</span> = <span class="ruby-string">&#39;https://github.com/citation-file-format/ruby-cff&#39;</span>
 <span class="ruby-keyword">end</span>
 </pre>
 
@@ -174,6 +182,55 @@ repository-artifact: https://rubygems.org/gems/cff</pre>
 <p>Non-bang methods (<code>validate</code>) return a two-element array, with <code>true</code>/<code>false</code> at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).</p>
 
 <p>Passing <code>fail_fast: true</code> (default: <code>false</code>) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on <code>CFF::File</code> and <code>CFF::Model</code> provide the <code>fail_fast</code> option.</p>
+
+<h3 id="label-Outputting+citation+text">Outputting citation text<span><a href="#label-Outputting+citation+text">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>This library can use <a href="CFF.html"><code>CFF</code></a> data to output text suitable for use when citing software. Currently the output formats supported are:</p>
+<ul><li>
+<p>BibTeX; and</p>
+</li><li>
+<p>an APA-like format.</p>
+</li></ul>
+
+<p>You can use this feature as follows:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
+
+<span class="ruby-identifier">cff</span>.<span class="ruby-identifier">to_bibtex</span>
+<span class="ruby-identifier">cff</span>.<span class="ruby-identifier">to_apalike</span>
+</pre>
+
+<p>These methods assume that the <a href="CFF.html"><code>CFF</code></a> data is valid - see the notes on validation above.</p>
+
+<p>Assuming the same <a href="CFF.html"><code>CFF</code></a> data as above, the two formats will look something like this:</p>
+
+<h4 id="label-BibTeX+format">BibTeX format<span><a href="#label-BibTeX+format">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre>@misc{Haines_Ruby_CFF_Library_2021,
+author = {Haines, Robert},
+month = {8},
+title = {{Ruby CFF Library}},
+url = {https://github.com/citation-file-format/ruby-cff},
+year = {2021}
+}</pre>
+
+<h4 id="label-APA-like+format">APA-like format<span><a href="#label-APA-like+format">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre>Haines, R. (2021). Ruby CFF Library (Version 0.8.0) [Computer software]. https://github.com/citation-file-format/ruby-cff</pre>
+
+<h4 id="label-Citing+a+paper+rather+than+software">Citing a paper rather than software<span><a href="#label-Citing+a+paper+rather+than+software">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The <a href="CFF.html"><code>CFF</code></a> has been designed with direct citation of software in mind. We&#39;d like software to be considered a first-class research output, like journal articles and conference papers. If you would rather that your citation text points to a paper that describes your software, rather than the software itself, you can use the <code>preferred-citation</code> field for that paper. When producing citation text this library will honour <code>preferred-citation</code>, if present, by default. If you would like to specify a <code>preferred-citation</code> and still produce a direct citation to the software then you can configure the formatter as follows:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
+
+<span class="ruby-identifier">cff</span>.<span class="ruby-identifier">to_bibtex</span>(<span class="ruby-value">preferred_citation:</span> <span class="ruby-keyword">false</span>)
+<span class="ruby-identifier">cff</span>.<span class="ruby-identifier">to_apalike</span>(<span class="ruby-value">preferred_citation:</span> <span class="ruby-keyword">false</span>)
+</pre>
+
+<h4 id="label-A+note+on+citation+formats">A note on citation formats<span><a href="#label-A+note+on+citation+formats">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Due to the different expectations of different publication venues, the citation text may need minor tweaking to be used in specific situations. If you spot a major, or general, error in the output please <a href="https://github.com/citation-file-format/ruby-cff/issues">let us know</a>.</p>
 
 <h3 id="label-Library+versions">Library versions<span><a href="#label-Library+versions">&para;</a> <a href="#top">&uarr;</a></span></h3>
 

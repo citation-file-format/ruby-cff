@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>CHANGES -  Ruby CFF Library version 0.6.0</title>
+<title>CHANGES -  Ruby CFF Library version 0.8.0</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -59,6 +59,7 @@
 
   <ul class="link-list" role="directory">
     <li><a href="#label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby CFF Library</a>
+    <li><a href="#label-Version+0.8.0">Version 0.8.0</a>
     <li><a href="#label-Version+0.4.0">Version 0.4.0</a>
     <li><a href="#label-Version+0.3.0">Version 0.3.0</a>
     <li><a href="#label-Version+0.2.0">Version 0.2.0</a>
@@ -86,6 +87,139 @@
 <main role="main" aria-label="Page CHANGES.md">
 
 <h1 id="label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby <a href="CFF.html"><code>CFF</code></a> Library<span><a href="#label-Changes+log+for+the+Ruby+CFF+Library">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Version+0.8.0">Version 0.8.0<span><a href="#label-Version+0.8.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Add a comment field to the File class.</p>
+</li><li>
+<p>Update the CITATION.cff file to add a comment.</p>
+</li><li>
+<p>Document the simple fields in Model.</p>
+</li><li>
+<p>Updating Ruby version and dependencies</p>
+</li><li>
+<p>GitHub Actions for CI</p>
+</li><li>
+<p>Update Gemspec to fix security vulnerabilities</p>
+</li><li>
+<p>Implement BibTeX output</p>
+</li><li>
+<p>Implement APA-like output</p>
+</li><li>
+<p>Update the <a href="LICENCE.html">LICENCE</a> and the file headers.</p>
+</li><li>
+<p>Add a linter Action.</p>
+</li><li>
+<p>Adjust fixtures to reflect custom styles</p>
+</li><li>
+<p>Move latest supported ruby to be &gt;= 2.6.</p>
+</li><li>
+<p>Dynamically create tests</p>
+</li><li>
+<p>Use the new <code>YAML.safe_load</code> API form.</p>
+</li><li>
+<p>Add a filename to <code>CFF::File</code>.</p>
+</li><li>
+<p>Fix invalid references bug</p>
+</li><li>
+<p>Allow time to be loaded from YAML</p>
+</li><li>
+<p>Add <code>CFF::File.open</code> which accepts a block.</p>
+</li><li>
+<p><code>Model::new</code> can now accept a block.</p>
+</li><li>
+<p><code>Entity::new</code> can now accept a block.</p>
+</li><li>
+<p><code>Person::new</code> can now accept a block.</p>
+</li><li>
+<p><code>Reference::new</code> can now accept a block.</p>
+</li><li>
+<p>Update <a href="README_md.html">README</a> with new <code>Model</code> and <code>File</code> APIs.</p>
+</li><li>
+<p>Turn on Actions CI for all branches.</p>
+</li><li>
+<p>Turn Coveralls reporting back on after move to Actions.</p>
+</li><li>
+<p>Use <code>Last, First</code> format for BibTeX output.</p>
+</li><li>
+<p>Add <code>BibtexFormatter::generate_reference</code>.</p>
+</li><li>
+<p>Change DOI links to https in the APA formatter.</p>
+</li><li>
+<p>Set up a GitHub Action to build and deploy the docs.</p>
+</li><li>
+<p>Add metadata to the gemspec.</p>
+</li><li>
+<p>Generalize authorship of the gem a bit.</p>
+</li><li>
+<p>Document <code>to_*</code> formatting methods in <code>Model</code>.</p>
+</li><li>
+<p>Add <code>alias</code> field to <code>Person</code>.</p>
+</li><li>
+<p><code>Person</code> no longer requires <code>given-names</code> and <code>family-names</code>.</p>
+</li><li>
+<p>The <code>version</code> field can be a number or a string.</p>
+</li><li>
+<p>Bump default spec version to 1.2.0.</p>
+</li><li>
+<p>Load and parse the <a href="CFF.html"><code>CFF</code></a> schema.</p>
+</li><li>
+<p>Add validation code and supporting infrastructure.</p>
+</li><li>
+<p>Add validation class methods to <code>CFF::File</code>.</p>
+</li><li>
+<p>Handle empty fields in <code>Reference</code> when reading from files.</p>
+</li><li>
+<p>Add an <code>Identifier</code> type.</p>
+</li><li>
+<p>Add the <code>identifiers</code> field to the <code>Model</code>.</p>
+</li><li>
+<p>Add the <code>identifiers</code> field to <code>Reference</code>.</p>
+</li><li>
+<p>Update the key complete <a href="CFF.html"><code>CFF</code></a> file in the tests.</p>
+</li><li>
+<p>Ensure <code>name-particle</code> is used in BibTex output.</p>
+</li><li>
+<p>Add <code>preferred-citation</code> to the <code>Model</code>.</p>
+</li><li>
+<p>Load the <code>Entity</code> fields in a <code>Reference</code> correctly.</p>
+</li><li>
+<p>Preserve title capitalization in BibTeX output.</p>
+</li><li>
+<p>Add <code>Licensable</code> mixin.</p>
+</li><li>
+<p>Wire <code>Licensable</code> into <code>Model</code>.</p>
+</li><li>
+<p>Wire <code>Licensable</code> into <code>Reference</code>.</p>
+</li><li>
+<p>Use the SPDX licences list in the schema to cross-check.</p>
+</li><li>
+<p>Protect <code>Entity</code> names in BibTeX output with <code>{}</code>.</p>
+</li><li>
+<p>Add support for <code>name-suffix</code> in BibTeX output.</p>
+</li><li>
+<p>Streamline the APA formatter <code>format_author</code> method.</p>
+</li><li>
+<p>Streamline BibTeX <code>generate_reference</code> method.</p>
+</li><li>
+<p>Streamline the BibTeX <code>format_author</code> method.</p>
+</li><li>
+<p>Update <code>1.2.0</code> schema.</p>
+</li><li>
+<p>Add <code>Formatter::month_and_year_from_date</code> util method.</p>
+</li><li>
+<p>Add <code>Formatter::url</code> util method.</p>
+</li><li>
+<p>Simplify <code>BibtexFormatter::format</code>.</p>
+</li><li>
+<p>Simplify and improve the APA formatter.</p>
+</li><li>
+<p>Honour <code>preferred_citation</code> when outputting citation text.</p>
+</li><li>
+<p>Only use &#39;[Computer software]&#39; label in APA format for software.</p>
+</li><li>
+<p>Map <code>Reference</code> types to BibTeX types when formatting.</p>
+</li></ul>
 
 <h2 id="label-Version+0.4.0">Version 0.4.0<span><a href="#label-Version+0.4.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li>
