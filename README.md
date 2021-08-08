@@ -32,6 +32,7 @@ model = CFF::Model.new('Ruby CFF Library') do |cff|
   cff.license = 'Apache-2.0'
   cff.keywords << 'ruby' << 'credit' << 'citation'
   cff.repository_artifact = 'https://rubygems.org/gems/cff'
+  cff.repository_code = 'https://github.com/citation-file-format/ruby-cff'
 end
 
 CFF::File.write('CITATION.cff', model)
@@ -50,10 +51,11 @@ keywords:
 - ruby
 - credit
 - citation
-version: 0.6.0
-date-released: 2021-06-05
+version: 0.8.0
+date-released: 2021-08-08
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
+repository-code: https://github.com/citation-file-format/ruby-cff
 ```
 
 `CFF::File` can be used to create a file directly, and it exposes the underlying `CFF::Model` directly. If using a block with `CFF::File::open` the file will get written on closing it:
@@ -66,6 +68,7 @@ CFF::File.open('CITATION.cff') do |cff|
   cff.license = 'Apache-2.0'
   cff.keywords << 'ruby' << 'credit' << 'citation'
   cff.repository_artifact = 'https://rubygems.org/gems/cff'
+  cff.repository_code = 'https://github.com/citation-file-format/ruby-cff'
 end
 ```
 
@@ -95,6 +98,59 @@ end
 Non-bang methods (`validate`) return a two-element array, with `true`/`false` at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).
 
 Passing `fail_fast: true` (default: `false`) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on `CFF::File` and `CFF::Model` provide the `fail_fast` option.
+
+### Outputting citation text
+
+This library can use CFF data to output text suitable for use when citing software. Currently the output formats supported are:
+
+* BibTeX; and
+* an APA-like format.
+
+You can use this feature as follows:
+```ruby
+cff = CFF::File.read('CITATION.cff')
+
+cff.to_bibtex
+cff.to_apalike
+```
+
+These methods assume that the CFF data is valid - see the notes on validation above.
+
+Assuming the same CFF data as above, the two formats will look something like this:
+
+#### BibTeX format
+
+```tex
+@misc{Haines_Ruby_CFF_Library_2021,
+author = {Haines, Robert},
+month = {8},
+title = {{Ruby CFF Library}},
+url = {https://github.com/citation-file-format/ruby-cff},
+year = {2021}
+}
+```
+
+#### APA-like format
+
+```
+Haines, R. (2021). Ruby CFF Library (Version 0.8.0) [Computer software]. https://github.com/citation-file-format/ruby-cff
+```
+
+#### Citing a paper rather than software
+
+The CFF has been designed with direct citation of software in mind. We'd like software to be considered a first-class research output, like journal articles and conference papers. If you would rather that your citation text points to a paper that describes your software, rather than the software itself, you can use the `preferred-citation` field for that paper. When producing citation text this library will honour `preferred-citation`, if present, by default. If you would like to specify a `preferred-citation` and still produce a direct citation to the software then you can configure the formatter as follows:
+
+```ruby
+cff = CFF::File.read('CITATION.cff')
+
+cff.to_bibtex(preferred_citation: false)
+cff.to_apalike(preferred_citation: false)
+
+```
+
+#### A note on citation formats
+
+Due to the different expectations of different publication venues, the citation text may need minor tweaking to be used in specific situations. If you spot a major, or general, error in the output please [let us know](https://github.com/citation-file-format/ruby-cff/issues).
 
 ### Library versions
 

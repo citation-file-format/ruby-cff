@@ -17,7 +17,7 @@
 ##
 module CFF
   # :nodoc:
-  VERSION = '0.6.0'
+  VERSION = '0.8.0'
   DEFAULT_SPEC_VERSION = '1.2.0'
   MIN_VALIDATABLE_VERSION = '1.2.0'
 end

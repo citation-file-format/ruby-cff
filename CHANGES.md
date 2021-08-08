@@ -1,5 +1,73 @@
 # Changes log for the Ruby CFF Library
 
+## Version 0.8.0
+
+* Add a comment field to the File class.
+* Update the CITATION.cff file to add a comment.
+* Document the simple fields in Model.
+* Updating Ruby version and dependencies
+* GitHub Actions for CI
+* Update Gemspec to fix security vulnerabilities
+* Implement BibTeX output
+* Implement APA-like output
+* Update the LICENCE and the file headers.
+* Add a linter Action.
+* Adjust fixtures to reflect custom styles
+* Move latest supported ruby to be >= 2.6.
+* Dynamically create tests
+* Use the new `YAML.safe_load` API form.
+* Add a filename to `CFF::File`.
+* Fix invalid references bug
+* Allow time to be loaded from YAML
+* Add `CFF::File.open` which accepts a block.
+* `Model::new` can now accept a block.
+* `Entity::new` can now accept a block.
+* `Person::new` can now accept a block.
+* `Reference::new` can now accept a block.
+* Update README with new `Model` and `File` APIs.
+* Turn on Actions CI for all branches.
+* Turn Coveralls reporting back on after move to Actions.
+* Use `Last, First` format for BibTeX output.
+* Add `BibtexFormatter::generate_reference`.
+* Change DOI links to https in the APA formatter.
+* Set up a GitHub Action to build and deploy the docs.
+* Add metadata to the gemspec.
+* Generalize authorship of the gem a bit.
+* Document `to_*` formatting methods in `Model`.
+* Add `alias` field to `Person`.
+* `Person` no longer requires `given-names` and `family-names`.
+* The `version` field can be a number or a string.
+* Bump default spec version to 1.2.0.
+* Load and parse the CFF schema.
+* Add validation code and supporting infrastructure.
+* Add validation class methods to `CFF::File`.
+* Handle empty fields in `Reference` when reading from files.
+* Add an `Identifier` type.
+* Add the `identifiers` field to the `Model`.
+* Add the `identifiers` field to `Reference`.
+* Update the key complete CFF file in the tests.
+* Ensure `name-particle` is used in BibTex output.
+* Add `preferred-citation` to the `Model`.
+* Load the `Entity` fields in a `Reference` correctly.
+* Preserve title capitalization in BibTeX output.
+* Add `Licensable` mixin.
+* Wire `Licensable` into `Model`.
+* Wire `Licensable` into `Reference`.
+* Use the SPDX licences list in the schema to cross-check.
+* Protect `Entity` names in BibTeX output with `{}`.
+* Add support for `name-suffix` in BibTeX output.
+* Streamline the APA formatter `format_author` method.
+* Streamline BibTeX `generate_reference` method.
+* Streamline the BibTeX `format_author` method.
+* Update `1.2.0` schema.
+* Add `Formatter::month_and_year_from_date` util method.
+* Add `Formatter::url` util method.
+* Simplify `BibtexFormatter::format`.
+* Simplify and improve the APA formatter.
+* Honour `preferred_citation` when outputting citation text.
+* Only use '[Computer software]' label in APA format for software.
+* Map `Reference` types to BibTeX types when formatting.
+
 ## Version 0.4.0
 
 * Remove unused Util#expand_field method.

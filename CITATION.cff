@@ -1,25 +1,26 @@
-# This CITATION.cff file was created by ruby-cff (v 0.6.0).
+# This CITATION.cff file was created by ruby-cff (v 0.8.0).
 # Gem: https://rubygems.org/gems/cff
 # CFF: https://citation-file-format.github.io/
 
 cff-version: 1.2.0
 message: If you use ruby-cff in your work, please cite it using the following metadata
 title: Ruby CFF Library
-abstract: This library provides a Ruby interface to manipulate CITATION.cff files
+abstract: This library provides a Ruby interface to manipulate Citation File Format files
 authors:
 - family-names: Haines
   given-names: Robert
   orcid: https://orcid.org/0000-0002-9538-7919
   affiliation: The University of Manchester, UK
+- name: The Ruby Citation File Format Developers
 keywords:
 - ruby
 - credit
 - citation
 - metadata
 - cff
-version: 0.6.0
+version: 0.8.0
 doi: 10.5281/zenodo.1184077
-date-released: 2018-07-29
+date-released: 2021-08-08
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff
