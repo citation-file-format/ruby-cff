@@ -419,6 +419,19 @@ class CFFFileTest < Minitest::Test
     assert_equal(after_m, ::CFF::File.parse_comment(before_m))
   end
 
+  def test_set_comment
+    comment = 'Test comment.'
+    file = ::CFF::File.new(OUTPUT_CFF, 'Software', create: true)
+    file.comment = comment
+
+    assert_equal file.comment, comment
+
+    within_construct(CONSTRUCT_OPTS) do
+      file.write
+      check_file_comment(OUTPUT_CFF, [comment])
+    end
+  end
+
   private
 
   def check_file_contents(file, contents, exists: true)
