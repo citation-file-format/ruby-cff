@@ -37,6 +37,16 @@ module CFF
       model.repository_code.empty? ? model.url : model.repository_code
     end
 
+    def self.month_and_year_from_model(model)
+      if model.respond_to?(:year)
+        result = [model.month, model.year].map(&:to_s)
+
+        return result unless result.any?(&:empty?)
+      end
+
+      month_and_year_from_date(model.date_released)
+    end
+
     def self.month_and_year_from_date(value)
       if value.is_a?(Date)
         [value.month, value.year].map(&:to_s)
