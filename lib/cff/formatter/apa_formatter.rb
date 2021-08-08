@@ -38,6 +38,14 @@ module CFF
       output.reject(&:empty?).join('. ')
     end
 
+    def self.publication_data_from_model(model)
+      return '' unless model.respond_to?(:journal)
+
+      vol = "#{model.volume}(#{model.issue})" unless model.volume.to_s.empty?
+
+      [model.journal, vol, model.start.to_s].reject(&:empty?).join(', ')
+    end
+
     # Prefer a DOI over the other URI options.
     def self.url(model)
       model.doi.empty? ? super : "https://doi.org/#{model.doi}"
