@@ -30,7 +30,7 @@ module CFF
       values['title'] = "{#{model.title}}"
       values['doi'] = model.doi
 
-      month, year = month_and_year_from_date(model.date_released)
+      month, year = month_and_year_from_model(model)
       values['month'] = month
       values['year'] = year
 
