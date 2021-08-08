@@ -28,7 +28,8 @@ module CFF
         model.authors.map { |author| format_author(author) }
       )
       values['title'] = "{#{model.title}}"
-      values['doi'] = model.doi
+
+      publication_data_from_model(model, values)
 
       month, year = month_and_year_from_model(model)
       values['month'] = month
@@ -43,6 +44,17 @@ module CFF
       sorted_values.insert(0, generate_reference(values))
 
       "@#{bibtex_type(model)}{#{sorted_values.join(",\n")}\n}"
+    end
+
+    # Get various bits of information about the reference publication.
+    # Reference: https://www.bibtex.com/format/
+    def self.publication_data_from_model(model, fields)
+      %w[doi journal volume].each do |field|
+        fields[field] = model.send(field).to_s if model.respond_to?(field)
+      end
+
+      # BibTeX 'number' is CFF 'issue'.
+      fields['number'] = model.issue.to_s if model.respond_to?(:issue)
     end
 
     # Do what we can to map between CFF reference types and bibtex types.
