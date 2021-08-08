@@ -22,8 +22,7 @@ module CFF
   # Methods to validate CFF files/models against a formal schema.
   module Validatable
 
-    # :nodoc:
-    SCHEMA = JsonSchema.parse!(SCHEMA_FILE)
+    SCHEMA = JsonSchema.parse!(SCHEMA_FILE) # :nodoc:
 
     # :call-seq:
     #   validate!(fail_fast: false)

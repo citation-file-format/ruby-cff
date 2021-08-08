@@ -67,7 +67,7 @@ module CFF
 
     # :call-seq:
     #   open(file) -> File
-    #   open(file) {|cff| block }
+    #   open(file) { |cff| block }
     #
     # With no associated block, File.open is a synonym for ::read. If the
     # optional code block is given, it will be passed the opened file as an
