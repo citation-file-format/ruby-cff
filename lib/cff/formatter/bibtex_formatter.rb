@@ -55,6 +55,22 @@ module CFF
 
       # BibTeX 'number' is CFF 'issue'.
       fields['number'] = model.issue.to_s if model.respond_to?(:issue)
+
+      fields['pages'] = pages_from_model(model)
+    end
+
+    # CFF 'pages' is the number of pages, which has no equivalent in BibTeX.
+    # Reference: https://www.bibtex.com/f/pages-field/
+    def self.pages_from_model(model)
+      return '' if !model.respond_to?(:start) || model.start.to_s.empty?
+
+      start = model.start.to_s
+      finish = model.end.to_s
+      if finish.empty?
+        start
+      else
+        start == finish ? start : "#{start}--#{finish}"
+      end
     end
 
     # Do what we can to map between CFF reference types and bibtex types.
