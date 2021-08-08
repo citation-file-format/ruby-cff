@@ -31,8 +31,8 @@ module CFF
       values['doi'] = model.doi
 
       month, year = month_and_year_from_date(model.date_released)
-      values['month'] = month.to_s
-      values['year'] = year.to_s
+      values['month'] = month
+      values['year'] = year
 
       values['url'] = url(model)
 

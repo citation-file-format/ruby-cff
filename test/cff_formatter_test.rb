@@ -25,7 +25,11 @@ class CFFFormatterTest < Minitest::Test
 
     date_str = '2021-08-05'
     date = Date.parse(date_str)
-    assert_equal([8, 2021], CFF::Formatter.month_and_year_from_date(date_str))
-    assert_equal([8, 2021], CFF::Formatter.month_and_year_from_date(date))
+    assert_equal(
+      ['8', '2021'], CFF::Formatter.month_and_year_from_date(date_str)
+    )
+    assert_equal(
+      ['8', '2021'], CFF::Formatter.month_and_year_from_date(date)
+    )
   end
 end

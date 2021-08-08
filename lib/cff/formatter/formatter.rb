@@ -39,11 +39,11 @@ module CFF
 
     def self.month_and_year_from_date(value)
       if value.is_a?(Date)
-        [value.month, value.year]
+        [value.month, value.year].map(&:to_s)
       else
         begin
           date = Date.parse(value.to_s)
-          [date.month, date.year]
+          [date.month, date.year].map(&:to_s)
         rescue ArgumentError
           ['', '']
         end
