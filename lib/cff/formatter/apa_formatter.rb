@@ -28,7 +28,7 @@ module CFF
         model.authors.map { |author| format_author(author) }
       )
 
-      _, year = month_and_year_from_date(model.date_released)
+      _, year = month_and_year_from_model(model)
       output << "(#{year})" unless year.empty?
 
       version = "(Version #{model.version})" unless model.version.to_s.empty?
