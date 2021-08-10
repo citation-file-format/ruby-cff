@@ -52,6 +52,13 @@ class CFFFileTest < Minitest::Test
     assert_equal(title, file.title)
   end
 
+  def test_to_yaml
+    cff = ::CFF::File.read(MINIMAL_CFF)
+    yaml = YAML.dump load_yaml(MINIMAL_CFF), line_width: -1, indentation: 2
+
+    assert_equal(yaml, cff.to_yaml)
+  end
+
   def test_read_minimal_cff_file
     cff = ::CFF::File.read(MINIMAL_CFF)
     yaml = load_yaml(MINIMAL_CFF)

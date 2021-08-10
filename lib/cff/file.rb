@@ -156,6 +156,10 @@ module CFF
       @comment = comment
     end
 
+    def to_yaml # :nodoc:
+      @model.to_yaml
+    end
+
     def method_missing(name, *args) # :nodoc:
       if @model.respond_to?(name)
         @dirty = true if name.to_s.end_with?('=') # Remove to_s when Ruby >2.6.
