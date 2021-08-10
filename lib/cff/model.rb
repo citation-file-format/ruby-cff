@@ -84,6 +84,14 @@ module CFF
     end
 
     # :call-seq:
+    #   read(String) -> Model
+    #
+    # Read a CFF Model from a String and parse it for subsequent manipulation.
+    def self.read(model)
+      new(YAML.safe_load(model, permitted_classes: [Date, Time]))
+    end
+
+    # :call-seq:
     #   date_released = date
     #
     # Set the `date-released` field. If a non-Date object is passed in it will

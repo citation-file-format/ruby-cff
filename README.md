@@ -72,6 +72,19 @@ CFF::File.open('CITATION.cff') do |cff|
 end
 ```
 
+You can read a CFF file quickly with `CFF::File::read`:
+
+```ruby
+cff = CFF::File.read('CITATION.cff')
+```
+
+And you can read a CFF file from memory with `CFF::Model::read`:
+
+```ruby
+cff_string = ::File.read('CITATION.cff')
+cff = CFF::Model.read(cff_string)
+```
+
 ### Validating CFF files
 
 To quickly validate a file and raise an error on failure, you can use `CFF::File` directly:

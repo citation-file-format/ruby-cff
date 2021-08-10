@@ -333,4 +333,16 @@ class CFFModelTest < Minitest::Test
     assert_equal('2.0.0', model.version)
     assert model.is_a?(::CFF::Model)
   end
+
+  def test_read
+    string = ::File.read(MINIMAL_CFF)
+    model = ::CFF::Model.read(string)
+
+    assert_equal('1.2.0', model.cff_version)
+    assert_equal('0.4.0', model.version)
+
+    author = model.authors.first
+    assert_instance_of(::CFF::Person, author)
+    assert_equal('Robert', author.given_names)
+  end
 end
