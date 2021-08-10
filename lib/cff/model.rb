@@ -92,6 +92,21 @@ module CFF
     end
 
     # :call-seq:
+    #   open(String) -> Model
+    #   open(String) { |cff| block } -> Model
+    #
+    # With no associated block, Model.open is a synonym for ::read. If the
+    # optional code block is given, it will be passed the parsed model as an
+    # argument and the Model will be returned when the block terminates.
+    def self.open(model)
+      cff = Model.read(model)
+
+      yield cff if block_given?
+
+      cff
+    end
+
+    # :call-seq:
     #   date_released = date
     #
     # Set the `date-released` field. If a non-Date object is passed in it will

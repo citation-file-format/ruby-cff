@@ -345,4 +345,32 @@ class CFFModelTest < Minitest::Test
     assert_instance_of(::CFF::Person, author)
     assert_equal('Robert', author.given_names)
   end
+
+  def test_open
+    string = ::File.read(MINIMAL_CFF)
+    model = ::CFF::Model.open(string)
+
+    assert_equal('1.2.0', model.cff_version)
+    assert_equal('0.4.0', model.version)
+
+    author = model.authors.first
+    assert_instance_of(::CFF::Person, author)
+    assert_equal('Robert', author.given_names)
+  end
+
+  def test_open_with_block
+    string = ::File.read(MINIMAL_CFF)
+    model = ::CFF::Model.open(string) do |cff|
+      assert_equal('1.2.0', cff.cff_version)
+      assert_equal('0.4.0', cff.version)
+
+      cff.version = '0.5.0'
+
+      author = cff.authors.first
+      assert_instance_of(::CFF::Person, author)
+      assert_equal('Robert', author.given_names)
+    end
+
+    assert_equal('0.5.0', model.version)
+  end
 end
