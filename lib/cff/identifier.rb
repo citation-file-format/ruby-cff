@@ -25,11 +25,12 @@ module CFF
   # will return the empty string. The simple fields are (with defaults in
   # parentheses):
   #
+  # * `description`
   # * `type`
   # * `value`
   class Identifier < ModelPart
 
-    ALLOWED_FIELDS = ['type', 'value'].freeze # :nodoc:
+    ALLOWED_FIELDS = ['description', 'type', 'value'].freeze # :nodoc:
 
     # The [defined set of identifier types](https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings).
     IDENTIFIER_TYPES = ['doi', 'url', 'swh', 'other'].freeze

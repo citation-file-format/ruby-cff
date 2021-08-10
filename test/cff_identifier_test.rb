@@ -78,13 +78,19 @@ class CFFIdentifierTest < Minitest::Test
   def test_simple_fields_set_and_output_correctly
     id = ::CFF::Identifier.new
     value = 'swh:1:rel:99f6850374dc6597af01bd0ee1d3fc0699301b9f'
+    desc = 'Software Heritage ID'
 
     assert_equal('', id.value)
     id.value = value
     assert_equal(value, id.value)
 
+    assert_equal('', id.description)
+    id.description = desc
+    assert_equal(desc, id.description)
+
     y = id.fields.to_yaml
 
     assert_includes(y, "value: #{value}\n")
+    assert_includes(y, "description: #{desc}\n")
   end
 end
