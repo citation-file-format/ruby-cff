@@ -117,11 +117,13 @@ module CFF
     end
 
     # :call-seq:
-    #   write(file, model)
+    #   write(file, File)
+    #   write(file, Model)
     #   write(file, yaml)
     #
-    # Write the supplied model or yaml string to `file`.
+    # Write the supplied File, Model or yaml string to `file`.
     def self.write(file, cff, comment = '')
+      comment = cff.comment if cff.respond_to?(:comment)
       cff = cff.to_yaml unless cff.is_a?(String)
       content = File.format_comment(comment) + cff[YAML_HEADER.length...-1]
 
