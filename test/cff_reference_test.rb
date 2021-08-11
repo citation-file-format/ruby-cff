@@ -352,4 +352,18 @@ class CFFReferenceTest < Minitest::Test
     assert_equal('International Conference of Hard Problems', ref.conference)
     assert ref.is_a?(::CFF::Reference)
   end
+
+  def test_from_cff_file
+    file = ::CFF::File.read(MINIMAL_CFF)
+    ref = ::CFF::Reference.from_cff(file)
+
+    assert_equal('software', ref.type)
+    %w[
+      abstract authors contact commit date_released doi
+      identifiers keywords license license_url repository
+      repository_artifact repository_code title url version
+    ].each do |field|
+      assert_equal(file.send(field), ref.send(field))
+    end
+  end
 end

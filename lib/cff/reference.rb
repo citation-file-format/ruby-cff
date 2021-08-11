@@ -161,6 +161,29 @@ module CFF
     end
 
     # :call-seq:
+    #   from_cff(File, type: 'software') -> Reference
+    #   from_cff(Model, type: 'software') -> Reference
+    #
+    # Create a Reference from another CFF File or Model. This is useful for
+    # easily adding a reference to something with its own CITATION.cff file
+    # already.
+    #
+    # This method assumes that the type of the Reference should be `software`,
+    # but this can be overridden with the `type` parameter.
+    def self.from_cff(model, type: 'software')
+      new(model.title, type) do |ref|
+        %w[
+          abstract authors contact commit date_released doi
+          identifiers keywords license license_url repository
+          repository_artifact repository_code url version
+        ].each do |field|
+          value = model.send(field)
+          ref.send("#{field}=", value.dup) unless value == ''
+        end
+      end
+    end
+
+    # :call-seq:
     #   add_language language
     #
     # Add a language to this Reference. Input is converted to the ISO 639-3

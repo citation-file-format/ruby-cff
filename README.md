@@ -89,6 +89,21 @@ CFF::Model.open(cff_string) do |cff|
 end
 ```
 
+To quickly reference other software from your own CFF file, you can use `CFF::Reference.from_cff`. This example uses the CFF file from the core CFF repository as a reference for the Ruby CFF repository:
+
+```ruby
+require 'open-uri'
+
+uri = 'https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/CITATION.cff'
+other_cff = URI.open(uri).read
+
+ref = CFF::Reference.from_cff(CFF::Model.read(other_cff))
+
+CFF::File.open('CITATION.cff') do |cff|
+  cff.references = [ref]
+end
+```
+
 ### Validating CFF files
 
 To quickly validate a file and raise an error on failure, you can use `CFF::File` directly:
