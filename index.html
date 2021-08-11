@@ -158,6 +158,35 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <span class="ruby-keyword">end</span>
 </pre>
 
+<p>You can read a <a href="CFF.html"><code>CFF</code></a> file quickly with <code>CFF::File::read</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
+</pre>
+
+<p>And you can read a <a href="CFF.html"><code>CFF</code></a> file from memory with <code>CFF::Model::read</code> or <code>CFF::Model::open</code> - as with <code>CFF::File</code> a block can be passed in to <code>open</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cff_string</span> = <span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
+<span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">cff_string</span>)
+
+<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">cff_string</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
+  <span class="ruby-comment"># Edit cff here...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>To quickly reference other software from your own <a href="CFF.html"><code>CFF</code></a> file, you can use <code>CFF::Reference.from_cff</code>. This example uses the <a href="CFF.html"><code>CFF</code></a> file from the core <a href="CFF.html"><code>CFF</code></a> repository as a reference for the Ruby <a href="CFF.html"><code>CFF</code></a> repository:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;open-uri&#39;</span>
+
+<span class="ruby-identifier">uri</span> = <span class="ruby-string">&#39;https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/CITATION.cff&#39;</span>
+<span class="ruby-identifier">other_cff</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">uri</span>).<span class="ruby-identifier">read</span>
+
+<span class="ruby-identifier">ref</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Reference</span>.<span class="ruby-identifier">from_cff</span>(<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">other_cff</span>))
+
+<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">references</span> = [<span class="ruby-identifier">ref</span>]
+<span class="ruby-keyword">end</span>
+</pre>
+
 <h3 id="label-Validating+CFF+files">Validating <a href="CFF.html"><code>CFF</code></a> files<span><a href="#label-Validating+CFF+files">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>To quickly validate a file and raise an error on failure, you can use <code>CFF::File</code> directly:</p>

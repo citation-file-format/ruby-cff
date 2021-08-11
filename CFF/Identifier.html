@@ -91,6 +91,8 @@
 
 <p><a href="Identifier.html"><code>Identifier</code></a> implements all of the fields listed in the <a href="https://citation-file-format.github.io/">CFF standard</a>. All fields are simple strings and can be set as such. A field which has not been set will return the empty string. The simple fields are (with defaults in parentheses):</p>
 <ul><li>
+<p><code>description</code></p>
+</li><li>
 <p><code>type</code></p>
 </li><li>
 <p><code>value</code></p>
@@ -145,7 +147,7 @@
           <p>Create a new <a href="Identifier.html"><code>Identifier</code></a> with the optionally supplied type and value. If the supplied type is invalid, then neither the type or value are set.</p>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">more</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
     <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">param</span>
@@ -186,7 +188,7 @@
           <p>Sets the type of this <a href="Identifier.html"><code>Identifier</code></a>. The type is restricted to a <a href="https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings">defined set of identifier types</a>.</p>
 
           <div class="method-source-code" id="type-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 66</span>
+            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type=</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">type</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">IDENTIFIER_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>)
