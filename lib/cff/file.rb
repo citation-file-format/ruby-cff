@@ -53,7 +53,7 @@ module CFF
     end
 
     # :call-seq:
-    #   read(file) -> File
+    #   read(filename) -> File
     #
     # Read a file and parse it for subsequent manipulation.
     def self.read(file)
@@ -66,8 +66,8 @@ module CFF
     end
 
     # :call-seq:
-    #   open(file) -> File
-    #   open(file) { |cff| block }
+    #   open(filename) -> File
+    #   open(filename) { |cff| block }
     #
     # With no associated block, File.open is a synonym for ::read. If the
     # optional code block is given, it will be passed the opened file as an
@@ -97,7 +97,7 @@ module CFF
     end
 
     # :call-seq:
-    #   validate(file) -> Array
+    #   validate(filename) -> Array
     #
     # Read a file and return an array with the result. The result array is a
     # two-element array, with `true`/`false` at index 0 to indicate pass/fail,
@@ -107,7 +107,7 @@ module CFF
     end
 
     # :call-seq:
-    #   validate!(file)
+    #   validate!(filename)
     #
     # Read a file and raise a ValidationError upon failure. If an error is
     # raised it will contain the detected validation failures for further
@@ -117,9 +117,9 @@ module CFF
     end
 
     # :call-seq:
-    #   write(file, File)
-    #   write(file, Model)
-    #   write(file, yaml)
+    #   write(filename, File)
+    #   write(filename, Model)
+    #   write(filename, yaml)
     #
     # Write the supplied File, Model or yaml string to `file`.
     def self.write(file, cff, comment = '')
