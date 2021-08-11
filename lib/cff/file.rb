@@ -131,10 +131,18 @@ module CFF
     end
 
     # :call-seq:
-    #   write
+    #   write(save_as: filename)
     #
-    # Write this CFF File.
-    def write
+    # Write this CFF File. The `save_as` parameter can be used to save a new
+    # copy of this CFF File under a different filename, leaving the original
+    # file untouched. If `save_as` is used then the internal filename of the
+    # File will be updated to the supplied filename.
+    def write(save_as: nil)
+      unless save_as.nil?
+        @filename = save_as
+        @dirty = true
+      end
+
       File.write(@filename, @model, @comment) if @dirty
       @dirty = false
     end

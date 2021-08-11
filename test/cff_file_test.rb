@@ -421,6 +421,28 @@ class CFFFileTest < Minitest::Test
     end
   end
 
+  def test_write_cff_file_from_file_save_as
+    comment = 'Test comment.'
+    model = ::CFF::Model.new('software')
+    model.version = '1.0.0'
+    model.date_released = '1999-12-31'
+
+    file = ::CFF::File.new('WRONG.cff', model, comment, create: true)
+    assert_equal file.comment, comment
+
+    within_construct(CONSTRUCT_OPTS) do
+      file.write(save_as: OUTPUT_CFF)
+      assert_path_exists(OUTPUT_CFF)
+      refute_path_exists('WRONG.cff')
+
+      check_file_contents(OUTPUT_CFF, 'cff-version')
+      check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
+      check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
+      check_file_contents(OUTPUT_CFF, 'version: 1.0.0')
+      check_file_comment(OUTPUT_CFF, [comment])
+    end
+  end
+
   def test_format_comment_array
     before = ['A multi-line', '', 'comment.']
     after = "# A multi-line\n#\n# comment.\n\n"
