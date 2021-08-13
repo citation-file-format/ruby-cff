@@ -19,6 +19,11 @@ module CFF
 
   # File provides direct access to a CFF Model, with the addition of some
   # filesystem utilities.
+  #
+  # To be a fully compliant and valid CFF file its filename should be
+  # 'CITATION.cff'. This class allows you to create files with any filename,
+  # and to validate the contents of those files independently of the preferred
+  # filename.
   class File
 
     # A comment to be inserted at the top of the resultant CFF file.
@@ -33,6 +38,7 @@ module CFF
       'Gem: https://rubygems.org/gems/cff',
       'CFF: https://citation-file-format.github.io/'
     ].freeze # :nodoc:
+    CFF_VALID_FILENAME = 'CITATION.cff' # :nodoc:
 
     # :call-seq:
     #   new(filename, title) -> File
@@ -97,23 +103,31 @@ module CFF
     end
 
     # :call-seq:
-    #   validate(filename) -> Array
+    #   validate(filename, fail_on_filename: true) -> Array
     #
     # Read a file and return an array with the result. The result array is a
-    # two-element array, with `true`/`false` at index 0 to indicate pass/fail,
-    # and an array of errors at index 1 (if any).
-    def self.validate(file)
-      File.read(file).validate
+    # three-element array, with `true`/`false` at index 0 to indicate
+    # pass/fail, an array of schema validation errors at index 1 (if any), and
+    # `true`/`false` at index 2 to indicate whether the filename passed/failed
+    # validation.
+    #
+    # You can choose whether filename validation failure should cause overall
+    # validation failure with the `fail_on_filename` parameter (default: true).
+    def self.validate(file, fail_on_filename: true)
+      File.read(file).validate(fail_on_filename: fail_on_filename)
     end
 
     # :call-seq:
-    #   validate!(filename)
+    #   validate!(filename, fail_on_filename: true)
     #
     # Read a file and raise a ValidationError upon failure. If an error is
     # raised it will contain the detected validation failures for further
     # inspection.
-    def self.validate!(file)
-      File.read(file).validate!
+    #
+    # You can choose whether filename validation failure should cause overall
+    # validation failure with the `fail_on_filename` parameter (default: true).
+    def self.validate!(file, fail_on_filename: true)
+      File.read(file).validate!(fail_on_filename: fail_on_filename)
     end
 
     # :call-seq:
@@ -128,6 +142,41 @@ module CFF
       content = File.format_comment(comment) + cff[YAML_HEADER.length...-1]
 
       ::File.write(file, content)
+    end
+
+    # :call-seq:
+    #   validate(fail_on_filename: true) -> Array
+    #
+    # Validate this file and return an array with the result. The result array
+    # is a three-element array, with `true`/`false` at index 0 to indicate
+    # pass/fail, an array of schema validation errors at index 1 (if any), and
+    # `true`/`false` at index 2 to indicate whether the filename passed/failed
+    # validation.
+    #
+    # You can choose whether filename validation failure should cause overall
+    # validation failure with the `fail_on_filename` parameter (default: true).
+    def validate(fail_on_filename: true)
+      valid_filename = (::File.basename(@filename) == CFF_VALID_FILENAME)
+      result = (@model.validate << valid_filename)
+      result[0] &&= valid_filename if fail_on_filename
+
+      result
+    end
+
+    # :call-seq:
+    #   validate!(fail_on_filename: true)
+    #
+    # Validate this file and raise a ValidationError upon failure. If an error
+    # is raised it will contain the detected validation failures for further
+    # inspection.
+    #
+    # You can choose whether filename validation failure should cause overall
+    # validation failure with the `fail_on_filename` parameter (default: true).
+    def validate!(fail_on_filename: true)
+      result = validate(fail_on_filename: fail_on_filename)
+      return if result[0]
+
+      raise ValidationError.new(result[1], invalid_filename: !result[2])
     end
 
     # :call-seq:

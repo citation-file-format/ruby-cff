@@ -20,14 +20,23 @@ class CFFErrorsTest < Minitest::Test
 
   def test_validation_error
     error = ::CFF::ValidationError.new(['test'])
-    assert_equal('Validation error: test', error.message)
+    assert_equal(
+      'Validation error: (Invalid filename: false) test',
+      error.message
+    )
   end
 
-  # rubocop:disable Style/RescueStandardError
+  def test_validation_error_with_filename
+    error = ::CFF::ValidationError.new(['test'], invalid_filename: true)
+    assert_equal(
+      'Validation error: (Invalid filename: true) test',
+      error.message
+    )
+  end
+
   def test_rescue_validation_error_as_standard_error
     raise ::CFF::ValidationError.new([])
-  rescue
+  rescue StandardError
     # Catch.
   end
-  # rubocop:enable Style/RescueStandardError
 end

@@ -30,7 +30,8 @@ COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
 SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
 MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
 INCOMPLETE_CFF = ::File.join(FILES_DIR, 'bad', 'incomplete.cff')
-NO_CFF_VERSION_CFF = ::File.join(FILES_DIR, 'bad', 'no-cff-version.cff')
+NO_CFF_VERSION_CFF = ::File.join(FILES_DIR, 'bad', 'CITATION.cff')
+VALID_FILENAME_CFF = ::File.join(__dir__, '..', 'CITATION.cff')
 OUTPUT_CFF = 'CITATION.cff'
 
 VALIDATION_DIR = ::File.join(FILES_DIR, 'validation')

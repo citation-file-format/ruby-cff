@@ -25,21 +25,29 @@ module CFF
     end
   end
 
-  # ValidationError is raised when a CFF file fails validatedation. It
-  # contains details of each failure that was detected by the underlying
-  # JsonSchema library, which is used to perform the validation.
+  # ValidationError is raised when a CFF file fails validation. It contains
+  # details of each failure that was detected by the underlying JsonSchema
+  # library, which is used to perform the validation.
+  #
+  # Additionally, the `invalid_filename` flag is used to indicate whether the
+  # CFF file is named correctly. This is only used when validating a File;
+  # validating a Model directly will not set this flag to `true`.
   class ValidationError < Error
 
     # The list of JsonSchema::ValidationErrors found by the validator.
     attr_reader :errors
 
-    def initialize(errors) # :nodoc:
+    # If a File was validated, was its filename invalid?
+    attr_reader :invalid_filename
+
+    def initialize(errors, invalid_filename: false) # :nodoc:
       super('Validation error')
       @errors = errors
+      @invalid_filename = invalid_filename
     end
 
     def to_s # :nodoc:
-      "#{super}: #{@errors.join(' ')}"
+      "#{super}: (Invalid filename: #{@invalid_filename}) #{@errors.join(' ')}"
     end
   end
 end
