@@ -77,7 +77,9 @@
 
   <section class="description">
     
-<p><a href="ValidationError.html"><code>ValidationError</code></a> is raised when a <a href="../CFF.html"><code>CFF</code></a> file fails validatedation. It contains details of each failure that was detected by the underlying JsonSchema library, which is used to perform the validation.</p>
+<p><a href="ValidationError.html"><code>ValidationError</code></a> is raised when a <a href="../CFF.html"><code>CFF</code></a> file fails validation. It contains details of each failure that was detected by the underlying JsonSchema library, which is used to perform the validation.</p>
+
+<p>Additionally, the <code>invalid_filename</code> flag is used to indicate whether the <a href="../CFF.html"><code>CFF</code></a> file is named correctly. This is only used when validating a <a href="File.html"><code>File</code></a>; validating a <a href="Model.html"><code>Model</code></a> directly will not set this flag to <code>true</code>.</p>
 
   </section>
 
@@ -98,6 +100,16 @@
 
         <div class="method-description">
         <p>The list of JsonSchema::ValidationErrors found by the validator.</p>
+        </div>
+      </div>
+      <div id="attribute-i-invalid_filename" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">invalid_filename</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>If a <a href="File.html"><code>File</code></a> was validated, was its filename invalid?</p>
         </div>
       </div>
     </section>
