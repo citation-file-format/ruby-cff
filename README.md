@@ -127,9 +127,11 @@ rescue CFF::ValidationError => e
 end
 ```
 
-Non-bang methods (`validate`) return a two-element array, with `true`/`false` at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).
+Non-bang methods (`validate`) return an array, with `true`/`false` at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).
 
 Passing `fail_fast: true` (default: `false`) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on `CFF::File` and `CFF::Model` provide the `fail_fast` option.
+
+The validation methods (both class and instance) on `File` also validate the filename of a CFF file; in normal circumstances a CFF file should be named 'CITATION.cff'. You can switch this behaviour off by passing `fail_on_filename: false`. The non-bang methods (`validate`) on `File` return an extra value in the result array: `true`/`false` at index 2 to indicate whether the filename passed/failed validation.
 
 ### Outputting citation text
 
