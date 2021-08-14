@@ -208,9 +208,11 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <span class="ruby-keyword">end</span>
 </pre>
 
-<p>Non-bang methods (<code>validate</code>) return a two-element array, with <code>true</code>/<code>false</code> at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).</p>
+<p>Non-bang methods (<code>validate</code>) return an array, with <code>true</code>/<code>false</code> at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).</p>
 
 <p>Passing <code>fail_fast: true</code> (default: <code>false</code>) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on <code>CFF::File</code> and <code>CFF::Model</code> provide the <code>fail_fast</code> option.</p>
+
+<p>The validation methods (both class and instance) on <code>File</code> also validate the filename of a <a href="CFF.html"><code>CFF</code></a> file; in normal circumstances a <a href="CFF.html"><code>CFF</code></a> file should be named &#39;CITATION.cff&#39;. You can switch this behaviour off by passing <code>fail_on_filename: false</code>. The non-bang methods (<code>validate</code>) on <code>File</code> return an extra value in the result array: <code>true</code>/<code>false</code> at index 2 to indicate whether the filename passed/failed validation.</p>
 
 <h3 id="label-Outputting+citation+text">Outputting citation text<span><a href="#label-Outputting+citation+text">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
