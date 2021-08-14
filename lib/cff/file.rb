@@ -145,7 +145,7 @@ module CFF
     end
 
     # :call-seq:
-    #   validate(fail_on_filename: true) -> Array
+    #   validate(fail_fast: false, fail_on_filename: true) -> Array
     #
     # Validate this file and return an array with the result. The result array
     # is a three-element array, with `true`/`false` at index 0 to indicate
@@ -155,16 +155,16 @@ module CFF
     #
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
-    def validate(fail_on_filename: true)
+    def validate(fail_fast: false, fail_on_filename: true)
       valid_filename = (::File.basename(@filename) == CFF_VALID_FILENAME)
-      result = (@model.validate << valid_filename)
+      result = (@model.validate(fail_fast: fail_fast) << valid_filename)
       result[0] &&= valid_filename if fail_on_filename
 
       result
     end
 
     # :call-seq:
-    #   validate!(fail_on_filename: true)
+    #   validate!(fail_fast: false, fail_on_filename: true)
     #
     # Validate this file and raise a ValidationError upon failure. If an error
     # is raised it will contain the detected validation failures for further
@@ -172,8 +172,10 @@ module CFF
     #
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
-    def validate!(fail_on_filename: true)
-      result = validate(fail_on_filename: fail_on_filename)
+    def validate!(fail_fast: false, fail_on_filename: true)
+      result = validate(
+        fail_fast: fail_fast, fail_on_filename: fail_on_filename
+      )
       return if result[0]
 
       raise ValidationError.new(result[1], invalid_filename: !result[2])
