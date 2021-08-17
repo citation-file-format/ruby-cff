@@ -42,7 +42,7 @@ module CFF
     def self.publication_data_from_model(model)
       return '' unless model.respond_to?(:journal)
 
-      vol = "#{model.volume}(#{model.issue})" unless model.volume.to_s.empty?
+      vol = model.volume.to_s.empty? ? '' : "#{model.volume}(#{model.issue})"
 
       [model.journal, vol, model.start.to_s].reject(&:empty?).join(', ')
     end

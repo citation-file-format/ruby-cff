@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the associated paper (see preferred-citation)."
+authors:
+  - family-names: "Hartmann"
+    given-names: "Jonas"
+    orcid: "https://orcid.org/0000-0002-5600-8285"
+title: "data-driven-analysis-lateralline; code accompanying Hartmann et al., 2020"
+date-released: "2020-05-14"
+license: MIT
+repository-code: "https://github.com/WhoIsJack/data-driven-analysis-lateralline"
+preferred-citation:
+  authors:
+    - family-names: "Hartmann"
+      given-names: "Jonas"
+      orcid: "https://orcid.org/0000-0002-5600-8285"
+    - family-names: "Wong"
+      given-names: "Mie"
+    - family-names: "Gallo"
+      given-names: "Elisa"
+    - family-names: "Gilmour"
+      given-names: "Darren"
+      orcid: "https://orcid.org/0000-0001-7613-090X"
+  title: "An image-based data-driven analysis of cellular architecture in a developing tissue"
+  type: article
+  doi: "10.7554/eLife.55913"
+  date-released: "2020-06-05"
+  url: "https://elifesciences.org/articles/55913"
