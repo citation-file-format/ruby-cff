@@ -1,4 +1,4 @@
-# This CITATION.cff file was created by ruby-cff (v 0.8.0).
+# This CITATION.cff file was created by ruby-cff (v 0.9.0).
 # Gem: https://rubygems.org/gems/cff
 # CFF: https://citation-file-format.github.io/
 
@@ -15,12 +15,15 @@ authors:
 keywords:
 - ruby
 - credit
-- citation
+- software citation
+- research software
+- software sustainability
 - metadata
-- cff
-version: 0.8.0
+- citation file format
+- CFF
+version: 0.9.0
 doi: 10.5281/zenodo.1184077
-date-released: 2021-08-08
+date-released: 2021-08-18
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff

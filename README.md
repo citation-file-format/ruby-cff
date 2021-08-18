@@ -51,8 +51,8 @@ keywords:
 - ruby
 - credit
 - citation
-version: 0.8.0
-date-released: 2021-08-08
+version: 0.9.0
+date-released: 2021-08-18
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff
@@ -167,7 +167,7 @@ year = {2021}
 #### APA-like format
 
 ```
-Haines, R. (2021). Ruby CFF Library (Version 0.8.0) [Computer software]. https://github.com/citation-file-format/ruby-cff
+Haines, R. (2021). Ruby CFF Library (Version 0.9.0) [Computer software]. https://github.com/citation-file-format/ruby-cff
 ```
 
 #### Citing a paper rather than software

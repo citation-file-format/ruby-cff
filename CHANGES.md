@@ -1,5 +1,23 @@
 # Changes log for the Ruby CFF Library
 
+## Version 0.9.0
+
+* Update to final released version of schema 1.2.0.
+* Add `description` field to `Identifier`.
+* Add `Model::read` to parse a CFF file from memory.
+* Add `Model::open`. Same as `read` but can take a block.
+* Override `File#to_yaml`.
+* Allow `File::write` to write File objects.
+* Add `save_as` parameter to `File#write`.
+* Add `Reference::from_cff`.
+* Update CITATION.cff file to reference CFF repo.
+* Fix `File` docs to be explicit about filenames.
+* Validate the filename of a CFF file.
+* Surface the `fail_fast` options on the `File` validatation methods.
+* Reduce json_schema dependency to ~0.20.0.
+* Fix APA-like formatter when a reference is missing a volume.
+* APA: don't emit journal data if there's no journal.
+
 ## Version 0.8.0
 
 * Add a comment field to the File class.
