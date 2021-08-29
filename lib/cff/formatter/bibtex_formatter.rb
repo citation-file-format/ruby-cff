@@ -22,8 +22,8 @@ module CFF
     # Fields without `!` have a simple one-to-one mapping between CFF and
     # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {
-      'article' => %w[doi journal pages! volume],
-      'book' => %w[doi isbn pages! volume],
+      'article' => %w[doi journal number! pages! volume],
+      'book' => %w[doi isbn number! pages! volume],
       'misc' => %w[doi pages!]
     }.freeze
 
@@ -66,9 +66,11 @@ module CFF
           fields[field] = send("#{field}_from_model", model)
         end
       end
+    end
 
-      # BibTeX 'number' is CFF 'issue'.
-      fields['number'] = model.issue.to_s if model.respond_to?(:issue)
+    # BibTeX 'number' is CFF 'issue'.
+    def self.number_from_model(model)
+      model.issue.to_s
     end
 
     # CFF 'pages' is the number of pages, which has no equivalent in BibTeX.
