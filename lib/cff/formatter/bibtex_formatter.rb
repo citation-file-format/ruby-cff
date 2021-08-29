@@ -19,6 +19,13 @@ module CFF
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter # :nodoc:
 
+    # These fields have a one-to-one mapping between CFF and BibTeX.
+    ENTRY_TYPE_MAP = {
+      'article' => %w[doi journal volume],
+      'book' => %w[doi isbn volume],
+      'misc' => %w[doi]
+    }.freeze
+
     def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
       model = select_and_check_model(model, preferred_citation)
       return if model.nil?
@@ -29,7 +36,8 @@ module CFF
       )
       values['title'] = "{#{model.title}}"
 
-      publication_data_from_model(model, values)
+      publication_type = bibtex_type(model)
+      publication_data_from_model(model, publication_type, values)
 
       month, year = month_and_year_from_model(model)
       values['month'] = month
@@ -43,14 +51,14 @@ module CFF
       end
       sorted_values.insert(0, generate_reference(values))
 
-      "@#{bibtex_type(model)}{#{sorted_values.join(",\n")}\n}"
+      "@#{publication_type}{#{sorted_values.join(",\n")}\n}"
     end
 
     # Get various bits of information about the reference publication.
     # Reference: https://www.bibtex.com/format/
-    def self.publication_data_from_model(model, fields)
-      %w[doi journal volume].each do |field|
-        fields[field] = model.send(field).to_s if model.respond_to?(field)
+    def self.publication_data_from_model(model, type, fields)
+      ENTRY_TYPE_MAP[type].each do |field|
+        fields[field] = model.send(field).to_s
       end
 
       # BibTeX 'number' is CFF 'issue'.
