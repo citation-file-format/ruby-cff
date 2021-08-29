@@ -23,10 +23,10 @@ module CFF
   # Model implements all of the fields listed in the
   # [CFF standard](https://citation-file-format.github.io/). Complex
   # fields - `authors`, `contact`, `identifiers`, `keywords`,
-  # `preferred-citation` and `references` - are documented below. All other
-  # fields are simple strings and can be set as such. A field which has not
-  # been set will return the empty string. The simple fields are (with defaults
-  # in parentheses):
+  # `preferred-citation`, `references` and `type` - are documented below. All
+  # other fields are simple strings and can be set as such. A field which has
+  # not been set will return the empty string. The simple fields are (with
+  # defaults in parentheses):
   #
   # * `abstract`
   # * `cff_version`
@@ -53,8 +53,11 @@ module CFF
       'date-released', 'doi', 'identifiers', 'keywords', 'license',
       'license-url', 'message', 'preferred-citation', 'references',
       'repository', 'repository-artifact', 'repository-code', 'title',
-      'url', 'version'
+      'type', 'url', 'version'
     ].freeze # :nodoc:
+
+    # The allowed CFF [types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
+    MODEL_TYPES = ['dataset', 'software'].freeze
 
     # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
@@ -115,6 +118,17 @@ module CFF
       date = Date.parse(date) unless date.is_a?(Date)
 
       @fields['date-released'] = date
+    end
+
+    # :call-seq:
+    #   type = type
+    #
+    # Sets the type of this CFF Model. The type is currently restricted to one
+    # of `software` or `dataset`. If this field is not set then you should
+    # assume that the type is `software`.
+    def type=(type)
+      type = type.downcase
+      @fields['type'] = type if MODEL_TYPES.include?(type)
     end
 
     def to_yaml # :nodoc:

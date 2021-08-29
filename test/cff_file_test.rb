@@ -77,6 +77,7 @@ class CFFFileTest < Minitest::Test
       repository_artifact
       repository_code
       title
+      type
       url
       version
     ]
@@ -119,6 +120,7 @@ class CFFFileTest < Minitest::Test
       repository_artifact
       repository_code
       title
+      type
       url
       version
     ]
@@ -161,6 +163,7 @@ class CFFFileTest < Minitest::Test
       repository_artifact
       repository_code
       title
+      type
       url
       version
     ]
@@ -250,6 +253,7 @@ class CFFFileTest < Minitest::Test
       repository_artifact
       repository_code
       title
+      type
       url
       version
     ]
@@ -295,6 +299,7 @@ class CFFFileTest < Minitest::Test
         repository_artifact
         repository_code
         title
+        type
         url
         version
       ]

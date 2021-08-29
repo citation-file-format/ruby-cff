@@ -113,6 +113,8 @@ repository-artifact: https://files.pythonhosted.org/packages/0a/84/10507b69a0776
 
 title: Citation File Format 1.0.0
 
+type: software
+
 url: http://userid:password@example.com:8080/
 
 version: 1.0.0

@@ -313,6 +313,23 @@ class CFFModelTest < Minitest::Test
     refute_includes(y, '_ _ _')
   end
 
+  def test_type_set_and_output_correctly
+    m = ::CFF::Model.new('title')
+    assert_empty(m.type)
+
+    m.type = 'wrong'
+    assert_empty(m.type)
+
+    m.type = 'software'
+    assert_equal('software', m.type)
+
+    m.type = 'wrong'
+    assert_equal('software', m.type)
+
+    m.type = 'dataset'
+    assert_equal('dataset', m.type)
+  end
+
   def test_empty_collections_are_not_output
     m = ::CFF::Model.new('title')
     y = m.to_yaml
