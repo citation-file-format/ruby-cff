@@ -23,7 +23,7 @@ module CFF
     # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {
       'article' => %w[doi journal number! pages! volume],
-      'book' => %w[doi isbn number! pages! volume],
+      'book' => %w[doi isbn number! pages! publisher! volume],
       'misc' => %w[doi pages!]
     }.freeze
 
@@ -85,6 +85,10 @@ module CFF
       else
         start == finish ? start : "#{start}--#{finish}"
       end
+    end
+
+    def self.publisher_from_model(model)
+      model.publisher.name unless model.publisher == ''
     end
 
     # Do what we can to map between CFF reference types and bibtex types.
