@@ -38,10 +38,8 @@ module CFF
     end
 
     def self.month_and_year_from_model(model)
-      if model.respond_to?(:year)
-        result = [model.month, model.year].map(&:to_s)
-
-        return result unless result.any?(&:empty?)
+      if model.respond_to?(:year) && !model.year.to_s.empty?
+        return [model.month, model.year].map(&:to_s)
       end
 
       month_and_year_from_date(model.date_released)

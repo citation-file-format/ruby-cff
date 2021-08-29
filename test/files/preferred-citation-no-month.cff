@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+authors:
+- family-names: Lisa
+  given-names: Mona
+title: My Research Software
+preferred-citation:
+  type: article
+  authors:
+  - family-names: Lisa
+    given-names: Mona
+  journal: Journal Title
+  title: My awesome research software
+  year: 2021
