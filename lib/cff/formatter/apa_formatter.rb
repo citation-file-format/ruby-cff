@@ -32,7 +32,7 @@ module CFF
       output << "(#{year})" unless year.empty?
 
       version = " (Version #{model.version})" unless model.version.to_s.empty?
-      output << "#{model.title}#{version}#{software_label(model)}"
+      output << "#{model.title}#{version}#{type_label(model)}"
       output << publication_data_from_model(model)
       output << url(model)
 
@@ -52,7 +52,8 @@ module CFF
       model.doi.empty? ? super : "https://doi.org/#{model.doi}"
     end
 
-    def self.software_label(model)
+    def self.type_label(model)
+      return ' [Data set]' if model.type.include?('data')
       return '' if model.is_a?(Reference) && !model.type.include?('software')
 
       ' [Computer software]'

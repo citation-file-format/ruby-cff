@@ -24,21 +24,46 @@ class CFFApaFormatterTest < Minitest::Test
     assert_nil cff.to_apalike
   end
 
-  def test_software_label
+  def test_type_label_from_model
+    model = ::CFF::Model.new('Title')
+    assert_equal(
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(model)
+    )
+
+    model.type = 'wrong'
+    assert_equal(
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(model)
+    )
+
+    model.type = 'software'
+    assert_equal(
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(model)
+    )
+
+    model.type = 'dataset'
+    assert_equal(
+      ' [Data set]', ::CFF::ApaFormatter.type_label(model)
+    )
+  end
+
+  def test_type_label_from_reference
     ref = ::CFF::Reference.new('Title')
-    assert_equal('', ::CFF::ApaFormatter.software_label(ref))
+    assert_equal('', ::CFF::ApaFormatter.type_label(ref))
 
     ref.type = 'book'
-    assert_equal('', ::CFF::ApaFormatter.software_label(ref))
+    assert_equal('', ::CFF::ApaFormatter.type_label(ref))
 
     ref.type = 'software'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.software_label(ref)
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(ref)
     )
 
     ref.type = 'software-container'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.software_label(ref)
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(ref)
     )
+
+    ref.type = 'database'
+    assert_equal(' [Data set]', ::CFF::ApaFormatter.type_label(ref))
   end
 end
