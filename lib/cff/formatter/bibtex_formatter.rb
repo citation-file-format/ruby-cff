@@ -19,11 +19,12 @@ module CFF
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter # :nodoc:
 
-    # These fields have a one-to-one mapping between CFF and BibTeX.
+    # Fields without `!` have a simple one-to-one mapping between CFF and
+    # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {
-      'article' => %w[doi journal volume],
-      'book' => %w[doi isbn volume],
-      'misc' => %w[doi]
+      'article' => %w[doi journal pages! volume],
+      'book' => %w[doi isbn pages! volume],
+      'misc' => %w[doi pages!]
     }.freeze
 
     def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
@@ -58,13 +59,16 @@ module CFF
     # Reference: https://www.bibtex.com/format/
     def self.publication_data_from_model(model, type, fields)
       ENTRY_TYPE_MAP[type].each do |field|
-        fields[field] = model.send(field).to_s
+        if model.respond_to?(field)
+          fields[field] = model.send(field).to_s
+        else
+          field = field.chomp('!')
+          fields[field] = send("#{field}_from_model", model)
+        end
       end
 
       # BibTeX 'number' is CFF 'issue'.
       fields['number'] = model.issue.to_s if model.respond_to?(:issue)
-
-      fields['pages'] = pages_from_model(model)
     end
 
     # CFF 'pages' is the number of pages, which has no equivalent in BibTeX.
