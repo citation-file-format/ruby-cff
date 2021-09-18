@@ -24,6 +24,7 @@ module CFF
     ENTRY_TYPE_MAP = {
       'article' => %w[doi journal number! pages! volume],
       'book' => %w[doi isbn number! pages! publisher! volume],
+      'inproceedings' => %w[booktitle! doi pages! publisher! series!],
       'misc' => %w[doi pages!]
     }.freeze
 
@@ -73,6 +74,11 @@ module CFF
       model.issue.to_s
     end
 
+    # BibTeX 'booktitle' is CFF 'collection-title'.
+    def self.booktitle_from_model(model)
+      model.collection_title
+    end
+
     # CFF 'pages' is the number of pages, which has no equivalent in BibTeX.
     # Reference: https://www.bibtex.com/f/pages-field/
     def self.pages_from_model(model)
@@ -88,7 +94,11 @@ module CFF
     end
 
     def self.publisher_from_model(model)
-      model.publisher.name unless model.publisher == ''
+      model.publisher == '' ? '' : model.publisher.name
+    end
+
+    def self.series_from_model(model)
+      model.conference.name unless model.conference == ''
     end
 
     # Do what we can to map between CFF reference types and bibtex types.

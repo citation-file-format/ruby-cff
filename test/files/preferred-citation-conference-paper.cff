@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the associated paper (see preferred-citation)."
+authors:
+  - family-names: Rampin
+    given-names: Rémi
+    affiliation: New York University
+    orcid: https://orcid.org/0000-0002-0524-2282
+    website: https://remi.rampin.org/
+title: This won't be seen
+preferred-citation:
+  type: conference-paper
+  doi: 10.1145/2882903.2899401
+  conference:
+    name: "SIGMOD '16"
+    website: https://www.sigmod2016.org/
+    city: San Francisco
+    country: US
+  collection-title: Proceedings of SIGMOD 2016
+  authors:
+    - family-names: Rampin
+      given-names: Rémi
+      affiliation: New York University
+      orcid: https://orcid.org/0000-0002-0524-2282
+      website: https://remi.rampin.org/
+    - family-names: Freire
+      given-names: Juliana
+      affiliation: New York University
+      orcid: https://orcid.org/0000-0003-3915-7075
+      website: https://vgc.poly.edu/~juliana/
+    - family-names: Chirigati
+      given-names: Fernando
+      affiliation: New York University
+      orcid: https://orcid.org/0000-0002-9566-5835
+      website: http://fchirigati.com/
+    - family-names: Shasha
+      given-names: Dennis
+      affiliation: New York University
+      orcid: https://orcid.org/0000-0002-7036-3312
+      website: http://cs.nyu.edu/shasha/
+  date-published: 2016-06-26
+  year: 2016
+  month: 6
+  title: "ReproZip: Computational Reproducibility With Ease"
+  start: 2085
+  end: 2088
