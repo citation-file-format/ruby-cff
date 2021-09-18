@@ -39,13 +39,43 @@ module CFF
       output.reject(&:empty?).join('. ')
     end
 
-    def self.publication_data_from_model(model) # rubocop:disable Metrics/AbcSize
-      return model.publisher.name if model.type == 'book' && model.publisher != ''
-      return '' unless model.respond_to?(:journal) && !model.journal.empty?
+    def self.publication_data_from_model(model)
+      case model.type
+      when 'article'
+        [
+          model.journal,
+          volume_from_model(model),
+          pages_from_model(model)
+        ].reject(&:empty?).join(', ')
+      when 'book'
+        model.publisher == '' ? '' : model.publisher.name
+      when 'conference-paper'
+        [
+          model.collection_title,
+          volume_from_model(model),
+          pages_from_model(model)
+        ].reject(&:empty?).join(', ')
+      else
+        ''
+      end
+    end
 
-      vol = model.volume.to_s.empty? ? '' : "#{model.volume}(#{model.issue})"
+    def self.volume_from_model(model)
+      model.volume.to_s.empty? ? '' : "#{model.volume}(#{model.issue})"
+    end
 
-      [model.journal, vol, model.start.to_s].reject(&:empty?).join(', ')
+    # CFF 'pages' is the number of pages, which has no equivalent in APA.
+    # Reference: https://apastyle.apa.org/style-grammar-guidelines/references/examples
+    def self.pages_from_model(model)
+      return '' if !model.respond_to?(:start) || model.start.to_s.empty?
+
+      start = model.start.to_s
+      finish = model.end.to_s
+      if finish.empty?
+        start
+      else
+        start == finish ? start : "#{start}–#{finish}"
+      end
     end
 
     # Prefer a DOI over the other URI options.
