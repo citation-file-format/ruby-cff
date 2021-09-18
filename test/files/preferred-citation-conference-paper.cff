@@ -15,7 +15,7 @@ preferred-citation:
     website: https://www.sigmod2016.org/
     city: San Francisco
     country: US
-  collection-title: Proceedings of SIGMOD 2016
+  collection-title: Proceedings of the 2016 ACM SIGMOD International Conference on Management of Data (SIGMOD)
   authors:
     - family-names: Rampin
       given-names: Rémi
@@ -37,6 +37,8 @@ preferred-citation:
       affiliation: New York University
       orcid: https://orcid.org/0000-0002-7036-3312
       website: http://cs.nyu.edu/shasha/
+  publisher:
+    name: ACM
   date-published: 2016-06-26
   year: 2016
   month: 6
