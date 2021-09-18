@@ -79,20 +79,6 @@ module CFF
       model.collection_title
     end
 
-    # CFF 'pages' is the number of pages, which has no equivalent in BibTeX.
-    # Reference: https://www.bibtex.com/f/pages-field/
-    def self.pages_from_model(model)
-      return '' if !model.respond_to?(:start) || model.start.to_s.empty?
-
-      start = model.start.to_s
-      finish = model.end.to_s
-      if finish.empty?
-        start
-      else
-        start == finish ? start : "#{start}--#{finish}"
-      end
-    end
-
     def self.publisher_from_model(model)
       model.publisher == '' ? '' : model.publisher.name
     end

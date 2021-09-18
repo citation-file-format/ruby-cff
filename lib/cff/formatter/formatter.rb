@@ -57,5 +57,20 @@ module CFF
         end
       end
     end
+
+    # CFF 'pages' is the number of pages, which has no equivalent in BibTeX
+    # or APA. References: https://www.bibtex.com/f/pages-field/,
+    # https://apastyle.apa.org/style-grammar-guidelines/references/examples
+    def self.pages_from_model(model, dash: '--')
+      return '' if !model.respond_to?(:start) || model.start.to_s.empty?
+
+      start = model.start.to_s
+      finish = model.end.to_s
+      if finish.empty?
+        start
+      else
+        start == finish ? start : "#{start}#{dash}#{finish}"
+      end
+    end
   end
 end
