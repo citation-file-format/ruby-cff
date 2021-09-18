@@ -39,7 +39,8 @@ module CFF
       output.reject(&:empty?).join('. ')
     end
 
-    def self.publication_data_from_model(model)
+    def self.publication_data_from_model(model) # rubocop:disable Metrics/AbcSize
+      return model.publisher.name if model.type == 'book' && model.publisher != ''
       return '' unless model.respond_to?(:journal) && !model.journal.empty?
 
       vol = model.volume.to_s.empty? ? '' : "#{model.volume}(#{model.issue})"
