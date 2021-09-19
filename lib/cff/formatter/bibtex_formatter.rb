@@ -84,7 +84,7 @@ module CFF
     end
 
     def self.series_from_model(model)
-      model.conference.name unless model.conference == ''
+      model.conference == '' ? '' : model.conference.name
     end
 
     # Do what we can to map between CFF reference types and bibtex types.

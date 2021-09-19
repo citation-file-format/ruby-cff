@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: This is a (partially) made up CFF.
+authors:
+  - family-names: "Gamblin"
+    given-names: "Todd"
+title: This won't be seen
+preferred-citation:
+  type: conference-paper
+  collection-title: Proceedings of Supercomputing 2015
+  authors:
+    - family-names: "Gamblin"
+      given-names: "Todd"
+    - family-names: "LeGendre"
+      given-names: "Matthew"
+    - family-names: "Collette"
+      given-names: "Michael R."
+    - family-names: "Lee"
+      given-names: "Gregory L."
+    - family-names: "Moody"
+      given-names: "Adam"
+    - family-names: "de Supinski"
+      given-names: "Bronis R."
+    - family-names: "Futral"
+      given-names: "Scott"
+  title: "The Spack Package Manager: Bringing Order to HPC Software Chaos"
+  year: 2015
+  month: 11
+  doi: 10.1244/2886907.2879400
