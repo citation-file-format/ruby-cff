@@ -23,8 +23,8 @@ module CFF
     # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {
       'article' => %w[doi journal number! pages! volume],
-      'book' => %w[doi isbn number! pages! publisher! volume],
-      'inproceedings' => %w[booktitle! doi pages! publisher! series!],
+      'book' => %w[address! doi isbn number! pages! publisher! volume],
+      'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'misc' => %w[doi pages!]
     }.freeze
 
@@ -72,6 +72,19 @@ module CFF
     # BibTeX 'number' is CFF 'issue'.
     def self.number_from_model(model)
       model.issue.to_s
+    end
+
+    # BibTeX 'address' is taken from the publisher (book, others) or the
+    # conference (inproceedings).
+    def self.address_from_model(model)
+      entity = if model.type == 'conference-paper'
+                 model.conference
+               else
+                 model.publisher
+               end
+      return '' if entity == ''
+
+      [entity.city, entity.region, entity.country].reject(&:empty?).join(', ')
     end
 
     # BibTeX 'booktitle' is CFF 'collection-title'.
