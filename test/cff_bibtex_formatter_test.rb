@@ -8,7 +8,7 @@ class CFFBibtexFormatterTest < Minitest::Test
     Dir[::File.join(FILES_DIR, '*.cff')].each do |input_file|
       define_method("test_converter_for_#{File.basename(input_file)}") do
         cff = ::CFF::File.read(input_file)
-        output_file = ::File.join(CONVERTED_DIR, "#{File.basename(input_file, '.*')}.bibtex")
+        output_file = ::File.join(FORMATTED_DIR, "#{File.basename(input_file, '.*')}.bibtex")
 
         if ::File.exist?(output_file)
           assert_equal File.read(output_file).strip, cff.to_bibtex
