@@ -35,6 +35,7 @@ VALID_FILENAME_CFF = ::File.join(__dir__, '..', 'CITATION.cff')
 OUTPUT_CFF = 'CITATION.cff'
 
 VALIDATION_DIR = ::File.join(FILES_DIR, 'validation')
+FORMATTER_DIR = ::File.join(FILES_DIR, 'formatter')
 FORMATTED_DIR = ::File.join(FILES_DIR, 'formatted')
 
 CONSTRUCT_OPTS = {

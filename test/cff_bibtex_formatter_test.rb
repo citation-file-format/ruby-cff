@@ -5,7 +5,7 @@ require 'test_helper'
 class CFFBibtexFormatterTest < Minitest::Test
 
   describe 'all bibtex fixtures' do
-    Dir[::File.join(FILES_DIR, '*.cff')].each do |input_file|
+    Dir[::File.join(FORMATTER_DIR, '*.cff')].each do |input_file|
       define_method("test_converter_for_#{File.basename(input_file)}") do
         cff = ::CFF::File.read(input_file)
         output_file = ::File.join(FORMATTED_DIR, "#{File.basename(input_file, '.*')}.bibtex")
