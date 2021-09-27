@@ -26,7 +26,7 @@ module CFF
       'book' => %w[address! doi isbn number! pages! publisher! volume],
       'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'misc' => %w[doi pages!],
-      'software' => %w[doi]
+      'software' => %w[doi version]
     }.freeze
 
     def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
