@@ -25,7 +25,8 @@ module CFF
       'article' => %w[doi journal number! pages! volume],
       'book' => %w[address! doi isbn number! pages! publisher! volume],
       'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
-      'misc' => %w[doi pages!]
+      'misc' => %w[doi pages!],
+      'software' => %w[doi]
     }.freeze
 
     def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
@@ -101,9 +102,11 @@ module CFF
     end
 
     # Do what we can to map between CFF reference types and bibtex types.
-    # Reference: https://www.bibtex.com/e/entry-types/
+    # References:
+    #  * https://www.bibtex.com/e/entry-types/
+    #  * https://ctan.gutenberg.eu.org/macros/latex/contrib/biblatex-contrib/biblatex-software/software-biblatex.pdf
     def self.bibtex_type(model)
-      return 'misc' unless model.is_a?(Reference)
+      return 'software' if model.type.empty? || model.type.include?('software')
 
       case model.type
       when 'article', 'book', 'manual', 'unpublished'

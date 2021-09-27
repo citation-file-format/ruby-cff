@@ -26,6 +26,12 @@ class CFFBibtexFormatterTest < Minitest::Test
 
   def test_bibtex_type
     model = ::CFF::Model.new('Title')
+    assert_equal('software', ::CFF::BibtexFormatter.bibtex_type(model))
+
+    model.type = 'software'
+    assert_equal('software', ::CFF::BibtexFormatter.bibtex_type(model))
+
+    model.type = 'dataset'
     assert_equal('misc', ::CFF::BibtexFormatter.bibtex_type(model))
 
     ref = ::CFF::Reference.new('Title')
