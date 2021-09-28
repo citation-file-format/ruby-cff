@@ -52,7 +52,7 @@ keywords:
 - credit
 - citation
 version: 0.9.0
-date-released: 2021-08-18
+date-released: 2021-09-28
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff
@@ -155,11 +155,13 @@ Assuming the same CFF data as above, the two formats will look something like th
 #### BibTeX format
 
 ```tex
-@misc{Haines_Ruby_CFF_Library_2021,
+@software{Haines_Ruby_CFF_Library_2021,
 author = {Haines, Robert},
-month = {8},
+license = {Apache-2.0},
+month = {9},
 title = {{Ruby CFF Library}},
 url = {https://github.com/citation-file-format/ruby-cff},
+version = {0.9.0},
 year = {2021}
 }
 ```
