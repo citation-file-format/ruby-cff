@@ -40,6 +40,9 @@ class CFFBibtexFormatterTest < Minitest::Test
     ref.type = 'newspaper-article'
     assert_equal('article', ::CFF::BibtexFormatter.bibtex_type(ref))
 
+    ref.type = 'conference'
+    assert_equal('proceedings', ::CFF::BibtexFormatter.bibtex_type(ref))
+
     ref.type = 'conference-paper'
     assert_equal('inproceedings', ::CFF::BibtexFormatter.bibtex_type(ref))
 

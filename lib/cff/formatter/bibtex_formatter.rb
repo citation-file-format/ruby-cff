@@ -25,6 +25,7 @@ module CFF
       'article' => %w[doi journal number! pages! volume],
       'book' => %w[address! doi isbn number! pages! publisher! volume],
       'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
+      'proceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'misc' => %w[doi pages!],
       'software' => %w[doi license version]
     }.freeze
