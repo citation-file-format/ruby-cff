@@ -30,7 +30,7 @@ module CFF
       'misc' => %w[doi pages!],
       'proceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'software' => %w[doi license version],
-      'techreport' => %w[address! doi number!],
+      'techreport' => %w[address! doi institution! number!],
       'unpublished' => %w[doi]
     }.freeze
 
@@ -91,6 +91,14 @@ module CFF
       return '' if entity == ''
 
       [entity.city, entity.region, entity.country].reject(&:empty?).join(', ')
+    end
+
+    # BibTex 'institution' could be grabbed from an author's affiliation, or
+    # provided explicitly.
+    def self.institution_from_model(model)
+      return model.institution.name unless model.institution == ''
+
+      model.authors.first.affiliation
     end
 
     # BibTeX 'booktitle' is CFF 'collection-title'.

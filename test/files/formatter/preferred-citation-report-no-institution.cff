@@ -24,8 +24,6 @@ preferred-citation:
   - family-names: Haines
     given-names: Robert
     affiliation: The University of Manchester, UK
-  institution:
-    name: The CFF Institute
   month: 9
   year: 2021
   url: https://github.com/citation-file-format/ruby-cff
