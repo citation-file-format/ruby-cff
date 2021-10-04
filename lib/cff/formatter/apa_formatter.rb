@@ -39,7 +39,7 @@ module CFF
       output.reject(&:empty?).join('. ')
     end
 
-    def self.publication_data_from_model(model)
+    def self.publication_data_from_model(model) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
       case model.type
       when 'article'
         [
@@ -55,6 +55,12 @@ module CFF
           volume_from_model(model),
           pages_from_model(model, dash: '–')
         ].reject(&:empty?).join(', ')
+      when 'report'
+        if model.institution == ''
+          model.authors.first.affiliation
+        else
+          model.institution.name
+        end
       else
         ''
       end
