@@ -6,7 +6,7 @@ title: Ruby CFF Library
 authors:
 - family-names: Haines
   given-names: Robert
-  affiliation: The University of Manchester, UK
+  affiliation: The University of Manchester
 keywords:
 - ruby
 - credit
@@ -23,7 +23,7 @@ preferred-citation:
   authors:
   - family-names: Haines
     given-names: Robert
-    affiliation: The University of Manchester, UK
+    affiliation: The University of Manchester
   institution:
     name: The CFF Institute
   month: 9
