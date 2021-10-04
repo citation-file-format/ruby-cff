@@ -1,0 +1,29 @@
+# A bound-but-not-published book preferred-citation
+
+cff-version: 1.2.0
+message: If you use this software in your work, please cite it using the following metadata
+title: Ruby CFF Library
+authors:
+- family-names: Haines
+  given-names: Robert
+  affiliation: The University of Manchester, UK
+keywords:
+- ruby
+- credit
+- citation
+version: 0.4.0
+date-released: 2018-07-22
+license: Apache-2.0
+repository-artifact: https://rubygems.org/gems/cff
+type: software
+preferred-citation:
+  type: pamphlet
+  title: Why and how to use CFF
+  authors:
+  - family-names: Haines
+    given-names: Robert
+    affiliation: The University of Manchester, UK
+  month: 9
+  year: 2021
+  url: https://github.com/citation-file-format/ruby-cff
+  doi: 10.5281/zenodo.1184077
