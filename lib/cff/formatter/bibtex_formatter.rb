@@ -24,6 +24,7 @@ module CFF
     ENTRY_TYPE_MAP = {
       'article' => %w[doi journal number! pages! volume],
       'book' => %w[address! doi isbn number! pages! publisher! volume],
+      'booklet' => %w[address! doi],
       'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'manual' => %w[address! doi],
       'misc' => %w[doi pages!],
