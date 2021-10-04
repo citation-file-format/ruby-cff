@@ -30,6 +30,7 @@ module CFF
       'misc' => %w[doi pages!],
       'proceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'software' => %w[doi license version],
+      'techreport' => %w[address! doi number!],
       'unpublished' => %w[doi]
     }.freeze
 
@@ -109,7 +110,7 @@ module CFF
     # References:
     #  * https://www.bibtex.com/e/entry-types/
     #  * https://ctan.gutenberg.eu.org/macros/latex/contrib/biblatex-contrib/biblatex-software/software-biblatex.pdf
-    def self.bibtex_type(model)
+    def self.bibtex_type(model) # rubocop:disable Metrics/CyclomaticComplexity
       return 'software' if model.type.empty? || model.type.include?('software')
 
       case model.type
@@ -123,6 +124,8 @@ module CFF
         'article'
       when 'pamphlet'
         'booklet'
+      when 'report'
+        'techreport'
       else
         'misc'
       end
