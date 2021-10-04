@@ -25,7 +25,7 @@ module CFF
       'article' => %w[doi journal number! pages! volume],
       'book' => %w[address! doi isbn number! pages! publisher! volume],
       'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
-      'manual' => %w[address!],
+      'manual' => %w[address! doi],
       'misc' => %w[doi pages!],
       'proceedings' => %w[address! booktitle! doi pages! publisher! series!],
       'software' => %w[doi license version]
