@@ -105,8 +105,8 @@ module CFF
       'issue', 'issue-date', 'issue-title', 'journal', 'keywords', 'license',
       'license-url', 'loc-end', 'loc-start', 'location', 'medium', 'month',
       'nihmsid', 'notes', 'number', 'number-volumes', 'pages', 'patent-states',
-      'pmcid', 'publisher', 'recipients', 'repository', 'repository-code',
-      'repository-artifact', 'scope', 'section', 'senders', 'start', 'status',
+      'pmcid', 'publisher', 'recipients', 'repository', 'repository-artifact',
+      'repository-code', 'scope', 'section', 'senders', 'start', 'status',
       'thesis-type', 'title', 'translators', 'type', 'url', 'version',
       'volume', 'volume-title', 'year', 'year-original'
     ].freeze # :nodoc:
