@@ -28,11 +28,12 @@ module CFF
   # parentheses):
   #
   # * `address`
+  # * `alias`
   # * `city`
   # * `country`
-  # * `email`
   # * `date_end` - *Note:* returns a `Date` object
   # * `date_start` - *Note:* returns a `Date` object
+  # * `email`
   # * `fax`
   # * `location`
   # * `name`

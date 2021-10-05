@@ -74,12 +74,13 @@ module CFF
   # * `pmcid`
   # * `publisher`
   # * `repository`
-  # * `repository_code`
   # * `repository_artifact`
+  # * `repository_code`
   # * `scope`
   # * `section`
   # * `start`
   # * `status` - *Note:* see documentation for `status =` below
+  # * `term`
   # * `thesis_type`
   # * `title`
   # * `type` - *Note:* see documentation for `type =` below
