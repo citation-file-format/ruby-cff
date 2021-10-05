@@ -191,6 +191,7 @@ preferred-citation:
   section: Chapter 2 - "Reference keys"
   status: advance-online
   start: 123
+  term: Definition
   thesis-type: Doctoral dissertation
   url: http://j.mp
   version: 0.0.1423-BETA
@@ -604,6 +605,7 @@ references:
     section: Chapter 2 - "Reference keys"
     status: advance-online
     start: 123
+    term: Definition
     thesis-type: Doctoral dissertation
     url: http://j.mp
     version: 0.0.1423-BETA
