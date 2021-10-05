@@ -39,6 +39,7 @@ class CFFEntityTest < Minitest::Test
   def test_simple_fields_set_and_output_correctly
     data = [
       ['address', 'A Street'],
+      ['alias', 'UoM'],
       ['city', 'Manchester'],
       ['country', 'GB'],
       ['email', 'email@example.org'],

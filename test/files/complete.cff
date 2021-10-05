@@ -32,6 +32,7 @@ authors:
   # An entity
   - name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -68,6 +69,7 @@ contact:
   # An entity
   - name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -202,6 +204,7 @@ preferred-citation:
     # An entity
     name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -236,6 +239,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -270,6 +274,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -287,6 +292,7 @@ preferred-citation:
     # An entity
     name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -321,6 +327,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -355,6 +362,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -372,6 +380,7 @@ preferred-citation:
     # An entity
     name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -389,6 +398,7 @@ preferred-citation:
     # An entity
     name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -406,6 +416,7 @@ preferred-citation:
     # An entity
     name: Entity Project Team Conference entity
     address: 22 Acacia Avenue
+    alias: EPTC
     city: Citationburgh
     region: Renfrewshire
     post-code: C13 7X7
@@ -440,6 +451,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -474,6 +486,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -508,6 +521,7 @@ preferred-citation:
     # An entity
     - name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -603,6 +617,7 @@ references:
       # An entity
       name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -637,6 +652,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
@@ -671,6 +687,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
@@ -688,6 +705,7 @@ references:
       # An entity
       name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -722,6 +740,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
@@ -756,6 +775,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
@@ -773,6 +793,7 @@ references:
       # An entity
       name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -790,6 +811,7 @@ references:
       # An entity
       name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -807,6 +829,7 @@ references:
       # An entity
       name: Entity Project Team Conference entity
       address: 22 Acacia Avenue
+      alias: EPTC
       city: Citationburgh
       region: Renfrewshire
       post-code: C13 7X7
@@ -841,6 +864,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
@@ -875,6 +899,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
@@ -909,6 +934,7 @@ references:
       # An entity
       - name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
+        alias: EPTC
         city: Citationburgh
         region: Renfrewshire
         post-code: C13 7X7
