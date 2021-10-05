@@ -93,6 +93,8 @@ module CFF
 
     include Licensable
 
+    # This list does not include `format` for reasons explained below, where
+    # the `format` method is defined!
     ALLOWED_FIELDS = [
       'abbreviation', 'abstract', 'authors', 'collection-doi',
       'collection-title', 'collection-type', 'commit', 'conference', 'contact',
