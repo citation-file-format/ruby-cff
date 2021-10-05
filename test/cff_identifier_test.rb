@@ -93,4 +93,9 @@ class CFFIdentifierTest < Minitest::Test
     assert_includes(y, "value: #{value}\n")
     assert_includes(y, "description: #{desc}\n")
   end
+
+  def test_empty?
+    id = ::CFF::Identifier.new
+    refute_empty(id)
+  end
 end

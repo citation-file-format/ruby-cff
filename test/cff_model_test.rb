@@ -390,4 +390,9 @@ class CFFModelTest < Minitest::Test
 
     assert_equal('0.5.0', model.version)
   end
+
+  def test_empty?
+    m = ::CFF::Model.new('title')
+    refute_empty(m)
+  end
 end

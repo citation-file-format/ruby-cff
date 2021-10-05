@@ -107,4 +107,8 @@ class CFFPersonTest < Minitest::Test
 
     assert_equal('E.T.', person.alias)
   end
+
+  def test_empty?
+    refute_empty(@person)
+  end
 end

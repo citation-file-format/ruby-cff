@@ -367,4 +367,8 @@ class CFFReferenceTest < Minitest::Test
       assert_equal(file.send(field), ref.send(field))
     end
   end
+
+  def test_empty?
+    refute_empty(@reference)
+  end
 end

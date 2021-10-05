@@ -20,7 +20,7 @@ module CFF
   # ModelPart is the superclass of anything that makes up part of the CFF Model.
   # This includes Model, Person, Entity and Reference.
   #
-  # ModelPart does not provide any methods or fields for the public API.
+  # ModelPart provides only one method for the public API: `empty?`.
   class ModelPart
 
     # :stopdoc:
@@ -43,7 +43,18 @@ module CFF
       n = method_to_field(name.id2name)
       self.class::ALLOWED_FIELDS.include?(n.chomp('=')) || super
     end
-
     # :startdoc:
+
+    # :call-seq:
+    #   empty? -> false
+    #
+    # Define `empty?` for CFF classes so that they can be tested in the
+    # same way as strings and arrays.
+    #
+    # This always returns `false` because CFF classes always return something
+    # from all of their methods.
+    def empty?
+      false
+    end
   end
 end

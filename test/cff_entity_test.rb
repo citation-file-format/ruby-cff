@@ -115,4 +115,8 @@ class CFFEntityTest < Minitest::Test
     assert_equal('+44 (0) 161-234-5678', entity.tel)
     assert entity.is_a?(::CFF::Entity)
   end
+
+  def test_empty?
+    refute_empty(@entity)
+  end
 end
