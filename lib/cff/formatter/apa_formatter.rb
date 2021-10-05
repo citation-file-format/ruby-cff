@@ -48,7 +48,7 @@ module CFF
           pages_from_model(model, dash: '–')
         ].reject(&:empty?).join(', ')
       when 'book'
-        model.publisher == '' ? '' : model.publisher.name
+        model.publisher.empty? ? '' : model.publisher.name
       when 'conference-paper'
         [
           model.collection_title,
@@ -56,7 +56,7 @@ module CFF
           pages_from_model(model, dash: '–')
         ].reject(&:empty?).join(', ')
       when 'report'
-        if model.institution == ''
+        if model.institution.empty?
           model.authors.first.affiliation
         else
           model.institution.name

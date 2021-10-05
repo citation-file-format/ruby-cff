@@ -88,7 +88,7 @@ module CFF
                else
                  model.publisher
                end
-      return '' if entity == ''
+      return '' if entity.empty?
 
       [entity.city, entity.region, entity.country].reject(&:empty?).join(', ')
     end
@@ -96,7 +96,7 @@ module CFF
     # BibTex 'institution' could be grabbed from an author's affiliation, or
     # provided explicitly.
     def self.institution_from_model(model)
-      return model.institution.name unless model.institution == ''
+      return model.institution.name unless model.institution.empty?
 
       model.authors.first.affiliation
     end
@@ -107,11 +107,11 @@ module CFF
     end
 
     def self.publisher_from_model(model)
-      model.publisher == '' ? '' : model.publisher.name
+      model.publisher.empty? ? '' : model.publisher.name
     end
 
     def self.series_from_model(model)
-      model.conference == '' ? '' : model.conference.name
+      model.conference.empty? ? '' : model.conference.name
     end
 
     # Do what we can to map between CFF reference types and bibtex types.
