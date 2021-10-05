@@ -44,7 +44,7 @@ module CFF
   class Entity < ModelPart
 
     ALLOWED_FIELDS = [
-      'address', 'alias', 'city', 'country', 'email', 'date-end', 'date-start',
+      'address', 'alias', 'city', 'country', 'date-end', 'date-start', 'email',
       'fax', 'location', 'name', 'orcid', 'post-code', 'region', 'tel',
       'website'
     ].freeze # :nodoc:
