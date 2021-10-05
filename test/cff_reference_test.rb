@@ -249,6 +249,7 @@ class CFFReferenceTest < Minitest::Test
       repository_artifact
       scope
       section
+      term
       thesis_type
       url
       version
