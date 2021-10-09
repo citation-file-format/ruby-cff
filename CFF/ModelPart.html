@@ -67,6 +67,15 @@
     
     
     
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-i-empty-3F">#empty?</a>
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -79,7 +88,7 @@
     
 <p><a href="ModelPart.html"><code>ModelPart</code></a> is the superclass of anything that makes up part of the <a href="../CFF.html"><code>CFF</code></a> <a href="Model.html"><code>Model</code></a>. This includes <a href="Model.html"><code>Model</code></a>, <a href="Person.html"><code>Person</code></a>, <a href="Entity.html"><code>Entity</code></a> and <a href="Reference.html"><code>Reference</code></a>.</p>
 
-<p><a href="ModelPart.html"><code>ModelPart</code></a> does not provide any methods or fields for the public API.</p>
+<p><a href="ModelPart.html"><code>ModelPart</code></a> provides only one method for the public API: <code>empty?</code>.</p>
 
   </section>
 
@@ -88,6 +97,37 @@
 
 
 
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-empty-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            empty? &rarr; false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Define <code>empty?</code> for <a href="../CFF.html"><code>CFF</code></a> classes so that they can be tested in the same way as strings and arrays.</p>
+
+<p>This always returns <code>false</code> because <a href="../CFF.html"><code>CFF</code></a> classes always return something from all of their methods.</p>
+
+          <div class="method-source-code" id="empty-3F-source">
+            <pre><span class="ruby-comment"># File lib/cff/model_part.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">empty?</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
 
   </section>
 </main>
