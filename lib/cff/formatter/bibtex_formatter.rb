@@ -53,6 +53,8 @@ module CFF
 
       values['url'] = url(model)
 
+      values['note'] = model.notes unless model.is_a?(Model)
+
       values.reject! { |_, v| v.empty? }
       sorted_values = values.sort.map do |key, value|
         "#{key} = {#{value}}"
