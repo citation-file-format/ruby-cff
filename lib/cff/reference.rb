@@ -145,9 +145,8 @@ module CFF
     def initialize(param, *more) # rubocop:disable Metrics/AbcSize
       if param.is_a?(Hash)
         @fields = build_model(param)
-        @fields.default = ''
       else
-        @fields = Hash.new('')
+        @fields = {}
         type = more[0] &&= more[0].downcase
         @fields['type'] = REFERENCE_TYPES.include?(type) ? type : 'generic'
         @fields['title'] = param
@@ -157,7 +156,7 @@ module CFF
         'authors', 'contact', 'editors', 'editors-series', 'identifiers',
         'keywords', 'patent-states', 'recipients', 'senders', 'translators'
       ].each do |field|
-        @fields[field] = [] if @fields[field].empty?
+        @fields[field] = [] if @fields[field].nil? || @fields[field].empty?
       end
 
       yield self if block_given?
@@ -193,12 +192,12 @@ module CFF
     # three letter language code, so `GER` becomes `deu`, `french` becomes
     # `fra` and `en` becomes `eng`.
     def add_language(lang)
-      @fields['languages'] = [] if @fields['languages'].empty?
+      @fields['languages'] = [] if @fields['languages'].nil? || @fields['languages'].empty?
       lang = LanguageList::LanguageInfo.find(lang)
       return if lang.nil?
 
       lang = lang.iso_639_3
-      @fields['languages'] << lang unless @fields['languages'].include? lang
+      @fields['languages'] << lang unless @fields['languages'].include?(lang)
     end
 
     # :call-seq:
@@ -214,7 +213,7 @@ module CFF
     #
     # Return the list of languages associated with this Reference.
     def languages
-      @fields['languages'].empty? ? [] : @fields['languages'].dup
+      @fields['languages'].nil? || @fields['languages'].empty? ? [] : @fields['languages'].dup
     end
 
     # :call-seq:
@@ -266,7 +265,7 @@ module CFF
     # This method is explicitly defined to override the private format method
     # that all objects seem to have.
     def format # :nodoc:
-      @fields['format']
+      @fields['format'].nil? ? '' : @fields['format']
     end
 
     # Sets the format of this Reference.

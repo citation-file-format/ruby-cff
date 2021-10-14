@@ -35,7 +35,7 @@ module CFF
       if n.end_with?('=')
         @fields[n.chomp('=')] = args[0] || ''
       else
-        @fields[n]
+        @fields[n].nil? ? '' : @fields[n]
       end
     end
 
