@@ -71,16 +71,15 @@ module CFF
     def initialize(param)
       if param.is_a?(Hash)
         @fields = build_model(param)
-        @fields.default = ''
       else
-        @fields = Hash.new('')
+        @fields = {}
         @fields['cff-version'] = DEFAULT_SPEC_VERSION
         @fields['message'] = DEFAULT_MESSAGE
         @fields['title'] = param
       end
 
       %w[authors contact identifiers keywords references].each do |field|
-        @fields[field] = [] if @fields[field].empty?
+        @fields[field] = [] if @fields[field].nil? || @fields[field].empty?
       end
 
       yield self if block_given?

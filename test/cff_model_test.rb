@@ -395,4 +395,14 @@ class CFFModelTest < Minitest::Test
     m = ::CFF::Model.new('title')
     refute_empty(m)
   end
+
+  def test_handles_explicit_nil
+    m = ::CFF::Model.new({ 'title' => 'hi', 'keywords' => nil })
+    refute_empty(m)
+  end
+
+  def test_handles_nil_in_yaml
+    m = ::CFF::Model.read('title: hi\nkeywords:\n')
+    refute_empty(m)
+  end
 end
