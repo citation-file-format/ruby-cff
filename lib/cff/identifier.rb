@@ -46,13 +46,12 @@ module CFF
     def initialize(param = nil, *more)
       if param.is_a?(Hash)
         @fields = param
-        @fields.default = ''
       else
-        @fields = Hash.new('')
+        @fields = {}
 
         unless param.nil?
           self.type = param
-          @fields['value'] = more[0] unless @fields['type'].empty?
+          @fields['value'] = more[0] unless @fields['type'].nil?
         end
       end
 

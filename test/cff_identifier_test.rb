@@ -46,6 +46,14 @@ class CFFIdentifierTest < Minitest::Test
     id = ::CFF::Identifier.new('xxx', '0123456789')
     assert_empty(id.type)
     assert_empty(id.value)
+
+    id = ::CFF::Identifier.new('', '0123456789')
+    assert_empty(id.type)
+    assert_empty(id.value)
+
+    id = ::CFF::Identifier.new(nil, '0123456789')
+    assert_empty(id.type)
+    assert_empty(id.value)
   end
 
   def test_bad_methods_not_allowed
