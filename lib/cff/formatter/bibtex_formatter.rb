@@ -116,6 +116,18 @@ module CFF
       model.conference.empty? ? '' : model.conference.name
     end
 
+    # If we're citing a conference paper, try and use the date of the
+    # conference. Otherwise use the specified month and year, or the date
+    # of release.
+    def self.month_and_year_from_model(model)
+      if model.type == 'conference-paper' && !model.conference.empty?
+        date = model.conference.date_start
+        return month_and_year_from_date(date) unless date == ''
+      end
+
+      super
+    end
+
     # Do what we can to map between CFF reference types and bibtex types.
     # References:
     #  * https://www.bibtex.com/e/entry-types/

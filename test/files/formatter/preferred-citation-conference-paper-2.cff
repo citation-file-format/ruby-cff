@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: This is a (partially) made up CFF.
+message: This is a (partially) made up CFF - especially the dates.
 authors:
   - family-names: "Gamblin"
     given-names: "Todd"
@@ -32,6 +32,6 @@ preferred-citation:
     country: "USA"
   publisher:
     name: ACM/IEEE
-  year: 2015
-  month: 11
+  year: 2016
+  month: 12
   doi: 10.1244/2886907.2879400
