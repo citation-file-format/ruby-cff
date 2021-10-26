@@ -88,7 +88,12 @@ module CFF
     end
 
     def self.date_range(start, finish)
-      "#{start.year}, #{Date::MONTHNAMES[start.month]} #{start.day}–#{finish.day}"
+      start_str = '%Y, %B %-d'
+      finish_str = '%-d'
+      finish_str = "%B #{finish_str}" unless start.month == finish.month
+      finish_str = "%Y, #{finish_str}" unless start.year == finish.year
+
+      "#{start.strftime(start_str)}–#{finish.strftime(finish_str)}"
     end
 
     # Prefer a DOI over the other URI options.
