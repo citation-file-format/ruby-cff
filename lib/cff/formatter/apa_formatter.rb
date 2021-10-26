@@ -103,6 +103,7 @@ module CFF
 
     def self.type_label(model)
       return ' [Data set]' if model.type.include?('data')
+      return ' [Conference paper]' if model.type.include?('conference')
       return '' if model.is_a?(Reference) && !model.type.include?('software')
 
       ' [Computer software]'
