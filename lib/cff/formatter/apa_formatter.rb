@@ -78,7 +78,7 @@ module CFF
         start = model.conference.date_start
         unless start == ''
           finish = model.conference.date_end
-          return month_and_year_from_date(start)[1] if finish == '' || start == finish
+          return month_and_year_from_date(start)[1] if finish == '' || start >= finish
 
           return date_range(start, finish)
         end
