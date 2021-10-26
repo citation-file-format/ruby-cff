@@ -95,6 +95,10 @@ class CFFApaFormatterTest < Minitest::Test
       '2021, September 21–26',
       ::CFF::ApaFormatter.month_and_year_from_model(ref)
     )
+
+    # Conference with earlier end date than start date (bad range).
+    conf.date_end = date - 1
+    assert_equal('2021', ::CFF::ApaFormatter.month_and_year_from_model(ref))
   end
 
   def test_date_range
