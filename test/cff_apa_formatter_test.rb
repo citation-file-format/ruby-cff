@@ -66,4 +66,42 @@ class CFFApaFormatterTest < Minitest::Test
     ref.type = 'database'
     assert_equal(' [Data set]', ::CFF::ApaFormatter.type_label(ref))
   end
+
+  def test_month_and_year_from_model
+    date = Date.new(2021, 9, 21)
+    conf = ::CFF::Entity.new('Conference')
+    ref = ::CFF::Reference.new('Title', 'conference-paper')
+    ref.year = 2019
+    ref.month = 12
+
+    # Conference type reference with no conference set.
+    assert_equal('2019', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+
+    # Conference set, but no start date.
+    ref.conference = conf
+    assert_equal('2019', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+
+    # Conference with a start date but no end date.
+    conf.date_start = date
+    assert_equal('2021', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+
+    # Conference with the same start and end date.
+    conf.date_end = date
+    assert_equal('2021', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+
+    # Conference with a different start and end date.
+    conf.date_end = date + 5
+    assert_equal(
+      '2021, September 21–26',
+      ::CFF::ApaFormatter.month_and_year_from_model(ref)
+    )
+  end
+
+  def test_date_range
+    start = Date.new(2021, 9, 21)
+    finish = start + 3
+    assert_equal(
+      '2021, September 21–24', ::CFF::ApaFormatter.date_range(start, finish)
+    )
+  end
 end
