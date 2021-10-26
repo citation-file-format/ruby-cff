@@ -28,8 +28,8 @@ module CFF
         model.authors.map { |author| format_author(author) }
       )
 
-      _, year = month_and_year_from_model(model)
-      output << "(#{year})" unless year.empty?
+      date = month_and_year_from_model(model)
+      output << "(#{date})" unless date.empty?
 
       version = " (Version #{model.version})" unless model.version.to_s.empty?
       output << "#{model.title}#{version}#{type_label(model)}"
@@ -68,6 +68,27 @@ module CFF
 
     def self.volume_from_model(model)
       model.volume.to_s.empty? ? '' : "#{model.volume}(#{model.issue})"
+    end
+
+    # If we're citing a conference paper, try and use the date of the
+    # conference. Otherwise use the specified month and year, or the date
+    # of release.
+    def self.month_and_year_from_model(model)
+      if model.type == 'conference-paper' && !model.conference.empty?
+        start = model.conference.date_start
+        unless start == ''
+          finish = model.conference.date_end
+          return month_and_year_from_date(start)[1] if finish == '' || start == finish
+
+          return date_range(start, finish)
+        end
+      end
+
+      super[1]
+    end
+
+    def self.date_range(start, finish)
+      "#{start.year}, #{Date::MONTHNAMES[start.month]} #{start.day}–#{finish.day}"
     end
 
     # Prefer a DOI over the other URI options.
