@@ -103,5 +103,18 @@ class CFFApaFormatterTest < Minitest::Test
     assert_equal(
       '2021, September 21–24', ::CFF::ApaFormatter.date_range(start, finish)
     )
+
+    finish = start + 10
+    assert_equal(
+      '2021, September 21–October 1',
+      ::CFF::ApaFormatter.date_range(start, finish)
+    )
+
+    start = Date.new(1999, 12, 31)
+    finish = Date.new(2000, 1, 1)
+    assert_equal(
+      '1999, December 31–2000, January 1',
+      ::CFF::ApaFormatter.date_range(start, finish)
+    )
   end
 end
