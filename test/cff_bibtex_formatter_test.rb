@@ -58,7 +58,7 @@ class CFFBibtexFormatterTest < Minitest::Test
     end
   end
 
-  def test_generate_reference
+  def test_generate_citekey
     [
       [
         {
@@ -85,7 +85,7 @@ class CFFBibtexFormatterTest < Minitest::Test
         'Solskjaer_My_Strasse_2021'
       ]
     ].each do |fields, reference|
-      assert_equal(reference, ::CFF::BibtexFormatter.generate_reference(fields))
+      assert_equal(reference, ::CFF::BibtexFormatter.generate_citekey(fields))
     end
   end
 end
