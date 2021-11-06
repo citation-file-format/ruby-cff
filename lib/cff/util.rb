@@ -109,6 +109,20 @@ module CFF
       end
     end
 
+    def self.parameterize(string, separator: '_')
+      # Normalize into ASCII.
+      param = transliterate(string)
+
+      # Remove unwanted chars by turning them into the separator.
+      param.gsub!(/[^a-z0-9\-_]+/i, separator)
+
+      # Only one separator at a time.
+      param.gsub!(/#{separator}{2,}/, separator)
+
+      # No leading/trailing separators.
+      param.gsub(/^#{separator}|#{separator}$/i, '')
+    end
+
     # :startdoc:
   end
 end
