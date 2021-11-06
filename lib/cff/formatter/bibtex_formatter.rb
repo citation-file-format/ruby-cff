@@ -172,12 +172,12 @@ module CFF
 
     def self.generate_reference(fields)
       reference = [
-        fields['author'].split(',', 2)[0].tr(' -', '_'),
+        fields['author'].split(',', 2)[0],
         fields['title'].split[0..2],
         fields['year']
       ].compact.join('_')
 
-      Util.transliterate(reference).tr('-$£%&(){}+!?/\\:;\'"~#', '')
+      Util.parameterize(reference)
     end
   end
 end
