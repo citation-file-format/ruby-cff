@@ -75,6 +75,14 @@ class CFFBibtexFormatterTest < Minitest::Test
           'title' => "Really?! 'Everyone' Disagrees?"
         },
         'An_Organisation_Really_Everyone_Disagrees'
+      ],
+      [
+        {
+          'author' => 'Solskjær, Ole Gunnar',
+          'title' => 'My Straße',
+          'year' => '2021'
+        },
+        'Solskjaer_My_Strasse_2021'
       ]
     ].each do |fields, reference|
       assert_equal(reference, ::CFF::BibtexFormatter.generate_reference(fields))
