@@ -85,4 +85,34 @@ class CFFUtilTest < Minitest::Test
       )
     end
   end
+
+  def test_parameterize
+    [
+      ['', ''],
+      [' ', ''],
+      ['_', ''],
+      ['_abcdefg123456789_', 'abcdefg123456789'],
+      ['!$%^&*()#~@:;<>,./?|+={}[]', ''],
+      ['"\'\\`', ''],
+      ['£', ''],
+      ['Å×ßĳŋű', 'Axssijngu'],
+      ['Straße', 'Strasse'],
+      ['Bùi Viện', 'Bui_Vien'],
+      ['ŠKODA', 'SKODA'],
+      ['áëëçüñżλφθΩ𠜎😸', 'aeecunz'],
+      ['雙屬', ''],
+      ["\x00\n\x1f\x7f", ''],
+      ['3 simple words', '3_simple_words'],
+      ['3-simple-words', '3-simple-words']
+    ].each do |before, after|
+      assert_equal(after, ::CFF::Util.parameterize(before))
+    end
+
+    assert_equal(
+      'Bui-Vien', ::CFF::Util.parameterize('Bùi Viện', separator: '-')
+    )
+    assert_equal(
+      'Bui-Vien', ::CFF::Util.parameterize('Bùi  Viện--', separator: '-')
+    )
+  end
 end
