@@ -59,7 +59,7 @@ module CFF
       sorted_values = values.sort.map do |key, value|
         "#{key} = {#{value}}"
       end
-      sorted_values.insert(0, generate_reference(values))
+      sorted_values.insert(0, generate_citekey(values))
 
       "@#{publication_type}{#{sorted_values.join(",\n")}\n}"
     end
@@ -170,7 +170,7 @@ module CFF
       authors.join(' and ')
     end
 
-    def self.generate_reference(fields)
+    def self.generate_citekey(fields)
       reference = [
         fields['author'].split(',', 2)[0],
         fields['title'].split[0..2],
