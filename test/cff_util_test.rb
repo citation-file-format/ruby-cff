@@ -62,4 +62,27 @@ class CFFUtilTest < Minitest::Test
     assert_instance_of ::CFF::Person, data[0]
     assert_instance_of ::CFF::Entity, data[1]
   end
+
+  def test_transliterate
+    [
+      ['', '', nil],
+      [' ', ' ', nil],
+      ['abcdefg123456789', 'abcdefg123456789', nil],
+      ['!$%^&*()#~@:;<>,./?|-_+={}[]', '!$%^&*()#~@:;<>,./?|-_+={}[]', nil],
+      ['"\'\\`', '"\'\\`', nil],
+      ['£', '', '?'],
+      ['Å×ßĳŋű', 'Axssijngu', nil],
+      ['Straße', 'Strasse', nil],
+      ['Bùi Viện', 'Bui Vien', nil],
+      ['ŠKODA', 'SKODA', nil],
+      ['áëëçüñżλφθΩ𠜎😸', 'aeecunz', 'aee?cunz??????'],
+      ['雙屬', '', '??'],
+      ["\x00\n\x1f\x7f", "\x00\n\x1f\x7f", nil]
+    ].each do |before, after, fallback|
+      assert_equal(after, ::CFF::Util.transliterate(before))
+      assert_equal(
+        fallback || after, ::CFF::Util.transliterate(before, fallback: '?')
+      )
+    end
+  end
 end
