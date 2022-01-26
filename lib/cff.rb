@@ -18,8 +18,6 @@ require 'date'
 require 'json'
 require 'yaml'
 
-require 'language_list'
-
 # This library provides a Ruby interface to manipulate CITATION.cff files. The
 # primary entry points are Model and File.
 #
