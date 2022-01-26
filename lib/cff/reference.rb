@@ -192,6 +192,7 @@ module CFF
     # three letter language code, so `GER` becomes `deu`, `french` becomes
     # `fra` and `en` becomes `eng`.
     def add_language(lang)
+      require 'language_list'
       @fields['languages'] = [] if @fields['languages'].nil? || @fields['languages'].empty?
       lang = LanguageList::LanguageInfo.find(lang)
       return if lang.nil?
