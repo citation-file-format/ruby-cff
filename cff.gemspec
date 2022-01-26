@@ -35,7 +35,8 @@ Gem::Specification.new do |spec|
     'bug_tracker_uri' => 'https://github.com/citation-file-format/ruby-cff/issues',
     'changelog_uri' => 'https://github.com/citation-file-format/ruby-cff/blob/main/CHANGES.md',
     'documentation_uri' => 'https://citation-file-format.github.io/ruby-cff/',
-    'source_code_uri' => 'https://github.com/citation-file-format/ruby-cff'
+    'source_code_uri' => 'https://github.com/citation-file-format/ruby-cff',
+    'rubygems_mfa_required' => 'true'
   }
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
