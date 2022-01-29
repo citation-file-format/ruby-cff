@@ -59,6 +59,7 @@
 
   <ul class="link-list" role="directory">
     <li><a href="#label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby CFF Library</a>
+    <li><a href="#label-Next">Next</a>
     <li><a href="#label-Version+0.9.0">Version 0.9.0</a>
     <li><a href="#label-Version+0.8.0">Version 0.8.0</a>
     <li><a href="#label-Version+0.4.0">Version 0.4.0</a>
@@ -88,6 +89,105 @@
 <main role="main" aria-label="Page CHANGES.md">
 
 <h1 id="label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby <a href="CFF.html"><code>CFF</code></a> Library<span><a href="#label-Changes+log+for+the+Ruby+CFF+Library">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Next">Next<span><a href="#label-Next">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Add <code>type</code> to top-level <a href="CFF.html"><code>CFF</code></a> model.</p>
+</li><li>
+<p>Correctly label datasets with APA-like formatter.</p>
+</li><li>
+<p>Formatters: output a year, even if a month is not given.</p>
+</li><li>
+<p>BibTeX: generalize getting simple publication data.</p>
+</li><li>
+<p>BibTeX: generalize getting more complex publication data.</p>
+</li><li>
+<p>BibTeX: get volume number from <a href="CFF.html"><code>CFF</code></a> <code>issue</code>.</p>
+</li><li>
+<p>BibTeX: get publisher for a book.</p>
+</li><li>
+<p>APA: get publisher for a book.</p>
+</li><li>
+<p>BibTeX: add &#39;inproceedings&#39; type for a preferred-citation.</p>
+</li><li>
+<p>APA: add &#39;conference-paper&#39; type for a preferred-citation.</p>
+</li><li>
+<p>Generalize the <code>::pages_from_model</code> method.</p>
+</li><li>
+<p>BibTeX: add address information where appropriate.</p>
+</li><li>
+<p>BibTeX: use <code>software</code>, not <code>misc</code> where appropriate.</p>
+</li><li>
+<p>BibTeX: add <code>version</code> field to <code>software</code> type.</p>
+</li><li>
+<p>BibTeX: add <code>license</code> field to <code>software</code> type.</p>
+</li><li>
+<p>Update <a href="README_md.html">README</a> with the BibTeX formatter updates.</p>
+</li><li>
+<p>Adding missing mapping for proceedings and conference</p>
+</li><li>
+<p>BibTeX: add <code>manual</code> type for <code>preferred-citation</code>.</p>
+</li><li>
+<p>BibTeX: add <code>doi</code> field to <code>manual</code> type.</p>
+</li><li>
+<p>BibTeX: add <code>unpublished</code> type for <code>preferred-citation</code>.</p>
+</li><li>
+<p>BibTeX: add <code>booklet</code> type for <code>preferred-citation</code>.</p>
+</li><li>
+<p>BibTeX: add <code>techreport</code> type for <code>preferred-citation</code>.</p>
+</li><li>
+<p>BibTeX: add the <code>institution</code> field for a <code>techreport</code>.</p>
+</li><li>
+<p>APA: add the institution for a report, if possible.</p>
+</li><li>
+<p>Clean up affiliations that include location in the report fixtures.</p>
+</li><li>
+<p>Add <code>alias</code> field to <code>Entity</code>.</p>
+</li><li>
+<p>Add a note to <code>Reference</code> about the <code>format</code> field.</p>
+</li><li>
+<p>Ensure allowed fields in <code>Reference</code> are in alpha order.</p>
+</li><li>
+<p>Add <code>term</code> field to <code>Reference</code>.</p>
+</li><li>
+<p>Ensure allowed fields in <code>Entity</code> are in alpha order.</p>
+</li><li>
+<p>Define <code>ModelPart#empty?</code>.</p>
+</li><li>
+<p>Use <code>ModelPart#empty?</code> to simplify the formatter code.</p>
+</li><li>
+<p>BibTeX: add the <code>note</code> field to all types.</p>
+</li><li>
+<p>Prevent errors when cff is passed explicit <code>nil</code>s</p>
+</li><li>
+<p>Update model part constructors for consistent behaviour.</p>
+</li><li>
+<p>BibTeX: Use conference date if citing a conference paper.</p>
+</li><li>
+<p>APA: Use conference date if citing a conference paper.</p>
+</li><li>
+<p>APA: update range code to be more flexible.</p>
+</li><li>
+<p>APA: add [Conference paper] label for conference papers.</p>
+</li><li>
+<p>APA: handle date ranges with an earlier end date.</p>
+</li><li>
+<p>Add <code>Util::transliterate</code> to normalise towards ASCII.</p>
+</li><li>
+<p>Use the <code>transliterate</code> method to normalize citekeys.</p>
+</li><li>
+<p>Add <code>Util::parameterize</code> to consolidate citekey code.</p>
+</li><li>
+<p>Use the <code>parameterize</code> method to generate citekeys.</p>
+</li><li>
+<p>Rename <code>generate_reference</code> -&gt; <code>generate_citekey</code>.</p>
+</li><li>
+<p>Only require language list if it is needed</p>
+</li><li>
+<p>Fix errors caused by updated gem versions.</p>
+</li><li>
+<p>Add a note to the <a href="README_md.html">README</a> to caution against <code>URI.open</code>.</p>
+</li></ul>
 
 <h2 id="label-Version+0.9.0">Version 0.9.0<span><a href="#label-Version+0.9.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li>

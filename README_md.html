@@ -187,6 +187,8 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <span class="ruby-keyword">end</span>
 </pre>
 
+<p>:warning: <strong><code>URI.open</code> is unsafe! It is only used here as a simple example in a safe environment. Please do not use it in production code.</strong> :warning:</p>
+
 <h3 id="label-Validating+CFF+files">Validating <a href="CFF.html"><code>CFF</code></a> files<span><a href="#label-Validating+CFF+files">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>To quickly validate a file and raise an error on failure, you can use <code>CFF::File</code> directly:</p>
