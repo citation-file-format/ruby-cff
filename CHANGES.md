@@ -1,5 +1,56 @@
 # Changes log for the Ruby CFF Library
 
+## Next
+
+* Add `type` to top-level CFF model.
+* Correctly label datasets with APA-like formatter.
+* Formatters: output a year, even if a month is not given.
+* BibTeX: generalize getting simple publication data.
+* BibTeX: generalize getting more complex publication data.
+* BibTeX: get volume number from CFF `issue`.
+* BibTeX: get publisher for a book.
+* APA: get publisher for a book.
+* BibTeX: add 'inproceedings' type for a preferred-citation.
+* APA: add 'conference-paper' type for a preferred-citation.
+* Generalize the `::pages_from_model` method.
+* BibTeX: add address information where appropriate.
+* BibTeX: use `software`, not `misc` where appropriate.
+* BibTeX: add `version` field to `software` type.
+* BibTeX: add `license` field to `software` type.
+* Update README with the BibTeX formatter updates.
+* Adding missing mapping for proceedings and conference
+* BibTeX: add `manual` type for `preferred-citation`.
+* BibTeX: add `doi` field to `manual` type.
+* BibTeX: add `unpublished` type for `preferred-citation`.
+* BibTeX: add `booklet` type for `preferred-citation`.
+* BibTeX: add `techreport` type for `preferred-citation`.
+* BibTeX: add the `institution` field for a `techreport`.
+* APA: add the institution for a report, if possible.
+* Clean up affiliations that include location in the report fixtures.
+* Add `alias` field to `Entity`.
+* Add a note to `Reference` about the `format` field.
+* Ensure allowed fields in `Reference` are in alpha order.
+* Add `term` field to `Reference`.
+* Ensure allowed fields in `Entity` are in alpha order.
+* Define `ModelPart#empty?`.
+* Use `ModelPart#empty?` to simplify the formatter code.
+* BibTeX: add the `note` field to all types.
+* Prevent errors when cff is passed explicit `nil`s
+* Update model part constructors for consistent behaviour.
+* BibTeX: Use conference date if citing a conference paper.
+* APA: Use conference date if citing a conference paper.
+* APA: update range code to be more flexible.
+* APA: add [Conference paper] label for conference papers.
+* APA: handle date ranges with an earlier end date.
+* Add `Util::transliterate` to normalise towards ASCII.
+* Use the `transliterate` method to normalize citekeys.
+* Add `Util::parameterize` to consolidate citekey code.
+* Use the `parameterize` method to generate citekeys.
+* Rename `generate_reference` -> `generate_citekey`.
+* Only require language list if it is needed
+* Fix errors caused by updated gem versions.
+* Add a note to the README to caution against `URI.open`.
+
 ## Version 0.9.0
 
 * Update to final released version of schema 1.2.0.
