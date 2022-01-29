@@ -104,6 +104,8 @@ CFF::File.open('CITATION.cff') do |cff|
 end
 ```
 
+:warning: **`URI.open` is unsafe! It is only used here as a simple example in a safe environment. Please do not use it in production code.** :warning:
+
 ### Validating CFF files
 
 To quickly validate a file and raise an error on failure, you can use `CFF::File` directly:
