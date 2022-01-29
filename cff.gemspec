@@ -35,7 +35,8 @@ Gem::Specification.new do |spec|
     'bug_tracker_uri' => 'https://github.com/citation-file-format/ruby-cff/issues',
     'changelog_uri' => 'https://github.com/citation-file-format/ruby-cff/blob/main/CHANGES.md',
     'documentation_uri' => 'https://citation-file-format.github.io/ruby-cff/',
-    'source_code_uri' => 'https://github.com/citation-file-format/ruby-cff'
+    'source_code_uri' => 'https://github.com/citation-file-format/ruby-cff',
+    'rubygems_mfa_required' => 'true'
   }
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
@@ -53,9 +54,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'minitest', '~> 5.14'
   spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'rdoc', '~> 6.3'
-  spec.add_development_dependency 'rubocop', '~> 1.15'
-  spec.add_development_dependency 'rubocop-minitest', '~> 0.13'
+  spec.add_development_dependency 'rdoc', '~> 6.3.2'
+  spec.add_development_dependency 'rubocop', '~> 1.25.0'
+  spec.add_development_dependency 'rubocop-minitest', '~> 0.17.0'
   spec.add_development_dependency 'rubocop-performance', '~> 1.11.0'
   spec.add_development_dependency 'rubocop-rake', '~> 0.5.0'
   spec.add_development_dependency 'simplecov', '~> 0.20.0'

@@ -506,7 +506,7 @@ class CFFFileTest < Minitest::Test
     assert_equal(comment, ::CFF::File.parse_comment(file))
   end
 
-  if RUBY_VERSION[0..2].to_f >= 3
+  if YAML.respond_to?(:safe_load_file)
     def load_yaml(file)
       YAML.safe_load_file(file, permitted_classes: [Date, Time])
     end
