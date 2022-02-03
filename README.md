@@ -95,7 +95,7 @@ To quickly reference other software from your own CFF file, you can use `CFF::Re
 require 'open-uri'
 
 uri = 'https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/CITATION.cff'
-other_cff = URI.open(uri).read
+other_cff = URI(uri).open.read
 
 ref = CFF::Reference.from_cff(CFF::Model.read(other_cff))
 
@@ -103,8 +103,6 @@ CFF::File.open('CITATION.cff') do |cff|
   cff.references = [ref]
 end
 ```
-
-:warning: **`URI.open` is unsafe! It is only used here as a simple example in a safe environment. Please do not use it in production code.** :warning:
 
 ### Validating CFF files
 
