@@ -178,7 +178,7 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;open-uri&#39;</span>
 
 <span class="ruby-identifier">uri</span> = <span class="ruby-string">&#39;https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/CITATION.cff&#39;</span>
-<span class="ruby-identifier">other_cff</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">uri</span>).<span class="ruby-identifier">read</span>
+<span class="ruby-identifier">other_cff</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">uri</span>).<span class="ruby-identifier">open</span>.<span class="ruby-identifier">read</span>
 
 <span class="ruby-identifier">ref</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Reference</span>.<span class="ruby-identifier">from_cff</span>(<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">other_cff</span>))
 
@@ -186,8 +186,6 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">references</span> = [<span class="ruby-identifier">ref</span>]
 <span class="ruby-keyword">end</span>
 </pre>
-
-<p>:warning: <strong><code>URI.open</code> is unsafe! It is only used here as a simple example in a safe environment. Please do not use it in production code.</strong> :warning:</p>
 
 <h3 id="label-Validating+CFF+files">Validating <a href="CFF.html"><code>CFF</code></a> files<span><a href="#label-Validating+CFF+files">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
