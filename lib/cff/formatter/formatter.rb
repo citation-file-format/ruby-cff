@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -42,7 +42,11 @@ module CFF
         return [model.month, model.year].map(&:to_s)
       end
 
-      month_and_year_from_date(model.date_released)
+      date = month_and_year_from_date(model.date_released)
+      if date == ['', ''] && model.respond_to?(:date_published)
+        date = month_and_year_from_date(model.date_published)
+      end
+      date
     end
 
     def self.month_and_year_from_date(value)
