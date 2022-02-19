@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -67,7 +67,8 @@ module CFF
     end
 
     def self.volume_from_model(model)
-      model.volume.to_s.empty? ? '' : "#{model.volume}(#{model.issue})"
+      issue = model.issue.to_s.empty? ? '' : "(#{model.issue})"
+      model.volume.to_s.empty? ? '' : "#{model.volume}#{issue}"
     end
 
     # If we're citing a conference paper, try and use the date of the
