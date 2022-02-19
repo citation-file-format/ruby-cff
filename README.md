@@ -186,7 +186,7 @@ cff.to_apalike(preferred_citation: false)
 
 #### A note on citation formats
 
-Due to the different expectations of different publication venues, the citation text may need minor tweaking to be used in specific situations. If you spot a major, or general, error in the output please [let us know](https://github.com/citation-file-format/ruby-cff/issues).
+Due to the different expectations of different publication venues, the citation text may need minor tweaking to be used in specific situations. If you spot a major, or general, error in the output do [let us know](https://github.com/citation-file-format/ruby-cff/issues), but please check against the [BibTex](https://www.bibtex.com/format/) and [APA](https://apastyle.apa.org/style-grammar-guidelines/references) standards first.
 
 ### Library versions
 
