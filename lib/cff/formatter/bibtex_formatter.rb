@@ -39,9 +39,7 @@ module CFF
       return if model.nil?
 
       values = {}
-      values['author'] = combine_authors(
-        model.authors.map { |author| format_author(author) }
-      )
+      values['author'] = actor_list(model.authors)
       values['title'] = "{#{model.title}}"
 
       publication_type = bibtex_type(model)
@@ -153,7 +151,7 @@ module CFF
       end
     end
 
-    def self.format_author(author)
+    def self.format_actor(author)
       return "{#{author.name}}" if author.is_a?(Entity)
 
       particle =
@@ -166,8 +164,8 @@ module CFF
       ].reject(&:empty?).join(', ')
     end
 
-    def self.combine_authors(authors)
-      authors.join(' and ')
+    def self.actor_list(actors)
+      actors.map { |actor| format_actor(actor) }.join(' and ')
     end
 
     def self.generate_citekey(fields)
