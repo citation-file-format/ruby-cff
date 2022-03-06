@@ -23,7 +23,7 @@ module CFF
     # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {
       'article' => %w[doi journal number! pages! volume],
-      'book' => %w[address! doi isbn number! pages! publisher! volume],
+      'book' => %w[address! doi editor! isbn number! pages! publisher! volume],
       'booklet' => %w[address! doi],
       'inproceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'manual' => %w[address! doi],

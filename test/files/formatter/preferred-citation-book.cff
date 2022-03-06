@@ -11,6 +11,11 @@ preferred-citation:
   authors:
   - family-names: Bueler
     given-names: Ed
+  editors:
+    - family-names: InChief
+      given-names: Ed
+    - family-names: Assist
+      given-names: Ed
   title: "PETSc for Partial Differential Equations: Numerical Solutions in C and Python"
   publisher:
     name: SIAM Press
