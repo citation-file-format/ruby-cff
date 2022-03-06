@@ -28,7 +28,7 @@ module CFF
       'inproceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'manual' => %w[address! doi],
       'misc' => %w[doi pages!],
-      'proceedings' => %w[address! booktitle! doi pages! publisher! series!],
+      'proceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'software' => %w[doi license version],
       'techreport' => %w[address! doi institution! number!],
       'unpublished' => %w[doi]
