@@ -106,8 +106,13 @@ module CFF
       model.collection_title
     end
 
+    # BibTeX 'editor' is CFF 'editors' or 'editors-series'.
     def self.editor_from_model(model)
-      model.editors.empty? ? '' : actor_list(model.editors)
+      if model.editors.empty?
+        model.editors_series.empty? ? '' : actor_list(model.editors_series)
+      else
+        actor_list(model.editors)
+      end
     end
 
     def self.publisher_from_model(model)

@@ -27,6 +27,9 @@ preferred-citation:
       given-names: Ed
     - family-names: Assist
       given-names: Ed
+  editors-series:
+    - family-names: NotListed
+      given-names: Ed
   title: "The Spack Package Manager: Bringing Order to HPC Software Chaos"
   year: 2015
   month: 11

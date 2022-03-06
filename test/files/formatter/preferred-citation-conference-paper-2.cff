@@ -32,6 +32,11 @@ preferred-citation:
     country: "USA"
   publisher:
     name: ACM/IEEE
+  editors-series:
+    - family-names: InChief
+      given-names: Ed
+    - family-names: Assist
+      given-names: Ed
   year: 2016
   month: 12
   doi: 10.1244/2886907.2879400
