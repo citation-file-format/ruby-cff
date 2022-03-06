@@ -22,6 +22,11 @@ preferred-citation:
       given-names: "Bronis R."
     - family-names: "Futral"
       given-names: "Scott"
+  editors:
+    - family-names: InChief
+      given-names: Ed
+    - family-names: Assist
+      given-names: Ed
   title: "The Spack Package Manager: Bringing Order to HPC Software Chaos"
   year: 2015
   month: 11

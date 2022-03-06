@@ -25,7 +25,7 @@ module CFF
       'article' => %w[doi journal number! pages! volume],
       'book' => %w[address! doi isbn number! pages! publisher! volume],
       'booklet' => %w[address! doi],
-      'inproceedings' => %w[address! booktitle! doi pages! publisher! series!],
+      'inproceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'manual' => %w[address! doi],
       'misc' => %w[doi pages!],
       'proceedings' => %w[address! booktitle! doi pages! publisher! series!],
@@ -104,6 +104,10 @@ module CFF
     # BibTeX 'booktitle' is CFF 'collection-title'.
     def self.booktitle_from_model(model)
       model.collection_title
+    end
+
+    def self.editor_from_model(model)
+      model.editors.empty? ? '' : actor_list(model.editors)
     end
 
     def self.publisher_from_model(model)
