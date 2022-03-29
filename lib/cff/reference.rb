@@ -96,41 +96,17 @@ module CFF
 
     # This list does not include `format` for reasons explained below, where
     # the `format` method is defined!
-    ALLOWED_FIELDS = [
-      'abbreviation', 'abstract', 'authors', 'collection-doi',
-      'collection-title', 'collection-type', 'commit', 'conference', 'contact',
-      'copyright', 'data-type', 'database', 'database-provider',
-      'date-accessed', 'date-downloaded', 'date-published', 'date-released',
-      'department', 'doi', 'edition', 'editors', 'editors-series', 'end',
-      'entry', 'filename', 'identifiers', 'institution', 'isbn', 'issn',
-      'issue', 'issue-date', 'issue-title', 'journal', 'keywords', 'license',
-      'license-url', 'loc-end', 'loc-start', 'location', 'medium', 'month',
-      'nihmsid', 'notes', 'number', 'number-volumes', 'pages', 'patent-states',
-      'pmcid', 'publisher', 'recipients', 'repository', 'repository-artifact',
-      'repository-code', 'scope', 'section', 'senders', 'start', 'status',
-      'term', 'thesis-type', 'title', 'translators', 'type', 'url', 'version',
-      'volume', 'volume-title', 'year', 'year-original'
-    ].freeze # :nodoc:
+    ALLOWED_FIELDS = (
+      SCHEMA_FILE['definitions']['reference']['properties'].keys - ['format', 'languages']
+    ).freeze # :nodoc:
 
-    # The [defined set of reference types](https://github.com/citation-file-format/citation-file-format#reference-types).
-    REFERENCE_TYPES = [
-      'art', 'article', 'audiovisual', 'bill', 'blog', 'book', 'catalogue',
-      'conference', 'conference-paper', 'data', 'database', 'dictionary',
-      'edited-work', 'encyclopedia', 'film-broadcast', 'generic',
-      'government-document', 'grant', 'hearing', 'historical-work',
-      'legal-case', 'legal-rule', 'magazine-article', 'manual', 'map',
-      'multimedia', 'music', 'newspaper-article', 'pamphlet', 'patent',
-      'personal-communication', 'proceedings', 'report', 'serial', 'slides',
-      'software', 'software-code', 'software-container', 'software-executable',
-      'software-virtual-machine', 'sound-recording', 'standard', 'statute',
-      'thesis', 'unpublished', 'video', 'website'
-    ].freeze
+    # The [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
+    REFERENCE_TYPES =
+      SCHEMA_FILE['definitions']['reference']['properties']['type']['enum'].dup.freeze
 
-    # The [defined set of reference status types](https://github.com/citation-file-format/citation-file-format#status-strings).
-    REFERENCE_STATUS_TYPES = [
-      'abstract', 'advance-online', 'in-preparation', 'in-press',
-      'pre-print', 'submitted'
-    ].freeze
+    # The [defined set of reference status types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencestatus).
+    REFERENCE_STATUS_TYPES =
+      SCHEMA_FILE['definitions']['reference']['properties']['status']['enum'].dup.freeze
 
     # :call-seq:
     #   new(title) -> Reference
@@ -140,7 +116,7 @@ module CFF
     #
     # Create a new Reference with the supplied title and, optionally, type.
     # If type is not given, or is not one of the
-    # [defined set of reference types](https://github.com/citation-file-format/citation-file-format#reference-types),
+    # [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype),
     # 'generic' will be used by default.
     def initialize(param, *more) # rubocop:disable Metrics/AbcSize
       if param.is_a?(Hash)
@@ -281,7 +257,7 @@ module CFF
     #   status = status
     #
     # Sets the status of this Reference. The status is restricted to a
-    # [defined set of status types](https://github.com/citation-file-format/citation-file-format#status-strings).
+    # [defined set of status types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencestatus).
     def status=(status)
       status = status.downcase
       @fields['status'] = status if REFERENCE_STATUS_TYPES.include?(status)
@@ -291,7 +267,7 @@ module CFF
     #   type = type
     #
     # Sets the type of this Reference. The type is restricted to a
-    # [defined set of reference types](https://github.com/citation-file-format/citation-file-format#reference-types).
+    # [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
     def type=(type)
       type = type.downcase
       @fields['type'] = type if REFERENCE_TYPES.include?(type)

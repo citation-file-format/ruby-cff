@@ -95,8 +95,8 @@ class CFFReferenceTest < Minitest::Test
     refute_equal('published', @reference.status)
     assert_equal('in-press', @reference.status)
 
-    @reference.status = 'Pre-Print'
-    assert_equal('pre-print', @reference.status)
+    @reference.status = 'Preprint'
+    assert_equal('preprint', @reference.status)
   end
 
   def test_languages_methods
