@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,11 +44,8 @@ module CFF
   # * `website`
   class Entity < ModelPart
 
-    ALLOWED_FIELDS = [
-      'address', 'alias', 'city', 'country', 'date-end', 'date-start', 'email',
-      'fax', 'location', 'name', 'orcid', 'post-code', 'region', 'tel',
-      'website'
-    ].freeze # :nodoc:
+    # :nodoc:
+    ALLOWED_FIELDS = SCHEMA_FILE['definitions']['entity']['properties'].keys.freeze
 
     # :call-seq:
     #   new(name) -> Entity
