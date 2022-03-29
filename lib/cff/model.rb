@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,16 +48,11 @@ module CFF
     include Licensable
     include Validatable
 
-    ALLOWED_FIELDS = [
-      'abstract', 'authors', 'cff-version', 'contact', 'commit',
-      'date-released', 'doi', 'identifiers', 'keywords', 'license',
-      'license-url', 'message', 'preferred-citation', 'references',
-      'repository', 'repository-artifact', 'repository-code', 'title',
-      'type', 'url', 'version'
-    ].freeze # :nodoc:
+    # :nodoc:
+    ALLOWED_FIELDS = SCHEMA_FILE['properties'].keys.freeze
 
     # The allowed CFF [types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
-    MODEL_TYPES = ['dataset', 'software'].freeze
+    MODEL_TYPES = SCHEMA_FILE['properties']['type']['enum'].dup.freeze
 
     # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
