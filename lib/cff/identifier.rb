@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,10 +30,14 @@ module CFF
   # * `value`
   class Identifier < ModelPart
 
-    ALLOWED_FIELDS = ['description', 'type', 'value'].freeze # :nodoc:
+    # :nodoc:
+    ALLOWED_FIELDS =
+      SCHEMA_FILE['definitions']['identifier']['anyOf'].first['properties'].keys.dup.freeze
 
     # The [defined set of identifier types](https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings).
-    IDENTIFIER_TYPES = ['doi', 'url', 'swh', 'other'].freeze
+    IDENTIFIER_TYPES = SCHEMA_FILE['definitions']['identifier']['anyOf'].map do |id|
+      id['properties']['type']['enum'].first
+    end.freeze
 
     # :call-seq:
     #   new -> Identifier
