@@ -67,16 +67,6 @@
     
     
     
-<!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    <li ><a href="#method-c-new">::new</a>
-    <li ><a href="#method-i-type-3D">#type=</a>
-  </ul>
-</div>
-
   </div>
 </nav>
 
@@ -103,102 +93,8 @@
   <section id="5Buntitled-5D" class="documentation-section">
 
 
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
-        <dt id="IDENTIFIER_TYPES">IDENTIFIER_TYPES
-        <dd><p>The <a href="https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings">defined set of identifier types</a>.</p>
-      </dl>
-    </section>
 
 
-
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-      <div id="method-c-new" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-callseq">
-            new &rarr; Identifier
-          </span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            new { |id| block } &rarr; Identifier
-          </span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            new(type, value) &rarr; Identifier
-          </span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            new(type, value) { |id| block } &rarr; Identifier
-          </span>
-        </div>
-
-        <div class="method-description">
-          <p>Create a new <a href="Identifier.html"><code>Identifier</code></a> with the optionally supplied type and value. If the supplied type is invalid, then neither the type or value are set.</p>
-
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">more</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
-    <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">param</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@fields</span> = {}
-
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">nil?</span>
-      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">type</span> = <span class="ruby-identifier">param</span>
-      <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;value&#39;</span>] = <span class="ruby-identifier">more</span>[<span class="ruby-value">0</span>] <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>].<span class="ruby-identifier">nil?</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-    </section>
-
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-      <div id="method-i-type-3D" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-callseq">
-            type = type
-          </span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-
-        <div class="method-description">
-          <p>Sets the type of this <a href="Identifier.html"><code>Identifier</code></a>. The type is restricted to a <a href="https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings">defined set of identifier types</a>.</p>
-
-          <div class="method-source-code" id="type-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/identifier.rb, line 66</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type=</span>(<span class="ruby-identifier">type</span>)
-  <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
-  <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">type</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">IDENTIFIER_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-    </section>
 
   </section>
 </main>

@@ -67,15 +67,6 @@
     
     
     
-<!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
-    <li ><a href="#method-c-new">::new</a>
-  </ul>
-</div>
-
   </div>
 </nav>
 
@@ -130,61 +121,6 @@
 
 
 
-
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-      <div id="method-c-new" class="method-detail ">
-        <div class="method-heading">
-          <span class="method-callseq">
-            new &rarr; Person
-          </span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            new { |person| block } &rarr; Person
-          </span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            new(given_name, family_name) &rarr; Person
-          </span>
-        </div>
-        <div class="method-heading">
-          <span class="method-callseq">
-            new(given_name, family_name) { |person| block } &rarr; Person
-          </span>
-        </div>
-
-        <div class="method-description">
-          <p>Create a new <a href="Person.html"><code>Person</code></a> with the optionally supplied given and family names.</p>
-
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cff/person.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">more</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
-    <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">param</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@fields</span> = {}
-
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">nil?</span>
-      <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;family-names&#39;</span>] = <span class="ruby-identifier">more</span>[<span class="ruby-value">0</span>]
-      <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;given-names&#39;</span>] = <span class="ruby-identifier">param</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-    </section>
 
   </section>
 </main>
