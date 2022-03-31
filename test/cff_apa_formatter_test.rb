@@ -20,29 +20,29 @@ class CFFApaFormatterTest < Minitest::Test
   end
 
   def test_can_tolerate_invalid_file
-    cff = CFF::Model.new(nil)
+    cff = CFF::Index.new(nil)
     assert_nil cff.to_apalike
   end
 
   def test_type_label_from_model
-    model = ::CFF::Model.new('Title')
+    index = ::CFF::Index.new('Title')
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(model)
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(index)
     )
 
-    model.type = 'wrong'
+    index.type = 'wrong'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(model)
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(index)
     )
 
-    model.type = 'software'
+    index.type = 'software'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(model)
+      ' [Computer software]', ::CFF::ApaFormatter.type_label(index)
     )
 
-    model.type = 'dataset'
+    index.type = 'dataset'
     assert_equal(
-      ' [Data set]', ::CFF::ApaFormatter.type_label(model)
+      ' [Data set]', ::CFF::ApaFormatter.type_label(index)
     )
   end
 

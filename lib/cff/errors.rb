@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ module CFF
   #
   # Additionally, the `invalid_filename` flag is used to indicate whether the
   # CFF file is named correctly. This is only used when validating a File;
-  # validating a Model directly will not set this flag to `true`.
+  # validating a Index directly will not set this flag to `true`.
   class ValidationError < Error
 
     # The list of JsonSchema::ValidationErrors found by the validator.

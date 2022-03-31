@@ -24,7 +24,7 @@ module CFF
         model = model.preferred_citation
       end
 
-      # Safe to assume valid `Model`s and `Reference`s will have these fields.
+      # Safe to assume valid `Index`s and `Reference`s will have these fields.
       model.authors.empty? || model.title.empty? ? nil : model
     end
 

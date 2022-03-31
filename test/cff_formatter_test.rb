@@ -36,7 +36,7 @@ class CFFFormatterTest < Minitest::Test
   def test_month_and_year_from_model
     date = Date.parse('2021-08-05')
 
-    model = ::CFF::Model.new('Title')
+    model = ::CFF::Index.new('Title')
     model.date_released = date
     assert_equal(
       ['8', '2021'], CFF::Formatter.month_and_year_from_model(model)

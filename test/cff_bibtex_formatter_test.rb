@@ -20,19 +20,19 @@ class CFFBibtexFormatterTest < Minitest::Test
   end
 
   def test_can_tolerate_invalid_file
-    cff = CFF::Model.new(nil)
+    cff = CFF::Index.new(nil)
     assert_nil cff.to_bibtex
   end
 
   def test_bibtex_type
-    model = ::CFF::Model.new('Title')
-    assert_equal('software', ::CFF::BibtexFormatter.bibtex_type(model))
+    index = ::CFF::Index.new('Title')
+    assert_equal('software', ::CFF::BibtexFormatter.bibtex_type(index))
 
-    model.type = 'software'
-    assert_equal('software', ::CFF::BibtexFormatter.bibtex_type(model))
+    index.type = 'software'
+    assert_equal('software', ::CFF::BibtexFormatter.bibtex_type(index))
 
-    model.type = 'dataset'
-    assert_equal('misc', ::CFF::BibtexFormatter.bibtex_type(model))
+    index.type = 'dataset'
+    assert_equal('misc', ::CFF::BibtexFormatter.bibtex_type(index))
 
     ref = ::CFF::Reference.new('Title')
     assert_equal('misc', ::CFF::BibtexFormatter.bibtex_type(ref))

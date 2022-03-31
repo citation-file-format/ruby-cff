@@ -17,10 +17,10 @@
 ##
 module CFF
 
-  # Model is the core data structure for a CITATION.cff file. It can be
+  # Index is the core data structure for a CITATION.cff file. It can be
   # accessed direcly, or via File.
   #
-  # Model implements all of the fields listed in the
+  # Index implements all of the fields listed in the
   # [CFF standard](https://citation-file-format.github.io/). Complex
   # fields - `authors`, `contact`, `identifiers`, `keywords`,
   # `preferred-citation`, `references` and `type` - are documented below. All
@@ -43,7 +43,7 @@ module CFF
   # * `title`
   # * `url`
   # * `version`
-  class Model < ModelPart
+  class Index < ModelPart
 
     include Licensable
     include Validatable
@@ -59,13 +59,13 @@ module CFF
                       'it using the following metadata'
 
     # :call-seq:
-    #   new(title) -> Model
-    #   new(title) { |model| block } -> Model
+    #   new(title) -> Index
+    #   new(title) { |index| block } -> Index
     #
-    # Initialize a new Model with the supplied title.
+    # Initialize a new Index with the supplied title.
     def initialize(param)
       if param.is_a?(Hash)
-        @fields = build_model(param)
+        @fields = build_index(param)
       else
         @fields = {}
         @fields['cff-version'] = DEFAULT_SPEC_VERSION
@@ -81,22 +81,22 @@ module CFF
     end
 
     # :call-seq:
-    #   read(String) -> Model
+    #   read(String) -> Index
     #
-    # Read a CFF Model from a String and parse it for subsequent manipulation.
-    def self.read(model)
-      new(YAML.safe_load(model, permitted_classes: [Date, Time]))
+    # Read a CFF Index from a String and parse it for subsequent manipulation.
+    def self.read(index)
+      new(YAML.safe_load(index, permitted_classes: [Date, Time]))
     end
 
     # :call-seq:
-    #   open(String) -> Model
-    #   open(String) { |cff| block } -> Model
+    #   open(String) -> Index
+    #   open(String) { |cff| block } -> Index
     #
-    # With no associated block, Model.open is a synonym for ::read. If the
-    # optional code block is given, it will be passed the parsed model as an
-    # argument and the Model will be returned when the block terminates.
-    def self.open(model)
-      cff = Model.read(model)
+    # With no associated block, Index.open is a synonym for ::read. If the
+    # optional code block is given, it will be passed the parsed index as an
+    # argument and the Index will be returned when the block terminates.
+    def self.open(index)
+      cff = Index.read(index)
 
       yield cff if block_given?
 
@@ -117,7 +117,7 @@ module CFF
     # :call-seq:
     #   type = type
     #
-    # Sets the type of this CFF Model. The type is currently restricted to one
+    # Sets the type of this CFF Index. The type is currently restricted to one
     # of `software` or `dataset`. If this field is not set then you should
     # assume that the type is `software`.
     def type=(type)
@@ -132,11 +132,11 @@ module CFF
     # :call-seq:
     #   to_apalike(preferred_citation: true) -> String
     #
-    # Output this Model in an APA-like format. Setting
+    # Output this Index in an APA-like format. Setting
     # `preferred_citation: true` will honour the `preferred_citation` field in
-    # the model if one is present (default).
+    # the index if one is present (default).
     #
-    # *Note:* This method assumes that this Model is valid when called.
+    # *Note:* This method assumes that this Index is valid when called.
     def to_apalike(preferred_citation: true)
       CFF::ApaFormatter.format(
         model: self, preferred_citation: preferred_citation
@@ -146,11 +146,11 @@ module CFF
     # :call-seq:
     #   to_bibtex(preferred_citation: true) -> String
     #
-    # Output this Model in BibTeX format. Setting
+    # Output this Index in BibTeX format. Setting
     # `preferred_citation: true` will honour the `preferred_citation` field in
-    # the model if one is present (default).
+    # the index if one is present (default).
     #
-    # *Note:* This method assumes that this Model is valid when called.
+    # *Note:* This method assumes that this Index is valid when called.
     def to_bibtex(preferred_citation: true)
       CFF::BibtexFormatter.format(
         model: self, preferred_citation: preferred_citation
@@ -167,7 +167,7 @@ module CFF
       fields_to_hash(@fields)
     end
 
-    def build_model(fields) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+    def build_index(fields) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
       build_actor_collection!(fields['authors'] || [])
       build_actor_collection!(fields['contact'] || [])
       (fields['identifiers'] || []).map! do |i|
@@ -199,7 +199,7 @@ module CFF
     # list, use:
     #
     # ```
-    # model.authors << author
+    # index.authors << author
     # ```
     #
     # Authors can be a Person or Entity.
@@ -222,7 +222,7 @@ module CFF
     # list, use:
     #
     # ```
-    # model.contact << contact
+    # index.contact << contact
     # ```
     #
     # Contacts can be a Person or Entity.
@@ -245,7 +245,7 @@ module CFF
     # the list, use:
     #
     # ```
-    # model.identifiers << identifier
+    # index.identifiers << identifier
     # ```
 
     ##
@@ -264,7 +264,7 @@ module CFF
     # list, use:
     #
     # ```
-    # model.keywords << keyword
+    # index.keywords << keyword
     # ```
     #
     # Keywords will be converted to Strings on output.
@@ -301,7 +301,7 @@ module CFF
     # list, use:
     #
     # ```
-    # model.references << reference
+    # index.references << reference
     # ```
 
     ##
@@ -311,4 +311,7 @@ module CFF
     #
     # Replace the list of references for this citation.
   end
+
+  # For backwards compatibility. Delete for version 1.0.0.
+  Model = Index # :nodoc:
 end

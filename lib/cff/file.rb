@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 ##
 module CFF
 
-  # File provides direct access to a CFF Model, with the addition of some
+  # File provides direct access to a CFF Index, with the addition of some
   # filesystem utilities.
   #
   # To be a fully compliant and valid CFF file its filename should be
@@ -42,18 +42,18 @@ module CFF
 
     # :call-seq:
     #   new(filename, title) -> File
-    #   new(filename, model) -> File
+    #   new(filename, index) -> File
     #
-    # Create a new File. Either a pre-existing Model can be passed in or, as
-    # with Model itself, a title can be supplied to initalize a new File.
+    # Create a new File. Either a pre-existing Index can be passed in or, as
+    # with Index itself, a title can be supplied to initalize a new File.
     #
-    # All methods provided by Model are also available directly on File
+    # All methods provided by Index are also available directly on File
     # objects.
     def initialize(filename, param, comment = CFF_COMMENT, create: false)
-      param = Model.new(param) unless param.is_a?(Model)
+      param = Index.new(param) unless param.is_a?(Index)
 
       @filename = filename
-      @model = param
+      @index = param
       @comment = comment
       @dirty = create
     end
@@ -132,10 +132,10 @@ module CFF
 
     # :call-seq:
     #   write(filename, File)
-    #   write(filename, Model)
+    #   write(filename, Index)
     #   write(filename, yaml)
     #
-    # Write the supplied File, Model or yaml string to `file`.
+    # Write the supplied File, Index or yaml string to `file`.
     def self.write(file, cff, comment = '')
       comment = cff.comment if cff.respond_to?(:comment)
       cff = cff.to_yaml unless cff.is_a?(String)
@@ -157,7 +157,7 @@ module CFF
     # validation failure with the `fail_on_filename` parameter (default: true).
     def validate(fail_fast: false, fail_on_filename: true)
       valid_filename = (::File.basename(@filename) == CFF_VALID_FILENAME)
-      result = (@model.validate(fail_fast: fail_fast) << valid_filename)
+      result = (@index.validate(fail_fast: fail_fast) << valid_filename)
       result[0] &&= valid_filename if fail_on_filename
 
       result
@@ -194,7 +194,7 @@ module CFF
         @dirty = true
       end
 
-      File.write(@filename, @model, @comment) if @dirty
+      File.write(@filename, @index, @comment) if @dirty
       @dirty = false
     end
 
@@ -218,20 +218,20 @@ module CFF
     end
 
     def to_yaml # :nodoc:
-      @model.to_yaml
+      @index.to_yaml
     end
 
     def method_missing(name, *args) # :nodoc:
-      if @model.respond_to?(name)
+      if @index.respond_to?(name)
         @dirty = true if name.to_s.end_with?('=') # Remove to_s when Ruby >2.6.
-        @model.send(name, *args)
+        @index.send(name, *args)
       else
         super
       end
     end
 
     def respond_to_missing?(name, *all) # :nodoc:
-      @model.respond_to?(name, *all)
+      @index.respond_to?(name, *all)
     end
 
     def self.format_comment(comment) # :nodoc:

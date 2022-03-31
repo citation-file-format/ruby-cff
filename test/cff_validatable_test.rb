@@ -151,7 +151,7 @@ class CFFValidatableTest < Minitest::Test
   end
 
   def test_validate_model
-    cff = ::CFF::Model.new('My software')
+    cff = ::CFF::Index.new('My software')
 
     error = assert_raises(::CFF::ValidationError) do
       cff.validate!

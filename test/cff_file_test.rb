@@ -37,8 +37,8 @@ class CFFFileTest < Minitest::Test
 
   def test_new_file_from_model
     title = 'software'
-    model = ::CFF::Model.new(title)
-    file = ::CFF::File.new('', model)
+    index = ::CFF::Index.new(title)
+    file = ::CFF::File.new('', index)
 
     assert_equal(::CFF::DEFAULT_SPEC_VERSION, file.cff_version)
     assert_equal(title, file.title)
@@ -358,11 +358,11 @@ class CFFFileTest < Minitest::Test
   end
 
   def test_write_cff_file_from_string
-    model = ::CFF::Model.new('software')
-    model.version = '1.0.0'
-    model.date_released = '1999-12-31'
+    index = ::CFF::Index.new('software')
+    index.version = '1.0.0'
+    index.date_released = '1999-12-31'
     within_construct(CONSTRUCT_OPTS) do
-      ::CFF::File.write(OUTPUT_CFF, model.to_yaml)
+      ::CFF::File.write(OUTPUT_CFF, index.to_yaml)
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
@@ -372,11 +372,11 @@ class CFFFileTest < Minitest::Test
   end
 
   def test_write_cff_file_from_model
-    model = ::CFF::Model.new('software')
-    model.version = '1.0.0'
-    model.date_released = '1999-12-31'
+    index = ::CFF::Index.new('software')
+    index.version = '1.0.0'
+    index.date_released = '1999-12-31'
     within_construct(CONSTRUCT_OPTS) do
-      ::CFF::File.write(OUTPUT_CFF, model)
+      ::CFF::File.write(OUTPUT_CFF, index)
       check_file_contents(OUTPUT_CFF, 'cff-version')
       check_file_contents(OUTPUT_CFF, 'date-released: 1999-12-31')
       check_file_contents(OUTPUT_CFF, ::CFF::File::YAML_HEADER, exists: false)
@@ -387,11 +387,11 @@ class CFFFileTest < Minitest::Test
 
   def test_write_cff_file_from_file
     comment = 'Test comment.'
-    model = ::CFF::Model.new('software')
-    model.version = '1.0.0'
-    model.date_released = '1999-12-31'
+    index = ::CFF::Index.new('software')
+    index.version = '1.0.0'
+    index.date_released = '1999-12-31'
 
-    file = ::CFF::File.new(OUTPUT_CFF, model, comment, create: true)
+    file = ::CFF::File.new(OUTPUT_CFF, index, comment, create: true)
     assert_equal file.comment, comment
 
     within_construct(CONSTRUCT_OPTS) do
@@ -406,11 +406,11 @@ class CFFFileTest < Minitest::Test
 
   def test_write_cff_file_from_file_class_method
     comment = 'Test comment.'
-    model = ::CFF::Model.new('software')
-    model.version = '1.0.0'
-    model.date_released = '1999-12-31'
+    index = ::CFF::Index.new('software')
+    index.version = '1.0.0'
+    index.date_released = '1999-12-31'
 
-    file = ::CFF::File.new('WRONG.cff', model, comment, create: true)
+    file = ::CFF::File.new('WRONG.cff', index, comment, create: true)
     assert_equal file.comment, comment
 
     within_construct(CONSTRUCT_OPTS) do
@@ -428,11 +428,11 @@ class CFFFileTest < Minitest::Test
 
   def test_write_cff_file_from_file_save_as
     comment = 'Test comment.'
-    model = ::CFF::Model.new('software')
-    model.version = '1.0.0'
-    model.date_released = '1999-12-31'
+    index = ::CFF::Index.new('software')
+    index.version = '1.0.0'
+    index.date_released = '1999-12-31'
 
-    file = ::CFF::File.new('WRONG.cff', model, comment, create: true)
+    file = ::CFF::File.new('WRONG.cff', index, comment, create: true)
     assert_equal file.comment, comment
 
     within_construct(CONSTRUCT_OPTS) do

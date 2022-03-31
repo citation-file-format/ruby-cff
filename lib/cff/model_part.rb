@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
 ##
 module CFF
 
-  # ModelPart is the superclass of anything that makes up part of the CFF Model.
-  # This includes Model, Person, Entity and Reference.
+  # ModelPart is the superclass of anything that makes up part of the CFF Index.
+  # This includes Index, Person, Entity and Reference.
   #
   # ModelPart provides only one method for the public API: `empty?`.
   class ModelPart

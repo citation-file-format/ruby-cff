@@ -140,9 +140,9 @@ module CFF
 
     # :call-seq:
     #   from_cff(File, type: 'software') -> Reference
-    #   from_cff(Model, type: 'software') -> Reference
+    #   from_cff(Index, type: 'software') -> Reference
     #
-    # Create a Reference from another CFF File or Model. This is useful for
+    # Create a Reference from another CFF File or Index. This is useful for
     # easily adding a reference to something with its own CITATION.cff file
     # already.
     #
@@ -415,7 +415,7 @@ module CFF
     # the list, use:
     #
     # ```
-    # model.identifiers << identifier
+    # reference.identifiers << identifier
     # ```
 
     ##
@@ -434,7 +434,7 @@ module CFF
     # list, use:
     #
     # ```
-    # model.keywords << keyword
+    # reference.keywords << keyword
     # ```
     #
     # Keywords will be converted to Strings on output.
@@ -457,7 +457,7 @@ module CFF
     # state to the list, use:
     #
     # ```
-    # model.patent_states << patent_state
+    # reference.patent_states << patent_state
     # ```
     #
     # Patent states will be converted to Strings on output.

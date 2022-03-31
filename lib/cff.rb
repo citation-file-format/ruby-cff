@@ -19,7 +19,7 @@ require 'json'
 require 'yaml'
 
 # This library provides a Ruby interface to manipulate CITATION.cff files. The
-# primary entry points are Model and File.
+# primary entry points are Index and File.
 #
 # See the [CITATION.cff documentation](https://citation-file-format.github.io/)
 # for more details.
@@ -38,7 +38,7 @@ require 'cff/person'
 require 'cff/entity'
 require 'cff/identifier'
 require 'cff/reference'
-require 'cff/model'
+require 'cff/index'
 require 'cff/file'
 require 'cff/formatter/formatter'
 require 'cff/formatter/apa_formatter'

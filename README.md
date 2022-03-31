@@ -14,7 +14,7 @@ A Ruby library for creating, editing, validating and converting CITATION.cff fil
 
 This library provides a Ruby interface to create and edit Citation File Format (CFF) files. The resulting files can be validated against a formal schema to ensure correctness and can be output in a number of different citation-friendly formats.
 
-The primary API entry points are the `Model` and `File` classes.
+The primary API entry points are the `Index` and `File` classes.
 
 See the [CITATION.cff documentation](https://citation-file-format.github.io/) for more details about the Citation File Format.
 
@@ -22,10 +22,10 @@ See the [full API documentation](https://citation-file-format.github.io/ruby-cff
 
 ### Quick start
 
-You can quickly build and save a CFF model like this:
+You can quickly build and save a CFF index like this:
 
 ```ruby
-model = CFF::Model.new('Ruby CFF Library') do |cff|
+index = CFF::Index.new('Ruby CFF Library') do |cff|
   cff.version = CFF::VERSION
   cff.date_released = Date.today
   cff.authors << CFF::Person.new('Robert', 'Haines')
@@ -35,7 +35,7 @@ model = CFF::Model.new('Ruby CFF Library') do |cff|
   cff.repository_code = 'https://github.com/citation-file-format/ruby-cff'
 end
 
-CFF::File.write('CITATION.cff', model)
+CFF::File.write('CITATION.cff', index)
 ```
 
 Which will produce a file that looks something like this:
@@ -58,7 +58,7 @@ repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff
 ```
 
-`CFF::File` can be used to create a file directly, and it exposes the underlying `CFF::Model` directly. If using a block with `CFF::File::open` the file will get written on closing it:
+`CFF::File` can be used to create a file directly, and it exposes the underlying `CFF::Index` directly. If using a block with `CFF::File::open` the file will get written on closing it:
 
 ```ruby
 CFF::File.open('CITATION.cff') do |cff|
@@ -78,13 +78,13 @@ You can read a CFF file quickly with `CFF::File::read`:
 cff = CFF::File.read('CITATION.cff')
 ```
 
-And you can read a CFF file from memory with `CFF::Model::read` or `CFF::Model::open` - as with `CFF::File` a block can be passed in to `open`:
+And you can read a CFF file from memory with `CFF::Index::read` or `CFF::Index::open` - as with `CFF::File` a block can be passed in to `open`:
 
 ```ruby
 cff_string = ::File.read('CITATION.cff')
-cff = CFF::Model.read(cff_string)
+cff = CFF::Index.read(cff_string)
 
-CFF::Model.open(cff_string) do |cff|
+CFF::Index.open(cff_string) do |cff|
   # Edit cff here...
 end
 ```
@@ -97,7 +97,7 @@ require 'open-uri'
 uri = 'https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/CITATION.cff'
 other_cff = URI(uri).open.read
 
-ref = CFF::Reference.from_cff(CFF::Model.read(other_cff))
+ref = CFF::Reference.from_cff(CFF::Index.read(other_cff))
 
 CFF::File.open('CITATION.cff') do |cff|
   cff.references = [ref]
@@ -116,7 +116,7 @@ rescue CFF::ValidationError => e
 end
 ```
 
-Both `CFF::File` and `CFF::Model` have instance methods to validate CFF files as well:
+Both `CFF::File` and `CFF::Index` have instance methods to validate CFF files as well:
 
 ```ruby
 cff = CFF::File.read('CITATION.cff')
@@ -129,7 +129,7 @@ end
 
 Non-bang methods (`validate`) return an array, with `true`/`false` at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).
 
-Passing `fail_fast: true` (default: `false`) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on `CFF::File` and `CFF::Model` provide the `fail_fast` option.
+Passing `fail_fast: true` (default: `false`) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on `CFF::File` and `CFF::Index` provide the `fail_fast` option.
 
 The validation methods (both class and instance) on `File` also validate the filename of a CFF file; in normal circumstances a CFF file should be named 'CITATION.cff'. You can switch this behaviour off by passing `fail_on_filename: false`. The non-bang methods (`validate`) on `File` return an extra value in the result array: `true`/`false` at index 2 to indicate whether the filename passed/failed validation.
 
