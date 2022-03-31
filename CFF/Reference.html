@@ -282,12 +282,12 @@
         </div>
         <div class="method-heading">
           <span class="method-callseq">
-            from_cff(Model, type: &#39;software&#39;) &rarr; Reference
+            from_cff(Index, type: &#39;software&#39;) &rarr; Reference
           </span>
         </div>
 
         <div class="method-description">
-          <p>Create a <a href="Reference.html"><code>Reference</code></a> from another <a href="../CFF.html"><code>CFF</code></a> <a href="File.html"><code>File</code></a> or <a href="Model.html"><code>Model</code></a>. This is useful for easily adding a reference to something with its own CITATION.cff file already.</p>
+          <p>Create a <a href="Reference.html"><code>Reference</code></a> from another <a href="../CFF.html"><code>CFF</code></a> <a href="File.html"><code>File</code></a> or <a href="Index.html"><code>Index</code></a>. This is useful for easily adding a reference to something with its own CITATION.cff file already.</p>
 
 <p>This method assumes that the type of the <a href="Reference.html"><code>Reference</code></a> should be <code>software</code>, but this can be overridden with the <code>type</code> parameter.</p>
 
@@ -694,7 +694,7 @@
         <div class="method-description">
           <p>Return the list of identifiers for this citation. To add a identifier to the list, use:</p>
 
-<pre class="ruby"><span class="ruby-identifier">model</span>.<span class="ruby-identifier">identifiers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">identifier</span>
+<pre class="ruby"><span class="ruby-identifier">reference</span>.<span class="ruby-identifier">identifiers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">identifier</span>
 </pre>
 
           <div class="method-source-code" id="identifiers-source">
@@ -737,7 +737,7 @@
         <div class="method-description">
           <p>Return the list of keywords for this reference. To add a keyword to the list, use:</p>
 
-<pre class="ruby"><span class="ruby-identifier">model</span>.<span class="ruby-identifier">keywords</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">keyword</span>
+<pre class="ruby"><span class="ruby-identifier">reference</span>.<span class="ruby-identifier">keywords</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">keyword</span>
 </pre>
 
 <p>Keywords will be converted to Strings on output.</p>
@@ -806,7 +806,7 @@
         <div class="method-description">
           <p>Return the list of patent states for this reference. To add a patent state to the list, use:</p>
 
-<pre class="ruby"><span class="ruby-identifier">model</span>.<span class="ruby-identifier">patent_states</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patent_state</span>
+<pre class="ruby"><span class="ruby-identifier">reference</span>.<span class="ruby-identifier">patent_states</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patent_state</span>
 </pre>
 
 <p>Patent states will be converted to Strings on output.</p>

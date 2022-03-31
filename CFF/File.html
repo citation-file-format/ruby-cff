@@ -95,7 +95,7 @@
 
   <section class="description">
     
-<p><a href="File.html"><code>File</code></a> provides direct access to a <a href="../CFF.html"><code>CFF</code></a> <a href="Model.html"><code>Model</code></a>, with the addition of some filesystem utilities.</p>
+<p><a href="File.html"><code>File</code></a> provides direct access to a <a href="../CFF.html"><code>CFF</code></a> <a href="Index.html"><code>Index</code></a>, with the addition of some filesystem utilities.</p>
 
 <p>To be a fully compliant and valid <a href="../CFF.html"><code>CFF</code></a> file its filename should be &#39;CITATION.cff&#39;. This class allows you to create files with any filename, and to validate the contents of those files independently of the preferred filename.</p>
 
@@ -147,22 +147,22 @@
         </div>
         <div class="method-heading">
           <span class="method-callseq">
-            new(filename, model) &rarr; File
+            new(filename, index) &rarr; File
           </span>
         </div>
 
         <div class="method-description">
-          <p>Create a new <a href="File.html"><code>File</code></a>. Either a pre-existing <a href="Model.html"><code>Model</code></a> can be passed in or, as with <a href="Model.html"><code>Model</code></a> itself, a title can be supplied to initalize a new <a href="File.html"><code>File</code></a>.</p>
+          <p>Create a new <a href="File.html"><code>File</code></a>. Either a pre-existing <a href="Index.html"><code>Index</code></a> can be passed in or, as with <a href="Index.html"><code>Index</code></a> itself, a title can be supplied to initalize a new <a href="File.html"><code>File</code></a>.</p>
 
-<p>All methods provided by <a href="Model.html"><code>Model</code></a> are also available directly on <a href="File.html"><code>File</code></a> objects.</p>
+<p>All methods provided by <a href="Index.html"><code>Index</code></a> are also available directly on <a href="File.html"><code>File</code></a> objects.</p>
 
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/cff/file.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">comment</span> = <span class="ruby-constant">CFF_COMMENT</span>, <span class="ruby-value">create:</span> <span class="ruby-keyword">false</span>)
-  <span class="ruby-identifier">param</span> = <span class="ruby-constant">Model</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">param</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Model</span>)
+  <span class="ruby-identifier">param</span> = <span class="ruby-constant">Index</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">param</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Index</span>)
 
   <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">filename</span>
-  <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">param</span>
+  <span class="ruby-ivar">@index</span> = <span class="ruby-identifier">param</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-identifier">comment</span>
   <span class="ruby-ivar">@dirty</span> = <span class="ruby-identifier">create</span>
 <span class="ruby-keyword">end</span></pre>
@@ -301,7 +301,7 @@
         </div>
         <div class="method-heading">
           <span class="method-callseq">
-            write(filename, Model)
+            write(filename, Index)
           </span>
         </div>
         <div class="method-heading">
@@ -311,7 +311,7 @@
         </div>
 
         <div class="method-description">
-          <p>Write the supplied <a href="File.html"><code>File</code></a>, <a href="Model.html"><code>Model</code></a> or yaml string to <code>file</code>.</p>
+          <p>Write the supplied <a href="File.html"><code>File</code></a>, <a href="Index.html"><code>Index</code></a> or yaml string to <code>file</code>.</p>
 
           <div class="method-source-code" id="write-source">
             <pre><span class="ruby-comment"># File lib/cff/file.rb, line 139</span>
@@ -382,7 +382,7 @@
             <pre><span class="ruby-comment"># File lib/cff/file.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate</span>(<span class="ruby-value">fail_fast:</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">fail_on_filename:</span> <span class="ruby-keyword">true</span>)
   <span class="ruby-identifier">valid_filename</span> = (<span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-ivar">@filename</span>) <span class="ruby-operator">==</span> <span class="ruby-constant">CFF_VALID_FILENAME</span>)
-  <span class="ruby-identifier">result</span> = (<span class="ruby-ivar">@model</span>.<span class="ruby-identifier">validate</span>(<span class="ruby-value">fail_fast:</span> <span class="ruby-identifier">fail_fast</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">valid_filename</span>)
+  <span class="ruby-identifier">result</span> = (<span class="ruby-ivar">@index</span>.<span class="ruby-identifier">validate</span>(<span class="ruby-value">fail_fast:</span> <span class="ruby-identifier">fail_fast</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">valid_filename</span>)
   <span class="ruby-identifier">result</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&amp;&amp;=</span> <span class="ruby-identifier">valid_filename</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">fail_on_filename</span>
 
   <span class="ruby-identifier">result</span>
@@ -441,7 +441,7 @@
     <span class="ruby-ivar">@dirty</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-ivar">@model</span>, <span class="ruby-ivar">@comment</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@dirty</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-ivar">@index</span>, <span class="ruby-ivar">@comment</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@dirty</span>
   <span class="ruby-ivar">@dirty</span> = <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

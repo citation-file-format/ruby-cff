@@ -104,7 +104,7 @@
 
 <p>This library provides a Ruby interface to create and edit Citation File Format (<a href="CFF.html"><code>CFF</code></a>) files. The resulting files can be validated against a formal schema to ensure correctness and can be output in a number of different citation-friendly formats.</p>
 
-<p>The primary API entry points are the <code>Model</code> and <code>File</code> classes.</p>
+<p>The primary API entry points are the <code>Index</code> and <code>File</code> classes.</p>
 
 <p>See the <a href="https://citation-file-format.github.io/">CITATION.cff documentation</a> for more details about the Citation File Format.</p>
 
@@ -112,9 +112,9 @@
 
 <h3 id="label-Quick+start">Quick start<span><a href="#label-Quick+start">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>You can quickly build and save a <a href="CFF.html"><code>CFF</code></a> model like this:</p>
+<p>You can quickly build and save a <a href="CFF.html"><code>CFF</code></a> index like this:</p>
 
-<pre class="ruby"><span class="ruby-identifier">model</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Ruby CFF Library&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
+<pre class="ruby"><span class="ruby-identifier">index</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Index</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Ruby CFF Library&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">version</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">date_released</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">authors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Robert&#39;</span>, <span class="ruby-string">&#39;Haines&#39;</span>)
@@ -124,7 +124,7 @@
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">repository_code</span> = <span class="ruby-string">&#39;https://github.com/citation-file-format/ruby-cff&#39;</span>
 <span class="ruby-keyword">end</span>
 
-<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>, <span class="ruby-identifier">model</span>)
+<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>, <span class="ruby-identifier">index</span>)
 </pre>
 
 <p>Which will produce a file that looks something like this:</p>
@@ -145,7 +145,7 @@ license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 
-<p><code>CFF::File</code> can be used to create a file directly, and it exposes the underlying <code>CFF::Model</code> directly. If using a block with <code>CFF::File::open</code> the file will get written on closing it:</p>
+<p><code>CFF::File</code> can be used to create a file directly, and it exposes the underlying <code>CFF::Index</code> directly. If using a block with <code>CFF::File::open</code> the file will get written on closing it:</p>
 
 <pre class="ruby"><span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">version</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION</span>
@@ -163,12 +163,12 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <pre class="ruby"><span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
 </pre>
 
-<p>And you can read a <a href="CFF.html"><code>CFF</code></a> file from memory with <code>CFF::Model::read</code> or <code>CFF::Model::open</code> - as with <code>CFF::File</code> a block can be passed in to <code>open</code>:</p>
+<p>And you can read a <a href="CFF.html"><code>CFF</code></a> file from memory with <code>CFF::Index::read</code> or <code>CFF::Index::open</code> - as with <code>CFF::File</code> a block can be passed in to <code>open</code>:</p>
 
 <pre class="ruby"><span class="ruby-identifier">cff_string</span> = <span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
-<span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">cff_string</span>)
+<span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Index</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">cff_string</span>)
 
-<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">cff_string</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
+<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Index</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">cff_string</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
   <span class="ruby-comment"># Edit cff here...</span>
 <span class="ruby-keyword">end</span>
 </pre>
@@ -180,7 +180,7 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <span class="ruby-identifier">uri</span> = <span class="ruby-string">&#39;https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/CITATION.cff&#39;</span>
 <span class="ruby-identifier">other_cff</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">uri</span>).<span class="ruby-identifier">open</span>.<span class="ruby-identifier">read</span>
 
-<span class="ruby-identifier">ref</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Reference</span>.<span class="ruby-identifier">from_cff</span>(<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Model</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">other_cff</span>))
+<span class="ruby-identifier">ref</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Reference</span>.<span class="ruby-identifier">from_cff</span>(<span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">Index</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">other_cff</span>))
 
 <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cff</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">cff</span>.<span class="ruby-identifier">references</span> = [<span class="ruby-identifier">ref</span>]
@@ -198,7 +198,7 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 <span class="ruby-keyword">end</span>
 </pre>
 
-<p>Both <code>CFF::File</code> and <code>CFF::Model</code> have instance methods to validate <a href="CFF.html"><code>CFF</code></a> files as well:</p>
+<p>Both <code>CFF::File</code> and <code>CFF::Index</code> have instance methods to validate <a href="CFF.html"><code>CFF</code></a> files as well:</p>
 
 <pre class="ruby"><span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
 <span class="ruby-keyword">begin</span>
@@ -210,7 +210,7 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 
 <p>Non-bang methods (<code>validate</code>) return an array, with <code>true</code>/<code>false</code> at index 0 to indicate pass/fail, and an array of errors at index 1 (if any).</p>
 
-<p>Passing <code>fail_fast: true</code> (default: <code>false</code>) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on <code>CFF::File</code> and <code>CFF::Model</code> provide the <code>fail_fast</code> option.</p>
+<p>Passing <code>fail_fast: true</code> (default: <code>false</code>) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on <code>CFF::File</code> and <code>CFF::Index</code> provide the <code>fail_fast</code> option.</p>
 
 <p>The validation methods (both class and instance) on <code>File</code> also validate the filename of a <a href="CFF.html"><code>CFF</code></a> file; in normal circumstances a <a href="CFF.html"><code>CFF</code></a> file should be named &#39;CITATION.cff&#39;. You can switch this behaviour off by passing <code>fail_on_filename: false</code>. The non-bang methods (<code>validate</code>) on <code>File</code> return an extra value in the result array: <code>true</code>/<code>false</code> at index 2 to indicate whether the filename passed/failed validation.</p>
 
