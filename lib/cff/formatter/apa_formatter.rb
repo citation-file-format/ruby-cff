@@ -61,9 +61,19 @@ module CFF
         else
           model.institution.name
         end
+      when 'phdthesis'
+        type_and_school_from_model(model, type = "Doctoral dissertation")
+      when 'mastersthesis'
+        type_and_school_from_model(model, type = "Master's thesis")
       else
         ''
       end
+    end
+
+    def self.type_and_school_from_model(model, type)
+      type = model.thesis_type == '' ? type : model.thesis_type
+      school = model.institution.empty? ? model.authors.first.affiliation : model.institution.name
+      "[#{type}, #{school}]"
     end
 
     def self.volume_from_model(model)

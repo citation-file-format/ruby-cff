@@ -27,7 +27,9 @@ module CFF
       'booklet' => %w[address! doi],
       'inproceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'manual' => %w[address! doi],
+      'mastersthesis' => %w[address! doi school! type!],
       'misc' => %w[doi pages!],
+      'phdthesis' => %w[address! doi school! type!],
       'proceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'software' => %w[doi license version],
       'techreport' => %w[address! doi institution! number!],
@@ -101,6 +103,16 @@ module CFF
       model.authors.first.affiliation
     end
 
+    # BibTeX 'school' is CFF 'institution'.
+    def self.school_from_model(model)
+      self.institution_from_model(model)
+    end
+
+    # BibTeX 'type' for theses is CFF 'thesis-type'.
+    def self.type_from_model(model)
+      return model.thesis_type
+    end
+
     # BibTeX 'booktitle' is CFF 'collection-title'.
     def self.booktitle_from_model(model)
       model.collection_title
@@ -143,7 +155,7 @@ module CFF
       return 'software' if model.type.empty? || model.type.include?('software')
 
       case model.type
-      when 'article', 'book', 'manual', 'unpublished'
+      when 'article', 'book', 'manual', 'unpublished', 'phdthesis', 'mastersthesis'
         model.type
       when 'conference', 'proceedings'
         'proceedings'
