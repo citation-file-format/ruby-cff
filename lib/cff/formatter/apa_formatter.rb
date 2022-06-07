@@ -62,9 +62,9 @@ module CFF
           model.institution.name
         end
       when 'phdthesis'
-        type_and_school_from_model(model, type = "Doctoral dissertation")
+        type_and_school_from_model(model, 'Doctoral dissertation')
       when 'mastersthesis'
-        type_and_school_from_model(model, type = "Master's thesis")
+        type_and_school_from_model(model, "Master's thesis")
       else
         ''
       end

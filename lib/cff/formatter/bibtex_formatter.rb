@@ -105,12 +105,12 @@ module CFF
 
     # BibTeX 'school' is CFF 'institution'.
     def self.school_from_model(model)
-      self.institution_from_model(model)
+      institution_from_model(model)
     end
 
     # BibTeX 'type' for theses is CFF 'thesis-type'.
     def self.type_from_model(model)
-      return model.thesis_type
+      model.thesis_type
     end
 
     # BibTeX 'booktitle' is CFF 'collection-title'.
