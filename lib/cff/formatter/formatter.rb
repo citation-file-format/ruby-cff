@@ -36,6 +36,8 @@ module CFF
       case model.status
       when 'in-preparation'
         'Manuscript in preparation.'
+      when 'submitted'
+        'Manuscript submitted for publication.'
       end
     end
 
