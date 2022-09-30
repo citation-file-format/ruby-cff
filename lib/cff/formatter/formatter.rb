@@ -32,6 +32,13 @@ module CFF
       name.split.map { |part| part[0].capitalize }.join('. ')
     end
 
+    def self.note_from_model(model)
+      case model.status
+      when 'in-preparation'
+        'Manuscript in preparation.'
+      end
+    end
+
     # Prefer `repository_code` over `url`
     def self.url(model)
       model.repository_code.empty? ? model.url : model.repository_code
