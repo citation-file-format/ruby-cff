@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>CONTRIBUTING -  Ruby CFF Library (version 0.9.0)</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Contributing+to+the+Ruby+CFF+Library">Contributing to the Ruby CFF Library</a>
+    <li><a href="#label-Introduction">Introduction</a>
+    <li><a href="#label-Ground+Rules">Ground Rules</a>
+    <li><a href="#label-Your+First+Contribution">Your First Contribution</a>
+    <li><a href="#label-Getting+started">Getting started</a>
+    <li><a href="#label-Working+with+tests+and+documentation">Working with tests and documentation</a>
+    <li><a href="#label-FAQ">FAQ</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./CHANGES_md.html">CHANGES</a>
+    <li><a href="./CODE_OF_CONDUCT_md.html">CODE_OF_CONDUCT</a>
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
+    <li><a href="./LICENCE.html">LICENCE</a>
+    <li><a href="./README_md.html">README</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page CONTRIBUTING.md">
+
+<h1 id="label-Contributing+to+the+Ruby+CFF+Library">Contributing to the Ruby <a href="CFF.html"><code>CFF</code></a> Library<span><a href="#label-Contributing+to+the+Ruby+CFF+Library">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Introduction">Introduction<span><a href="#label-Introduction">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><strong>Thank you</strong> for considering a contribution to the <strong>Ruby CFF Library</strong>!</p>
+
+<p>If you intended to contribute to another part of the Citation File Format project, for example the Citation File Format specification itself, please contribute to the respective repository ({list of repositories in the <code>citation-file-format</code> GitHub organization}[https://github.com/orgs/citation-file-format/repositories]).</p>
+
+<p><strong>Please follow these guidelines.</strong> Their purpose is to make both contributing and accepting contributions easier for all parties involved.</p>
+
+<p>There are many ways to contribute, e.g.:</p>
+<ul><li>
+<p>Tell a friend or colleague about the Citation File Format and Ruby <a href="CFF.html"><code>CFF</code></a>, or tweet about it</p>
+</li><li>
+<p>Write blog posts, tutorials, etc. about the Citation File Format and Ruby <a href="CFF.html"><code>CFF</code></a></p>
+</li><li>
+<p>Review the format and its schema and documentation</p>
+</li><li>
+<p>Improve wording in any prose output, including the specifications</p>
+</li><li>
+<p>Create a new, better version of the schema and specifications</p>
+</li><li>
+<p>Improve automated tests, continuous integration, documentation, etc.</p>
+</li></ul>
+
+<h2 id="label-Ground+Rules">Ground Rules<span><a href="#label-Ground+Rules">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Your contribution to Ruby <a href="CFF.html"><code>CFF</code></a> is valued, and it should be an enjoyable experience. To ensure this there is the Ruby <a href="CFF.html"><code>CFF</code></a> <a href="https://github_com/citation-file-format/ruby-cff/blob/main/CODE_OF_CONDUCT_md.html">Code of Conduct</a> which you are required to follow.</p>
+
+<p>Please always start any contribution that will change the contents of this repository from <a href="https://github.com/citation-file-format/ruby-cff/issues">an issue</a>. This may mean <a href="https://github.com/citation-file-format/ruby-cff/issues/new">creating a new issue</a> if it&#39;s something that hasn&#39;t been requested so far. This way,</p>
+<ul><li>
+<p>you can make sure that you don&#39;t invest your valuable time in something that may not be merged; and</p>
+</li><li>
+<p>we can make sure that your contribution is something that will improve Ruby <a href="CFF.html"><code>CFF</code></a>, is in scope, and aligns with the roadmap for the Ruby <a href="CFF.html"><code>CFF</code></a> and the Citation File Format.</p>
+</li></ul>
+
+<h2 id="label-Your+First+Contribution">Your First Contribution<span><a href="#label-Your+First+Contribution">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If you are unsure where to begin with your contribution to <a href="CFF.html"><code>CFF</code></a>, have a look at the <a href="https://github.com/citation-file-format/ruby-cff/issues">open issues in this repository</a>, and see if you can identify one that you would like to work on.</p>
+
+<p>If you have never contributed to an open source project, you may find this tutorial helpful: <a href="https://app.egghead.io/playlists/how-to-contribute-to-an-open-source-project-on-github">How to Contribute to an Open Source Project on GitHub</a>.</p>
+
+<h2 id="label-Getting+started">Getting started<span><a href="#label-Getting+started">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This is the workflow for contributions to this repository:</p>
+<ol><li>
+<p>Take note of the <a href="https://github_com/citation-file-format/ruby-cff/blob/main/CODE_OF_CONDUCT_md.html">code of conduct</a></p>
+</li><li>
+<p><a href="https://github.com/citation-file-format/ruby-cff/issues/new">Create a new issue</a> if needs be, and discuss the changes you want to make with the maintainers and community</p>
+</li><li>
+<p>Fork the repository</p>
+</li><li>
+<p>Create a branch in your fork of the repository</p>
+</li><li>
+<p>Make changes in the new branch in your fork</p>
+</li><li>
+<p>Please don&#39;t forget tests!</p>
+</li><li>
+<p>If you add any classes, modules, methods, attributes, or constants, please document them</p>
+</li><li>
+<p>Create a pull request</p>
+</li><li>
+<p>Address any comments that come up during review</p>
+</li><li>
+<p>If and when your pull request has been merged, you can delete your branch (or the whole forked repository)</p>
+</li></ol>
+
+<p>This workflow is loosely based on GitHub flow, and you can find more information in the <a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub flow documentation</a>.</p>
+
+<h3 id="label-Working+with+tests+and+documentation">Working with tests and documentation<span><a href="#label-Working+with+tests+and+documentation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>There is a comprehensive test suite for Ruby <a href="CFF.html"><code>CFF</code></a>, which also contains a collection of test <code>CITATION.cff</code> files - both valid and invalid. Please add tests (and new test <code>CITATION.cff</code> files if appropriate) for any new features you add, or bugs you squash. It is advised to run these tests locally on your computer prior to submitting a pull request. However, if that&#39;s not possible, you still can submit the pull request and later check the status of the tests for your pull request on GitHub.</p>
+
+<p>To run the tests, assuming that you have all the dependencies installed, simply run:</p>
+
+<pre>$ rake</pre>
+
+<p>To rebuild the documentation, if you have added to it or changed it:</p>
+
+<pre>$ rake rdoc</pre>
+
+<p>Then load <code>html/index.html</code> into a Web browser and double check it.</p>
+
+<h2 id="label-FAQ">FAQ<span><a href="#label-FAQ">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><strong>These guidelines do not address aspect XYZ! What should I do now?</strong></p>
+</li></ul>
+
+<p>Please <a href="https://github.com/citation-file-format/ruby-cff/issues/new">submit an issue</a>, asking for clarification of and/or an addition to the guidelines.</p>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.3.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
