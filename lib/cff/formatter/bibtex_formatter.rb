@@ -33,7 +33,7 @@ module CFF
       'proceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
       'software' => %w[doi license version],
       'techreport' => %w[address! doi institution! number!],
-      'unpublished' => %w[doi]
+      'unpublished' => %w[doi note!]
     }.freeze
 
     def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
@@ -53,7 +53,7 @@ module CFF
 
       values['url'] = url(model)
 
-      values['note'] = model.notes unless model.is_a?(Index)
+      values['note'] ||= model.notes unless model.is_a?(Index)
 
       values.reject! { |_, v| v.empty? }
       sorted_values = values.sort.map do |key, value|

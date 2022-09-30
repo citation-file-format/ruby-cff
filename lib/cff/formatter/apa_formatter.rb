@@ -65,6 +65,8 @@ module CFF
         type_and_school_from_model(model, 'Doctoral dissertation')
       when 'mastersthesis'
         type_and_school_from_model(model, "Master's thesis")
+      when 'unpublished'
+        note_from_model(model) || ''
       else
         ''
       end
