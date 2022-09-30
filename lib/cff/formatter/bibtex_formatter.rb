@@ -22,7 +22,7 @@ module CFF
     # Fields without `!` have a simple one-to-one mapping between CFF and
     # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {
-      'article' => %w[doi journal number! pages! volume],
+      'article' => %w[doi journal note! number! pages! volume],
       'book' => %w[address! doi editor! isbn number! pages! publisher! volume],
       'booklet' => %w[address! doi],
       'inproceedings' => %w[address! booktitle! doi editor! pages! publisher! series!],
