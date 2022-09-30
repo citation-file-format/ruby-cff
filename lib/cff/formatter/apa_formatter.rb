@@ -39,13 +39,14 @@ module CFF
       output.reject(&:empty?).join('. ')
     end
 
-    def self.publication_data_from_model(model) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
+    def self.publication_data_from_model(model) # rubocop:disable Metrics
       case model.type
       when 'article'
         [
           model.journal,
           volume_from_model(model),
-          pages_from_model(model, dash: '–')
+          pages_from_model(model, dash: '–'),
+          note_from_model(model) || ''
         ].reject(&:empty?).join(', ')
       when 'book'
         model.publisher.empty? ? '' : model.publisher.name

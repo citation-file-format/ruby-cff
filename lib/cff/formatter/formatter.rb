@@ -19,6 +19,12 @@ module CFF
   # Formatter base class
   class Formatter # :nodoc:
 
+    STATUS_TEXT_MAP = {
+      'advance-online' => 'Advance online publication',
+      'in-preparation' => 'Manuscript in preparation.',
+      'submitted' => 'Manuscript submitted for publication.'
+    }.freeze
+
     def self.select_and_check_model(model, preferred_citation)
       if preferred_citation && model.preferred_citation.is_a?(Reference)
         model = model.preferred_citation
@@ -33,12 +39,7 @@ module CFF
     end
 
     def self.note_from_model(model)
-      case model.status
-      when 'in-preparation'
-        'Manuscript in preparation.'
-      when 'submitted'
-        'Manuscript submitted for publication.'
-      end
+      STATUS_TEXT_MAP[model.status]
     end
 
     # Prefer `repository_code` over `url`
