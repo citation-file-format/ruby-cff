@@ -47,7 +47,7 @@ module CFF
       model.repository_code.empty? ? model.url : model.repository_code
     end
 
-    def self.month_and_year_from_model(model) # rubocop:disable Metrics/AbcSize
+    def self.month_and_year_from_model(model) # rubocop:disable Metrics
       return ['', 'in press'] if model.respond_to?(:status) && model.status == 'in-press'
       if model.respond_to?(:year) && !model.year.to_s.empty?
         return [model.month, model.year].map(&:to_s)
