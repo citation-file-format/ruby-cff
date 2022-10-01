@@ -48,6 +48,8 @@ module CFF
     # Create a new Identifier with the optionally supplied type and value.
     # If the supplied type is invalid, then neither the type or value are set.
     def initialize(param = nil, *more)
+      super()
+
       if param.is_a?(Hash)
         @fields = param
       else

@@ -64,6 +64,8 @@ module CFF
     #
     # Initialize a new Index with the supplied title.
     def initialize(param)
+      super()
+
       if param.is_a?(Hash)
         @fields = build_index(param)
       else
