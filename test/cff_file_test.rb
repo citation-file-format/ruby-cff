@@ -173,7 +173,7 @@ class CFFFileTest < Minitest::Test
     end
   end
 
-  def test_read_complete_cff_file_complex_fields
+  def test_read_complete_cff_file_complex_fields # rubocop:disable Minitest/MultipleAssertions
     cff = ::CFF::File.read(COMPLETE_CFF)
 
     assert_equal(4, cff.identifiers.length)

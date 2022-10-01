@@ -3,9 +3,6 @@ require:
   - rubocop-performance
   - rubocop-rake
 
-inherit_from:
-  - .rubocop_todo.yml
-
 # Set our base version of ruby and enable all cops.
 AllCops:
   TargetRubyVersion: 2.6
@@ -74,3 +71,7 @@ Metrics/ClassLength:
   Max: 150
   Exclude:
     - 'test/**/*.rb'
+
+# This is still too high, but we'll get there.
+Minitest/MultipleAssertions:
+  Max: 10
