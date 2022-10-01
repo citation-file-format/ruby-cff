@@ -14,10 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'test_helper'
+require_relative 'test_helper'
+
+require 'cff/index'
 
 class CFFIndexTest < Minitest::Test
-  include ::CFF::Util
+  include TestUtil
 
   def test_bad_methods_not_allowed
     m = ::CFF::Index.new('')

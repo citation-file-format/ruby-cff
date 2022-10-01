@@ -14,32 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'date'
-require 'json'
-require 'yaml'
-
 # This library provides a Ruby interface to manipulate CITATION.cff files. The
 # primary entry points are Index and File.
 #
 # See the [CITATION.cff documentation](https://citation-file-format.github.io/)
 # for more details.
-module CFF
-  SCHEMA_PATH = ::File.join(__dir__, 'schema', '1.2.0.json') # :nodoc:
-  SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))         # :nodoc:
-end
+module CFF; end
 
-require 'cff/version'
-require 'cff/errors'
-require 'cff/util'
-require 'cff/licensable'
-require 'cff/validatable'
-require 'cff/model_part'
-require 'cff/person'
-require 'cff/entity'
-require 'cff/identifier'
-require 'cff/reference'
-require 'cff/index'
-require 'cff/file'
-require 'cff/formatter/formatter'
-require 'cff/formatter/apa_formatter'
-require 'cff/formatter/bibtex_formatter'
+require_relative 'cff/file'

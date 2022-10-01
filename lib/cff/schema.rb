@@ -14,16 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require_relative 'test_helper'
+require 'json'
 
-require 'cff/version'
-
-class CFFTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::CFF::VERSION
-  end
-
-  def test_that_it_has_a_spec_version_number
-    refute_nil ::CFF::DEFAULT_SPEC_VERSION
-  end
+##
+module CFF
+  SCHEMA_PATH = ::File.join(__dir__, '..', 'schema', '1.2.0.json') # :nodoc:
+  SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))         # :nodoc:
 end

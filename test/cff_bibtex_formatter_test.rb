@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative 'test_helper'
+
+require 'cff/formatter/bibtex_formatter'
+require 'cff/file'
 
 class CFFBibtexFormatterTest < Minitest::Test
   describe 'all bibtex fixtures' do

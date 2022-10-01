@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,10 +15,6 @@
 # limitations under the License.
 
 require 'simplecov'
-
-$LOAD_PATH.unshift ::File.expand_path('../lib', __dir__)
-require 'cff'
-
 require 'test_construct'
 require 'minitest/autorun'
 
@@ -41,3 +37,9 @@ FORMATTED_DIR = ::File.join(FILES_DIR, 'formatted')
 CONSTRUCT_OPTS = {
   keep_on_error: true
 }.freeze
+
+module TestUtil
+  def method_to_field(name)
+    name.tr('_', '-')
+  end
+end

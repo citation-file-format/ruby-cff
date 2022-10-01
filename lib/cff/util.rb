@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require_relative 'entity'
+require_relative 'person'
+require_relative 'version'
+
 require 'rubygems'
 
 ##
@@ -24,6 +28,8 @@ module CFF
   module Util
     # :stopdoc:
 
+    module_function
+
     def update_cff_version(version)
       return '' if version.nil? || version.empty?
 
@@ -32,10 +38,6 @@ module CFF
       else
         version
       end
-    end
-
-    def method_to_field(name)
-      name.tr('_', '-')
     end
 
     def build_actor_collection!(source)
@@ -102,13 +104,13 @@ module CFF
       'Ž' => 'Z', 'ž' => 'z'
     }.freeze
 
-    def self.transliterate(string, fallback: '')
+    def transliterate(string, fallback: '')
       string.gsub(/[^\x00-\x7f]/u) do |char|
         DEFAULT_CHAR_APPROXIMATIONS[char] || fallback
       end
     end
 
-    def self.parameterize(string, separator: '_')
+    def parameterize(string, separator: '_')
       # Normalize into ASCII.
       param = transliterate(string)
 

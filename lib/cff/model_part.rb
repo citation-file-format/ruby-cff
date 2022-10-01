@@ -22,8 +22,6 @@ module CFF
   # ModelPart provides only one method for the public API: `empty?`.
   class ModelPart
     # :stopdoc:
-    include Util
-
     attr_reader :fields
 
     def method_missing(name, *args)
@@ -74,6 +72,12 @@ module CFF
           END_SETTER
         )
       end
+    end
+
+    private
+
+    def method_to_field(name)
+      name.tr('_', '-')
     end
   end
 end

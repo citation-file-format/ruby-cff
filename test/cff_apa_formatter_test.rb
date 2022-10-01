@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require_relative 'test_helper'
+
+require 'cff/formatter/apa_formatter'
+require 'cff/file'
 
 class CFFApaFormatterTest < Minitest::Test
   describe 'all apa fixtures' do
