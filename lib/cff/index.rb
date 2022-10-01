@@ -169,7 +169,7 @@ module CFF
       fields_to_hash(@fields)
     end
 
-    def build_index(fields) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+    def build_index(fields) # rubocop:disable Metrics
       build_actor_collection!(fields['authors'] || [])
       build_actor_collection!(fields['contact'] || [])
       (fields['identifiers'] || []).map! do |i|
