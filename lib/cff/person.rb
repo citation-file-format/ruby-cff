@@ -55,6 +55,8 @@ module CFF
     #
     # Create a new Person with the optionally supplied given and family names.
     def initialize(param = nil, *more)
+      super()
+
       if param.is_a?(Hash)
         @fields = param
       else

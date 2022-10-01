@@ -6,16 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 5
-Lint/MissingSuper:
-  Exclude:
-    - 'lib/cff/entity.rb'
-    - 'lib/cff/identifier.rb'
-    - 'lib/cff/index.rb'
-    - 'lib/cff/model.rb'
-    - 'lib/cff/person.rb'
-    - 'lib/cff/reference.rb'
-
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
 Metrics/CyclomaticComplexity:

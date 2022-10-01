@@ -119,6 +119,8 @@ module CFF
     # [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype),
     # 'generic' will be used by default.
     def initialize(param, *more) # rubocop:disable Metrics/AbcSize
+      super()
+
       if param.is_a?(Hash)
         @fields = build_model(param)
       else
