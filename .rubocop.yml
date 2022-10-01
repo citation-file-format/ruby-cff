@@ -38,7 +38,8 @@ Style/HashSyntax:
 
 # Enforce %w notation in the library code, but be less strict in tests.
 Style/WordArray:
-  Enabled: false
+  Exclude:
+    - 'test/**/*.rb'
 
 # Ignore ABC failures in the tests.
 Metrics/AbcSize:

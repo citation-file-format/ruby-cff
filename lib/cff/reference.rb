@@ -95,7 +95,7 @@ module CFF
     # This list does not include `format` for reasons explained below, where
     # the `format` method is defined!
     ALLOWED_FIELDS = (
-      SCHEMA_FILE['definitions']['reference']['properties'].keys - ['format', 'languages']
+      SCHEMA_FILE['definitions']['reference']['properties'].keys - %w[format languages]
     ).freeze # :nodoc:
 
     # The [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
@@ -128,9 +128,9 @@ module CFF
         @fields['title'] = param
       end
 
-      [
-        'authors', 'contact', 'editors', 'editors-series', 'identifiers',
-        'keywords', 'patent-states', 'recipients', 'senders', 'translators'
+      %w[
+        authors contact editors editors-series identifiers
+        keywords patent-states recipients senders translators
       ].each do |field|
         @fields[field] = [] if @fields[field].nil? || @fields[field].empty?
       end
@@ -275,9 +275,9 @@ module CFF
 
     # Override superclass #fields as References contain model parts too.
     def fields # :nodoc:
-      [
-        'authors', 'contact', 'editors', 'editors-series', 'identifiers',
-        'recipients', 'senders', 'translators'
+      %w[
+        authors contact editors editors-series identifiers
+        recipients senders translators
       ].each do |field|
         normalize_modelpart_array!(@fields[field])
       end
@@ -288,16 +288,14 @@ module CFF
     private
 
     def build_model(fields) # :nodoc:
-      [
-        'authors', 'contact', 'editors', 'editors-series', 'recipients',
-        'senders', 'translators'
+      %w[
+        authors contact editors editors-series recipients senders translators
       ].each do |field|
         build_actor_collection!(fields[field]) if fields.include?(field)
       end
 
-      [
-        'conference', 'database-provider', 'institution', 'location',
-        'publisher'
+      %w[
+        conference database-provider institution location publisher
       ].each do |field|
         fields[field] &&= Entity.new(fields[field])
       end
