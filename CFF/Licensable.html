@@ -112,7 +112,7 @@
           <p>Set the license, or licenses, of this work. Only licenses that conform to the <a href="https://spdx.org/licenses/">SPDX License List</a> will be accepted. If you need specify a different license you should set <code>license-url</code> with a link to the license instead.</p>
 
           <div class="method-source-code" id="license-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/licensable.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/cff/licensable.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">license=</span>(<span class="ruby-identifier">lic</span>)
   <span class="ruby-identifier">list</span> = [<span class="ruby-operator">*</span><span class="ruby-identifier">lic</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-constant">LICENSES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">l</span>) }
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;license&#39;</span>] = <span class="ruby-keyword">case</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">length</span>
