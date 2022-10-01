@@ -18,7 +18,6 @@ require 'rubygems'
 
 ##
 module CFF
-
   # Util provides utility methods useful throughout the rest of the CFF library.
   #
   # Util does not provide any methods or fields for the public API.

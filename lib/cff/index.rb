@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # Index is the core data structure for a CITATION.cff file. It can be
   # accessed direcly, or via File.
   #

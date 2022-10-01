@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # An Identifier represents an identifier in a CITATION.cff file.
   #
   # Identifier implements all of the fields listed in the
