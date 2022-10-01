@@ -51,8 +51,8 @@ keywords:
 - ruby
 - credit
 - citation
-version: 0.9.0
-date-released: 2021-09-28
+version: 1.0.0
+date-released: 2022-10-01
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff
@@ -155,21 +155,21 @@ Assuming the same CFF data as above, the two formats will look something like th
 #### BibTeX format
 
 ```tex
-@software{Haines_Ruby_CFF_Library_2021,
+@software{Haines_Ruby_CFF_Library_2022,
 author = {Haines, Robert},
 license = {Apache-2.0},
-month = {9},
+month = {10},
 title = {{Ruby CFF Library}},
 url = {https://github.com/citation-file-format/ruby-cff},
-version = {0.9.0},
-year = {2021}
+version = {1.0.0},
+year = {2022}
 }
 ```
 
 #### APA-like format
 
 ```
-Haines, R. (2021). Ruby CFF Library (Version 0.9.0) [Computer software]. https://github.com/citation-file-format/ruby-cff
+Haines, R. (2022). Ruby CFF Library (Version 1.0.0) [Computer software]. https://github.com/citation-file-format/ruby-cff
 ```
 
 #### Citing a paper rather than software
@@ -190,7 +190,7 @@ Due to the different expectations of different publication venues, the citation 
 
 ### Library versions
 
-Until this library reaches version 1.0.0 the API may be subject to breaking changes. When version 1.0.0 is released, then the principles of [semantic versioning](https://semver.org/) will be applied.
+From version 1.0.0 onwards, the principles of [semantic versioning](https://semver.org/) are applied when numbering releases with new features or breaking changes.
 
 ### Developing Ruby CFF
 
