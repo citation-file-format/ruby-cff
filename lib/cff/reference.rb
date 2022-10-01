@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require_relative 'licensable'
+require_relative 'model_part'
+require_relative 'schema'
+require_relative 'util'
+
 ##
 module CFF
   # Reference provides a reference pertaining to the software version or the
@@ -238,10 +243,10 @@ module CFF
         authors contact editors editors-series identifiers
         recipients senders translators
       ].each do |field|
-        normalize_modelpart_array!(@fields[field])
+        Util.normalize_modelpart_array!(@fields[field])
       end
 
-      fields_to_hash(@fields)
+      Util.fields_to_hash(@fields)
     end
 
     private
@@ -250,7 +255,7 @@ module CFF
       %w[
         authors contact editors editors-series recipients senders translators
       ].each do |field|
-        build_actor_collection!(fields[field]) if fields.include?(field)
+        Util.build_actor_collection!(fields[field]) if fields.include?(field)
       end
 
       %w[

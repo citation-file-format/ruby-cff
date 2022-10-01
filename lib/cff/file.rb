@@ -14,6 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require_relative 'errors'
+require_relative 'index'
+require_relative 'version'
+
+require 'yaml'
+
 ##
 module CFF
   # File provides direct access to a CFF Index, with the addition of some

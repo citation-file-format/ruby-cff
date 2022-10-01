@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2021 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'test_helper'
+require_relative 'test_helper'
+
+require 'cff/util'
 
 class CFFUtilTest < Minitest::Test
   include ::CFF::Util
@@ -25,12 +27,6 @@ class CFFUtilTest < Minitest::Test
     assert_equal(::CFF::MIN_VALIDATABLE_VERSION, update_cff_version('1.1.0'))
     assert_equal('1.2.0', update_cff_version('1.2.0'))
     assert_equal('1.2.1', update_cff_version('1.2.1'))
-  end
-
-  def test_method_to_field
-    assert_equal('field', method_to_field('field'))
-    assert_equal('field-field', method_to_field('field_field'))
-    assert_equal('field-field', method_to_field('field-field'))
   end
 
   def test_build_actor_collection
@@ -78,9 +74,9 @@ class CFFUtilTest < Minitest::Test
       ['雙屬', '', '??'],
       ["\x00\n\x1f\x7f", "\x00\n\x1f\x7f", nil]
     ].each do |before, after, fallback|
-      assert_equal(after, ::CFF::Util.transliterate(before))
+      assert_equal(after, transliterate(before))
       assert_equal(
-        fallback || after, ::CFF::Util.transliterate(before, fallback: '?')
+        fallback || after, transliterate(before, fallback: '?')
       )
     end
   end
@@ -104,14 +100,14 @@ class CFFUtilTest < Minitest::Test
       ['3 simple words', '3_simple_words'],
       ['3-simple-words', '3-simple-words']
     ].each do |before, after|
-      assert_equal(after, ::CFF::Util.parameterize(before))
+      assert_equal(after, parameterize(before))
     end
 
     assert_equal(
-      'Bui-Vien', ::CFF::Util.parameterize('Bùi Viện', separator: '-')
+      'Bui-Vien', parameterize('Bùi Viện', separator: '-')
     )
     assert_equal(
-      'Bui-Vien', ::CFF::Util.parameterize('Bùi  Viện--', separator: '-')
+      'Bui-Vien', parameterize('Bùi  Viện--', separator: '-')
     )
   end
 end

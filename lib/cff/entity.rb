@@ -14,6 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require_relative 'model_part'
+require_relative 'schema'
+
 ##
 module CFF
   # An Entity can represent different types of entities, e.g., a publishing

@@ -14,6 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require_relative 'util'
+require_relative 'model_part'
+require_relative 'entity'
+require_relative 'identifier'
+require_relative 'licensable'
+require_relative 'person'
+require_relative 'reference'
+require_relative 'schema'
+require_relative 'validatable'
+
+require 'yaml'
+
 ##
 module CFF
   # Index is the core data structure for a CITATION.cff file. It can be
@@ -152,15 +164,15 @@ module CFF
 
     def fields
       %w[authors contact identifiers references].each do |field|
-        normalize_modelpart_array!(@fields[field])
+        Util.normalize_modelpart_array!(@fields[field])
       end
 
-      fields_to_hash(@fields)
+      Util.fields_to_hash(@fields)
     end
 
     def build_index(fields) # rubocop:disable Metrics
-      build_actor_collection!(fields['authors'] || [])
-      build_actor_collection!(fields['contact'] || [])
+      Util.build_actor_collection!(fields['authors'] || [])
+      Util.build_actor_collection!(fields['contact'] || [])
       (fields['identifiers'] || []).map! do |i|
         Identifier.new(i)
       end
@@ -171,7 +183,7 @@ module CFF
         Reference.new(fields['preferred-citation'])
 
       # Only attempt an update of the `cff-version` field if it is present.
-      fields['cff-version'] &&= update_cff_version(fields['cff-version'])
+      fields['cff-version'] &&= Util.update_cff_version(fields['cff-version'])
 
       fields
     end

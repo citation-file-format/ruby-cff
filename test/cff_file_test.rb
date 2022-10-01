@@ -14,11 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'test_helper'
+require_relative 'test_helper'
+
+require 'cff/file'
 
 class CFFFileTest < Minitest::Test
+  include TestUtil
   include TestConstruct::Helpers
-  include ::CFF::Util
 
   def test_bad_methods_not_passed_to_model
     f = ::CFF::File.new('', '')
