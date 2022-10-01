@@ -26,10 +26,6 @@ Style/RaiseArgs:
     - ValidationError
     - CFF::ValidationError
 
-# Enforce empty lines at the beginning of classes.
-Layout/EmptyLinesAroundClassBody:
-  EnforcedStyle: beginning_only
-
 # Allow long lines in the tests.
 Layout/LineLength:
   Max: 100

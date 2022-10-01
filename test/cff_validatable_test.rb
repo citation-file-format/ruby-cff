@@ -17,7 +17,6 @@
 require 'test_helper'
 
 class CFFValidatableTest < Minitest::Test
-
   def test_minimal_example_file_validate!
     cff = ::CFF::File.read(MINIMAL_CFF)
 

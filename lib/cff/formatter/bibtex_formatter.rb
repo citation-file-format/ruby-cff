@@ -18,7 +18,6 @@
 module CFF
   # Generates an BibTex citation string
   class BibtexFormatter < Formatter # :nodoc:
-
     # Fields without `!` have a simple one-to-one mapping between CFF and
     # BibTeX. Those with `!` call out to a more complex getter.
     ENTRY_TYPE_MAP = {

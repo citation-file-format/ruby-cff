@@ -17,7 +17,6 @@
 require 'test_helper'
 
 class CFFEntityTest < Minitest::Test
-
   include ::CFF::Util
 
   def setup

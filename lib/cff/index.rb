@@ -43,7 +43,6 @@ module CFF
   # * `url`
   # * `version`
   class Index < ModelPart
-
     include Licensable
     include Validatable
 

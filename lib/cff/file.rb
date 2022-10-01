@@ -24,7 +24,6 @@ module CFF
   # and to validate the contents of those files independently of the preferred
   # filename.
   class File
-
     # A comment to be inserted at the top of the resultant CFF file.
     attr_reader :comment
 

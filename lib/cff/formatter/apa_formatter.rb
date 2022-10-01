@@ -18,7 +18,6 @@
 module CFF
   # Generates an APALIKE citation string
   class ApaFormatter < Formatter # :nodoc:
-
     def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
       model = select_and_check_model(model, preferred_citation)
       return if model.nil?

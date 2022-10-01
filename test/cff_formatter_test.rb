@@ -17,7 +17,6 @@
 require 'test_helper'
 
 class CFFFormatterTest < Minitest::Test
-
   def test_month_and_year_from_date
     [nil, '', ' ', 'nil'].each do |date|
       assert_equal(['', ''], CFF::Formatter.month_and_year_from_date(date))

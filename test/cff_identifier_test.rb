@@ -17,7 +17,6 @@
 require 'test_helper'
 
 class CFFIdentifierTest < Minitest::Test
-
   def test_new
     id = ::CFF::Identifier.new('doi', '10.5281/zenodo.1184077')
     assert_equal('doi', id.type)

@@ -90,7 +90,6 @@ module CFF
   # * `year`
   # * `year_original`
   class Reference < ModelPart
-
     include Licensable
 
     # This list does not include `format` for reasons explained below, where

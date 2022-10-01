@@ -18,7 +18,6 @@
 module CFF
   # Formatter base class
   class Formatter # :nodoc:
-
     STATUS_TEXT_MAP = {
       'advance-online' => 'Advance online publication',
       'in-preparation' => 'Manuscript in preparation.',
