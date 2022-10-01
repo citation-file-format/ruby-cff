@@ -302,7 +302,4 @@ module CFF
     #
     # Replace the list of references for this citation.
   end
-
-  # For backwards compatibility. Delete for version 1.0.0.
-  Model = Index # :nodoc:
 end
