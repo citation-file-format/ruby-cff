@@ -17,7 +17,6 @@
 require 'test_helper'
 
 class CFFErrorsTest < Minitest::Test
-
   def test_validation_error
     error = ::CFF::ValidationError.new(['test'])
     assert_equal(

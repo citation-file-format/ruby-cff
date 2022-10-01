@@ -28,7 +28,6 @@ module CFF
   # * `type`
   # * `value`
   class Identifier < ModelPart
-
     # :nodoc:
     ALLOWED_FIELDS =
       SCHEMA_FILE['definitions']['identifier']['anyOf'].first['properties'].keys.dup.freeze

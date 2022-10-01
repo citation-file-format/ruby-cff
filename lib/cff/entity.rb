@@ -42,7 +42,6 @@ module CFF
   # * `tel`
   # * `website`
   class Entity < ModelPart
-
     # :nodoc:
     ALLOWED_FIELDS = SCHEMA_FILE['definitions']['entity']['properties'].keys.freeze
 

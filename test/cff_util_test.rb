@@ -17,7 +17,6 @@
 require 'test_helper'
 
 class CFFUtilTest < Minitest::Test
-
   include ::CFF::Util
 
   def test_update_cff_version

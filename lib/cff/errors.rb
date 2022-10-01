@@ -18,7 +18,6 @@
 module CFF
   # Error is the base class for all errors raised by this library.
   class Error < RuntimeError
-
     def initialize(message = nil) # :nodoc:
       super
     end
@@ -32,7 +31,6 @@ module CFF
   # CFF file is named correctly. This is only used when validating a File;
   # validating a Index directly will not set this flag to `true`.
   class ValidationError < Error
-
     # The list of JsonSchema::ValidationErrors found by the validator.
     attr_reader :errors
 
