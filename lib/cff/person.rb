@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # A Person represents a person in a CITATION.cff file. A Person might have a
   # number of roles, such as author, contact, editor, etc.
   #

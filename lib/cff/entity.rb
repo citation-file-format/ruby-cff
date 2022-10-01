@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # An Entity can represent different types of entities, e.g., a publishing
   # company, or conference. Like a Person, an Entity might have a number of
   # roles, such as author, contact, editor, etc.

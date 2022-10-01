@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # ModelPart is the superclass of anything that makes up part of the CFF Index.
   # This includes Index, Person, Entity and Reference.
   #

@@ -30,11 +30,6 @@ Style/RaiseArgs:
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: beginning_only
 
-# Allow empty lines, or not, around module bodies. I like a line at the
-# beginning, but not the end, but this is not an option in RuboCop.
-Layout/EmptyLinesAroundModuleBody:
-  Enabled: false
-
 # Allow long lines in the tests.
 Layout/LineLength:
   Max: 100

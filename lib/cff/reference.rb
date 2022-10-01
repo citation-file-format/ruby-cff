@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # Reference provides a reference pertaining to the software version or the
   # software itself, e.g., a software paper describing the abstract concepts of
   # the software, a paper describing an algorithm that has been implemented in

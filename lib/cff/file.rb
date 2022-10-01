@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # File provides direct access to a CFF Index, with the addition of some
   # filesystem utilities.
   #

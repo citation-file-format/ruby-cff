@@ -16,7 +16,6 @@
 
 ##
 module CFF
-
   # Error is the base class for all errors raised by this library.
   class Error < RuntimeError
 
