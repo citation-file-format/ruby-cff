@@ -106,6 +106,9 @@ module CFF
     REFERENCE_STATUS_TYPES =
       SCHEMA_FILE['definitions']['reference']['properties']['status']['enum'].dup.freeze
 
+    attr_date :date_accessed, :date_downloaded, :date_published,
+              :date_released, :issue_date
+
     # :call-seq:
     #   new(title) -> Reference
     #   new(title) { |ref| block } -> Reference
@@ -191,50 +194,6 @@ module CFF
     # Return the list of languages associated with this Reference.
     def languages
       @fields['languages'].nil? || @fields['languages'].empty? ? [] : @fields['languages'].dup
-    end
-
-    # :call-seq:
-    #   date_accessed = date
-    #
-    # Set the `date-accessed` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_accessed=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-accessed'] = date
-    end
-
-    # :call-seq:
-    #   date_downloaded = date
-    #
-    # Set the `date-downloaded` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_downloaded=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-downloaded'] = date
-    end
-
-    # :call-seq:
-    #   date_published = date
-    #
-    # Set the `date-published` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_published=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-published'] = date
-    end
-
-    # :call-seq:
-    #   date_released = date
-    #
-    # Set the `date-released` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_released=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-released'] = date
     end
 
     # Returns the format of this Reference.

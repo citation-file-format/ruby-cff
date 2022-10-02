@@ -54,5 +54,26 @@ module CFF
     def empty?
       false
     end
+
+    def self.attr_date(*symbols) # :nodoc:
+      symbols.each do |symbol|
+        field = symbol.to_s.tr('_', '-')
+
+        class_eval(
+          # def date_end=(date)
+          #   date = (date.is_a?(Date) ? date.dup : Date.parse(date))
+          #
+          #   @fields['date-end'] = date
+          # end
+          <<-END_SETTER, __FILE__, __LINE__ + 1
+            def #{symbol}=(date)
+              date = (date.is_a?(Date) ? date.dup : Date.parse(date))
+
+              @fields['#{field}'] = date
+            end
+          END_SETTER
+        )
+      end
+    end
   end
 end
