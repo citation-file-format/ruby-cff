@@ -1,0 +1,89 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu]
+        ruby: ['2.6', '2.7', '3.0', '3.1', head, jruby, jruby-head, truffleruby, truffleruby-head]
+        include:
+          - os: macos
+            ruby: '3.0'
+          - os: windows
+            ruby: '3.0'
+    runs-on: ${{ matrix.os }}-latest
+    continue-on-error: ${{ endsWith(matrix.ruby, 'head') || matrix.os == 'windows' }}
+    steps:
+    - name: Checkout rubyzip code
+      uses: actions/checkout@v2
+
+    - name: Install and set up ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+
+    - name: Run the tests
+      env:
+        RUBYOPT: -v
+        JRUBY_OPTS: --debug
+      run: bundle exec rake
+
+    - name: Coveralls
+      if: matrix.os == 'ubuntu' && !endsWith(matrix.ruby, 'head')
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        flag-name: ${{ matrix.ruby }}
+        parallel: true
+
+  test-isolated:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout rubyzip code
+      uses: actions/checkout@v2
+
+    - name: Install and set up ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+        bundler-cache: true
+
+    - name: Run isolated tests
+      run: bundle exec rake test:isolated
+
+  test-yjit:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, macos]
+        ruby: ['3.1', head]
+    runs-on: ${{ matrix.os }}-latest
+    continue-on-error: true
+    steps:
+    - name: Checkout rubyzip code
+      uses: actions/checkout@v2
+
+    - name: Install and set up ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+
+    - name: Run the tests
+      env:
+        RUBYOPT: --enable-yjit -v
+      run: bundle exec rake
+
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true
