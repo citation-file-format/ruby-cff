@@ -172,7 +172,7 @@ class CFFReferenceTest < Minitest::Test
 
   def test_dates_are_set_and_output_correctly
     %w[
-      date_accessed date_downloaded date_published date_released
+      date_accessed date_downloaded date_published date_released issue_date
     ].each do |method|
       date = Date.today
       @reference.send("#{method}=", date)
@@ -234,7 +234,6 @@ class CFFReferenceTest < Minitest::Test
       format
       isbn
       issn
-      issue_date
       issue_title
       journal
       license_url

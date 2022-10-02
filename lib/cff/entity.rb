@@ -45,6 +45,8 @@ module CFF
     # :nodoc:
     ALLOWED_FIELDS = SCHEMA_FILE['definitions']['entity']['properties'].keys.freeze
 
+    attr_date :date_end, :date_start
+
     # :call-seq:
     #   new(name) -> Entity
     #   new(name) { |entity| block } -> Entity
@@ -61,28 +63,6 @@ module CFF
       end
 
       yield self if block_given?
-    end
-
-    # :call-seq:
-    #   date_end = date
-    #
-    # Set the `date-end` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_end=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-end'] = date
-    end
-
-    # :call-seq:
-    #   date_start = date
-    #
-    # Set the `date-start` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_start=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-start'] = date
     end
   end
 end

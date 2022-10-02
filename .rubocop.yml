@@ -67,3 +67,6 @@ Metrics/ClassLength:
 # This is still too high, but we'll get there.
 Minitest/MultipleAssertions:
   Max: 10
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true

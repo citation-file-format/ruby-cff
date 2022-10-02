@@ -56,6 +56,8 @@ module CFF
     DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
                       'it using the following metadata'
 
+    attr_date :date_released
+
     # :call-seq:
     #   new(title) -> Index
     #   new(title) { |index| block } -> Index
@@ -101,17 +103,6 @@ module CFF
       yield cff if block_given?
 
       cff
-    end
-
-    # :call-seq:
-    #   date_released = date
-    #
-    # Set the `date-released` field. If a non-Date object is passed in it will
-    # be parsed into a Date.
-    def date_released=(date)
-      date = Date.parse(date) unless date.is_a?(Date)
-
-      @fields['date-released'] = date
     end
 
     # :call-seq:
