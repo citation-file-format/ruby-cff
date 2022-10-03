@@ -49,8 +49,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.6'
 
-  spec.add_runtime_dependency 'json_schema', '~> 0.20.0'
-  spec.add_runtime_dependency 'language_list', '~> 1.2'
+  spec.add_runtime_dependency 'json_schema', '~> 0.20.4'
+  spec.add_runtime_dependency 'language_list', '~> 1.2.1'
 
   spec.add_development_dependency 'minitest', '~> 5.16.0'
   spec.add_development_dependency 'rake', '~> 13.0'
