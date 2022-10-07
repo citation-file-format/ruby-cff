@@ -16,7 +16,7 @@
 
 require_relative 'test_helper'
 
-require 'cff/formatter/formatter'
+require 'cff/formatters/formatter'
 require 'cff/index'
 
 class CFFFormatterTest < Minitest::Test
