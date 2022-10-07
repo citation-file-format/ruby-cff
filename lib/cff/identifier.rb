@@ -31,8 +31,7 @@ module CFF
   # * `type`
   # * `value`
   class Identifier < ModelPart
-    # :nodoc:
-    ALLOWED_FIELDS =
+    ALLOWED_FIELDS = # :nodoc:
       SCHEMA_FILE['definitions']['identifier']['anyOf'].first['properties'].keys.dup.freeze
 
     # The [defined set of identifier types](https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings).

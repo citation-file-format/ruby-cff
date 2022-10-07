@@ -45,8 +45,7 @@ module CFF
   # * `tel`
   # * `website`
   class Entity < ModelPart
-    # :nodoc:
-    ALLOWED_FIELDS = SCHEMA_FILE['definitions']['entity']['properties'].keys.freeze
+    ALLOWED_FIELDS = SCHEMA_FILE['definitions']['entity']['properties'].keys.freeze # :nodoc:
 
     attr_date :date_end, :date_start
 
