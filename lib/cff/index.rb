@@ -58,8 +58,7 @@ module CFF
     include Licensable
     include Validatable
 
-    # :nodoc:
-    ALLOWED_FIELDS = SCHEMA_FILE['properties'].keys.freeze
+    ALLOWED_FIELDS = SCHEMA_FILE['properties'].keys.freeze # :nodoc:
 
     # The allowed CFF [types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
     MODEL_TYPES = SCHEMA_FILE['properties']['type']['enum'].dup.freeze
