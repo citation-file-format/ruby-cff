@@ -2,7 +2,7 @@
 
 require_relative 'test_helper'
 
-require 'cff/formatter/bibtex_formatter'
+require 'cff/formatters/bibtex_formatter'
 require 'cff/file'
 
 class CFFBibtexFormatterTest < Minitest::Test

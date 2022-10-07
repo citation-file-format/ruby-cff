@@ -2,7 +2,7 @@
 
 require_relative 'test_helper'
 
-require 'cff/formatter/apa_formatter'
+require 'cff/formatters/apa_formatter'
 require 'cff/file'
 
 class CFFApaFormatterTest < Minitest::Test
