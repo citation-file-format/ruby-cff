@@ -18,6 +18,7 @@ require_relative 'errors'
 require_relative 'index'
 require_relative 'version'
 
+require 'date'
 require 'yaml'
 
 ##
