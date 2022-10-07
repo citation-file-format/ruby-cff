@@ -18,6 +18,6 @@ require 'json'
 
 ##
 module CFF
-  SCHEMA_PATH = ::File.join(__dir__, '..', 'schema', '1.2.0.json') # :nodoc:
-  SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))         # :nodoc:
+  SCHEMA_PATH = ::File.join(__dir__, 'schemas', '1.2.0.json') # :nodoc:
+  SCHEMA_FILE = JSON.parse(::File.read(SCHEMA_PATH))          # :nodoc:
 end
