@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require_relative 'test_helper'
+require_relative '../test_helper'
 
 require 'cff/formatters/formatter'
 require 'cff/index'
