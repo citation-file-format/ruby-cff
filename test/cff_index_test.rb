@@ -406,4 +406,13 @@ class CFFIndexTest < Minitest::Test
     m = ::CFF::Index.read('title: hi\nkeywords:\n')
     refute_empty(m)
   end
+
+  def test_citation
+    string = ::File.read(MINIMAL_CFF)
+    ::CFF::Index.open(string) do |cff|
+      assert_empty(cff.citation(:bubtix))
+      refute_empty(cff.citation('BibTeX'))
+      refute_empty(cff.citation(:APAlike))
+    end
+  end
 end
