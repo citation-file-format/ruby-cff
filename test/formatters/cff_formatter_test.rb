@@ -22,16 +22,16 @@ require 'cff/index'
 class CFFFormatterTest < Minitest::Test
   def test_month_and_year_from_date
     [nil, '', ' ', 'nil'].each do |date|
-      assert_equal(['', ''], CFF::Formatter.month_and_year_from_date(date))
+      assert_equal(['', ''], CFF::Formatters::Formatter.month_and_year_from_date(date))
     end
 
     date_str = '2021-08-05'
     date = Date.parse(date_str)
     assert_equal(
-      ['8', '2021'], CFF::Formatter.month_and_year_from_date(date_str)
+      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_date(date_str)
     )
     assert_equal(
-      ['8', '2021'], CFF::Formatter.month_and_year_from_date(date)
+      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_date(date)
     )
   end
 
@@ -41,26 +41,26 @@ class CFFFormatterTest < Minitest::Test
     model = ::CFF::Index.new('Title')
     model.date_released = date
     assert_equal(
-      ['8', '2021'], CFF::Formatter.month_and_year_from_model(model)
+      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_model(model)
     )
 
     ref = ::CFF::Reference.new('Title')
     ref.date_released = date
     assert_equal(
-      ['8', '2021'], CFF::Formatter.month_and_year_from_model(ref)
+      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_model(ref)
     )
 
     ref = ::CFF::Reference.new('Title')
     ref.month = 9
     ref.year = 2020
     assert_equal(
-      ['9', '2020'], CFF::Formatter.month_and_year_from_model(ref)
+      ['9', '2020'], CFF::Formatters::Formatter.month_and_year_from_model(ref)
     )
 
     # No dates.
     ref = ::CFF::Reference.new('Title')
     assert_equal(
-      ['', ''], CFF::Formatter.month_and_year_from_model(ref)
+      ['', ''], CFF::Formatters::Formatter.month_and_year_from_model(ref)
     )
 
     # Ignore date_released if month and year set.
@@ -69,7 +69,7 @@ class CFFFormatterTest < Minitest::Test
     ref.year = 2020
     ref.date_released = date
     assert_equal(
-      ['9', '2020'], CFF::Formatter.month_and_year_from_model(ref)
+      ['9', '2020'], CFF::Formatters::Formatter.month_and_year_from_model(ref)
     )
 
     # Year missing, fall back to date_released.
@@ -77,7 +77,7 @@ class CFFFormatterTest < Minitest::Test
     ref.month = 9
     ref.date_released = date
     assert_equal(
-      ['8', '2021'], CFF::Formatter.month_and_year_from_model(ref)
+      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_model(ref)
     )
   end
 end

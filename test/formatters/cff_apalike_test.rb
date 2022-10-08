@@ -2,7 +2,7 @@
 
 require_relative '../test_helper'
 
-require 'cff/formatters/apa_formatter'
+require 'cff/formatters/apalike'
 require 'cff/file'
 
 class CFFApaFormatterTest < Minitest::Test
@@ -21,6 +21,10 @@ class CFFApaFormatterTest < Minitest::Test
     end
   end
 
+  def test_formatter_label
+    assert_equal('APALike', CFF::Formatters::APALike.label)
+  end
+
   def test_can_tolerate_invalid_file
     cff = CFF::Index.new(nil)
     assert_nil cff.to_apalike
@@ -29,44 +33,44 @@ class CFFApaFormatterTest < Minitest::Test
   def test_type_label_from_model
     index = ::CFF::Index.new('Title')
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(index)
+      ' [Computer software]', CFF::Formatters::APALike.type_label(index)
     )
 
     index.type = 'wrong'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(index)
+      ' [Computer software]', CFF::Formatters::APALike.type_label(index)
     )
 
     index.type = 'software'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(index)
+      ' [Computer software]', CFF::Formatters::APALike.type_label(index)
     )
 
     index.type = 'dataset'
     assert_equal(
-      ' [Data set]', ::CFF::ApaFormatter.type_label(index)
+      ' [Data set]', CFF::Formatters::APALike.type_label(index)
     )
   end
 
   def test_type_label_from_reference
     ref = ::CFF::Reference.new('Title')
-    assert_equal('', ::CFF::ApaFormatter.type_label(ref))
+    assert_equal('', CFF::Formatters::APALike.type_label(ref))
 
     ref.type = 'book'
-    assert_equal('', ::CFF::ApaFormatter.type_label(ref))
+    assert_equal('', CFF::Formatters::APALike.type_label(ref))
 
     ref.type = 'software'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(ref)
+      ' [Computer software]', CFF::Formatters::APALike.type_label(ref)
     )
 
     ref.type = 'software-container'
     assert_equal(
-      ' [Computer software]', ::CFF::ApaFormatter.type_label(ref)
+      ' [Computer software]', CFF::Formatters::APALike.type_label(ref)
     )
 
     ref.type = 'database'
-    assert_equal(' [Data set]', ::CFF::ApaFormatter.type_label(ref))
+    assert_equal(' [Data set]', CFF::Formatters::APALike.type_label(ref))
   end
 
   def test_month_and_year_from_model
@@ -77,50 +81,50 @@ class CFFApaFormatterTest < Minitest::Test
     ref.month = 12
 
     # Conference type reference with no conference set.
-    assert_equal('2019', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+    assert_equal('2019', CFF::Formatters::APALike.month_and_year_from_model(ref))
 
     # Conference set, but no start date.
     ref.conference = conf
-    assert_equal('2019', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+    assert_equal('2019', CFF::Formatters::APALike.month_and_year_from_model(ref))
 
     # Conference with a start date but no end date.
     conf.date_start = date
-    assert_equal('2021', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+    assert_equal('2021', CFF::Formatters::APALike.month_and_year_from_model(ref))
 
     # Conference with the same start and end date.
     conf.date_end = date
-    assert_equal('2021', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+    assert_equal('2021', CFF::Formatters::APALike.month_and_year_from_model(ref))
 
     # Conference with a different start and end date.
     conf.date_end = date + 5
     assert_equal(
       '2021, September 21–26',
-      ::CFF::ApaFormatter.month_and_year_from_model(ref)
+      CFF::Formatters::APALike.month_and_year_from_model(ref)
     )
 
     # Conference with earlier end date than start date (bad range).
     conf.date_end = date - 1
-    assert_equal('2021', ::CFF::ApaFormatter.month_and_year_from_model(ref))
+    assert_equal('2021', CFF::Formatters::APALike.month_and_year_from_model(ref))
   end
 
   def test_date_range
     start = Date.new(2021, 9, 21)
     finish = start + 3
     assert_equal(
-      '2021, September 21–24', ::CFF::ApaFormatter.date_range(start, finish)
+      '2021, September 21–24', CFF::Formatters::APALike.date_range(start, finish)
     )
 
     finish = start + 10
     assert_equal(
       '2021, September 21–October 1',
-      ::CFF::ApaFormatter.date_range(start, finish)
+      CFF::Formatters::APALike.date_range(start, finish)
     )
 
     start = Date.new(1999, 12, 31)
     finish = Date.new(2000, 1, 1)
     assert_equal(
       '1999, December 31–2000, January 1',
-      ::CFF::ApaFormatter.date_range(start, finish)
+      CFF::Formatters::APALike.date_range(start, finish)
     )
   end
 end
