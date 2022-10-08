@@ -23,7 +23,7 @@ require_relative 'person'
 require_relative 'reference'
 require_relative 'schema'
 require_relative 'validatable'
-require_relative 'formatters'
+require_relative 'citable'
 
 require 'yaml'
 
@@ -56,6 +56,7 @@ module CFF
   # * `url`
   # * `version`
   class Index < ModelPart
+    include Citable
     include Licensable
     include Validatable
 
@@ -118,28 +119,6 @@ module CFF
     end
 
     # :call-seq:
-    #   citation(format, preferred_citation: true) -> String
-    #
-    # Output this Index in the specified format. Setting
-    # `preferred_citation: true` will honour the `preferred_citation` field in
-    # the index if one is present (default).
-    #
-    # `format` can be supplied as a String or a Symbol.
-    #
-    # Formats that are built-in to Ruby CFF are:
-    #
-    # * APAlike (e.g. `:apalike`, `'apalike'` or `'APAlike'`)
-    # * BibTeX (e.g. `:bibtex`, `'bibtex'` or `'BibTeX'`)
-    #
-    # *Note:* This method assumes that this Index is valid when called.
-    def citation(format, preferred_citation: true)
-      formatter = Formatters.formatter_for(format)
-      return '' if formatter.nil?
-
-      formatter.format(model: self, preferred_citation: preferred_citation)
-    end
-
-    # :call-seq:
     #   type = type
     #
     # Sets the type of this CFF Index. The type is currently restricted to one
@@ -152,30 +131,6 @@ module CFF
 
     def to_yaml # :nodoc:
       YAML.dump fields, line_width: -1, indentation: 2
-    end
-
-    # :call-seq:
-    #   to_apalike(preferred_citation: true) -> String
-    #
-    # Output this Index in an APA-like format. Setting
-    # `preferred_citation: true` will honour the `preferred_citation` field in
-    # the index if one is present (default).
-    #
-    # *Note:* This method assumes that this Index is valid when called.
-    def to_apalike(preferred_citation: true)
-      citation(:apalike, preferred_citation: preferred_citation)
-    end
-
-    # :call-seq:
-    #   to_bibtex(preferred_citation: true) -> String
-    #
-    # Output this Index in BibTeX format. Setting
-    # `preferred_citation: true` will honour the `preferred_citation` field in
-    # the index if one is present (default).
-    #
-    # *Note:* This method assumes that this Index is valid when called.
-    def to_bibtex(preferred_citation: true)
-      citation(:bibtex, preferred_citation: preferred_citation)
     end
 
     private

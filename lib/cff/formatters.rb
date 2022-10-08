@@ -21,19 +21,35 @@ module CFF
     @formatters = {}
 
     # :call-seq:
+    #   formatters -> Array
+    #
+    # Return the list of formatters that are available.
+    def self.formatters
+      @formatters.keys
+    end
+
+    # :call-seq:
     #   register_formatter(class)
     #
     # Register a citation formatter. To be registered as a formatter, a
-    # class should at least provide:
+    # class should at least provide the following class methods:
     #
-    # * the constant `CITATION_FORMAT`, which should be a minimal descriptive
-    #   name for the format, e.g. `'BibTeX'`; and
-    # * the method `format`, which takes the to model to be formatted.
+    # * `format`, which takes the model to be formatted
+    # as a named parameter, and the option to cite a CFF file's
+    # `preferred-citation`:
+    # ```ruby
+    # def self.format(model:, preferred_citation: true); end
+    # ```
+    # * `label`, which returns a short name for the formatter, e.g.
+    # `'BibTeX'`. If your formatter class subclasses `CFF::Formatter`,
+    # then `label` is provided for you.
     def self.register_formatter(clazz)
       return unless clazz.singleton_methods.include?(:format)
       return if @formatters.has_value?(clazz)
 
-      @formatters[clazz.label.downcase.to_sym] = clazz
+      format = clazz.label.downcase.to_sym
+      @formatters[format] = clazz
+      Citable.add_to_format_method(format) if defined?(Citable)
     end
 
     def self.formatter_for(format) # :nodoc:
