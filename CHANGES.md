@@ -1,6 +1,6 @@
 # Changes log for the Ruby CFF Library
 
-## Next
+## 1.0.0
 
 * Add `type` to top-level CFF model.
 * Correctly label datasets with APA-like formatter.
@@ -48,8 +48,30 @@
 * Use the `parameterize` method to generate citekeys.
 * Rename `generate_reference` -> `generate_citekey`.
 * Only require language list if it is needed
-* Fix errors caused by updated gem versions.
-* Add a note to the README to caution against `URI.open`.
+* APA: don't output empty brackets if there's no issue.
+* Formatters: use `date-published` for month/year values.
+* Add a note to the README about BibTeX and APA standards.
+* BibTeX: generalise author lists to actor lists.
+* BibTeX: add `editor` field for `inproceedings` type.
+* BibTeX: use `editors-series` if `editors` is not present.
+* BibTeX: add `editor` field to `book` type.
+* BibTeX: add `editor` field to `proceedings` type.
+* Use the schema to determine the allowed fields within `Reference`.
+* Use the schema to determine the allowed fields within `Person`.
+* Use the schema to determine the allowed fields within `Entity`.
+* Use the schema to determine the allowed fields within `Model`.
+* Use the schema to determine the allowed fields within `Identifier`.
+* Rename the `Model` class to `Index` which makes more sense.
+* Add 'phdthesis' and 'mastersthesis' types for a preferred-citation.
+* Add contribution guidelines.
+* Handle 'in-press' in the formatters.
+* Handle 'in-preparation' in the formatters.
+* Handle 'submitted' in the formatters.
+* Handle 'advance-online' in the formatters.
+* Wholesale changes to isolate all the code from itself.
+* Expand the range of tests, rubies and OSs in the CI.
+* Update runtime gem dependencies.
+* Implement an extensible formatter system.
 
 ## Version 0.9.0
 
