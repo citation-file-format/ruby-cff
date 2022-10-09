@@ -7,6 +7,7 @@ A Ruby library for creating, editing, validating and converting CITATION.cff fil
 [![Gem Version](https://badge.fury.io/rb/cff.svg)](https://badge.fury.io/rb/cff)
 [![Tests](https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml/badge.svg)](https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml)
 [![Linter](https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml/badge.svg)](https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6bb4c661bfb4971260ba/maintainability)](https://codeclimate.com/github/citation-file-format/ruby-cff/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/citation-file-format/ruby-cff/badge.svg)](https://coveralls.io/github/citation-file-format/ruby-cff)
 
@@ -181,7 +182,6 @@ cff = CFF::File.read('CITATION.cff')
 
 cff.to_bibtex(preferred_citation: false)
 cff.to_apalike(preferred_citation: false)
-
 ```
 
 #### A note on citation formats
