@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>CHANGES -  Ruby CFF Library (version 0.9.0)</title>
+<title>CHANGES -  Ruby CFF Library (version 1.0.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -59,7 +59,7 @@
 
   <ul class="link-list" role="directory">
     <li><a href="#label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby CFF Library</a>
-    <li><a href="#label-Next">Next</a>
+    <li><a href="#label-1.0.0">1.0.0</a>
     <li><a href="#label-Version+0.9.0">Version 0.9.0</a>
     <li><a href="#label-Version+0.8.0">Version 0.8.0</a>
     <li><a href="#label-Version+0.4.0">Version 0.4.0</a>
@@ -92,7 +92,7 @@
 
 <h1 id="label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby <a href="CFF.html"><code>CFF</code></a> Library<span><a href="#label-Changes+log+for+the+Ruby+CFF+Library">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
-<h2 id="label-Next">Next<span><a href="#label-Next">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2 id="label-1.0.0">1.0.0<span><a href="#label-1.0.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li>
 <p>Add <code>type</code> to top-level <a href="CFF.html"><code>CFF</code></a> model.</p>
 </li><li>
@@ -110,9 +110,9 @@
 </li><li>
 <p>APA: get publisher for a book.</p>
 </li><li>
-<p>BibTeX: add &#39;inproceedings&#39; type for a preferred-citation.</p>
+<p>BibTeX: add ‘inproceedings’ type for a preferred-citation.</p>
 </li><li>
-<p>APA: add &#39;conference-paper&#39; type for a preferred-citation.</p>
+<p>APA: add ‘conference-paper’ type for a preferred-citation.</p>
 </li><li>
 <p>Generalize the <code>::pages_from_model</code> method.</p>
 </li><li>
@@ -186,9 +186,53 @@
 </li><li>
 <p>Only require language list if it is needed</p>
 </li><li>
-<p>Fix errors caused by updated gem versions.</p>
+<p>APA: don’t output empty brackets if there’s no issue.</p>
 </li><li>
-<p>Add a note to the <a href="README_md.html">README</a> to caution against <code>URI.open</code>.</p>
+<p>Formatters: use <code>date-published</code> for month/year values.</p>
+</li><li>
+<p>Add a note to the <a href="README_md.html">README</a> about BibTeX and APA standards.</p>
+</li><li>
+<p>BibTeX: generalise author lists to actor lists.</p>
+</li><li>
+<p>BibTeX: add <code>editor</code> field for <code>inproceedings</code> type.</p>
+</li><li>
+<p>BibTeX: use <code>editors-series</code> if <code>editors</code> is not present.</p>
+</li><li>
+<p>BibTeX: add <code>editor</code> field to <code>book</code> type.</p>
+</li><li>
+<p>BibTeX: add <code>editor</code> field to <code>proceedings</code> type.</p>
+</li><li>
+<p>Use the schema to determine the allowed fields within <code>Reference</code>.</p>
+</li><li>
+<p>Use the schema to determine the allowed fields within <code>Person</code>.</p>
+</li><li>
+<p>Use the schema to determine the allowed fields within <code>Entity</code>.</p>
+</li><li>
+<p>Use the schema to determine the allowed fields within <code>Model</code>.</p>
+</li><li>
+<p>Use the schema to determine the allowed fields within <code>Identifier</code>.</p>
+</li><li>
+<p>Rename the <code>Model</code> class to <code>Index</code> which makes more sense.</p>
+</li><li>
+<p>Add ‘phdthesis’ and ‘mastersthesis’ types for a preferred-citation.</p>
+</li><li>
+<p>Add contribution guidelines.</p>
+</li><li>
+<p>Handle ‘in-press’ in the formatters.</p>
+</li><li>
+<p>Handle ‘in-preparation’ in the formatters.</p>
+</li><li>
+<p>Handle ‘submitted’ in the formatters.</p>
+</li><li>
+<p>Handle ‘advance-online’ in the formatters.</p>
+</li><li>
+<p>Wholesale changes to isolate all the code from itself.</p>
+</li><li>
+<p>Expand the range of tests, rubies and OSs in the CI.</p>
+</li><li>
+<p>Update runtime gem dependencies.</p>
+</li><li>
+<p>Implement an extensible formatter system.</p>
 </li></ul>
 
 <h2 id="label-Version+0.9.0">Version 0.9.0<span><a href="#label-Version+0.9.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
@@ -221,7 +265,7 @@
 </li><li>
 <p>Fix APA-like formatter when a reference is missing a volume.</p>
 </li><li>
-<p>APA: don&#39;t emit journal data if there&#39;s no journal.</p>
+<p>APA: don’t emit journal data if there’s no journal.</p>
 </li></ul>
 
 <h2 id="label-Version+0.8.0">Version 0.8.0<span><a href="#label-Version+0.8.0">&para;</a> <a href="#top">&uarr;</a></span></h2>
@@ -352,7 +396,7 @@
 </li><li>
 <p>Honour <code>preferred_citation</code> when outputting citation text.</p>
 </li><li>
-<p>Only use &#39;[Computer software]&#39; label in APA format for software.</p>
+<p>Only use ‘[Computer software]’ label in APA format for software.</p>
 </li><li>
 <p>Map <code>Reference</code> types to BibTeX types when formatting.</p>
 </li></ul>
@@ -401,13 +445,13 @@
 </li><li>
 <p>Add File#write (instance method).</p>
 </li><li>
-<p>Ensure a model always returns &#39;&#39; for missing fields.</p>
+<p>Ensure a model always returns ” for missing fields.</p>
 </li><li>
 <p>Test reading short and minimal <a href="CFF.html"><code>CFF</code></a> files.</p>
 </li><li>
 <p>Cleanup duplicated tests.</p>
 </li><li>
-<p>Don&#39;t store dotfiles in the gemfile.</p>
+<p>Don’t store dotfiles in the gemfile.</p>
 </li><li>
 <p>Add a CITATION.cff file!</p>
 </li></ul>
@@ -606,7 +650,7 @@
 </li><li>
 <p>Add a simple model class.</p>
 </li><li>
-<p>Message doesn&#39;t need to be passed to new.</p>
+<p>Message doesn’t need to be passed to new.</p>
 </li><li>
 <p>Add title to model and wire into default message.</p>
 </li><li>
@@ -628,9 +672,9 @@
 </li><li>
 <p>Turn off line wrapping in Model yaml output.</p>
 </li><li>
-<p>Fix #2. Don&#39;t include title in the default message.</p>
+<p>Fix #2. Don’t include title in the default message.</p>
 </li><li>
-<p>Test that yaml output doesn&#39;t include the header.</p>
+<p>Test that yaml output doesn’t include the header.</p>
 </li><li>
 <p>Write cff from a String or Model.</p>
 </li><li>
@@ -671,7 +715,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.3.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

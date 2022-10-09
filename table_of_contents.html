@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Table of Contents -  Ruby CFF Library (version 0.9.0)</title>
+<title>Table of Contents -  Ruby CFF Library (version 1.0.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -23,7 +23,7 @@
 
 <body id="top" class="table-of-contents">
 <main role="main">
-<h1 class="class">Table of Contents -  Ruby CFF Library (version 0.9.0)</h1>
+<h1 class="class">Table of Contents -  Ruby CFF Library (version 1.0.0)</h1>
 
 <h2 id="pages">Pages</h2>
 <ul>
@@ -32,7 +32,7 @@
 
     <ul>
       <li><a href="CHANGES_md.html#label-Changes+log+for+the+Ruby+CFF+Library">Changes log for the Ruby CFF Library</a>
-      <li><a href="CHANGES_md.html#label-Next">Next</a>
+      <li><a href="CHANGES_md.html#label-1.0.0">1.0.0</a>
       <li><a href="CHANGES_md.html#label-Version+0.9.0">Version 0.9.0</a>
       <li><a href="CHANGES_md.html#label-Version+0.8.0">Version 0.8.0</a>
       <li><a href="CHANGES_md.html#label-Version+0.4.0">Version 0.4.0</a>
@@ -98,6 +98,9 @@
   <li class="module">
     <a href="CFF.html">CFF</a>
   </li>
+  <li class="module">
+    <a href="CFF/Citable.html">CFF::Citable</a>
+  </li>
   <li class="class">
     <a href="CFF/Entity.html">CFF::Entity</a>
   </li>
@@ -106,6 +109,9 @@
   </li>
   <li class="class">
     <a href="CFF/File.html">CFF::File</a>
+  </li>
+  <li class="module">
+    <a href="CFF/Formatters.html">CFF::Formatters</a>
   </li>
   <li class="class">
     <a href="CFF/Identifier.html">CFF::Identifier</a>
@@ -140,14 +146,39 @@
 <ul>
 
   <li class="method">
+    <a href="CFF/Formatters.html#method-c-formatters">::formatters</a>
+    &mdash;
+    <span class="container">CFF::Formatters</span>
+
+  <li class="method">
     <a href="CFF/Reference.html#method-c-from_cff">::from_cff</a>
     &mdash;
     <span class="container">CFF::Reference</span>
 
   <li class="method">
+    <a href="CFF/Entity.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">CFF::Entity</span>
+
+  <li class="method">
     <a href="CFF/File.html#method-c-new">::new</a>
     &mdash;
     <span class="container">CFF::File</span>
+
+  <li class="method">
+    <a href="CFF/Identifier.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">CFF::Identifier</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
+    <a href="CFF/Person.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">CFF::Person</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-c-new">::new</a>
@@ -160,9 +191,24 @@
     <span class="container">CFF::File</span>
 
   <li class="method">
+    <a href="CFF/Index.html#method-c-open">::open</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
     <a href="CFF/File.html#method-c-read">::read</a>
     &mdash;
     <span class="container">CFF::File</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-c-read">::read</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
+    <a href="CFF/Formatters.html#method-c-register_formatter">::register_formatter</a>
+    &mdash;
+    <span class="container">CFF::Formatters</span>
 
   <li class="method">
     <a href="CFF/File.html#method-c-validate">::validate</a>
@@ -185,9 +231,19 @@
     <span class="container">CFF::Reference</span>
 
   <li class="method">
+    <a href="CFF/Index.html#method-i-authors">#authors</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
     <a href="CFF/Reference.html#method-i-authors">#authors</a>
     &mdash;
     <span class="container">CFF::Reference</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-authors-3D">#authors=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-i-authors-3D">#authors=</a>
@@ -195,14 +251,29 @@
     <span class="container">CFF::Reference</span>
 
   <li class="method">
+    <a href="CFF/Citable.html#method-i-citation">#citation</a>
+    &mdash;
+    <span class="container">CFF::Citable</span>
+
+  <li class="method">
     <a href="CFF/File.html#method-i-comment-3D">#comment=</a>
     &mdash;
     <span class="container">CFF::File</span>
 
   <li class="method">
+    <a href="CFF/Index.html#method-i-contact">#contact</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
     <a href="CFF/Reference.html#method-i-contact">#contact</a>
     &mdash;
     <span class="container">CFF::Reference</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-contact-3D">#contact=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-i-contact-3D">#contact=</a>
@@ -235,9 +306,19 @@
     <span class="container">CFF::ModelPart</span>
 
   <li class="method">
+    <a href="CFF/Index.html#method-i-identifiers">#identifiers</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
     <a href="CFF/Reference.html#method-i-identifiers">#identifiers</a>
     &mdash;
     <span class="container">CFF::Reference</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-identifiers-3D">#identifiers=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-i-identifiers-3D">#identifiers=</a>
@@ -245,9 +326,19 @@
     <span class="container">CFF::Reference</span>
 
   <li class="method">
+    <a href="CFF/Index.html#method-i-keywords">#keywords</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
     <a href="CFF/Reference.html#method-i-keywords">#keywords</a>
     &mdash;
     <span class="container">CFF::Reference</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-keywords-3D">#keywords=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-i-keywords-3D">#keywords=</a>
@@ -275,6 +366,16 @@
     <span class="container">CFF::Reference</span>
 
   <li class="method">
+    <a href="CFF/Index.html#method-i-preferred_citation">#preferred_citation</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-preferred_citation-3D">#preferred_citation=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
     <a href="CFF/Reference.html#method-i-recipients">#recipients</a>
     &mdash;
     <span class="container">CFF::Reference</span>
@@ -283,6 +384,16 @@
     <a href="CFF/Reference.html#method-i-recipients-3D">#recipients=</a>
     &mdash;
     <span class="container">CFF::Reference</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-references">#references</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-references-3D">#references=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-i-reset_languages">#reset_languages</a>
@@ -313,6 +424,16 @@
     <a href="CFF/Reference.html#method-i-translators-3D">#translators=</a>
     &mdash;
     <span class="container">CFF::Reference</span>
+
+  <li class="method">
+    <a href="CFF/Identifier.html#method-i-type-3D">#type=</a>
+    &mdash;
+    <span class="container">CFF::Identifier</span>
+
+  <li class="method">
+    <a href="CFF/Index.html#method-i-type-3D">#type=</a>
+    &mdash;
+    <span class="container">CFF::Index</span>
 
   <li class="method">
     <a href="CFF/Reference.html#method-i-type-3D">#type=</a>
@@ -349,7 +470,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.3.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

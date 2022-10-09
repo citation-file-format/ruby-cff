@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>README -  Ruby CFF Library (version 0.9.0)</title>
+<title>README -  Ruby CFF Library (version 1.0.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -101,7 +101,7 @@
 
 <p>A Ruby library for creating, editing, validating and converting CITATION.cff files.</p>
 
-<p><a href="https://doi.org/10.5281/zenodo.1184077"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1184077.svg"></a> <a href="https://badge.fury.io/rb/cff"><img src="https://badge.fury.io/rb/cff.svg"></a> <a href="https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml"><img src="https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml/badge.svg"></a> <a href="https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml"><img src="https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml/badge.svg"></a> <a href="https://codeclimate.com/github/citation-file-format/ruby-cff/maintainability"><img src="https://api.codeclimate.com/v1/badges/6bb4c661bfb4971260ba/maintainability"></a> <a href="https://coveralls.io/github/citation-file-format/ruby-cff"><img src="https://coveralls.io/repos/github/citation-file-format/ruby-cff/badge.svg"></a></p>
+<p><a href="https://doi.org/10.5281/zenodo.1184077"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1184077.svg"></a> <a href="https://badge.fury.io/rb/cff"><img src="https://badge.fury.io/rb/cff.svg"></a> <a href="https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml"><img src="https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml/badge.svg"></a> <a href="https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml"><img src="https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml/badge.svg"></a> <a href="https://github.com/rubocop/rubocop"><img src="https://img.shields.io/badge/code_style-rubocop-brightgreen.svg"></a> <a href="https://codeclimate.com/github/citation-file-format/ruby-cff/maintainability"><img src="https://api.codeclimate.com/v1/badges/6bb4c661bfb4971260ba/maintainability"></a> <a href="https://coveralls.io/github/citation-file-format/ruby-cff"><img src="https://coveralls.io/repos/github/citation-file-format/ruby-cff/badge.svg"></a></p>
 
 <h3 id="label-Synopsis">Synopsis<span><a href="#label-Synopsis">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
@@ -142,8 +142,8 @@ keywords:
 - ruby
 - credit
 - citation
-version: 0.9.0
-date-released: 2021-09-28
+version: 1.0.0
+date-released: 2022-10-01
 license: Apache-2.0
 repository-artifact: https://rubygems.org/gems/cff
 repository-code: https://github.com/citation-file-format/ruby-cff</pre>
@@ -215,7 +215,7 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 
 <p>Passing <code>fail_fast: true</code> (default: <code>false</code>) will cause the validator to abort on the first error it encounters and report just that. Only the instance methods on <code>CFF::File</code> and <code>CFF::Index</code> provide the <code>fail_fast</code> option.</p>
 
-<p>The validation methods (both class and instance) on <code>File</code> also validate the filename of a <a href="CFF.html"><code>CFF</code></a> file; in normal circumstances a <a href="CFF.html"><code>CFF</code></a> file should be named &#39;CITATION.cff&#39;. You can switch this behaviour off by passing <code>fail_on_filename: false</code>. The non-bang methods (<code>validate</code>) on <code>File</code> return an extra value in the result array: <code>true</code>/<code>false</code> at index 2 to indicate whether the filename passed/failed validation.</p>
+<p>The validation methods (both class and instance) on <code>File</code> also validate the filename of a <a href="CFF.html"><code>CFF</code></a> file; in normal circumstances a <a href="CFF.html"><code>CFF</code></a> file should be named ‘CITATION.cff’. You can switch this behaviour off by passing <code>fail_on_filename: false</code>. The non-bang methods (<code>validate</code>) on <code>File</code> return an extra value in the result array: <code>true</code>/<code>false</code> at index 2 to indicate whether the filename passed/failed validation.</p>
 
 <h3 id="label-Outputting+citation+text">Outputting citation text<span><a href="#label-Outputting+citation+text">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
@@ -240,23 +240,23 @@ repository-code: https://github.com/citation-file-format/ruby-cff</pre>
 
 <h4 id="label-BibTeX+format">BibTeX format<span><a href="#label-BibTeX+format">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
-<pre>@software{Haines_Ruby_CFF_Library_2021,
+<pre>@software{Haines_Ruby_CFF_Library_2022,
 author = {Haines, Robert},
 license = {Apache-2.0},
-month = {9},
+month = {10},
 title = {{Ruby CFF Library}},
 url = {https://github.com/citation-file-format/ruby-cff},
-version = {0.9.0},
-year = {2021}
+version = {1.0.0},
+year = {2022}
 }</pre>
 
 <h4 id="label-APA-like+format">APA-like format<span><a href="#label-APA-like+format">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
-<pre>Haines, R. (2021). Ruby CFF Library (Version 0.9.0) [Computer software]. https://github.com/citation-file-format/ruby-cff</pre>
+<pre>Haines, R. (2022). Ruby CFF Library (Version 1.0.0) [Computer software]. https://github.com/citation-file-format/ruby-cff</pre>
 
 <h4 id="label-Citing+a+paper+rather+than+software">Citing a paper rather than software<span><a href="#label-Citing+a+paper+rather+than+software">&para;</a> <a href="#top">&uarr;</a></span></h4>
 
-<p>The <a href="CFF.html"><code>CFF</code></a> has been designed with direct citation of software in mind. We&#39;d like software to be considered a first-class research output, like journal articles and conference papers. If you would rather that your citation text points to a paper that describes your software, rather than the software itself, you can use the <code>preferred-citation</code> field for that paper. When producing citation text this library will honour <code>preferred-citation</code>, if present, by default. If you would like to specify a <code>preferred-citation</code> and still produce a direct citation to the software then you can configure the formatter as follows:</p>
+<p>The <a href="CFF.html"><code>CFF</code></a> has been designed with direct citation of software in mind. We’d like software to be considered a first-class research output, like journal articles and conference papers. If you would rather that your citation text points to a paper that describes your software, rather than the software itself, you can use the <code>preferred-citation</code> field for that paper. When producing citation text this library will honour <code>preferred-citation</code>, if present, by default. If you would like to specify a <code>preferred-citation</code> and still produce a direct citation to the software then you can configure the formatter as follows:</p>
 
 <pre class="ruby"><span class="ruby-identifier">cff</span> = <span class="ruby-constant">CFF</span><span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;CITATION.cff&#39;</span>)
 
@@ -270,11 +270,11 @@ year = {2021}
 
 <h3 id="label-Library+versions">Library versions<span><a href="#label-Library+versions">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Until this library reaches version 1.0.0 the API may be subject to breaking changes. When version 1.0.0 is released, then the principles of <a href="https://semver.org/">semantic versioning</a> will be applied.</p>
+<p>From version 1.0.0 onwards, the principles of <a href="https://semver.org/">semantic versioning</a> are applied when numbering releases with new features or breaking changes.</p>
 
 <h3 id="label-Developing+Ruby+CFF">Developing Ruby <a href="CFF.html"><code>CFF</code></a><span><a href="#label-Developing+Ruby+CFF">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Please see our <a href="https://github_com/citation-file-format/ruby-cff/blob/main/CODE_OF_CONDUCT_md.html">Code of Conduct</a> and our <a href="https://github_com/citation-file-format/ruby-cff/blob/main/CONTRIBUTING_md.html">contributor guidelines</a>.</p>
+<p>Please see our <a href="https://github.com/citation-file-format/ruby-cff/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a> and our <a href="https://github.com/citation-file-format/ruby-cff/blob/main/CONTRIBUTING.md">contributor guidelines</a>.</p>
 
 <h3 id="label-Licence">Licence<span><a href="#label-Licence">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
@@ -294,7 +294,7 @@ year = {2021}
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.3.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

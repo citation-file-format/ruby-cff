@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CFF::Index -  Ruby CFF Library (version 0.9.0)</title>
+<title>class CFF::Index -  Ruby CFF Library (version 1.0.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -69,6 +69,7 @@
   <h3>Included Modules</h3>
 
   <ul class="link-list">
+    <li><a class="include" href="Citable.html">CFF::Citable</a>
     <li><a class="include" href="Licensable.html">CFF::Licensable</a>
     <li><a class="include" href="Validatable.html">CFF::Validatable</a>
   </ul>
@@ -76,6 +77,30 @@
 
     
     
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-c-open">::open</a>
+    <li ><a href="#method-c-read">::read</a>
+    <li ><a href="#method-i-authors">#authors</a>
+    <li ><a href="#method-i-authors-3D">#authors=</a>
+    <li ><a href="#method-i-contact">#contact</a>
+    <li ><a href="#method-i-contact-3D">#contact=</a>
+    <li ><a href="#method-i-identifiers">#identifiers</a>
+    <li ><a href="#method-i-identifiers-3D">#identifiers=</a>
+    <li ><a href="#method-i-keywords">#keywords</a>
+    <li ><a href="#method-i-keywords-3D">#keywords=</a>
+    <li ><a href="#method-i-preferred_citation">#preferred_citation</a>
+    <li ><a href="#method-i-preferred_citation-3D">#preferred_citation=</a>
+    <li ><a href="#method-i-references">#references</a>
+    <li ><a href="#method-i-references-3D">#references=</a>
+    <li ><a href="#method-i-type-3D">#type=</a>
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -124,8 +149,422 @@
   <section id="5Buntitled-5D" class="documentation-section">
 
 
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="DEFAULT_MESSAGE">DEFAULT_MESSAGE
+        <dd><p>The default message to use if none is explicitly set.</p>
+        <dt id="MODEL_TYPES">MODEL_TYPES
+        <dd><p>The allowed <a href="../CFF.html"><code>CFF</code></a> <a href="https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type">types</a>.</p>
+      </dl>
+    </section>
 
 
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(title) &rarr; Index
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(title) { |index| block } &rarr; Index
+          </span>
+        </div>
+
+        <div class="method-description">
+          <p>Initialize a new <a href="Index.html"><code>Index</code></a> with the supplied title.</p>
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span>)
+  <span class="ruby-keyword">super</span>()
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+    <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">build_index</span>(<span class="ruby-identifier">param</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@fields</span> = {}
+    <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;cff-version&#39;</span>] = <span class="ruby-constant">DEFAULT_SPEC_VERSION</span>
+    <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;message&#39;</span>] = <span class="ruby-constant">DEFAULT_MESSAGE</span>
+    <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;title&#39;</span>] = <span class="ruby-identifier">param</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-node">%w[authors contact identifiers keywords references]</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>] = [] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@fields</span>[<span class="ruby-identifier">field</span>].<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-open" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            open(String) &rarr; Index
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        <div class="method-heading">
+          <span class="method-callseq">
+            open(String) { |cff| block } &rarr; Index
+          </span>
+        </div>
+
+        <div class="method-description">
+          <p>With no associated block, <a href="Index.html#method-c-open"><code>Index.open</code></a> is a synonym for <a href="Index.html#method-c-read"><code>::read</code></a>. If the optional code block is given, it will be passed the parsed index as an argument and the <a href="Index.html"><code>Index</code></a> will be returned when the block terminates.</p>
+
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">open</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">cff</span> = <span class="ruby-constant">Index</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">index</span>)
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-identifier">cff</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">cff</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-read" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            read(String) &rarr; Index
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Read a <a href="../CFF.html"><code>CFF</code></a> <a href="Index.html"><code>Index</code></a> from a String and parse it for subsequent manipulation.</p>
+
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">read</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-constant">YAML</span>.<span class="ruby-identifier">safe_load</span>(<span class="ruby-identifier">index</span>, <span class="ruby-value">permitted_classes:</span> [<span class="ruby-constant">Date</span>, <span class="ruby-constant">Time</span>]))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-authors" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            authors &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of authors for this citation. To add an author to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">index</span>.<span class="ruby-identifier">authors</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">author</span>
+</pre>
+
+<p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
+
+          <div class="method-source-code" id="authors-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 170</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-authors-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            authors = array_of_authors &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of authors for this citation.</p>
+
+<p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
+
+          <div class="method-source-code" id="authors-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 184</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-contact" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            contact &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of contacts for this citation. To add a contact to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">index</span>.<span class="ruby-identifier">contact</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">contact</span>
+</pre>
+
+<p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
+
+          <div class="method-source-code" id="contact-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 193</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-contact-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            contact = array_of_contacts &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of contacts for this citation.</p>
+
+<p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
+
+          <div class="method-source-code" id="contact-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 207</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-identifiers" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            identifiers &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of identifiers for this citation. To add a identifier to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">index</span>.<span class="ruby-identifier">identifiers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">identifier</span>
+</pre>
+
+          <div class="method-source-code" id="identifiers-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 216</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-identifiers-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            identifiers = array_of_identifiers &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of identifiers for this citation.</p>
+
+          <div class="method-source-code" id="identifiers-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 228</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-keywords" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            keywords &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of keywords for this citation. To add a keyword to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">index</span>.<span class="ruby-identifier">keywords</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">keyword</span>
+</pre>
+
+<p>Keywords will be converted to Strings on output.</p>
+
+          <div class="method-source-code" id="keywords-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 235</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-keywords-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            keywords = array_of_keywords &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of keywords for this citation.</p>
+
+<p>Keywords will be converted to Strings on output.</p>
+
+          <div class="method-source-code" id="keywords-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 249</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-preferred_citation" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            preferred_citation &rarr; Reference
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the preferred citation for this citation.</p>
+
+          <div class="method-source-code" id="preferred_citation-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 258</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-preferred_citation-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            preferred_citation = Reference
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the preferred citation for this citation.</p>
+
+          <div class="method-source-code" id="preferred_citation-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 265</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-references" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            references &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Return the list of references for this citation. To add a reference to the list, use:</p>
+
+<pre class="ruby"><span class="ruby-identifier">index</span>.<span class="ruby-identifier">references</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">reference</span>
+</pre>
+
+          <div class="method-source-code" id="references-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 272</span>
+    </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-references-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            references = array_of_references &rarr; Array
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Replace the list of references for this citation.</p>
+
+          <div class="method-source-code" id="references-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 284</span>
+  </pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-type-3D" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            type = type
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Sets the type of this <a href="../CFF.html"><code>CFF</code></a> <a href="Index.html"><code>Index</code></a>. The type is currently restricted to one of <code>software</code> or <code>dataset</code>. If this field is not set then you should assume that the type is <code>software</code>.</p>
+
+          <div class="method-source-code" id="type-3D-source">
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type=</span>(<span class="ruby-identifier">type</span>)
+  <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">type</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">MODEL_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
 
   </section>
 </main>
@@ -133,7 +572,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.3.3.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
