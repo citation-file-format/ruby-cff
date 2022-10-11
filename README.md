@@ -5,7 +5,7 @@ A Ruby library for creating, editing, validating and converting CITATION.cff fil
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1184077.svg)](https://doi.org/10.5281/zenodo.1184077)
 [![Gem Version](https://badge.fury.io/rb/cff.svg)](https://badge.fury.io/rb/cff)
-[![Tests](https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml/badge.svg)](https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml)
+[![Tests](https://github.com/citation-file-format/ruby-cff/actions/workflows/tests.yml/badge.svg)](https://github.com/citation-file-format/ruby-cff/actions/workflows/ruby.yml)
 [![Linter](https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml/badge.svg)](https://github.com/citation-file-format/ruby-cff/actions/workflows/lint.yml)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6bb4c661bfb4971260ba/maintainability)](https://codeclimate.com/github/citation-file-format/ruby-cff/maintainability)
