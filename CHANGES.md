@@ -1,5 +1,12 @@
 # Changes log for the Ruby CFF Library
 
+## 1.0.1
+
+* Handle missing family or given names for authors.
+* Handle authors with only an alias for a name.
+* Add install instructions to the README.
+* Add a note to the README re output format changes.
+
 ## 1.0.0
 
 * Add `type` to top-level CFF model.
