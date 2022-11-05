@@ -176,6 +176,7 @@ module CFF
 
       def self.format_actor(author)
         return "{#{author.name}}" if author.is_a?(Entity)
+        return author.alias if author.family_names.empty? && author.given_names.empty?
 
         particle =
           author.name_particle.empty? ? '' : "#{author.name_particle} "
