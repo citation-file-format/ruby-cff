@@ -21,6 +21,23 @@ See the [CITATION.cff documentation](https://citation-file-format.github.io/) fo
 
 See the [full API documentation](https://citation-file-format.github.io/ruby-cff/) for more details about Ruby CFF.
 
+### Installation
+
+Add this line to your application's Gemfile:
+```ruby
+gem 'cff'
+```
+
+And then execute:
+```shell
+$ bundle
+```
+
+Or install it yourself with:
+```shell
+$ gem install cff
+```
+
 ### Quick start
 
 You can quickly build and save a CFF index like this:
