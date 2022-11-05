@@ -209,6 +209,8 @@ Due to the different expectations of different publication venues, the citation 
 
 From version 1.0.0 onwards, the principles of [semantic versioning](https://semver.org/) are applied when numbering releases with new features or breaking changes.
 
+Minor or stylistic changes to output formats are not considered "breaking" for the purposes of library versioning.
+
 ### Developing Ruby CFF
 
 Please see our [Code of Conduct](https://github.com/citation-file-format/ruby-cff/blob/main/CODE_OF_CONDUCT.md) and our [contributor guidelines](https://github.com/citation-file-format/ruby-cff/blob/main/CONTRIBUTING.md).
