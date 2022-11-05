@@ -136,9 +136,25 @@ module CFF
 
         particle =
           author.name_particle.empty? ? '' : "#{author.name_particle} "
-        suffix = author.name_suffix.empty? ? '.' : "., #{author.name_suffix}"
+        suffix = author.name_suffix.empty? ? '' : ", #{author.name_suffix}"
 
-        "#{particle}#{author.family_names}, #{initials(author.given_names)}#{suffix}"
+        "#{particle}#{format_name(author)}#{suffix}"
+      end
+
+      # Format a name using an alias if needs be.
+      # https://blog.apastyle.org/apastyle/2012/02/how-to-cite-pseudonyms.html
+      def self.format_name(author)
+        if author.family_names.empty?
+          if author.given_names.empty?
+            author.alias
+          else
+            author.given_names
+          end
+        elsif author.given_names.empty?
+          author.family_names
+        else
+          "#{author.family_names}, #{initials(author.given_names)}."
+        end
       end
     end
   end
