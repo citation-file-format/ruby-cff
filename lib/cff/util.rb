@@ -40,9 +40,11 @@ module CFF
       end
     end
 
+    # Currently need to make some sort of guess as to whether an actor
+    # is a Person or Entity. This isn't perfect, but works 99.99% I think.
     def build_actor_collection!(source)
       source.map! do |s|
-        s.has_key?('given-names') ? Person.new(s) : Entity.new(s)
+        s.has_key?('name') ? Entity.new(s) : Person.new(s)
       end
     end
 
