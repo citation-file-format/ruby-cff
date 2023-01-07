@@ -38,7 +38,14 @@ module CFF
         'unpublished' => %w[doi note!]
       }.freeze
 
-      def self.format(model:, preferred_citation: true) # rubocop:disable Metrics/AbcSize
+      # Convert months to three letter abbreviations, as per
+      # https://www.bibtex.com/f/month-field/. Need to downcase from the
+      # built-in set.
+      MONTHS_MAP = Date::ABBR_MONTHNAMES.map do |month|
+        month.downcase unless month.nil?
+      end.freeze
+
+      def self.format(model:, preferred_citation: true) # rubocop:disable Metrics
         model = select_and_check_model(model, preferred_citation)
         return if model.nil?
 
@@ -50,7 +57,7 @@ module CFF
         publication_data_from_model(model, publication_type, values)
 
         month, year = month_and_year_from_model(model)
-        values['month'] = month
+        values['month'] = MONTHS_MAP[month.to_i] unless month.empty?
         values['year'] = year
 
         values['url'] = url(model)
@@ -59,7 +66,8 @@ module CFF
 
         values.reject! { |_, v| v.empty? }
         sorted_values = values.sort.map do |key, value|
-          "#{key} = {#{value}}"
+          value = "{#{value}}" unless key == 'month'
+          "#{key} = #{value}"
         end
         sorted_values.insert(0, generate_citekey(values))
 
