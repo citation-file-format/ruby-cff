@@ -1,5 +1,9 @@
 # Changes log for the Ruby CFF Library
 
+## 1.1.0
+
+* BibTeX: output months as three letter abbreviations.
+
 ## 1.0.1
 
 * Handle missing family or given names for authors.
