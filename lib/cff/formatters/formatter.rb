@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2023 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -67,16 +67,9 @@ module CFF
       end
 
       def self.month_and_year_from_date(value)
-        if value.is_a?(Date)
-          [value.month, value.year].map(&:to_s)
-        else
-          begin
-            date = Date.parse(value.to_s)
-            [date.month, date.year].map(&:to_s)
-          rescue ArgumentError
-            ['', '']
-          end
-        end
+        return ['', ''] unless value.is_a?(Date)
+
+        [value.month, value.year].map(&:to_s)
       end
 
       # CFF 'pages' is the number of pages, which has no equivalent in BibTeX

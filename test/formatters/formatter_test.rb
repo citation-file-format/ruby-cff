@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2023 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,13 +25,9 @@ class CFFFormatterTest < Minitest::Test
       assert_equal(['', ''], CFF::Formatters::Formatter.month_and_year_from_date(date))
     end
 
-    date_str = '2021-08-05'
-    date = Date.parse(date_str)
     assert_equal(
-      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_date(date_str)
-    )
-    assert_equal(
-      ['8', '2021'], CFF::Formatters::Formatter.month_and_year_from_date(date)
+      ['8', '2021'],
+      CFF::Formatters::Formatter.month_and_year_from_date(Date.parse('2021-08-05'))
     )
   end
 
