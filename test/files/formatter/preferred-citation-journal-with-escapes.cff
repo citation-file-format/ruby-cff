@@ -1,0 +1,23 @@
+# Note this is a made up entry.
+
+cff-version: 1.2.0
+message: If you use this software in your work, please cite it using the following metadata
+title: Ruby-CFF
+authors:
+- family-names: Haines
+  given-names: Robert
+version: 0.1
+date-released: 2024-01-16
+
+# JOSS paper as preferred citation
+preferred-citation:
+  authors:
+    - family-names: Haines
+      given-names: Robert
+  journal: Journal of Maths & Philosophy
+  month: 1
+  title: "CFF for the $%&#_{} win"
+  type: article
+  volume: 1
+  issue: 1
+  year: 2024

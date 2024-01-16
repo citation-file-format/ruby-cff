@@ -1,0 +1,36 @@
+# A report preferred-citation
+
+cff-version: 1.2.0
+message: If you use this software in your work, please cite it using the following metadata
+title: Ruby CFF Library
+authors:
+- family-names: Haines
+  given-names: Robert
+  affiliation: The University of Manchester
+keywords:
+- ruby
+- credit
+- citation
+- cff
+version: 0.9.0
+date-released: 2021-09-21
+license: Apache-2.0
+repository-artifact: https://rubygems.org/gems/cff
+type: software
+preferred-citation:
+  type: conference-paper
+  conference:
+    name: "Software Credit #1"
+  title: "CFF is #1, 100%"
+  authors:
+  - family-names: Haines
+    given-names: Robert
+    affiliation: The University of Manchester
+  - name: "The {curly_braces} Collective"
+  publisher:
+    name: The CFF & Friends
+  collection-title: Software Credit for Fun & Profit ($$$)
+  month: 9
+  year: 2021
+  url: https://github.com/citation-file-format/ruby-cff
+  doi: 10.5281/zenodo.1184077

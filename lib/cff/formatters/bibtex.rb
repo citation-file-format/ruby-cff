@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2023 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,13 +45,17 @@ module CFF
         month.downcase unless month.nil?
       end.freeze
 
+      # We need to escape these characters in titles and names, as per
+      # https://tex.stackexchange.com/questions/34580/escape-character-in-latex
+      ESCAPE_CHARS = Regexp.new(/([&%$#_{}])/)
+
       def self.format(model:, preferred_citation: true) # rubocop:disable Metrics
         model = select_and_check_model(model, preferred_citation)
         return if model.nil?
 
         values = {}
         values['author'] = actor_list(model.authors)
-        values['title'] = "{#{model.title}}"
+        values['title'] = "{#{l(model.title)}}"
 
         publication_type = bibtex_type(model)
         publication_data_from_model(model, publication_type, values)
@@ -79,7 +83,7 @@ module CFF
       def self.publication_data_from_model(model, type, fields)
         ENTRY_TYPE_MAP[type].each do |field|
           if model.respond_to?(field)
-            fields[field] = model.send(field).to_s
+            fields[field] = l(model.send(field).to_s)
           else
             field = field.chomp('!')
             fields[field] = send("#{field}_from_model", model)
@@ -108,9 +112,9 @@ module CFF
       # BibTeX 'institution' could be grabbed from an author's affiliation, or
       # provided explicitly.
       def self.institution_from_model(model)
-        return model.institution.name unless model.institution.empty?
+        return l(model.institution.name) unless model.institution.empty?
 
-        model.authors.first.affiliation
+        l(model.authors.first.affiliation)
       end
 
       # BibTeX 'school' is CFF 'institution'.
@@ -125,7 +129,7 @@ module CFF
 
       # BibTeX 'booktitle' is CFF 'collection-title'.
       def self.booktitle_from_model(model)
-        model.collection_title
+        l(model.collection_title)
       end
 
       # BibTeX 'editor' is CFF 'editors' or 'editors-series'.
@@ -138,11 +142,11 @@ module CFF
       end
 
       def self.publisher_from_model(model)
-        model.publisher.empty? ? '' : model.publisher.name
+        model.publisher.empty? ? '' : l(model.publisher.name)
       end
 
       def self.series_from_model(model)
-        model.conference.empty? ? '' : model.conference.name
+        model.conference.empty? ? '' : l(model.conference.name)
       end
 
       # If we're citing a conference paper, try and use the date of the
@@ -182,9 +186,9 @@ module CFF
         end
       end
 
-      def self.format_actor(author)
-        return "{#{author.name}}" if author.is_a?(Entity)
-        return author.alias if author.family_names.empty? && author.given_names.empty?
+      def self.format_actor(author) # rubocop:disable Metrics/AbcSize
+        return "{#{l(author.name)}}" if author.is_a?(Entity)
+        return l(author.alias) if author.family_names.empty? && author.given_names.empty?
 
         particle =
           author.name_particle.empty? ? '' : "#{author.name_particle} "
@@ -208,6 +212,12 @@ module CFF
         ].compact.join('_')
 
         Util.parameterize(reference)
+      end
+
+      # Escape a string to preserve special characters in LaTeX output.
+      # Used in many places, so short method name to preserve reading flow.
+      def self.l(string)
+        string.gsub(ESCAPE_CHARS, '\\\\\1')
       end
     end
   end

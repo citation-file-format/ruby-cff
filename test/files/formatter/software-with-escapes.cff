@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Haines
+    given-names: Robert
+  - name: "The {curly_braces} Collective"
+title: "Software that uses the following symbols: &, %, $, #"
+version: 0.0.1-alpha
+date-released: 2024-01-16
