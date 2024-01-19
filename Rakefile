@@ -33,7 +33,7 @@ RDoc::Task.new do |r|
   )
   r.options << '--markup=markdown'
   r.options << '--tab-width=2'
-  r.options << "-t Ruby CFF Library (version #{::CFF::VERSION})"
+  r.options << "-t Ruby CFF Library (version #{CFF::VERSION})"
 end
 
 RuboCop::RakeTask.new

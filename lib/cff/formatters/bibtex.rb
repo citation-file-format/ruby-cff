@@ -47,7 +47,7 @@ module CFF
 
       # We need to escape these characters in titles and names, as per
       # https://tex.stackexchange.com/questions/34580/escape-character-in-latex
-      ESCAPE_CHARS = Regexp.new(/([&%$#_{}])/)
+      ESCAPE_CHARS = /([&%$#_{}])/.freeze
 
       def self.format(model:, preferred_citation: true) # rubocop:disable Metrics
         model = select_and_check_model(model, preferred_citation)
@@ -86,7 +86,7 @@ module CFF
             fields[field] = l(model.send(field).to_s)
           else
             field = field.chomp('!')
-            fields[field] = send("#{field}_from_model", model)
+            fields[field] = send(:"#{field}_from_model", model)
           end
         end
       end

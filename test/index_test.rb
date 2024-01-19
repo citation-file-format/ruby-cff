@@ -164,7 +164,7 @@ class CFFIndexTest < Minitest::Test
 
     data.each do |method, value|
       assert_equal('', m.send(method))
-      m.send("#{method}=", value)
+      m.send(:"#{method}=", value)
       assert_equal(value, m.send(method))
     end
 
