@@ -56,7 +56,7 @@ class CFFPersonTest < Minitest::Test
 
     data.each do |method, value|
       assert_equal('', @person.send(method))
-      @person.send("#{method}=", value)
+      @person.send(:"#{method}=", value)
       assert_equal(value, @person.send(method))
     end
 

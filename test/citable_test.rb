@@ -27,7 +27,7 @@ class CFFCitableTest < Minitest::Test
       # formatter hanging around.
       next if format == :testformatterlabel
 
-      assert_includes(methods, "to_#{format}".to_sym)
+      assert_includes(methods, :"to_#{format}")
     end
   end
 end

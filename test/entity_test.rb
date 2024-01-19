@@ -54,7 +54,7 @@ class CFFEntityTest < Minitest::Test
 
     data.each do |method, value|
       assert_equal('', @entity.send(method))
-      @entity.send("#{method}=", value)
+      @entity.send(:"#{method}=", value)
       assert_equal(value, @entity.send(method))
     end
 

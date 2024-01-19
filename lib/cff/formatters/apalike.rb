@@ -76,7 +76,7 @@ module CFF
       end
 
       def self.type_and_school_from_model(model, type)
-        type = model.thesis_type == '' ? type : model.thesis_type
+        type = model.thesis_type unless model.thesis_type == ''
         school = model.institution.empty? ? model.authors.first.affiliation : model.institution.name
         "[#{type}, #{school}]"
       end

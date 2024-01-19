@@ -13,7 +13,6 @@ AllCops:
 Lint/UselessAccessModifier:
   Exclude:
     - 'lib/cff/index.rb'
-    - 'lib/cff/model.rb'
     - 'lib/cff/reference.rb'
 
 # I think 'has_key?' looks better than 'key?'.
@@ -70,3 +69,9 @@ Minitest/MultipleAssertions:
 
 Style/DocumentDynamicEvalDefinition:
   Enabled: true
+
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false

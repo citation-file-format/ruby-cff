@@ -164,7 +164,7 @@ module CFF
           repository_artifact repository_code url version
         ].each do |field|
           value = model.send(field)
-          ref.send("#{field}=", value.dup) unless value == ''
+          ref.send(:"#{field}=", value.dup) unless value == ''
         end
       end
     end
