@@ -52,7 +52,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'json_schema', '~> 0.20.4'
   spec.add_runtime_dependency 'language_list', '~> 1.2.1'
 
-  spec.add_development_dependency 'minitest', '~> 5.16.0'
+  spec.add_development_dependency 'minitest', '~> 5.21.2'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rdoc', '~> 6.4.0'
   spec.add_development_dependency 'rubocop', '~> 1.35.0'
