@@ -225,7 +225,7 @@ module CFF
 
     def method_missing(name, *args) # :nodoc:
       if @index.respond_to?(name)
-        @dirty = true if name.to_s.end_with?('=') # Remove to_s when Ruby >2.6.
+        @dirty = true if name.end_with?('=')
         @index.send(name, *args)
       else
         super
