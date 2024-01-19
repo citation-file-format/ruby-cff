@@ -1,5 +1,10 @@
 # Changes log for the Ruby CFF Library
 
+## 1.2.0
+
+* Always treat dates as Ruby Date objects.
+* BibTeX: escape special characters ($%&_#{}).
+
 ## 1.1.0
 
 * BibTeX: output months as three letter abbreviations.
