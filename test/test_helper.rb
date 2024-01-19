@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,19 +20,19 @@ require 'minitest/autorun'
 
 Minitest::Test.make_my_diffs_pretty!
 
-FILES_DIR = ::File.expand_path('files', __dir__)
-OUT_FILES_DIR = ::File.join(FILES_DIR, 'out')
-COMPLETE_CFF = ::File.join(FILES_DIR, 'complete.cff')
-SHORT_CFF = ::File.join(FILES_DIR, 'short.cff')
-MINIMAL_CFF = ::File.join(FILES_DIR, 'minimal.cff')
-INCOMPLETE_CFF = ::File.join(FILES_DIR, 'bad', 'incomplete.cff')
-NO_CFF_VERSION_CFF = ::File.join(FILES_DIR, 'bad', 'CITATION.cff')
-VALID_FILENAME_CFF = ::File.join(__dir__, '..', 'CITATION.cff')
+FILES_DIR = File.expand_path('files', __dir__)
+OUT_FILES_DIR = File.join(FILES_DIR, 'out')
+COMPLETE_CFF = File.join(FILES_DIR, 'complete.cff')
+SHORT_CFF = File.join(FILES_DIR, 'short.cff')
+MINIMAL_CFF = File.join(FILES_DIR, 'minimal.cff')
+INCOMPLETE_CFF = File.join(FILES_DIR, 'bad', 'incomplete.cff')
+NO_CFF_VERSION_CFF = File.join(FILES_DIR, 'bad', 'CITATION.cff')
+VALID_FILENAME_CFF = File.join(__dir__, '..', 'CITATION.cff')
 OUTPUT_CFF = 'CITATION.cff'
 
-VALIDATION_DIR = ::File.join(FILES_DIR, 'validation')
-FORMATTER_DIR = ::File.join(FILES_DIR, 'formatter')
-FORMATTED_DIR = ::File.join(FILES_DIR, 'formatted')
+VALIDATION_DIR = File.join(FILES_DIR, 'validation')
+FORMATTER_DIR = File.join(FILES_DIR, 'formatter')
+FORMATTED_DIR = File.join(FILES_DIR, 'formatted')
 
 CONSTRUCT_OPTS = {
   keep_on_error: true

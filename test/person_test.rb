@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ class CFFPersonTest < Minitest::Test
 
     data.each do |method, value|
       assert_equal('', @person.send(method))
-      @person.send("#{method}=", value)
+      @person.send(:"#{method}=", value)
       assert_equal(value, @person.send(method))
     end
 
@@ -91,7 +91,7 @@ class CFFPersonTest < Minitest::Test
     assert_equal('Rob', person.given_names)
     assert_equal('Haines', person.family_names)
     assert_equal('email@example.org', person.email)
-    assert person.is_a?(::CFF::Person)
+    assert_kind_of(::CFF::Person, person)
   end
 
   def test_new_no_params

@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 require_relative '../test_helper'
 
 require 'cff/formatters/apalike'
@@ -8,7 +22,7 @@ require 'cff/file'
 class CFFApaFormatterTest < Minitest::Test
   describe 'all apa fixtures' do
     Dir[::File.join(FORMATTER_DIR, '*.cff')].each do |input_file|
-      define_method("test_converter_for_#{File.basename(input_file)}") do
+      define_method(:"test_converter_for_#{File.basename(input_file)}") do
         cff = ::CFF::File.read(input_file)
         output_file = ::File.join(FORMATTED_DIR, "#{File.basename(input_file, '.*')}.apa")
 

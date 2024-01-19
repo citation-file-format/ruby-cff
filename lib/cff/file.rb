@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -116,7 +116,7 @@ module CFF
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
     def self.validate(file, fail_on_filename: true)
-      File.read(file).validate(fail_on_filename: fail_on_filename)
+      File.read(file).validate(fail_on_filename:)
     end
 
     # :call-seq:
@@ -129,7 +129,7 @@ module CFF
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
     def self.validate!(file, fail_on_filename: true)
-      File.read(file).validate!(fail_on_filename: fail_on_filename)
+      File.read(file).validate!(fail_on_filename:)
     end
 
     # :call-seq:
@@ -159,7 +159,7 @@ module CFF
     # validation failure with the `fail_on_filename` parameter (default: true).
     def validate(fail_fast: false, fail_on_filename: true)
       valid_filename = (::File.basename(@filename) == CFF_VALID_FILENAME)
-      result = (@index.validate(fail_fast: fail_fast) << valid_filename)
+      result = (@index.validate(fail_fast:) << valid_filename)
       result[0] &&= valid_filename if fail_on_filename
 
       result
@@ -176,7 +176,7 @@ module CFF
     # validation failure with the `fail_on_filename` parameter (default: true).
     def validate!(fail_fast: false, fail_on_filename: true)
       result = validate(
-        fail_fast: fail_fast, fail_on_filename: fail_on_filename
+        fail_fast:, fail_on_filename:
       )
       return if result[0]
 
@@ -223,10 +223,10 @@ module CFF
       @index.to_yaml
     end
 
-    def method_missing(name, *args) # :nodoc:
+    def method_missing(name, *) # :nodoc:
       if @index.respond_to?(name)
         @dirty = true if name.to_s.end_with?('=') # Remove to_s when Ruby >2.6.
-        @index.send(name, *args)
+        @index.send(name, *)
       else
         super
       end

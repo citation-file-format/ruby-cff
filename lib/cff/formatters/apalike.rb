@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ module CFF
       end
 
       def self.type_and_school_from_model(model, type)
-        type = model.thesis_type == '' ? type : model.thesis_type
+        type = model.thesis_type unless model.thesis_type == ''
         school = model.institution.empty? ? model.authors.first.affiliation : model.institution.name
         "[#{type}, #{school}]"
       end

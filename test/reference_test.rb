@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -167,7 +167,7 @@ class CFFReferenceTest < Minitest::Test
       date_accessed date_downloaded date_published date_released
     ].each do |method|
       exp = assert_raises(ArgumentError) do
-        @reference.send("#{method}=", 'nonsense')
+        @reference.send(:"#{method}=", 'nonsense')
       end
       assert_includes(exp.message, 'invalid date')
     end
@@ -178,13 +178,13 @@ class CFFReferenceTest < Minitest::Test
       date_accessed date_downloaded date_published date_released issue_date
     ].each do |method|
       date = Date.today
-      @reference.send("#{method}=", date)
+      @reference.send(:"#{method}=", date)
       assert_equal(date, @reference.send(method))
       y = @reference.fields.to_yaml
       assert_includes(y, "#{method_to_field(method)}: #{date.iso8601}")
 
       date = '1999-12-31'
-      @reference.send("#{method}=", date)
+      @reference.send(:"#{method}=", date)
       assert_equal(Date.parse(date), @reference.send(method))
       y = @reference.fields.to_yaml
       assert_includes(y, "#{method_to_field(method)}: #{date}")
@@ -259,7 +259,7 @@ class CFFReferenceTest < Minitest::Test
 
     methods.each do |method|
       assert_equal('', @reference.send(method))
-      @reference.send("#{method}=", value)
+      @reference.send(:"#{method}=", value)
       assert_equal(value, @reference.send(method))
     end
 
@@ -288,7 +288,7 @@ class CFFReferenceTest < Minitest::Test
 
     methods.each do |method|
       assert_equal('', @reference.send(method))
-      @reference.send("#{method}=", value)
+      @reference.send(:"#{method}=", value)
       assert_equal(value, @reference.send(method))
     end
 
@@ -305,7 +305,7 @@ class CFFReferenceTest < Minitest::Test
     methods.each do |method|
       value = ::CFF::Entity.new('Company')
       assert_equal('', @reference.send(method))
-      @reference.send("#{method}=", value)
+      @reference.send(:"#{method}=", value)
       assert_equal(value, @reference.send(method))
     end
 
@@ -352,7 +352,7 @@ class CFFReferenceTest < Minitest::Test
     assert_equal('A Paper', ref.title)
     assert_equal('article', ref.type)
     assert_equal('International Conference of Hard Problems', ref.conference)
-    assert ref.is_a?(::CFF::Reference)
+    assert_kind_of(::CFF::Reference, ref)
   end
 
   def test_from_cff_file
