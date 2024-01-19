@@ -5,7 +5,7 @@ require:
 
 # Set our base version of ruby and enable all cops.
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
   NewCops: enable
 
 # Turn this off for certain files where we have extra documentation
