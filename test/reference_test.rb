@@ -352,7 +352,7 @@ class CFFReferenceTest < Minitest::Test
     assert_equal('A Paper', ref.title)
     assert_equal('article', ref.type)
     assert_equal('International Conference of Hard Problems', ref.conference)
-    assert ref.is_a?(::CFF::Reference)
+    assert_kind_of(::CFF::Reference, ref)
   end
 
   def test_from_cff_file

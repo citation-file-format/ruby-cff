@@ -115,7 +115,7 @@ class CFFEntityTest < Minitest::Test
 
     assert_equal('My Company', entity.name)
     assert_equal('+44 (0) 161-234-5678', entity.tel)
-    assert entity.is_a?(::CFF::Entity)
+    assert_kind_of(::CFF::Entity, entity)
   end
 
   def test_empty?

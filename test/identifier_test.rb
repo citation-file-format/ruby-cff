@@ -35,7 +35,7 @@ class CFFIdentifierTest < Minitest::Test
 
     assert_equal('doi', id.type)
     assert_equal('10.9999/zenodo.1234567', id.value)
-    assert id.is_a?(::CFF::Identifier)
+    assert_kind_of(::CFF::Identifier, id)
   end
 
   def test_new_no_params

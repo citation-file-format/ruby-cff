@@ -349,7 +349,7 @@ class CFFIndexTest < Minitest::Test
 
     assert_equal('title', index.title)
     assert_equal('2.0.0', index.version)
-    assert index.is_a?(::CFF::Index)
+    assert_kind_of(::CFF::Index, index)
   end
 
   def test_read
