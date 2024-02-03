@@ -20,9 +20,15 @@ require 'json'
 module CFF
   module Schemas # :nodoc:
     PATH = ::File.join(__dir__, 'schemas')
+
     FILES = Dir.glob(::File.join(PATH, '*.json')).to_h do |file|
       [::File.basename(file, '.json'), JSON.parse(::File.read(file))]
     end.freeze
+
     VERSIONS = FILES.keys.freeze
+
+    DEFAULT_VERSION = '1.2.0'
+
+    MIN_VALIDATABLE_VERSION = '1.2.0'
   end
 end

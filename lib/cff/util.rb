@@ -16,7 +16,7 @@
 
 require_relative 'entity'
 require_relative 'person'
-require_relative 'version'
+require_relative 'schemas'
 
 require 'rubygems'
 require 'yaml'
@@ -38,8 +38,8 @@ module CFF
     def update_cff_version(version)
       return '' if version.nil? || version.empty?
 
-      if Gem::Version.new(version) < Gem::Version.new(MIN_VALIDATABLE_VERSION)
-        MIN_VALIDATABLE_VERSION
+      if Gem::Version.new(version) < Gem::Version.new(Schemas::MIN_VALIDATABLE_VERSION)
+        Schemas::MIN_VALIDATABLE_VERSION
       else
         version
       end

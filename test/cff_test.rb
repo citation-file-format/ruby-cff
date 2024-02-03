@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,9 +21,5 @@ require 'cff/version'
 class CFFTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::CFF::VERSION
-  end
-
-  def test_that_it_has_a_spec_version_number
-    refute_nil ::CFF::DEFAULT_SPEC_VERSION
   end
 end

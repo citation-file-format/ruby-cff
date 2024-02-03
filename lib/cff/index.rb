@@ -22,6 +22,7 @@ require_relative 'licensable'
 require_relative 'person'
 require_relative 'reference'
 require_relative 'schema'
+require_relative 'schemas'
 require_relative 'validatable'
 require_relative 'citable'
 
@@ -81,7 +82,7 @@ module CFF
         @fields = build_index(param)
       else
         @fields = {}
-        @fields['cff-version'] = DEFAULT_SPEC_VERSION
+        @fields['cff-version'] = Schemas::DEFAULT_VERSION
         @fields['message'] = DEFAULT_MESSAGE
         @fields['title'] = param
       end
