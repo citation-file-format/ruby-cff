@@ -91,7 +91,7 @@ class CFFPersonTest < Minitest::Test
     assert_equal('Rob', person.given_names)
     assert_equal('Haines', person.family_names)
     assert_equal('email@example.org', person.email)
-    assert person.is_a?(::CFF::Person)
+    assert_kind_of(::CFF::Person, person)
   end
 
   def test_new_no_params
