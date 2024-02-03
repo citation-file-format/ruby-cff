@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ require_relative 'licensable'
 require_relative 'person'
 require_relative 'reference'
 require_relative 'schema'
+require_relative 'schemas'
 require_relative 'validatable'
 require_relative 'citable'
 
@@ -83,7 +84,7 @@ module CFF
         @fields = build_index(param)
       else
         @fields = {}
-        @fields['cff-version'] = DEFAULT_SPEC_VERSION
+        @fields['cff-version'] = Schemas::DEFAULT_VERSION
         @fields['message'] = DEFAULT_MESSAGE
         @fields['title'] = param
       end

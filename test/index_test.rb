@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ class CFFIndexTest < Minitest::Test
   end
 
   def test_default_index_cff_version
-    assert_equal(::CFF::DEFAULT_SPEC_VERSION, ::CFF::Index.new('').cff_version)
+    assert_equal(::CFF::Schemas::DEFAULT_VERSION, ::CFF::Index.new('').cff_version)
   end
 
   def test_cff_version_is_output_correctly

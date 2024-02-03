@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ class CFFUtilTest < Minitest::Test
 
   def test_update_cff_version
     assert_equal('', update_cff_version(''))
-    assert_equal(::CFF::MIN_VALIDATABLE_VERSION, update_cff_version('1.0.3'))
-    assert_equal(::CFF::MIN_VALIDATABLE_VERSION, update_cff_version('1.1.0'))
+    assert_equal(::CFF::Schemas::MIN_VALIDATABLE_VERSION, update_cff_version('1.0.3'))
+    assert_equal(::CFF::Schemas::MIN_VALIDATABLE_VERSION, update_cff_version('1.1.0'))
     assert_equal('1.2.0', update_cff_version('1.2.0'))
     assert_equal('1.2.1', update_cff_version('1.2.1'))
   end

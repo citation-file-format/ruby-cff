@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ class CFFFileTest < Minitest::Test
     index = ::CFF::Index.new(title)
     file = ::CFF::File.new('', index)
 
-    assert_equal(::CFF::DEFAULT_SPEC_VERSION, file.cff_version)
+    assert_equal(::CFF::Schemas::DEFAULT_VERSION, file.cff_version)
     assert_equal(title, file.title)
   end
 
@@ -49,7 +49,7 @@ class CFFFileTest < Minitest::Test
     title = 'software'
     file = ::CFF::File.new('', title)
 
-    assert_equal(::CFF::DEFAULT_SPEC_VERSION, file.cff_version)
+    assert_equal(::CFF::Schemas::DEFAULT_VERSION, file.cff_version)
     assert_equal(title, file.title)
   end
 
@@ -131,7 +131,7 @@ class CFFFileTest < Minitest::Test
     end
 
     # `cff-version` will be updated to a validatable version.
-    assert_equal(::CFF::MIN_VALIDATABLE_VERSION, cff.cff_version)
+    assert_equal(::CFF::Schemas::MIN_VALIDATABLE_VERSION, cff.cff_version)
 
     assert_equal(1, cff.authors.length)
     person = cff.authors[0]
