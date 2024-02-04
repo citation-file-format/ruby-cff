@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 # limitations under the License.
 
 require_relative 'errors'
-require_relative 'schema'
+require_relative 'schemas'
 
 require 'json_schema'
 
@@ -23,7 +23,12 @@ require 'json_schema'
 module CFF
   # Methods to validate CFF files/models against a formal schema.
   module Validatable
-    SCHEMA = JsonSchema.parse!(SCHEMA_FILE) # :nodoc:
+    SCHEMAS = Schemas::VERSIONS.to_h do |version|
+      schema = JsonSchema.parse!(Schemas::FILES[version])
+      schema.expand_references!
+
+      [version, schema]
+    end.freeze # :nodoc:
 
     # :call-seq:
     #   validate!(fail_fast: false)
@@ -49,7 +54,10 @@ module CFF
     # Setting `fail_fast` to true will fail validation at the first detected
     # failure, rather than gathering and returning all failures.
     def validate(fail_fast: false)
-      SCHEMA.validate(fields, fail_fast: fail_fast)
+      schema = @fields['cff-version']
+      schema = Schemas::DEFAULT_VERSION if schema.nil? || schema.empty?
+
+      SCHEMAS[schema].validate(fields(validate: true), fail_fast: fail_fast)
     end
   end
 end

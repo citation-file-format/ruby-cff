@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 # limitations under the License.
 
 require_relative 'model_part'
-require_relative 'schema'
+require_relative 'schemas'
 
 ##
 module CFF
@@ -28,15 +28,20 @@ module CFF
   # parentheses):
   #
   # * `description`
+  # * 'relation' - *Note:* since version 1.3.0
   # * `type`
   # * `value`
   class Identifier < ModelPart
-    ALLOWED_FIELDS = # :nodoc:
-      SCHEMA_FILE['definitions']['identifier']['anyOf'].first['properties'].keys.dup.freeze
+    ALLOWED_FIELDS = Schemas.read_oneof('identifier') do |obj|
+      obj.first['properties'].keys.dup.freeze
+    end.freeze # :nodoc:
 
     # The [defined set of identifier types](https://github.com/citation-file-format/citation-file-format/blob/main/README.md#identifier-type-strings).
-    IDENTIFIER_TYPES = SCHEMA_FILE['definitions']['identifier']['anyOf'].map do |id|
-      id['properties']['type']['enum'].first
+    IDENTIFIER_TYPES = Schemas.read_oneof('identifier') do |obj|
+      obj.map do |id|
+        type = id['properties']['type']
+        type.has_key?('enum') ? type['enum'].first : type['const']
+      end.freeze
     end.freeze
 
     # :call-seq:
@@ -47,7 +52,7 @@ module CFF
     #
     # Create a new Identifier with the optionally supplied type and value.
     # If the supplied type is invalid, then neither the type or value are set.
-    def initialize(param = nil, *more)
+    def initialize(param = nil, value = nil)
       super()
 
       if param.is_a?(Hash)
@@ -57,7 +62,7 @@ module CFF
 
         unless param.nil?
           self.type = param
-          @fields['value'] = more[0] unless @fields['type'].nil?
+          @fields['value'] = value unless @fields['type'].nil?
         end
       end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 # limitations under the License.
 
 require_relative 'model_part'
-require_relative 'schema'
+require_relative 'schemas'
 
 ##
 module CFF
@@ -45,7 +45,9 @@ module CFF
   # * `tel`
   # * `website`
   class Person < ModelPart
-    ALLOWED_FIELDS = SCHEMA_FILE['definitions']['person']['properties'].keys.freeze # :nodoc:
+    ALLOWED_FIELDS = Schemas.read_defs('person', 'properties') do |obj|
+      obj.keys.freeze
+    end.freeze # :nodoc:
 
     # :call-seq:
     #   new -> Person
@@ -54,7 +56,7 @@ module CFF
     #   new(given_name, family_name) { |person| block } -> Person
     #
     # Create a new Person with the optionally supplied given and family names.
-    def initialize(param = nil, *more)
+    def initialize(param = nil, family_name = nil)
       super()
 
       if param.is_a?(Hash)
@@ -63,7 +65,7 @@ module CFF
         @fields = {}
 
         unless param.nil?
-          @fields['family-names'] = more[0]
+          @fields['family-names'] = family_name
           @fields['given-names'] = param
         end
       end

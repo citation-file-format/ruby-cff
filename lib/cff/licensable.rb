@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require_relative 'schema'
+require_relative 'schemas'
 
 ##
 module CFF
   # Functionality to add licence(s) to parts of the CFF model.
   module Licensable
-    LICENSES = SCHEMA_FILE['definitions']['license-enum']['enum'].dup.freeze # :nodoc:
+    LICENSES = Schemas.read_defs('license-enum', 'enum') do |obj|
+      obj.dup.freeze
+    end.freeze # :nodoc:
 
     # :call-seq:
     #   license = license
