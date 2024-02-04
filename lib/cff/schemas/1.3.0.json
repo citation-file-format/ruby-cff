@@ -1,19 +1,19 @@
 {
-    "$defs": {
+    "definitions": {
         "address": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "An address."
         },
         "alias": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "An alias."
         },
         "city": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "A city"
         },
         "commit": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "The (e.g., Git) commit hash or (e.g., Subversion) revision number of the work."
         },
         "country": {
@@ -300,71 +300,71 @@
             "description": "An entity, i.e., an institution, team, research group, company, conference, etc., as opposed to a single natural person.",
             "properties": {
                 "address": {
-                    "$ref": "#/$defs/address",
+                    "$ref": "#/definitions/address",
                     "description": "The entity's address."
                 },
                 "affiliation": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The entity's affiliation."
                 },
                 "alias": {
-                    "$ref": "#/$defs/alias",
+                    "$ref": "#/definitions/alias",
                     "description": "The entity's alias."
                 },
                 "city": {
-                    "$ref": "#/$defs/city",
+                    "$ref": "#/definitions/city",
                     "description": "The entity's city."
                 },
                 "country": {
-                    "$ref": "#/$defs/country",
+                    "$ref": "#/definitions/country",
                     "description": "The entity's country."
                 },
                 "date-end": {
-                    "$ref": "#/$defs/date",
+                    "$ref": "#/definitions/date",
                     "description": "The entity's ending date, e.g., when the entity is a conference."
                 },
                 "date-start": {
-                    "$ref": "#/$defs/date",
+                    "$ref": "#/definitions/date",
                     "description": "The entity's starting date, e.g., when the entity is a conference."
                 },
                 "email": {
-                    "$ref": "#/$defs/email",
+                    "$ref": "#/definitions/email",
                     "description": "The entity's email address."
                 },
                 "fax": {
-                    "$ref": "#/$defs/fax",
+                    "$ref": "#/definitions/fax",
                     "description": "The entity's fax number."
                 },
                 "location": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The entity's location, e.g., when the entity is a conference."
                 },
                 "name": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The entity's name."
                 },
                 "orcid": {
-                    "$ref": "#/$defs/orcid",
+                    "$ref": "#/definitions/orcid",
                     "description": "The entity's orcid."
                 },
                 "post-code": {
-                    "$ref": "#/$defs/post-code",
+                    "$ref": "#/definitions/post-code",
                     "description": "The entity's post code."
                 },
                 "region": {
-                    "$ref": "#/$defs/region",
+                    "$ref": "#/definitions/region",
                     "description": "The entity's region."
                 },
                 "ror": {
-                    "$ref": "#/$defs/ror",
+                    "$ref": "#/definitions/ror",
                     "description": "The entity's Research Organization Registry (ROR) identifier."
                 },
                 "tel": {
-                    "$ref": "#/$defs/tel",
+                    "$ref": "#/definitions/tel",
                     "description": "The entity's telephone number."
                 },
                 "website": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The entity's website."
                 }
             },
@@ -374,7 +374,7 @@
             "type": "object"
         },
         "fax": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "A fax number."
         },
         "identifier": {
@@ -384,17 +384,17 @@
                     "additionalProperties": false,
                     "properties": {
                         "description": {
-                            "$ref": "#/$defs/identifier-description"
+                            "$ref": "#/definitions/identifier-description"
                         },
                         "relation": {
-                            "$ref": "#/$defs/identifier-relation"
+                            "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
                             "const": "doi",
                             "type": "string"
                         },
                         "value": {
-                            "$ref": "#/$defs/doi"
+                            "$ref": "#/definitions/doi"
                         }
                     },
                     "required": [
@@ -407,17 +407,17 @@
                     "additionalProperties": false,
                     "properties": {
                         "description": {
-                            "$ref": "#/$defs/identifier-description"
+                            "$ref": "#/definitions/identifier-description"
                         },
                         "relation": {
-                            "$ref": "#/$defs/identifier-relation"
+                            "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
                             "const": "url",
                             "type": "string"
                         },
                         "value": {
-                            "$ref": "#/$defs/url"
+                            "$ref": "#/definitions/url"
                         }
                     },
                     "required": [
@@ -430,17 +430,17 @@
                     "additionalProperties": false,
                     "properties": {
                         "description": {
-                            "$ref": "#/$defs/identifier-description"
+                            "$ref": "#/definitions/identifier-description"
                         },
                         "relation": {
-                            "$ref": "#/$defs/identifier-relation"
+                            "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
                             "const": "swh",
                             "type": "string"
                         },
                         "value": {
-                            "$ref": "#/$defs/swh-identifier"
+                            "$ref": "#/definitions/swh-identifier"
                         }
                     },
                     "required": [
@@ -453,17 +453,17 @@
                     "additionalProperties": false,
                     "properties": {
                         "description": {
-                            "$ref": "#/$defs/identifier-description"
+                            "$ref": "#/definitions/identifier-description"
                         },
                         "relation": {
-                            "$ref": "#/$defs/identifier-relation"
+                            "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
                             "const": "other",
                             "type": "string"
                         },
                         "value": {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     },
                     "required": [
@@ -475,7 +475,7 @@
             ]
         },
         "identifier-description": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "A description for a specific identifier value.",
             "examples": [
                 "The version DOI for this version, which has a relation childOf with the concept DOI specified in the doi field in the root of this file.",
@@ -530,7 +530,7 @@
             "description": "An SPDX license identifier.",
             "oneOf": [
                 {
-                    "$ref": "#/$defs/license-enum",
+                    "$ref": "#/definitions/license-enum",
                     "examples": [
                         "Apache-2.0",
                         "MIT"
@@ -549,7 +549,7 @@
                         ]
                     ],
                     "items": {
-                        "$ref": "#/$defs/license-enum"
+                        "$ref": "#/definitions/license-enum"
                     },
                     "minItems": 1,
                     "type": "array",
@@ -1195,50 +1195,50 @@
             "description": "A person.",
             "properties": {
                 "address": {
-                    "$ref": "#/$defs/address",
+                    "$ref": "#/definitions/address",
                     "description": "The person's address."
                 },
                 "affiliation": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The person's affiliation."
                 },
                 "alias": {
-                    "$ref": "#/$defs/alias",
+                    "$ref": "#/definitions/alias",
                     "description": "The person's alias."
                 },
                 "city": {
-                    "$ref": "#/$defs/city",
+                    "$ref": "#/definitions/city",
                     "description": "The person's city."
                 },
                 "country": {
-                    "$ref": "#/$defs/country",
+                    "$ref": "#/definitions/country",
                     "description": "The person's country."
                 },
                 "email": {
-                    "$ref": "#/$defs/email",
+                    "$ref": "#/definitions/email",
                     "description": "The person's email address."
                 },
                 "family-names": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The person's family names."
                 },
                 "fax": {
-                    "$ref": "#/$defs/fax",
+                    "$ref": "#/definitions/fax",
                     "description": "The person's fax number."
                 },
                 "given-names": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The person's given names."
                 },
                 "name-particle": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The person's name particle, e.g., a nobiliary particle or a preposition meaning 'of' or 'from' (for example 'von' in 'Alexander von Humboldt').",
                     "examples": [
                         "von"
                     ]
                 },
                 "name-suffix": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The person's name-suffix, e.g. 'Jr.' for Sammy Davis Jr. or 'III' for Frank Edwin Wright III.",
                     "examples": [
                         "Jr.",
@@ -1246,23 +1246,23 @@
                     ]
                 },
                 "orcid": {
-                    "$ref": "#/$defs/orcid",
+                    "$ref": "#/definitions/orcid",
                     "description": "The person's ORCID."
                 },
                 "post-code": {
-                    "$ref": "#/$defs/post-code",
+                    "$ref": "#/definitions/post-code",
                     "description": "The person's post-code."
                 },
                 "region": {
-                    "$ref": "#/$defs/region",
+                    "$ref": "#/definitions/region",
                     "description": "The person's region."
                 },
                 "tel": {
-                    "$ref": "#/$defs/tel",
+                    "$ref": "#/definitions/tel",
                     "description": "The person's phone number."
                 },
                 "website": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The person's website."
                 }
             },
@@ -1272,7 +1272,7 @@
             "description": "A post code.",
             "oneOf": [
                 {
-                    "$ref": "#/$defs/strictish-string"
+                    "$ref": "#/definitions/strictish-string"
                 },
                 {
                     "type": "number"
@@ -1284,11 +1284,11 @@
             "description": "A reference to a work.",
             "properties": {
                 "abbreviation": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The abbreviation of a work."
                 },
                 "abstract": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The abstract of a work."
                 },
                 "authors": {
@@ -1296,10 +1296,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             },
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             }
                         ]
                     },
@@ -1308,22 +1308,22 @@
                     "uniqueItems": false
                 },
                 "collection-doi": {
-                    "$ref": "#/$defs/doi",
+                    "$ref": "#/definitions/doi",
                     "description": "The DOI of a collection containing the work."
                 },
                 "collection-title": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The title of a collection or proceedings."
                 },
                 "collection-type": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The type of a collection."
                 },
                 "commit": {
-                    "$ref": "#/$defs/commit"
+                    "$ref": "#/definitions/commit"
                 },
                 "conference": {
-                    "$ref": "#/$defs/entity",
+                    "$ref": "#/definitions/entity",
                     "description": "The conference where the work was presented."
                 },
                 "contact": {
@@ -1331,10 +1331,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             },
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             }
                         ]
                     },
@@ -1343,47 +1343,47 @@
                     "uniqueItems": false
                 },
                 "copyright": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The copyright information pertaining to the work."
                 },
                 "data-type": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The data type of a data set."
                 },
                 "database": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The name of the database where a work was accessed/is stored."
                 },
                 "database-provider": {
-                    "$ref": "#/$defs/entity",
+                    "$ref": "#/definitions/entity",
                     "description": "The provider of the database where a work was accessed/is stored."
                 },
                 "date-accessed": {
-                    "$ref": "#/$defs/date",
+                    "$ref": "#/definitions/date",
                     "description": "The date the work was accessed."
                 },
                 "date-downloaded": {
-                    "$ref": "#/$defs/date",
+                    "$ref": "#/definitions/date",
                     "description": "The date the work has been downloaded."
                 },
                 "date-published": {
-                    "$ref": "#/$defs/date",
+                    "$ref": "#/definitions/date",
                     "description": "The date the work has been published."
                 },
                 "date-released": {
-                    "$ref": "#/$defs/date",
+                    "$ref": "#/definitions/date",
                     "description": "The date the work has been released."
                 },
                 "department": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The department where a work has been produced."
                 },
                 "doi": {
-                    "$ref": "#/$defs/doi",
+                    "$ref": "#/definitions/doi",
                     "description": "The DOI of the work."
                 },
                 "edition": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The edition of the work."
                 },
                 "editors": {
@@ -1391,10 +1391,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             },
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             }
                         ]
                     },
@@ -1407,10 +1407,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             },
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             }
                         ]
                     },
@@ -1425,33 +1425,33 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
                 "entry": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "An entry in the collection that constitutes the work."
                 },
                 "filename": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The name of the electronic file containing the work."
                 },
                 "format": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The format in which a work is represented."
                 },
                 "identifiers": {
                     "description": "The identifier(s) of the work.",
                     "items": {
-                        "$ref": "#/$defs/identifier"
+                        "$ref": "#/definitions/identifier"
                     },
                     "minItems": 1,
                     "type": "array",
                     "uniqueItems": true
                 },
                 "institution": {
-                    "$ref": "#/$defs/entity",
+                    "$ref": "#/definitions/entity",
                     "description": "The institution where a work has been produced or published."
                 },
                 "isbn": {
@@ -1468,7 +1468,7 @@
                     "description": "The issue of a periodical in which a work appeared.",
                     "oneOf": [
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         },
                         {
                             "type": "number"
@@ -1476,21 +1476,21 @@
                     ]
                 },
                 "issue-date": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The publication date of the issue of a periodical in which a work appeared."
                 },
                 "issue-title": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The name of the issue of a periodical in which the work appeared."
                 },
                 "journal": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The name of the journal/magazine/newspaper/periodical where the work was published."
                 },
                 "keywords": {
                     "description": "Keywords pertaining to the work.",
                     "items": {
-                        "$ref": "#/$defs/strictish-string"
+                        "$ref": "#/definitions/strictish-string"
                     },
                     "minItems": 1,
                     "type": "array",
@@ -1509,10 +1509,10 @@
                     "uniqueItems": true
                 },
                 "license": {
-                    "$ref": "#/$defs/license"
+                    "$ref": "#/definitions/license"
                 },
                 "license-url": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The URL of the license text under which the work is licensed (only for non-standard licenses not included in the SPDX License List)."
                 },
                 "loc-end": {
@@ -1522,7 +1522,7 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
@@ -1533,16 +1533,16 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
                 "location": {
-                    "$ref": "#/$defs/entity",
+                    "$ref": "#/definitions/entity",
                     "description": "The location of the work."
                 },
                 "medium": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The medium of the work."
                 },
                 "month": {
@@ -1573,18 +1573,18 @@
                     ]
                 },
                 "nihmsid": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The NIHMSID of a work."
                 },
                 "notes": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "Notes pertaining to the work."
                 },
                 "number": {
                     "description": "The accession number for a work.",
                     "oneOf": [
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         },
                         {
                             "type": "number"
@@ -1598,7 +1598,7 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
@@ -1609,14 +1609,14 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
                 "patent-states": {
                     "description": "The states for which a patent is granted.",
                     "items": {
-                        "$ref": "#/$defs/strictish-string"
+                        "$ref": "#/definitions/strictish-string"
                     },
                     "minItems": 1,
                     "type": "array",
@@ -1628,7 +1628,7 @@
                     "type": "string"
                 },
                 "publisher": {
-                    "$ref": "#/$defs/entity",
+                    "$ref": "#/definitions/entity",
                     "description": "The publisher who has published the work."
                 },
                 "recipients": {
@@ -1636,10 +1636,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             },
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             }
                         ]
                     },
@@ -1648,26 +1648,26 @@
                     "uniqueItems": false
                 },
                 "repository": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The URL of the work in a repository (when the repository is neither a source code repository nor a build artifact repository)."
                 },
                 "repository-artifact": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The URL of the work in a build artifact/binary repository."
                 },
                 "repository-code": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The URL of the work in a source code repository."
                 },
                 "scope": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The scope of the reference, e.g., the section of the work it adheres to."
                 },
                 "section": {
                     "description": "The section of a work that is referenced.",
                     "oneOf": [
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         },
                         {
                             "type": "number"
@@ -1679,10 +1679,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             },
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             }
                         ]
                     },
@@ -1697,7 +1697,7 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
@@ -1714,15 +1714,15 @@
                     "type": "string"
                 },
                 "term": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The term being referenced if the work is a dictionary or encyclopedia."
                 },
                 "thesis-type": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The type of the thesis that is the work."
                 },
                 "title": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The title of the work."
                 },
                 "translators": {
@@ -1730,10 +1730,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/entity"
+                                "$ref": "#/definitions/entity"
                             },
                             {
-                                "$ref": "#/$defs/person"
+                                "$ref": "#/definitions/person"
                             }
                         ]
                     },
@@ -1795,11 +1795,11 @@
                     "type": "string"
                 },
                 "url": {
-                    "$ref": "#/$defs/url",
+                    "$ref": "#/definitions/url",
                     "description": "The URL of the work."
                 },
                 "version": {
-                    "$ref": "#/$defs/version",
+                    "$ref": "#/definitions/version",
                     "description": "The version of the work."
                 },
                 "volume": {
@@ -1809,12 +1809,12 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
                 "volume-title": {
-                    "$ref": "#/$defs/strictish-string",
+                    "$ref": "#/definitions/strictish-string",
                     "description": "The title of the volume in which the work appeared."
                 },
                 "year": {
@@ -1824,7 +1824,7 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 },
@@ -1835,7 +1835,7 @@
                             "type": "integer"
                         },
                         {
-                            "$ref": "#/$defs/strictish-string"
+                            "$ref": "#/definitions/strictish-string"
                         }
                     ]
                 }
@@ -1848,7 +1848,7 @@
             "type": "object"
         },
         "region": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "A region."
         },
         "ror": {
@@ -1883,7 +1883,7 @@
             "type": "string"
         },
         "tel": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "A phone number."
         },
         "url": {
@@ -1894,7 +1894,7 @@
         "version": {
             "oneOf": [
                 {
-                    "$ref": "#/$defs/strictish-string"
+                    "$ref": "#/definitions/strictish-string"
                 },
                 {
                     "type": "number"
@@ -1908,7 +1908,7 @@
     "description": "A file with citation metadata for software or datasets.",
     "properties": {
         "abstract": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "A description of the software or dataset."
         },
         "authors": {
@@ -1916,10 +1916,10 @@
             "items": {
                 "oneOf": [
                     {
-                        "$ref": "#/$defs/person"
+                        "$ref": "#/definitions/person"
                     },
                     {
-                        "$ref": "#/$defs/entity"
+                        "$ref": "#/definitions/entity"
                     }
                 ]
             },
@@ -1936,17 +1936,17 @@
             "type": "string"
         },
         "commit": {
-            "$ref": "#/$defs/commit"
+            "$ref": "#/definitions/commit"
         },
         "contact": {
             "description": "The contact person, group, company, etc. for the software or dataset.",
             "items": {
                 "oneOf": [
                     {
-                        "$ref": "#/$defs/person"
+                        "$ref": "#/definitions/person"
                     },
                     {
-                        "$ref": "#/$defs/entity"
+                        "$ref": "#/definitions/entity"
                     }
                 ]
             },
@@ -1959,10 +1959,10 @@
             "items": {
                 "oneOf": [
                     {
-                        "$ref": "#/$defs/person"
+                        "$ref": "#/definitions/person"
                     },
                     {
-                        "$ref": "#/$defs/entity"
+                        "$ref": "#/definitions/entity"
                     }
                 ]
             },
@@ -1971,16 +1971,16 @@
             "uniqueItems": false
         },
         "date-released": {
-            "$ref": "#/$defs/date",
+            "$ref": "#/definitions/date",
             "description": "The date the work has been released."
         },
         "doi": {
-            "$ref": "#/$defs/doi"
+            "$ref": "#/definitions/doi"
         },
         "identifiers": {
             "description": "The identifiers of the software or dataset.",
             "items": {
-                "$ref": "#/$defs/identifier"
+                "$ref": "#/definitions/identifier"
             },
             "minItems": 1,
             "type": "array",
@@ -1989,21 +1989,21 @@
         "keywords": {
             "description": "Keywords that describe the work.",
             "items": {
-                "$ref": "#/$defs/strictish-string"
+                "$ref": "#/definitions/strictish-string"
             },
             "minItems": 1,
             "type": "array",
             "uniqueItems": true
         },
         "license": {
-            "$ref": "#/$defs/license"
+            "$ref": "#/definitions/license"
         },
         "license-url": {
-            "$ref": "#/$defs/url",
+            "$ref": "#/definitions/url",
             "description": "The URL of the license text under which the software or dataset is licensed (only for non-standard licenses not included in the SPDX License List)."
         },
         "message": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "default": "If you use this software, please cite it using the metadata from this file.",
             "description": "A message to the human reader of the file to let them know what to do with the citation metadata.",
             "examples": [
@@ -2013,20 +2013,20 @@
             ]
         },
         "preferred-citation": {
-            "$ref": "#/$defs/reference",
+            "$ref": "#/definitions/reference",
             "description": "A reference to another work that should be cited instead of the software or dataset itself."
         },
         "references": {
             "description": "Reference(s) to other creative works.",
             "items": {
-                "$ref": "#/$defs/reference"
+                "$ref": "#/definitions/reference"
             },
             "minItems": 1,
             "type": "array",
             "uniqueItems": true
         },
         "repository": {
-            "$ref": "#/$defs/url",
+            "$ref": "#/definitions/url",
             "description": "The URL of the software or dataset in a repository (when the repository is neither a source code repository nor a build artifact repository).",
             "examples": [
                 "https://edoc.hu-berlin.de/handle/18452/23016",
@@ -2034,15 +2034,15 @@
             ]
         },
         "repository-artifact": {
-            "$ref": "#/$defs/url",
+            "$ref": "#/definitions/url",
             "description": "The URL of the software in a build artifact/binary repository."
         },
         "repository-code": {
-            "$ref": "#/$defs/url",
+            "$ref": "#/definitions/url",
             "description": "The URL of the software or dataset in a source code repository."
         },
         "title": {
-            "$ref": "#/$defs/strictish-string",
+            "$ref": "#/definitions/strictish-string",
             "description": "The name of the software or dataset."
         },
         "type": {
@@ -2055,11 +2055,11 @@
             "type": "string"
         },
         "url": {
-            "$ref": "#/$defs/url",
+            "$ref": "#/definitions/url",
             "description": "The URL of a landing page/website for the software or dataset."
         },
         "version": {
-            "$ref": "#/$defs/version",
+            "$ref": "#/definitions/version",
             "description": "The version of the software or dataset."
         }
     },

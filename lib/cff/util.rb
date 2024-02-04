@@ -59,24 +59,6 @@ module CFF
       array.select! { |i| i.respond_to?(:fields) }
     end
 
-    def fields_to_hash(fields)
-      hash = {}
-
-      fields.each do |field, value|
-        if value.respond_to?(:map)
-          unless value.empty?
-            hash[field] = value.map do |v|
-              v.respond_to?(:fields) ? v.fields : v.to_s
-            end
-          end
-        else
-          hash[field] = value.respond_to?(:fields) ? value.fields : value
-        end
-      end
-
-      hash
-    end
-
     DEFAULT_CHAR_APPROXIMATIONS = {
       'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A',
       'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E',

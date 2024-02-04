@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2023 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,9 @@ module CFF
   # ModelPart provides only one method for the public API: `empty?`.
   class ModelPart
     # :stopdoc:
-    attr_reader :fields
+    def fields(*)
+      @fields
+    end
 
     def method_missing(name, *args)
       n = method_to_field(name.id2name)
@@ -111,6 +113,26 @@ module CFF
     private_class_method :date_getter, :date_setter
 
     private
+
+    def fields_to_hash(fields, validate: false) # rubocop:disable Metrics
+      hash = {}
+
+      fields.each do |field, value|
+        if value.respond_to?(:map)
+          unless value.empty?
+            hash[field] = value.map do |v|
+              v.respond_to?(:fields) ? v.fields(validate: validate) : v.to_s
+            end
+          end
+        elsif validate && value.is_a?(Date)
+          hash[field] = value.to_s
+        else
+          hash[field] = value.respond_to?(:fields) ? value.fields(validate: validate) : value
+        end
+      end
+
+      hash
+    end
 
     def method_to_field(name)
       name.tr('_', '-')

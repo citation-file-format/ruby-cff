@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 require_relative 'licensable'
 require_relative 'model_part'
-require_relative 'schema'
+require_relative 'schemas'
 require_relative 'util'
 
 ##
@@ -99,17 +99,19 @@ module CFF
 
     # This list does not include `format` for reasons explained below, where
     # the `format` method is defined!
-    ALLOWED_FIELDS = (
-      SCHEMA_FILE['definitions']['reference']['properties'].keys - %w[format languages]
-    ).freeze # :nodoc:
+    ALLOWED_FIELDS = Schemas.read_defs('reference', 'properties') do |obj|
+      (obj.keys - %w[format languages]).freeze
+    end.freeze # :nodoc:
 
     # The [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
-    REFERENCE_TYPES =
-      SCHEMA_FILE['definitions']['reference']['properties']['type']['enum'].dup.freeze
+    REFERENCE_TYPES = Schemas.read_defs('reference', 'properties', 'type', 'enum') do |obj|
+      obj.dup.freeze
+    end.freeze
 
     # The [defined set of reference status types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencestatus).
-    REFERENCE_STATUS_TYPES =
-      SCHEMA_FILE['definitions']['reference']['properties']['status']['enum'].dup.freeze
+    REFERENCE_STATUS_TYPES = Schemas.read_defs('reference', 'properties', 'status', 'enum') do |obj|
+      obj.dup.freeze
+    end.freeze
 
     attr_date :date_accessed, :date_downloaded, :date_published,
               :date_released, :issue_date
@@ -124,14 +126,14 @@ module CFF
     # If type is not given, or is not one of the
     # [defined set of reference types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype),
     # 'generic' will be used by default.
-    def initialize(param, *more) # rubocop:disable Metrics
+    def initialize(param, type = nil) # rubocop:disable Metrics
       super()
 
       if param.is_a?(Hash)
         @fields = build_model(param)
       else
         @fields = {}
-        type = more[0] &&= more[0].downcase
+        type &&= type.downcase
         @fields['type'] = REFERENCE_TYPES.include?(type) ? type : 'generic'
         @fields['title'] = param
       end
@@ -238,7 +240,7 @@ module CFF
     end
 
     # Override superclass #fields as References contain model parts too.
-    def fields # :nodoc:
+    def fields(validate: false) # :nodoc:
       %w[
         authors contact editors editors-series identifiers
         recipients senders translators
@@ -246,7 +248,7 @@ module CFF
         Util.normalize_modelpart_array!(@fields[field])
       end
 
-      Util.fields_to_hash(@fields)
+      fields_to_hash(@fields, validate: validate)
     end
 
     private

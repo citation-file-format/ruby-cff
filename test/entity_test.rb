@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ class CFFEntityTest < Minitest::Test
   def test_simple_fields_set_and_output_correctly
     data = [
       ['address', 'A Street'],
+      ['affiliation', 'Some University'],
       ['alias', 'UoM'],
       ['city', 'Manchester'],
       ['country', 'GB'],
@@ -49,6 +50,7 @@ class CFFEntityTest < Minitest::Test
       ['orcid', 'https://orcid.org/0000-0001-2345-6789'],
       ['post-code', 'M13 9PL'],
       ['region', 'Greater Manchester'],
+      ['ror', 'https://ror.org/123456789'],
       ['website', 'https://home.example.org']
     ]
 

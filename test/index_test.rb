@@ -203,6 +203,34 @@ class CFFIndexTest < Minitest::Test
     refute_includes(y, '_ _ _')
   end
 
+  def test_contributors_set_and_output_correctly
+    m = ::CFF::Index.new('title')
+    a = ::CFF::Person.new('First', 'Second')
+    e = ::CFF::Entity.new('Company')
+    r = [::CFF::Person.new('F', 'S'), '_ _ _', ::CFF::Entity.new('Co.')]
+
+    m.contributors << a
+    m.contributors << '_ _ _'
+    m.contributors << e
+
+    y = m.to_yaml
+    assert_equal(2, m.contributors.length)
+    assert_includes(
+      y,
+      "contributors:\n- family-names: Second\n  given-names: First\n- name: Company"
+    )
+    refute_includes(y, '_ _ _')
+
+    m.contributors = r
+
+    y = m.to_yaml
+    assert_equal(2, m.contributors.length)
+    assert_includes(
+      y, "contributors:\n- family-names: S\n  given-names: F\n- name: Co."
+    )
+    refute_includes(y, '_ _ _')
+  end
+
   def test_identifiers_set_and_output_correctly
     m = ::CFF::Index.new('title')
     i = ::CFF::Identifier.new('doi', '10.5281/zenodo.1184077')
@@ -337,6 +365,7 @@ class CFFIndexTest < Minitest::Test
 
     refute_includes(y, 'authors:')
     refute_includes(y, 'contact:')
+    refute_includes(y, 'contributors:')
     refute_includes(y, 'keywords:')
     refute_includes(y, 'references:')
   end

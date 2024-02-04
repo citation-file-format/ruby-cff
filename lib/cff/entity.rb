@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 # limitations under the License.
 
 require_relative 'model_part'
-require_relative 'schema'
+require_relative 'schemas'
 
 ##
 module CFF
@@ -30,6 +30,7 @@ module CFF
   # parentheses):
   #
   # * `address`
+  # * `affiliation` - *Note:* since version 1.3.0
   # * `alias`
   # * `city`
   # * `country`
@@ -42,10 +43,13 @@ module CFF
   # * `orcid`
   # * `post_code`
   # * `region`
+  # * `ror` - *Note:* since version 1.3.0
   # * `tel`
   # * `website`
   class Entity < ModelPart
-    ALLOWED_FIELDS = SCHEMA_FILE['definitions']['entity']['properties'].keys.freeze # :nodoc:
+    ALLOWED_FIELDS = Schemas.read_defs('entity', 'properties') do |obj|
+      obj.keys.freeze
+    end.freeze # :nodoc:
 
     attr_date :date_end, :date_start
 
@@ -65,6 +69,11 @@ module CFF
       end
 
       yield self if block_given?
+    end
+
+    # Override superclass #fields as Entities contain dates too.
+    def fields(validate: false) # :nodoc:
+      fields_to_hash(@fields, validate: validate)
     end
   end
 end

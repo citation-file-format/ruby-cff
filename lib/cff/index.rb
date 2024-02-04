@@ -21,7 +21,6 @@ require_relative 'identifier'
 require_relative 'licensable'
 require_relative 'person'
 require_relative 'reference'
-require_relative 'schema'
 require_relative 'schemas'
 require_relative 'validatable'
 require_relative 'citable'
@@ -33,14 +32,14 @@ module CFF
   #
   # Index implements all of the fields listed in the
   # [CFF standard](https://citation-file-format.github.io/). Complex
-  # fields - `authors`, `contact`, `identifiers`, `keywords`,
+  # fields - `authors`, `contact`, `contributors`, `identifiers`, `keywords`,
   # `preferred-citation`, `references` and `type` - are documented below. All
   # other fields are simple strings and can be set as such. A field which has
   # not been set will return the empty string. The simple fields are (with
   # defaults in parentheses):
   #
   # * `abstract`
-  # * `cff_version`
+  # * `cff_version` (1.3.0)
   # * `commit`
   # * `date_released` - *Note:* returns a `Date` object
   # * `doi`
@@ -59,10 +58,14 @@ module CFF
     include Licensable
     include Validatable
 
-    ALLOWED_FIELDS = SCHEMA_FILE['properties'].keys.freeze # :nodoc:
+    ALLOWED_FIELDS = Schemas.read('properties') do |obj|
+      obj.keys.freeze
+    end.freeze # :nodoc:
 
     # The allowed CFF [types](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
-    MODEL_TYPES = SCHEMA_FILE['properties']['type']['enum'].dup.freeze
+    MODEL_TYPES = Schemas.read('properties', 'type', 'enum') do |obj|
+      obj.dup.freeze
+    end.freeze
 
     # The default message to use if none is explicitly set.
     DEFAULT_MESSAGE = 'If you use this software in your work, please cite ' \
@@ -87,7 +90,7 @@ module CFF
         @fields['title'] = param
       end
 
-      %w[authors contact identifiers keywords references].each do |field|
+      %w[authors contact contributors identifiers keywords references].each do |field|
         @fields[field] = [] if @fields[field].nil? || @fields[field].empty?
       end
 
@@ -134,17 +137,18 @@ module CFF
 
     private
 
-    def fields
-      %w[authors contact identifiers references].each do |field|
+    def fields(validate: false)
+      %w[authors contact contributors identifiers references].each do |field|
         Util.normalize_modelpart_array!(@fields[field])
       end
 
-      Util.fields_to_hash(@fields)
+      fields_to_hash(@fields, validate: validate)
     end
 
     def build_index(fields) # rubocop:disable Metrics
       Util.build_actor_collection!(fields['authors'] || [])
       Util.build_actor_collection!(fields['contact'] || [])
+      Util.build_actor_collection!(fields['contributors'] || [])
       (fields['identifiers'] || []).map! do |i|
         Identifier.new(i)
       end
@@ -210,6 +214,33 @@ module CFF
     # Replace the list of contacts for this citation.
     #
     # Contacts can be a Person or Entity.
+
+    ##
+    # :method: contributors
+    # :call-seq:
+    #   contributors -> Array
+    #
+    # Return the list of contributors for this citation. To add a contributor
+    # to the list, use:
+    #
+    # ```
+    # index.contributors << contributor
+    # ```
+    #
+    # Contributors can be a Person or Entity.
+    #
+    # *Note:* since version 1.3.0
+
+    ##
+    # :method: contributors=
+    # :call-seq:
+    #   contributors = array_of_contributors -> Array
+    #
+    # Replace the list of contributors for this citation.
+    #
+    # Contributors can be a Person or Entity.
+    #
+    # *Note:* since version 1.3.0
 
     ##
     # :method: identifiers

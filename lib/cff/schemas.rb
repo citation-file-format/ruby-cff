@@ -21,14 +21,38 @@ module CFF
   module Schemas # :nodoc:
     PATH = ::File.join(__dir__, 'schemas')
 
-    FILES = Dir.glob(::File.join(PATH, '*.json')).to_h do |file|
+    # Need to explicitly sort the files here to ensure that the order is
+    # consistent across different ruby versions and systems.
+    FILES = Dir.glob(::File.join(PATH, '*.json')).sort.to_h do |file|
       [::File.basename(file, '.json'), JSON.parse(::File.read(file))]
     end.freeze
 
     VERSIONS = FILES.keys.freeze
+    DEFAULT_VERSION = VERSIONS.last
+    MIN_VALIDATABLE_VERSION = VERSIONS.first
 
-    DEFAULT_VERSION = '1.2.0'
+    module_function
 
-    MIN_VALIDATABLE_VERSION = '1.2.0'
+    def read(*path)
+      VERSIONS.flat_map do |version|
+        value = FILES[version].dig(*path)
+        yield value
+      end.uniq
+    end
+
+    def read_defs(*path)
+      VERSIONS.flat_map do |version|
+        value = FILES[version].dig('definitions', *path)
+        yield value
+      end.uniq
+    end
+
+    def read_oneof(*path)
+      VERSIONS.flat_map do |version|
+        oneof = (version == '1.2.0' ? 'anyOf' : 'oneOf')
+        value = FILES[version].dig('definitions', *path, oneof)
+        yield value
+      end.uniq
+    end
   end
 end
