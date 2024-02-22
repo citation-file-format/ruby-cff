@@ -69,6 +69,30 @@ class CFFValidatableTest < Minitest::Test
     refute(result[2])
   end
 
+  def test_complete_example_file_validate!
+    cff = ::CFF::File.read(COMPLETE_CFF)
+
+    assert_raises(::CFF::ValidationError) do
+      cff.validate!
+    end
+
+    cff.validate!(fail_on_filename: false)
+  end
+
+  def test_complete_example_file_validate
+    cff = ::CFF::File.read(COMPLETE_CFF)
+
+    result = cff.validate
+    refute(result[0])
+    assert_empty(result[1])
+    refute(result[2])
+
+    result = cff.validate(fail_on_filename: false)
+    assert(result[0])
+    assert_empty(result[1])
+    refute(result[2])
+  end
+
   def test_empty_cff_version_raises_error
     cff = ::CFF::File.read(MINIMAL_CFF)
     cff.cff_version = ''
