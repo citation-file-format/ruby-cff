@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -70,6 +70,22 @@ class CFFIdentifierTest < Minitest::Test
     assert_raises(NoMethodError) do
       id.Type = 'swh'
     end
+  end
+
+  def test_relation_type_restricted_to_allowed_types
+    id = ::CFF::Identifier.new
+
+    id.relation = 'IsCitedBy'
+    assert_equal('IsCitedBy', id.relation)
+
+    id.relation = 'xxx'
+    assert_equal('IsCitedBy', id.relation)
+
+    id.relation = 'compiles' # Incorrect case.
+    assert_equal('IsCitedBy', id.relation)
+
+    id.relation = 'Obsoletes'
+    assert_equal('Obsoletes', id.relation)
   end
 
   def test_type_restricted_to_allowed_types

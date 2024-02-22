@@ -44,6 +44,11 @@ module CFF
       end.freeze
     end.freeze
 
+    # The defined set of identifier relation types (link to come).
+    IDENTIFIER_RELATION_TYPES = Schemas.read_defs('identifier-relation', 'enum') do |obj|
+      obj.dup.freeze
+    end.compact.freeze
+
     # :call-seq:
     #   new -> Identifier
     #   new { |id| block } -> Identifier
@@ -67,6 +72,17 @@ module CFF
       end
 
       yield self if block_given?
+    end
+
+    # :call-seq:
+    #   relation = relation
+    #
+    # Sets the relation type of this Identifier. The relation is restricted to
+    # a defined set of identifier relation types (link to come).
+    #
+    # *Note:* This field is only available since version 1.3.0.
+    def relation=(relation)
+      @fields['relation'] = relation if IDENTIFIER_RELATION_TYPES.include?(relation)
     end
 
     # :call-seq:
