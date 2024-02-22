@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -179,5 +179,31 @@ class CFFValidatableTest < Minitest::Test
     assert(result[0])
     assert_empty(result[1])
     assert(result[2])
+  end
+
+  def test_validate_model_against_specific_schema_version
+    cff = ::CFF::Index.read(File.read(SHORT_CFF))
+
+    # Validate a 1.2.0 CFF against schema version 1.3.0.
+    result = cff.validate(validate_as: '1.3.0')
+    assert(result[0])
+    assert_empty(result[1])
+    assert_equal('1.2.0', cff.cff_version) # No change to the model.
+
+    cff.validate!(validate_as: '1.3.0')
+    assert_equal('1.2.0', cff.cff_version) # No change to the model.
+  end
+
+  def test_validate_file_against_specific_schema_version
+    cff = ::CFF::File.read(SHORT_CFF)
+
+    # Validate a 1.2.0 CFF against schema version 1.3.0.
+    result = cff.validate(validate_as: '1.3.0', fail_on_filename: false)
+    assert(result[0])
+    assert_empty(result[1])
+    assert_equal('1.2.0', cff.cff_version) # No change to the model.
+
+    cff.validate!(validate_as: '1.3.0', fail_on_filename: false)
+    assert_equal('1.2.0', cff.cff_version) # No change to the model.
   end
 end

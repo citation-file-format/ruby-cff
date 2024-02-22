@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -108,7 +108,7 @@ module CFF
     end
 
     # :call-seq:
-    #   validate(filename, fail_on_filename: true) -> Array
+    #   validate(filename, validate_as: nil, fail_on_filename: true) -> Array
     #
     # Read a file and return an array with the result. The result array is a
     # three-element array, with `true`/`false` at index 0 to indicate
@@ -116,23 +116,33 @@ module CFF
     # `true`/`false` at index 2 to indicate whether the filename passed/failed
     # validation.
     #
+    # Setting `validate_as` to a specific version will validate against that
+    # version of the schema, rather than the version specified in the CFF file.
+    # If the version specified is not a valid schema version, the version in
+    # the CFF file, or the default schema version will be used.
+    #
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
-    def self.validate(file, fail_on_filename: true)
-      File.read(file).validate(fail_on_filename: fail_on_filename)
+    def self.validate(file, validate_as: nil, fail_on_filename: true)
+      File.read(file).validate(validate_as: validate_as, fail_on_filename: fail_on_filename)
     end
 
     # :call-seq:
-    #   validate!(filename, fail_on_filename: true)
+    #   validate!(filename, validate_as: nil, fail_on_filename: true)
     #
     # Read a file and raise a ValidationError upon failure. If an error is
     # raised it will contain the detected validation failures for further
     # inspection.
     #
+    # Setting `validate_as` to a specific version will validate against that
+    # version of the schema, rather than the version specified in the CFF file.
+    # If the version specified is not a valid schema version, the version in
+    # the CFF file, or the default schema version will be used.
+    #
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
-    def self.validate!(file, fail_on_filename: true)
-      File.read(file).validate!(fail_on_filename: fail_on_filename)
+    def self.validate!(file, validate_as: nil, fail_on_filename: true)
+      File.read(file).validate!(validate_as: validate_as, fail_on_filename: fail_on_filename)
     end
 
     # :call-seq:
@@ -158,11 +168,19 @@ module CFF
     # `true`/`false` at index 2 to indicate whether the filename passed/failed
     # validation.
     #
+    # Setting `fail_fast` to true will fail validation at the first detected
+    # failure, rather than gathering and returning all failures.
+    #
+    # Setting `validate_as` to a specific version will validate against that
+    # version of the schema, rather than the version specified in the CFF file.
+    # If the version specified is not a valid schema version, the version in
+    # the CFF file, or the default schema version will be used.
+    #
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
-    def validate(fail_fast: false, fail_on_filename: true)
+    def validate(fail_fast: false, validate_as: nil, fail_on_filename: true)
       valid_filename = (::File.basename(@filename) == CFF_VALID_FILENAME)
-      result = (@index.validate(fail_fast: fail_fast) << valid_filename)
+      result = (@index.validate(fail_fast: fail_fast, validate_as: validate_as) << valid_filename)
       result[0] &&= valid_filename if fail_on_filename
 
       result
@@ -175,11 +193,19 @@ module CFF
     # is raised it will contain the detected validation failures for further
     # inspection.
     #
+    # Setting `fail_fast` to true will fail validation at the first detected
+    # failure, rather than gathering and returning all failures.
+    #
+    # Setting `validate_as` to a specific version will validate against that
+    # version of the schema, rather than the version specified in the CFF file.
+    # If the version specified is not a valid schema version, the version in
+    # the CFF file, or the default schema version will be used.
+    #
     # You can choose whether filename validation failure should cause overall
     # validation failure with the `fail_on_filename` parameter (default: true).
-    def validate!(fail_fast: false, fail_on_filename: true)
+    def validate!(fail_fast: false, validate_as: nil, fail_on_filename: true)
       result = validate(
-        fail_fast: fail_fast, fail_on_filename: fail_on_filename
+        fail_fast: fail_fast, validate_as: validate_as, fail_on_filename: fail_on_filename
       )
       return if result[0]
 

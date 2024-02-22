@@ -31,33 +31,48 @@ module CFF
     end.freeze # :nodoc:
 
     # :call-seq:
-    #   validate!(fail_fast: false)
+    #   validate!(fail_fast: false, validate_as: nil)
     #
     # Validate a CFF file or model (Index) and raise a ValidationError upon
     # failure. If an error is raised it will contain the detected validation
-    # failures for further inspection. Setting `fail_fast` to true will fail
-    # validation at the first detected failure, rather than gathering and
-    # returning all failures.
-    def validate!(fail_fast: false)
-      result = validate(fail_fast: fail_fast)
+    # failures for further inspection.
+    #
+    # Setting `fail_fast` to true will fail validation at the first detected
+    # failure, rather than gathering and returning all failures.
+    #
+    # Setting `validate_as` to a specific version will validate against that
+    # version of the schema, rather than the version specified in the CFF file.
+    # If the version specified is not a valid schema version, the version in
+    # the CFF file, or the default schema version will be used.
+    def validate!(fail_fast: false, validate_as: nil)
+      result = validate(fail_fast: fail_fast, validate_as: validate_as)
       return if result[0]
 
       raise ValidationError.new(result[1])
     end
 
     # :call-seq:
-    #   validate(fail_fast: false) -> Array
+    #   validate(fail_fast: false, validate_as: nil) -> Array
     #
     # Validate a CFF file or model (Index) and return an array with the result.
     # The result array is a two-element array, with `true`/`false` at index 0
     # to indicate pass/fail, and an array of errors at index 1 (if any).
+    #
     # Setting `fail_fast` to true will fail validation at the first detected
     # failure, rather than gathering and returning all failures.
-    def validate(fail_fast: false)
-      schema = @fields['cff-version']
+    #
+    # Setting `validate_as` to a specific version will validate against that
+    # version of the schema, rather than the version specified in the CFF file.
+    # If the version specified is not a valid schema version, the version in
+    # the CFF file, or the default schema version will be used.
+    def validate(fail_fast: false, validate_as: nil)
+      schema = Schemas::VERSIONS.include?(validate_as) ? validate_as : @fields['cff-version']
       schema = Schemas::DEFAULT_VERSION if schema.nil? || schema.empty?
 
-      SCHEMAS[schema].validate(fields(validate: true), fail_fast: fail_fast)
+      model = fields(validate: true)
+      model['cff-version'] = schema unless validate_as.nil?
+
+      SCHEMAS[schema].validate(model, fail_fast: fail_fast)
     end
   end
 end
