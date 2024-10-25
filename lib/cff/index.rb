@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,8 +24,6 @@ require_relative 'reference'
 require_relative 'schema'
 require_relative 'validatable'
 require_relative 'citable'
-
-require 'yaml'
 
 ##
 module CFF
@@ -100,7 +98,7 @@ module CFF
     #
     # Read a CFF Index from a String and parse it for subsequent manipulation.
     def self.read(index)
-      new(YAML.safe_load(index, permitted_classes: [Date, Time]))
+      new(Util.parse_yaml(index))
     end
 
     # :call-seq:

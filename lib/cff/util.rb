@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ require_relative 'person'
 require_relative 'version'
 
 require 'rubygems'
+require 'yaml'
 
 ##
 module CFF
@@ -29,6 +30,10 @@ module CFF
     # :stopdoc:
 
     module_function
+
+    def parse_yaml(string)
+      YAML.safe_load(string, permitted_classes: [Date, Time])
+    end
 
     def update_cff_version(version)
       return '' if version.nil? || version.empty?

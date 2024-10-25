@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ require_relative 'index'
 require_relative 'version'
 
 require 'date'
-require 'yaml'
 
 ##
 module CFF
@@ -71,9 +70,7 @@ module CFF
       content = ::File.read(file)
       comment = File.parse_comment(content)
 
-      new(
-        file, YAML.safe_load(content, permitted_classes: [Date, Time]), comment
-      )
+      new(file, Util.parse_yaml(content), comment)
     end
 
     # :call-seq:
@@ -91,7 +88,7 @@ module CFF
       if ::File.exist?(file)
         content = ::File.read(file)
         comment = File.parse_comment(content)
-        yaml = YAML.safe_load(content, permitted_classes: [Date, Time])
+        yaml = Util.parse_yaml(content)
       else
         comment = CFF_COMMENT
         yaml = ''
