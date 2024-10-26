@@ -1,5 +1,10 @@
 # Changes log for the Ruby CFF Library
 
+## 1.3.0
+
+* Abstract out parsing YAML.
+* Turn on underlying support for YAML anchors/aliases.
+
 ## 1.2.0
 
 * Always treat dates as Ruby Date objects.
