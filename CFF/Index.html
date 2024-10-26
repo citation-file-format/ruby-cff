@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CFF::Index -  Ruby CFF Library (version 1.2.0)</title>
+<title>class CFF::Index -  Ruby CFF Library (version 1.3.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -189,7 +189,7 @@
             </div>
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 79</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">param</span>)
   <span class="ruby-keyword">super</span>()
 
@@ -231,7 +231,7 @@
           <p>With no associated block, <a href="Index.html#method-c-open"><code>Index.open</code></a> is a synonym for <a href="Index.html#method-c-read"><code>::read</code></a>. If the optional code block is given, it will be passed the parsed index as an argument and the <a href="Index.html"><code>Index</code></a> will be returned when the block terminates.</p>
 
           <div class="method-source-code" id="open-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 113</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">open</span>(<span class="ruby-identifier">index</span>)
   <span class="ruby-identifier">cff</span> = <span class="ruby-constant">Index</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">index</span>)
 
@@ -257,9 +257,9 @@
           <p>Read a <a href="../CFF.html"><code>CFF</code></a> <a href="Index.html"><code>Index</code></a> from a String and parse it for subsequent manipulation.</p>
 
           <div class="method-source-code" id="read-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 102</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">read</span>(<span class="ruby-identifier">index</span>)
-  <span class="ruby-identifier">new</span>(<span class="ruby-constant">YAML</span>.<span class="ruby-identifier">safe_load</span>(<span class="ruby-identifier">index</span>, <span class="ruby-value">permitted_classes:</span> [<span class="ruby-constant">Date</span>, <span class="ruby-constant">Time</span>]))
+  <span class="ruby-identifier">new</span>(<span class="ruby-constant">Util</span>.<span class="ruby-identifier">parse_yaml</span>(<span class="ruby-identifier">index</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -291,7 +291,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 170</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 168</span>
     </pre>
           </div>
         </div>
@@ -313,7 +313,7 @@
 <p>Authors can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="authors-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 184</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 182</span>
     </pre>
           </div>
         </div>
@@ -338,7 +338,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 193</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 191</span>
     </pre>
           </div>
         </div>
@@ -360,7 +360,7 @@
 <p>Contacts can be a <a href="Person.html"><code>Person</code></a> or <a href="Entity.html"><code>Entity</code></a>.</p>
 
           <div class="method-source-code" id="contact-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 207</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 205</span>
     </pre>
           </div>
         </div>
@@ -383,7 +383,7 @@
 </pre>
 
           <div class="method-source-code" id="identifiers-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 216</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 214</span>
     </pre>
           </div>
         </div>
@@ -403,7 +403,7 @@
           <p>Replace the list of identifiers for this citation.</p>
 
           <div class="method-source-code" id="identifiers-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 228</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 226</span>
     </pre>
           </div>
         </div>
@@ -428,7 +428,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 235</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 233</span>
     </pre>
           </div>
         </div>
@@ -450,7 +450,7 @@
 <p>Keywords will be converted to Strings on output.</p>
 
           <div class="method-source-code" id="keywords-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 249</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 247</span>
     </pre>
           </div>
         </div>
@@ -470,7 +470,7 @@
           <p>Return the preferred citation for this citation.</p>
 
           <div class="method-source-code" id="preferred_citation-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 258</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 256</span>
     </pre>
           </div>
         </div>
@@ -490,7 +490,7 @@
           <p>Replace the preferred citation for this citation.</p>
 
           <div class="method-source-code" id="preferred_citation-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 265</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 263</span>
     </pre>
           </div>
         </div>
@@ -513,7 +513,7 @@
 </pre>
 
           <div class="method-source-code" id="references-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 272</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 270</span>
     </pre>
           </div>
         </div>
@@ -533,7 +533,7 @@
           <p>Replace the list of references for this citation.</p>
 
           <div class="method-source-code" id="references-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 284</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 282</span>
   </pre>
           </div>
         </div>
@@ -553,7 +553,7 @@
           <p>Sets the type of this <a href="../CFF.html"><code>CFF</code></a> <a href="Index.html"><code>Index</code></a>. The type is currently restricted to one of <code>software</code> or <code>dataset</code>. If this field is not set then you should assume that the type is <code>software</code>.</p>
 
           <div class="method-source-code" id="type-3D-source">
-            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 127</span>
+            <pre><span class="ruby-comment"># File lib/cff/index.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type=</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@fields</span>[<span class="ruby-string">&#39;type&#39;</span>] = <span class="ruby-identifier">type</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">MODEL_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>)
@@ -572,7 +572,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.1.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
