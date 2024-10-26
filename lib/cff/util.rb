@@ -32,7 +32,7 @@ module CFF
     module_function
 
     def parse_yaml(string)
-      YAML.safe_load(string, permitted_classes: [Date, Time])
+      YAML.safe_load(string, aliases: true, permitted_classes: [Date, Time])
     end
 
     def update_cff_version(version)
@@ -49,6 +49,8 @@ module CFF
     # is a Person or Entity. This isn't perfect, but works 99.99% I think.
     def build_actor_collection!(source)
       source.map! do |s|
+        next s if s.is_a?(Person) || s.is_a?(Entity)
+
         s.has_key?('name') ? Entity.new(s) : Person.new(s)
       end
     end

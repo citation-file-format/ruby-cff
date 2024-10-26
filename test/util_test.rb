@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2024 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,15 +32,21 @@ class CFFUtilTest < Minitest::Test
   def test_build_actor_collection
     array = [
       { 'family-names' => 'Second', 'given-names' => 'First' },
-      { 'name' => 'Company' }
+      { 'name' => 'Company' },
+      ::CFF::Person.new('Firstname', 'Secondname'),
+      ::CFF::Entity.new('Company Inc.')
     ]
 
     build_actor_collection!(array)
-    assert_equal(2, array.length)
+    assert_equal(4, array.length)
     assert_instance_of ::CFF::Person, array[0]
     assert_equal('First', array[0].given_names)
     assert_instance_of ::CFF::Entity, array[1]
     assert_equal('Company', array[1].name)
+    assert_instance_of ::CFF::Person, array[2]
+    assert_equal('Firstname', array[2].given_names)
+    assert_instance_of ::CFF::Entity, array[3]
+    assert_equal('Company Inc.', array[3].name)
   end
 
   def test_normalize_modelpart_array

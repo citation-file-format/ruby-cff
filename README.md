@@ -122,6 +122,30 @@ CFF::File.open('CITATION.cff') do |cff|
 end
 ```
 
+#### Notes on CFF files with YAML anchors and aliases
+
+Ruby CFF can read files that use YAML anchors and aliases. An anchor (`&<label>`) identifies a section of your file for reuse elsewhere. An alias (`*<label>`) is then used to mark where you want that section to be repeated. In this example, the `&authors` anchor marks an author list for reuse wherever the `*authors` alias is used:
+
+```yaml
+cff-version: 1.2.0
+title: Ruby CFF Library
+authors: &authors
+- family-names: Haines
+  given-names: Robert
+  affiliation: The University of Manchester, UK
+
+...
+
+references:
+  - type: software
+    title: Citation File Format
+    authors: *authors
+```
+
+Ruby uses a single object to represent all aliases of an anchor. This means that once the above has been read in by Ruby CFF, if you add an author to either the top-level author list, or the author list in the reference, the new author will appear in both places. With this in mind, you should only use anchors and aliases where the relationship between sections is such that you are sure that exact repetition will always make sense.
+
+When saving CFF files that use anchors and aliases the underlying YAML library will not preserve their names. For example, if the above is loaded into Ruby CFF and then immediately saved `&authors`/`*authors` will most likely become `&1`/`*1`.
+
 ### Validating CFF files
 
 To quickly validate a file and raise an error on failure, you can use `CFF::File` directly:
