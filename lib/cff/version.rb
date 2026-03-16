@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 ##
 module CFF
   # :nodoc:
-  VERSION = '1.3.0'
+  VERSION = '1.4.0'
   DEFAULT_SPEC_VERSION = '1.2.0'
   MIN_VALIDATABLE_VERSION = '1.2.0'
 end
