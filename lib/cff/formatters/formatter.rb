@@ -41,6 +41,8 @@ module CFF
       end
 
       def self.initial_from_name_part(part)
+        return part[0].capitalize unless part.include?('-')
+
         part.split('-').filter_map { |sub| sub[0]&.capitalize }.join('.-')
       end
 

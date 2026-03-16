@@ -5,5 +5,7 @@ authors:
     given-names: Marc-Uwe
   - family-names: Picard
     given-names: Jean-Luc
+  - family-names: Smith
+    given-names: John
 title: Hyphenated names test
 date-released: 2021-09-21
