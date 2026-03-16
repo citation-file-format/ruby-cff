@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CFF::Reference -  Ruby CFF Library (version 1.3.0)</title>
+<title>class CFF::Reference -  Ruby CFF Library (version 1.4.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -297,7 +297,7 @@
       repository_artifact repository_code url version
     ]</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">value</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>)
-      <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{field}=&quot;</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">dup</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;&#39;</span>
+      <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{field}=&quot;</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">dup</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
