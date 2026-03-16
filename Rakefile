@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ RDoc::Task.new do |r|
   )
   r.options << '--markup=markdown'
   r.options << '--tab-width=2'
-  r.options << "-t Ruby CFF Library (version #{::CFF::VERSION})"
+  r.options << "-t Ruby CFF Library (version #{CFF::VERSION})"
 end
 
 RuboCop::RakeTask.new

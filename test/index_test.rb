@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2022 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -164,7 +164,7 @@ class CFFIndexTest < Minitest::Test
 
     data.each do |method, value|
       assert_equal('', m.send(method))
-      m.send("#{method}=", value)
+      m.send(:"#{method}=", value)
       assert_equal(value, m.send(method))
     end
 
@@ -349,7 +349,7 @@ class CFFIndexTest < Minitest::Test
 
     assert_equal('title', index.title)
     assert_equal('2.0.0', index.version)
-    assert index.is_a?(::CFF::Index)
+    assert_kind_of(::CFF::Index, index)
   end
 
   def test_read
