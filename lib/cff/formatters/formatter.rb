@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2023 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,8 +40,14 @@ module CFF
         model.authors.empty? || model.title.empty? ? nil : model
       end
 
+      def self.initial_from_name_part(part)
+        return part[0].capitalize unless part.include?('-')
+
+        part.split('-').filter_map { |sub| sub[0]&.capitalize }.join('.-')
+      end
+
       def self.initials(name)
-        name.split.map { |part| part[0].capitalize }.join('. ')
+        name.split.map { |part| initial_from_name_part(part) }.join('. ')
       end
 
       def self.note_from_model(model)

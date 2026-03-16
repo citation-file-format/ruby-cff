@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2018-2023 The Ruby Citation File Format Developers.
+# Copyright (c) 2018-2026 The Ruby Citation File Format Developers.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,21 @@ require 'cff/formatters/formatter'
 require 'cff/index'
 
 class CFFFormatterTest < Minitest::Test
+  def test_initial_from_name_part
+    assert_equal('A', CFF::Formatters::Formatter.initial_from_name_part('Arfon'))
+    assert_equal('M', CFF::Formatters::Formatter.initial_from_name_part('M.'))
+    assert_equal('M.-U', CFF::Formatters::Formatter.initial_from_name_part('Marc-Uwe'))
+    assert_equal('J.-L', CFF::Formatters::Formatter.initial_from_name_part('Jean-Luc'))
+    assert_equal('A.-B.-C', CFF::Formatters::Formatter.initial_from_name_part('A-B-C'))
+  end
+
+  def test_initials
+    assert_equal('A. S', CFF::Formatters::Formatter.initials('Arfon Smith'))
+    assert_equal('M.-U', CFF::Formatters::Formatter.initials('Marc-Uwe'))
+    assert_equal('J.-L. P', CFF::Formatters::Formatter.initials('Jean-Luc Picard'))
+    assert_equal('A. B. C', CFF::Formatters::Formatter.initials('Arfon B. C.'))
+  end
+
   def test_month_and_year_from_date
     [nil, '', ' ', 'nil'].each do |date|
       assert_equal(['', ''], CFF::Formatters::Formatter.month_and_year_from_date(date))
