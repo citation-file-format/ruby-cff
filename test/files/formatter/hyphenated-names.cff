@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+authors:
+  - family-names: Kling
+    given-names: Marc-Uwe
+  - family-names: Picard
+    given-names: Jean-Luc
+title: Hyphenated names test
+date-released: 2021-09-21

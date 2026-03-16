@@ -40,8 +40,12 @@ module CFF
         model.authors.empty? || model.title.empty? ? nil : model
       end
 
+      def self.initial_from_name_part(part)
+        part.split('-').filter_map { |sub| sub[0]&.capitalize }.join('.-')
+      end
+
       def self.initials(name)
-        name.split.map { |part| part[0].capitalize }.join('. ')
+        name.split.map { |part| initial_from_name_part(part) }.join('. ')
       end
 
       def self.note_from_model(model)
